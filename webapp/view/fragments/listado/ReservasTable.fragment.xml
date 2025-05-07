@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar"
+>
+    <Table
+        id="mainTable"
+        items="{ path:'LocalModel>/reservas' }"
+        mode="MultiSelect"
+        inset="false"
+        headerText="Reservas"
+        growing="true"
+        growingScrollToLoad="true"
+    >
+        <columns>
+            <Column>
+                <Text text="Orden" />
+            </Column>
+            <Column>
+                <Text text="Estado" />
+            </Column>
+            <Column>
+                <Text text="Changed On" />
+            </Column>
+            <Column>
+                <Text text="Customer" />
+            </Column>
+            <Column>
+                <Text text="Customer Contact" />
+            </Column>
+            <Column>
+                <Text text="Quantity" />
+            </Column>
+            <Column>
+                <Text text="Net Amount" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem
+                type="Navigation"
+                press=".onItemPress"
+            >
+                <cells>
+                    <ObjectIdentifier
+                        title="{LocalModel>OrderId}"
+                        titleActive="true"
+                    />
+                    <Text text="{LocalModel>Estado}" />
+                    <Text text="{LocalModel>ChangedOn}" />
+                    <ObjectIdentifier title="{LocalModel>Customer}" />
+                    <Text text="{LocalModel>CustomerContact}" />
+                    <Text text="{LocalModel>Quantity}" />
+                    <HBox>
+                        <Text text="{LocalModel>NetAmount}" />
+                        <Text text="{LocalModel>Currency}" />
+                    </HBox>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>
