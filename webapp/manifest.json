@@ -93,12 +93,21 @@
           "target": [
             "TargetListado"
           ]
+        },
+        {
+          "name": "RouteDetails",
+          "pattern": "details/{reservaId}",
+          "target": "TargetDetails"
         }
       ],
       "targets": {
         "TargetListado": {
           "id": "Listado",
           "name": "Listado"
+        },
+        "TargetDetails": {
+          "id": "Details",
+          "name": "Details"
         }
       }
     },

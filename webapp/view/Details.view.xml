@@ -1,0 +1,306 @@
+<mvc:View
+    xmlns:microchart="sap.suite.ui.microchart"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:uxap="sap.uxap"
+    controllerName="salidademateriales.controller.Listado"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <uxap:ObjectPageLayout>
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:content>
+                    <ObjectIdentifier
+                        title="Reserva 113493"
+                        text="113493"
+                    />
+                </uxap:content>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <HBox
+                gap="5%"
+                wrap="Wrap"
+            >
+                <VBox>
+                    <HBox
+                        gap="5px"
+                        wrap="Wrap"
+                    >
+                        <ObjectAttribute title="Autor" />
+                        <Text text="Jose Ramirez Gavilan" />
+                    </HBox>
+                    <HBox
+                        gap="5px"
+                        wrap="Wrap"
+                    >
+                        <ObjectAttribute title="Area" />
+                        <Text text="ELE CL23" />
+                    </HBox>
+                    <HBox
+                        gap="5px"
+                        wrap="Wrap"
+                    >
+                        <ObjectAttribute title="Centro" />
+                        <Text text="N/A" />
+                    </HBox>
+                </VBox>
+                <VBox>
+                    <ObjectStatus title="Status" />
+                    <ObjectStatus
+                        class="sapMObjectStatusLarge"
+                        text="Pendiente"
+                        state="Success"
+                    />
+                </VBox>
+            </HBox>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Home">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection
+                        title="Detalles"
+                        showTitle="false"
+                    >
+                        <uxap:blocks>
+                            <VBox>
+                                <form:SimpleForm
+                                    editable="false"
+                                    layout="ResponsiveGridLayout"
+                                    labelSpanXL="4"
+                                    labelSpanL="4"
+                                    labelSpanM="4"
+                                    labelSpanS="12"
+                                    adjustLabelSpan="false"
+                                >
+                                    <core:Title text="Detalle de cabecera" />
+                                    <layout:VerticalLayout>
+                                        <Label text="Reserva ID:" />
+                                        <Text text="589946637" />
+
+                                        <Label text="Contract:" />
+                                        <Text text="10045876" />
+
+                                        <Label text="Transaction Date:" />
+                                        <Text text="May 6, 2021" />
+                                    </layout:VerticalLayout>
+
+                                    <layout:VerticalLayout>
+                                        <Label text="Expected Delivery Date:" />
+                                        <Text text="June 23, 2021" />
+
+                                        <Label text="Factory:" />
+                                        <Text text="Orlando, FL" />
+
+                                        <Label text="Supplier:" />
+                                        <Text text="Robotech" />
+                                    </layout:VerticalLayout>
+
+                                    <core:Title text="Otros detalles" />
+                                    <layout:VerticalLayout>
+                                        <Label text="Model:" />
+                                        <Text text="Robot Arm Series 9" />
+
+                                        <Label text="Color:" />
+                                        <Text text="White (default)" />
+
+                                        <Label text="Socket:" />
+                                        <Text text="Default Socket 10" />
+                                    </layout:VerticalLayout>
+                                    <layout:VerticalLayout>
+                                        <Label text="Leasing Instalment:" />
+                                        <Text text="379.99 USD per month" />
+
+                                        <Label text="Axis:" />
+                                        <Text text="6 Axis" />
+                                    </layout:VerticalLayout>
+                                </form:SimpleForm>
+                                <Toolbar style="Clear">
+                                    <ToolbarSpacer />
+                                    <Button text="Show More" />
+                                </Toolbar>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                    <uxap:ObjectPageSubSection title="Listado de materiales">
+                        <uxap:blocks>
+                            <Table
+                                id="materialsTable"
+                                items="{ path:'LocalModel>/reservas/0/Materiales' }"
+                            >
+                                <headerToolbar>
+                                    <Toolbar>
+                                        <Title text="Title" />
+                                        <ToolbarSpacer />
+                                        <HBox width="50%" gap="20%">
+                                            <RadioButtonGroup columns="2">
+                                                <RadioButton
+                                                    text="Pendientes"
+                                                />
+                                                <RadioButton
+                                                    text="Completados"
+                                                />
+                                            </RadioButtonGroup>
+
+                                            <HBox>
+                                                <SearchField width="95%" />
+                                                <ToolbarSeparator />
+                                                <Button
+                                                    icon="sap-icon://print"
+                                                />
+                                                <ToolbarSeparator />
+                                                <Button
+                                                    icon="sap-icon://full-screen"
+                                                />
+                                            </HBox>
+                                        </HBox>
+                                    </Toolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column>
+                                        <Text text="Material" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Pos." />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Cent. Alm." />
+                                    </Column>
+                                    <Column>
+                                        <Text text="" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Fecha" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Ubicación" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Retira" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Pendiente" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="Cantidad" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="UMB" />
+                                    </Column>
+                                    <Column>
+                                        <Text text="" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <ObjectIdentifier
+                                                titleActive="true"
+                                                title="{LocalModel>material}"
+                                            />
+                                            <Text
+                                                text="{LocalModel>description}"
+                                            />
+                                            <Text
+                                                text="{LocalModel>position}"
+                                            />
+                                            <Text
+                                                text="{LocalModel>storageCenter}"
+                                            />
+                                            <Text text="{LocalModel>almacen}" />
+                                            <Text text="{LocalModel>date}" />
+                                            <Text
+                                                text="{LocalModel>location}"
+                                            />
+                                            <Input
+                                                value="{LocalModel>pending}"
+                                                type="Number"
+                                            />
+                                            <Text text="{LocalModel>pending}" />
+                                            <Text
+                                                text="{LocalModel>quantity}"
+                                            />
+                                            <Text text="{LocalModel>unit}" />
+                                            <microchart:RadialMicroChart
+                                                percentage="75"
+                                                size="XS"
+                                                valueColor="Sequence7"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Contact Information">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                            <Title text="Hola" />
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

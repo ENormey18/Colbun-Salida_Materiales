@@ -48,6 +48,17 @@ sap.ui.define([
         },
         onClear(){
             const filterBar = this.byId("filterBar");
+            filterBar.getAllFilterItems()?.forEach(i => i.getControl()?.setValue(''));
+            filterBar.fireSearch();
+        },
+        onItemPress(oEvent){
+            const localModel = this.getView().getModel("LocalModel");
+            const bindingPath = oEvent?.oSource?.getBindingContextPath();
+            const reserva = localModel.getProperty(bindingPath);
+            if(!reserva) return;
+            this.getOwnerComponent().getRouter().navTo("RouteDetails", {
+                reservaId: reserva.OrderId
+            });
         },
     });
 });

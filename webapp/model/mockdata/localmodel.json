@@ -8,7 +8,93 @@
             "CustomerContact": "Charlotte Hojby",
             "Quantity": "12 EA",
             "NetAmount": "164.00",
-            "Currency": "EUR"
+            "Currency": "EUR",
+            "Materiales": [
+                {
+                    "material": "147169",
+                    "description": "Interruptor diferencial 25A",
+                    "position": "00004",
+                    "storageCenter": "CL23",
+                    "almacen": "ALO1",
+                    "date": "11/15/21",
+                    "location": "202-MR21C4",
+                    "pending": 2,
+                    "quantity": 12,
+                    "unit": "EUR"
+                },
+                {
+                    "material": "302198",
+                    "description": "Automático 15A",
+                    "position": "00006",
+                    "storageCenter": "FR89",
+                    "almacen": "ALO1",
+                    "date": "11/15/22",
+                    "location": "202-MR21D8",
+                    "pending": 9,
+                    "quantity": 9,
+                    "unit": "EUR"
+                },
+                {
+                    "material": "237193",
+                    "description": "Termoregulardor 1P",
+                    "position": "00009",
+                    "storageCenter": "UL23",
+                    "almacen": "ALO1",
+                    "date": "11/20/21",
+                    "location": "202-MR21A5",
+                    "pending": 2,
+                    "quantity": 2,
+                    "unit": "EUR"
+                },
+                {
+                    "material": "237652",
+                    "description": "Cable Fuerza 750V",
+                    "position": "00004",
+                    "storageCenter": "CL23",
+                    "almacen": "ALO1",
+                    "date": "11/24/21",
+                    "location": "202-MR24T6",
+                    "pending": 0,
+                    "quantity": 1,
+                    "unit": "EUR"
+                },
+                {
+                    "material": "776827",
+                    "description": "Jologa",
+                    "position": "00016",
+                    "storageCenter": "CL23",
+                    "almacen": "ALO1",
+                    "date": "11/19/23",
+                    "location": "202-MR21C4",
+                    "pending": 6,
+                    "quantity": 12,
+                    "unit": "EUR"
+                },
+                {
+                    "material": "235263",
+                    "description": "Exotic Liquids",
+                    "position": "00004",
+                    "storageCenter": "CL23",
+                    "almacen": "ALO1",
+                    "date": "11/01/23",
+                    "location": "202-MR21D8",
+                    "pending": 2,
+                    "quantity": 2,
+                    "unit": "EUR"
+                },
+                {
+                    "material": "535211",
+                    "description": "DelBont Industries",
+                    "position": "00001",
+                    "storageCenter": "CL23",
+                    "almacen": "ALO1",
+                    "date": "09/15/21",
+                    "location": "202-MR21U0",
+                    "pending": 1,
+                    "quantity": 1,
+                    "unit": "EUR"
+                }
+            ]
         },
         {
             "OrderId": "500009085",
