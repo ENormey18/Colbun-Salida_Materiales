@@ -1,0 +1,95 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:microchart="sap.suite.ui.microchart"
+>
+    <Table
+        id="materialsTable"
+        items="{ path:'LocalModel>/reservas/0/Materiales' }"
+    >
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="Title" />
+                <ToolbarSpacer />
+                <SegmentedButton>
+                    <items>
+                        <SegmentedButtonItem text="Pendientes" />
+                        <SegmentedButtonItem text="Completados" />
+                    </items>
+                </SegmentedButton>
+                <ToolbarSpacer width="50px" />
+                <SearchField width="250px" />
+                <ToolbarSeparator />
+                <Button icon="sap-icon://print" />
+                <ToolbarSeparator />
+                <Button icon="sap-icon://full-screen" />
+            </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+            <Column>
+                <Text text="Material" />
+            </Column>
+            <Column>
+                <Text text="" />
+            </Column>
+            <Column>
+                <Text text="Pos." />
+            </Column>
+            <Column>
+                <Text text="Cent. Alm." />
+            </Column>
+            <Column>
+                <Text text="" />
+            </Column>
+            <Column>
+                <Text text="Fecha" />
+            </Column>
+            <Column>
+                <Text text="Ubicación" />
+            </Column>
+            <Column>
+                <Text text="Retira" />
+            </Column>
+            <Column>
+                <Text text="Pendiente" />
+            </Column>
+            <Column>
+                <Text text="Cantidad" />
+            </Column>
+            <Column>
+                <Text text="UMB" />
+            </Column>
+            <Column>
+                <Text text="" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <ObjectIdentifier
+                        titleActive="true"
+                        title="{LocalModel>material}"
+                    />
+                    <Text text="{LocalModel>description}" />
+                    <Text text="{LocalModel>position}" />
+                    <Text text="{LocalModel>storageCenter}" />
+                    <Text text="{LocalModel>almacen}" />
+                    <Text text="{LocalModel>date}" />
+                    <Text text="{LocalModel>location}" />
+                    <Input
+                        value="{LocalModel>pending}"
+                        type="Number"
+                    />
+                    <Text text="{LocalModel>pending}" />
+                    <Text text="{LocalModel>quantity}" />
+                    <Text text="{LocalModel>unit}" />
+                    <microchart:RadialMicroChart
+                        percentage="75"
+                        size="XS"
+                        valueColor="Sequence7"
+                    />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>

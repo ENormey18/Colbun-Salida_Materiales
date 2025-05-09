@@ -1,0 +1,90 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:unified="sap.ui.unified"
+>
+    <uxap:ObjectPageSubSection
+        title="Firmas"
+        showTitle="false"
+    >
+        <uxap:blocks>
+            <VBox>
+                <Title text="Firmas" />
+                <HBox justifyContent="SpaceBetween">
+                    <VBox width="33%">
+                        <Label
+                            text="Autorizador (Creador)"
+                            showColon="true"
+                        />
+                        <Image
+                            width="100%"
+                            src="{LocalModel>/firmas/autorizador}"
+                            visible="{= !!${LocalModel>/firmas/autorizador} }"
+                        />
+                        <HBox visible="{= !${LocalModel>/firmas/autorizador} }">
+                            <unified:FileUploader
+                                buttonText="Subir firma"
+                                change=".onChangeFile($event, 'autorizador')"
+                                buttonOnly="true"
+                                fileType="jpg,jpeg,png,gif,bmp,webp"
+                            />
+                            <Button
+                                text="Dibujar firma"
+                                press=".onOpenSignatureCanvas($event, 'autorizador')"
+                            />
+                        </HBox>
+                    </VBox>
+                    <VBox width="33%">
+                        <Label
+                            text="Recibi Conforme"
+                            showColon="true"
+                        />
+                        <Image
+                            width="100%"
+                            src="{LocalModel>/firmas/conforme}"
+                            visible="{= !!${LocalModel>/firmas/conforme} }"
+                        />
+                        <HBox visible="{= !${LocalModel>/firmas/conforme} }">
+                            <unified:FileUploader
+                                buttonText="Subir firma"
+                                change=".onChangeFile($event, 'conforme')"
+                                buttonOnly="true"
+                                fileType="jpg,jpeg,png,gif,bmp,webp"
+                            />
+                            <Button
+                                text="Dibujar firma"
+                                press=".onOpenSignatureCanvas($event, 'conforme')"
+                            />
+                        </HBox>
+                    </VBox>
+                    <VBox width="33%">
+                        <Label
+                            text="Entregado por"
+                            showColon="true"
+                        />
+                        <Image
+                            width="100%"
+                            src="{LocalModel>/firmas/entregadoPor}"
+                            visible="{= !!${LocalModel>/firmas/entregadoPor} }"
+                        />
+                        <HBox
+                            visible="{= !${LocalModel>/firmas/entregadoPor} }"
+                        >
+                            <unified:FileUploader
+                                buttonText="Subir firma"
+                                change=".onChangeFile($event, 'entregadoPor')"
+                                buttonOnly="true"
+                                fileType="jpg,jpeg,png,gif,bmp,webp"
+                            />
+                            <Button
+                                text="Dibujar firma"
+                                press=".onOpenSignatureCanvas($event, 'entregadoPor')"
+                            />
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </uxap:blocks>
+    </uxap:ObjectPageSubSection>
+</core:FragmentDefinition>

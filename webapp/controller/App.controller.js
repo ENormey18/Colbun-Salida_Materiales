@@ -1,6 +1,7 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "salidademateriales/libs/signature_pad.umd.min"
 ], (BaseController, JSONModel) => {
     "use strict";
 

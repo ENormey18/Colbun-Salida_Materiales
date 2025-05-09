@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+>
+    <VBox>
+        <form:SimpleForm
+            editable="false"
+            layout="ResponsiveGridLayout"
+            labelSpanXL="4"
+            labelSpanL="4"
+            labelSpanM="4"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+        >
+            <core:Title text="Detalle de cabecera" />
+            <layout:VerticalLayout>
+                <Label text="Reserva ID:" />
+                <Text text="589946637" />
+
+                <Label text="Contract:" />
+                <Text text="10045876" />
+
+                <Label text="Transaction Date:" />
+                <Text text="May 6, 2021" />
+            </layout:VerticalLayout>
+
+            <layout:VerticalLayout>
+                <Label text="Expected Delivery Date:" />
+                <Text text="June 23, 2021" />
+
+                <Label text="Factory:" />
+                <Text text="Orlando, FL" />
+
+                <Label text="Supplier:" />
+                <Text text="Robotech" />
+            </layout:VerticalLayout>
+
+            <core:Title text="Otros detalles" />
+            <layout:VerticalLayout>
+                <Label text="Model:" />
+                <Text text="Robot Arm Series 9" />
+
+                <Label text="Color:" />
+                <Text text="White (default)" />
+
+                <Label text="Socket:" />
+                <Text text="Default Socket 10" />
+            </layout:VerticalLayout>
+            <layout:VerticalLayout>
+                <Label text="Leasing Instalment:" />
+                <Text text="379.99 USD per month" />
+
+                <Label text="Axis:" />
+                <Text text="6 Axis" />
+            </layout:VerticalLayout>
+        </form:SimpleForm>
+        <Toolbar style="Clear">
+            <ToolbarSpacer />
+            <Button text="Show More" />
+        </Toolbar>
+    </VBox>
+</core:FragmentDefinition>
