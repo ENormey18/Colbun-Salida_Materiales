@@ -17,10 +17,10 @@
             <core:Title text="Detalle de cabecera" />
             <layout:VerticalLayout>
                 <Label text="Reserva ID:" />
-                <Text text="589946637" />
+                <Text text="{LocalModel>id}" />
 
                 <Label text="Contract:" />
-                <Text text="10045876" />
+                <Text text="{LocalModel>contract}" />
 
                 <Label text="Transaction Date:" />
                 <Text text="May 6, 2021" />

@@ -5,7 +5,7 @@
 >
     <Table
         id="materialsTable"
-        items="{ path:'LocalModel>/reservas/0/Materiales' }"
+        items="{ path:'LocalModel>materiales' }"
     >
         <headerToolbar>
             <OverflowToolbar>
@@ -68,12 +68,12 @@
                 <cells>
                     <ObjectIdentifier
                         titleActive="true"
-                        title="{LocalModel>material}"
+                        title="{LocalModel>id}"
                     />
                     <Text text="{LocalModel>description}" />
                     <Text text="{LocalModel>position}" />
-                    <Text text="{LocalModel>storageCenter}" />
-                    <Text text="{LocalModel>almacen}" />
+                    <Text text="{LocalModel>center}" />
+                    <Text text="{LocalModel>storage}" />
                     <Text text="{LocalModel>date}" />
                     <Text text="{LocalModel>location}" />
                     <Input
@@ -87,6 +87,7 @@
                         percentage="75"
                         size="XS"
                         valueColor="Sequence7"
+                        press=".onPressMaterial"
                     />
                 </cells>
             </ColumnListItem>

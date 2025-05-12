@@ -1,33 +1,244 @@
 {
     "reservas": [
         {
-            "OrderId": "500009086",
-            "Estado": "New",
-            "ChangedOn": "2021-06-15",
-            "Customer": "Danish Fishing Trading Company (100000043)",
-            "CustomerContact": "Charlotte Hojby",
-            "Quantity": "12 EA",
-            "NetAmount": "164.00",
-            "Currency": "EUR",
-            "Materiales": [
+            "id": "113493",
+            "center": "CL23",
+            "orderId": "500009086",
+            "state": "New",
+            "changedOn": "2021-06-15",
+            "customer": "Danish Fishing Trading Company (100000043)",
+            "customerContact": "Charlotte Hojby",
+            "quantity": "12 EA",
+            "netAmount": "164.00",
+            "currency": "EUR",
+            "contract": "10045876",
+            "materiales": [
                 {
-                    "material": "147169",
+                    "id": "147169",
                     "description": "Interruptor diferencial 25A",
                     "position": "00004",
-                    "storageCenter": "CL23",
-                    "almacen": "ALO1",
+                    "center": "CL23",
+                    "storage": "ALO1",
+                    "state": "New",
                     "date": "11/15/21",
                     "location": "202-MR21C4",
                     "pending": 2,
                     "quantity": 12,
-                    "unit": "EUR"
+                    "unit": "EUR",
+                    "caracteristicas": [
+                        {
+                            "cat": "CAT0124",
+                            "descripcionCAT": "ACABADO SUPERFICIAL",
+                            "valorCAT": "12"
+                        },
+                        {
+                            "cat": "CAT0031",
+                            "descripcionCAT": "TIPO",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0014",
+                            "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                            "valorCAT": ""
+                        },
+                        {
+                            "cat": "CAT0028",
+                            "descripcionCAT": "NORMAS Y ESTANDARES",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0210",
+                            "descripcionCAT": "FACTOR DE SEGURIDAD",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0299",
+                            "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                            "valorCAT": "50"
+                        },
+                        {
+                            "cat": "CAT0249",
+                            "descripcionCAT": "TIPO DE TERMINALES",
+                            "valorCAT": "2"
+                        },
+                        {
+                            "cat": "CAT0420",
+                            "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                            "valorCAT": "20 MM"
+                        },
+                        {
+                            "cat": "CAT0124",
+                            "descripcionCAT": "ACABADO SUPERFICIAL",
+                            "valorCAT": "12"
+                        },
+                        {
+                            "cat": "CAT0031",
+                            "descripcionCAT": "TIPO",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0014",
+                            "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                            "valorCAT": ""
+                        },
+                        {
+                            "cat": "CAT0028",
+                            "descripcionCAT": "NORMAS Y ESTANDARES",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0210",
+                            "descripcionCAT": "FACTOR DE SEGURIDAD",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0299",
+                            "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                            "valorCAT": "50"
+                        },
+                        {
+                            "cat": "CAT0249",
+                            "descripcionCAT": "TIPO DE TERMINALES",
+                            "valorCAT": "2"
+                        },
+                        {
+                            "cat": "CAT0420",
+                            "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                            "valorCAT": "20 MM"
+                        },
+                        {
+                            "cat": "CAT0124",
+                            "descripcionCAT": "ACABADO SUPERFICIAL",
+                            "valorCAT": "12"
+                        },
+                        {
+                            "cat": "CAT0031",
+                            "descripcionCAT": "TIPO",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0014",
+                            "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                            "valorCAT": ""
+                        },
+                        {
+                            "cat": "CAT0028",
+                            "descripcionCAT": "NORMAS Y ESTANDARES",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0210",
+                            "descripcionCAT": "FACTOR DE SEGURIDAD",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0299",
+                            "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                            "valorCAT": "50"
+                        },
+                        {
+                            "cat": "CAT0249",
+                            "descripcionCAT": "TIPO DE TERMINALES",
+                            "valorCAT": "2"
+                        },
+                        {
+                            "cat": "CAT0420",
+                            "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                            "valorCAT": "20 MM"
+                        },
+                        {
+                            "cat": "CAT0124",
+                            "descripcionCAT": "ACABADO SUPERFICIAL",
+                            "valorCAT": "12"
+                        },
+                        {
+                            "cat": "CAT0031",
+                            "descripcionCAT": "TIPO",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0014",
+                            "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                            "valorCAT": ""
+                        },
+                        {
+                            "cat": "CAT0028",
+                            "descripcionCAT": "NORMAS Y ESTANDARES",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0210",
+                            "descripcionCAT": "FACTOR DE SEGURIDAD",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0299",
+                            "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                            "valorCAT": "50"
+                        },
+                        {
+                            "cat": "CAT0249",
+                            "descripcionCAT": "TIPO DE TERMINALES",
+                            "valorCAT": "2"
+                        },
+                        {
+                            "cat": "CAT0420",
+                            "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                            "valorCAT": "20 MM"
+                        },
+                        {
+                            "cat": "CAT0124",
+                            "descripcionCAT": "ACABADO SUPERFICIAL",
+                            "valorCAT": "12"
+                        },
+                        {
+                            "cat": "CAT0031",
+                            "descripcionCAT": "TIPO",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0014",
+                            "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                            "valorCAT": ""
+                        },
+                        {
+                            "cat": "CAT0028",
+                            "descripcionCAT": "NORMAS Y ESTANDARES",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0210",
+                            "descripcionCAT": "FACTOR DE SEGURIDAD",
+                            "valorCAT": "Attribute"
+                        },
+                        {
+                            "cat": "CAT0299",
+                            "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                            "valorCAT": "50"
+                        },
+                        {
+                            "cat": "CAT0249",
+                            "descripcionCAT": "TIPO DE TERMINALES",
+                            "valorCAT": "2"
+                        },
+                        {
+                            "cat": "CAT0420",
+                            "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                            "valorCAT": "20 MM"
+                        },
+                        {
+                            "cat": "CAT0015",
+                            "descripcionCAT": "DESIGNACION DEL FABRICANTE",
+                            "valorCAT": "Pendiente"
+                        }
+                    ]
                 },
                 {
-                    "material": "302198",
+                    "id": "302198",
                     "description": "Automático 15A",
                     "position": "00006",
-                    "storageCenter": "FR89",
-                    "almacen": "ALO1",
+                    "center": "FR89",
+                    "storage": "ALO1",
                     "date": "11/15/22",
                     "location": "202-MR21D8",
                     "pending": 9,
@@ -35,11 +246,11 @@
                     "unit": "EUR"
                 },
                 {
-                    "material": "237193",
+                    "id": "237193",
                     "description": "Termoregulardor 1P",
                     "position": "00009",
-                    "storageCenter": "UL23",
-                    "almacen": "ALO1",
+                    "center": "UL23",
+                    "storage": "ALO1",
                     "date": "11/20/21",
                     "location": "202-MR21A5",
                     "pending": 2,
@@ -47,11 +258,11 @@
                     "unit": "EUR"
                 },
                 {
-                    "material": "237652",
+                    "id": "237652",
                     "description": "Cable Fuerza 750V",
                     "position": "00004",
-                    "storageCenter": "CL23",
-                    "almacen": "ALO1",
+                    "center": "CL23",
+                    "storage": "ALO1",
                     "date": "11/24/21",
                     "location": "202-MR24T6",
                     "pending": 0,
@@ -59,11 +270,11 @@
                     "unit": "EUR"
                 },
                 {
-                    "material": "776827",
+                    "id": "776827",
                     "description": "Jologa",
                     "position": "00016",
-                    "storageCenter": "CL23",
-                    "almacen": "ALO1",
+                    "center": "CL23",
+                    "storage": "ALO1",
                     "date": "11/19/23",
                     "location": "202-MR21C4",
                     "pending": 6,
@@ -71,11 +282,11 @@
                     "unit": "EUR"
                 },
                 {
-                    "material": "235263",
+                    "id": "235263",
                     "description": "Exotic Liquids",
                     "position": "00004",
-                    "storageCenter": "CL23",
-                    "almacen": "ALO1",
+                    "center": "CL23",
+                    "storage": "ALO1",
                     "date": "11/01/23",
                     "location": "202-MR21D8",
                     "pending": 2,
@@ -83,11 +294,11 @@
                     "unit": "EUR"
                 },
                 {
-                    "material": "535211",
+                    "id": "535211",
                     "description": "DelBont Industries",
                     "position": "00001",
-                    "storageCenter": "CL23",
-                    "almacen": "ALO1",
+                    "center": "CL23",
+                    "storage": "ALO1",
                     "date": "09/15/21",
                     "location": "202-MR21U0",
                     "pending": 1,
@@ -97,94 +308,94 @@
             ]
         },
         {
-            "OrderId": "500009085",
-            "Estado": "New",
-            "ChangedOn": "2021-06-15",
-            "Customer": "Soralí (100000044)",
-            "CustomerContact": "Klaus Cole",
-            "Quantity": "6 EA",
-            "NetAmount": "3,380.00",
-            "Currency": "EUR"
+            "orderId": "500009085",
+            "state": "New",
+            "changedOn": "2021-06-15",
+            "customer": "Soralí (100000044)",
+            "customerContact": "Klaus Cole",
+            "quantity": "6 EA",
+            "netAmount": "3,380.00",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009084",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-15",
-            "Customer": "Anav Ideon (100000054)",
-            "CustomerContact": "John Miller",
-            "Quantity": "2 EA",
-            "NetAmount": "516.00",
-            "Currency": "EUR"
+            "orderId": "500009084",
+            "state": "Delivered",
+            "changedOn": "2021-06-15",
+            "customer": "Anav Ideon (100000054)",
+            "customerContact": "John Miller",
+            "quantity": "2 EA",
+            "netAmount": "516.00",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009083",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-15",
-            "Customer": "PicoBit (100000037)",
-            "CustomerContact": "Will Shi",
-            "Quantity": "9 EA",
-            "NetAmount": "1,431.97",
-            "Currency": "EUR"
+            "orderId": "500009083",
+            "state": "Delivered",
+            "changedOn": "2021-06-15",
+            "customer": "PicoBit (100000037)",
+            "customerContact": "Will Shi",
+            "quantity": "9 EA",
+            "netAmount": "1,431.97",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009082",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-15",
-            "Customer": "PicoBit (100000037)",
-            "CustomerContact": "Will Shi",
-            "Quantity": "12 EA",
-            "NetAmount": "164.00",
-            "Currency": "EUR"
+            "orderId": "500009082",
+            "state": "Delivered",
+            "changedOn": "2021-06-15",
+            "customer": "PicoBit (100000037)",
+            "customerContact": "Will Shi",
+            "quantity": "12 EA",
+            "netAmount": "164.00",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009081",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-15",
-            "Customer": "PicoBit (100000037)",
-            "CustomerContact": "Will Shi",
-            "Quantity": "6 EA",
-            "NetAmount": "3,380.00",
-            "Currency": "EUR"
+            "orderId": "500009081",
+            "state": "Delivered",
+            "changedOn": "2021-06-15",
+            "customer": "PicoBit (100000037)",
+            "customerContact": "Will Shi",
+            "quantity": "6 EA",
+            "netAmount": "3,380.00",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009080",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-15",
-            "Customer": "Siwusha (100000042)",
-            "CustomerContact": "Cameron Rogers",
-            "Quantity": "11 EA",
-            "NetAmount": "853.00",
-            "Currency": "EUR"
+            "orderId": "500009080",
+            "state": "Delivered",
+            "changedOn": "2021-06-15",
+            "customer": "Siwusha (100000042)",
+            "customerContact": "Cameron Rogers",
+            "quantity": "11 EA",
+            "netAmount": "853.00",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009079",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-14",
-            "Customer": "PicoBit (100000037)",
-            "CustomerContact": "Will Shi",
-            "Quantity": "9 EA",
-            "NetAmount": "1,431.97",
-            "Currency": "EUR"
+            "orderId": "500009079",
+            "state": "Delivered",
+            "changedOn": "2021-06-14",
+            "customer": "PicoBit (100000037)",
+            "customerContact": "Will Shi",
+            "quantity": "9 EA",
+            "netAmount": "1,431.97",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009078",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-14",
-            "Customer": "South American IT Company (100000041)",
-            "CustomerContact": "Steve Gallion",
-            "Quantity": "12 EA",
-            "NetAmount": "12,897.00",
-            "Currency": "EUR"
+            "orderId": "500009078",
+            "state": "Delivered",
+            "changedOn": "2021-06-14",
+            "customer": "South American IT Company (100000041)",
+            "customerContact": "Steve Gallion",
+            "quantity": "12 EA",
+            "netAmount": "12,897.00",
+            "currency": "EUR"
         },
         {
-            "OrderId": "500009077",
-            "Estado": "Delivered",
-            "ChangedOn": "2021-06-14",
-            "Customer": "African Gold and Diamond Corporation (100000036)",
-            "CustomerContact": "Dominik Doudny",
-            "Quantity": "6 EA",
-            "NetAmount": "3,380.00",
-            "Currency": "EUR"
+            "orderId": "500009077",
+            "state": "Delivered",
+            "changedOn": "2021-06-14",
+            "customer": "African Gold and Diamond Corporation (100000036)",
+            "customerContact": "Dominik Doudny",
+            "quantity": "6 EA",
+            "netAmount": "3,380.00",
+            "currency": "EUR"
         }
     ],
     "firmas": {}

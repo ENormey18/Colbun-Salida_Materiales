@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
-], (Controller, Fragment) => {
+    "sap/m/MessageToast"
+], (Controller, Fragment, MessageToast) => {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.Details", {
@@ -13,7 +14,7 @@ sap.ui.define([
             const reservaId = oEvent.mParameters?.arguments?.reservaId;
             const localModel = this.getView().getModel("LocalModel");
             const reservas = localModel.getProperty("/reservas");
-            const reservaIndex = reservas.findIndex(r => r.OrderId === reservaId);
+            const reservaIndex = reservas.findIndex(r => r.orderId === reservaId);
             this.getView().bindElement(`LocalModel>/reservas/${reservaIndex}`);
         },
         onAfterRenderingCanvas() {
@@ -26,7 +27,7 @@ sap.ui.define([
         async onOpenSignatureCanvas(oEvent, belongsTo) {
             if (!this.signatureDialog) {
                 this.signatureDialog = await Fragment.load({
-                    name: "salidademateriales.view.fragments.details.SignDialog",
+                    name: "salidademateriales.view.fragments.details.dialogs.SignDialog",
                     controller: this,
                     id: "signatureDialog"
                 });
@@ -88,6 +89,21 @@ sap.ui.define([
                 reader.onload = () => resolve(reader.result);
                 reader.onerror = reject;
             })
-        }
+        },
+        async onPressMaterial(oEvent){
+            if (!this.caracteristicasMaterialesDialog) {
+                this.caracteristicasMaterialesDialog = await Fragment.load({
+                    name: "salidademateriales.view.fragments.details.dialogs.CaracteristicasMaterialesDialog",
+                    controller: this,
+                    id: "caracteristicasMaterialesDialog"
+                });
+                this.getView().addDependent(this.caracteristicasMaterialesDialog);
+            }
+            const oBindingContext = oEvent.oSource?.getBindingContext("LocalModel");
+            const oBindingPath = oBindingContext?.getPath();
+            if(!oBindingPath) return MessageToast.show("Error al mostrar caracteristicas del material");
+            this.caracteristicasMaterialesDialog.bindElement(`LocalModel>${oBindingPath}`);
+            this.caracteristicasMaterialesDialog.open();
+        },
     });
 });

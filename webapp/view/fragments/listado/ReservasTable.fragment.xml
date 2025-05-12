@@ -42,17 +42,17 @@
             >
                 <cells>
                     <ObjectIdentifier
-                        title="{LocalModel>OrderId}"
+                        title="{LocalModel>orderId}"
                         titleActive="true"
                     />
-                    <Text text="{LocalModel>Estado}" />
-                    <Text text="{LocalModel>ChangedOn}" />
-                    <ObjectIdentifier title="{LocalModel>Customer}" />
-                    <Text text="{LocalModel>CustomerContact}" />
-                    <Text text="{LocalModel>Quantity}" />
+                    <Text text="{LocalModel>state}" />
+                    <Text text="{LocalModel>changedOn}" />
+                    <ObjectIdentifier title="{LocalModel>customer}" />
+                    <Text text="{LocalModel>customerContact}" />
+                    <Text text="{LocalModel>quantity}" />
                     <HBox>
-                        <Text text="{LocalModel>NetAmount}" />
-                        <Text text="{LocalModel>Currency}" />
+                        <Text text="{LocalModel>netAmount}" />
+                        <Text text="{LocalModel>currency}" />
                     </HBox>
                 </cells>
             </ColumnListItem>
