@@ -308,6 +308,8 @@
             ]
         },
         {
+            "id": "113494",
+            "center": "CL25",
             "orderId": "500009085",
             "state": "New",
             "changedOn": "2021-06-15",
@@ -398,5 +400,30 @@
             "currency": "EUR"
         }
     ],
-    "firmas": {}
+    "firmas": {},
+    "popoverMessages":[{
+        "type": "Error",
+        "title": "Error message",
+        "description": "sErrorDescription",
+        "subtitle": "Example of subtitle"
+    }, {
+        "type": "Warning",
+        "title": "Warning without description",
+        "description": ""
+    }, {
+        "type": "Success",
+        "title": "Success message",
+        "description": "First Success message description",
+        "subtitle": "Example of subtitle"
+    }, {
+        "type": "Error",
+        "title": "Error message",
+        "description": "Second Error message description",
+        "subtitle": "Example of subtitle"
+    }, {
+        "type": "Information",
+        "title": "Information message",
+        "description": "First Information message description",
+        "subtitle": "Example of subtitle"
+    }]
 }

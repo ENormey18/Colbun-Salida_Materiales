@@ -88,11 +88,14 @@
       },
       "routes": [
         {
-          "name": "RouteListado",
+          "name": "InitialRoute",
           "pattern": ":?query:",
-          "target": [
-            "TargetListado"
-          ]
+          "target": "InitialTarget"
+        },
+        {
+          "name": "RouteListado",
+          "pattern": "listado:?query:",
+          "target": "TargetListado"
         },
         {
           "name": "RouteDetails",
@@ -101,6 +104,10 @@
         }
       ],
       "targets": {
+        "InitialTarget":{
+          "id": "Initial",
+          "name": "InitialFilters"
+        },
         "TargetListado": {
           "id": "Listado",
           "name": "Listado"

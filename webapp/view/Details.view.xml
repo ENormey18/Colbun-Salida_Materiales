@@ -5,7 +5,7 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
 >
-    <uxap:ObjectPageLayout>
+    <uxap:ObjectPageLayout showFooter="true">
         <uxap:headerTitle>
             <uxap:ObjectPageDynamicHeaderTitle>
                 <uxap:content>
@@ -51,5 +51,13 @@
                 </uxap:subSections>
             </uxap:ObjectPageSection>
         </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar >
+                <Button type="Negative" text="2" press=".onShowMessagePopover" id="messagePopoverButton"/>
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="Contabilizar"/>
+                <Button text="Cancel"/>
+            </OverflowToolbar>
+        </uxap:footer>
     </uxap:ObjectPageLayout>
 </mvc:View>

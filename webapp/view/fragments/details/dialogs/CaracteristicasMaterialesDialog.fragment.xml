@@ -7,42 +7,51 @@
         resizable="true"
     >
         <content>
-            <Table
-                id="caracteristicasTable"
-                items="{path:'LocalModel>caracteristicas'}"
-                mode="MultiSelect"
-            >
-                <columns>
-                    <Column>
-                        <Text text="CAT" />
-                    </Column>
-                    <Column>
-                        <Text text="Descripción CAT" />
-                    </Column>
-                    <Column>
-                        <Text text="Valor CAT" />
-                    </Column>
-                </columns>
+            <VBox alignItems="Center">
+                <VBox width="90%">
+                    <Table
+                        headerText="{LocalModel>description}"
+                        id="caracteristicasTable"
+                        items="{path:'LocalModel>caracteristicas'}"
+                        mode="MultiSelect"
+                    >
+                        <columns>
+                            <Column>
+                                <Text text="CAT" />
+                            </Column>
+                            <Column>
+                                <Text text="Descripción CAT" />
+                            </Column>
+                            <Column>
+                                <Text text="Valor CAT" />
+                            </Column>
+                        </columns>
 
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <Text text="{LocalModel>cat}" />
-                            <Text text="{LocalModel>descripcionCAT}" />
-                            <Text text="{LocalModel>valorCAT}" />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{LocalModel>cat}" />
+                                    <Text text="{LocalModel>descripcionCAT}" />
+                                    <Text text="{LocalModel>valorCAT}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </VBox>
+            </VBox>
         </content>
         <beginButton>
             <Button
                 text="OK"
                 type="Emphasized"
+                press=".onAceptarCaracteristicas"
             />
         </beginButton>
         <endButton>
-            <Button text="Cancel" />
+            <Button
+                text="Cancel"
+                press=".onCancelarCaracteristicas"
+            />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

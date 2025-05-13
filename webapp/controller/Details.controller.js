@@ -1,8 +1,10 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
-    "sap/m/MessageToast"
-], (Controller, Fragment, MessageToast) => {
+    "sap/m/MessageToast",
+    'sap/m/MessagePopover',
+    'sap/m/MessageItem',
+], (Controller, Fragment, MessageToast, MessagePopover, MessageItem) => {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.Details", {
@@ -104,6 +106,35 @@ sap.ui.define([
             if(!oBindingPath) return MessageToast.show("Error al mostrar caracteristicas del material");
             this.caracteristicasMaterialesDialog.bindElement(`LocalModel>${oBindingPath}`);
             this.caracteristicasMaterialesDialog.open();
+        },
+        onAceptarCaracteristicas(){
+            this.caracteristicasMaterialesDialog.close();
+        },
+        onCancelarCaracteristicas(){
+            this.caracteristicasMaterialesDialog.close();
+        },
+        initMessagepopover(){
+            const oMessageTemplate = new MessageItem({
+				type: '{LocalModel>type}',
+				title: '{LocalModel>title}',
+				description: '{LocalModel>description}',
+				subtitle: '{LocalModel>subtitle}',
+			});
+
+            this.oMessagePopover = new MessagePopover({
+				items: {
+					path: 'LocalModel>/popoverMessages',
+					template: oMessageTemplate
+				}
+			});
+        },
+        onShowMessagePopover(oEvent){
+            if(!this.oMessagePopover){
+                this.initMessagepopover();
+                const oButton = oEvent.getSource();
+                oButton.addDependent(this.oMessagePopover);
+            }
+            this.oMessagePopover.toggle(oEvent.getSource());
         },
     });
 });

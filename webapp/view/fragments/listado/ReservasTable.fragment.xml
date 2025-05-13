@@ -5,7 +5,7 @@
 >
     <Table
         id="mainTable"
-        items="{ path:'LocalModel>/reservas' }"
+        items="{ path:'LocalModel>/filteredReservas' }"
         mode="MultiSelect"
         inset="false"
         headerText="Reservas"
