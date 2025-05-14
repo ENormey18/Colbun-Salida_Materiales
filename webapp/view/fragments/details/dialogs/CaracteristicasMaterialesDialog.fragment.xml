@@ -32,7 +32,10 @@
                                 <cells>
                                     <Text text="{LocalModel>cat}" />
                                     <Text text="{LocalModel>descripcionCAT}" />
-                                    <Text text="{LocalModel>valorCAT}" />
+                                    <VBox >
+                                        <Text text="{LocalModel>valorCAT}" visible="{= !!${LocalModel>valorCAT}}"/>
+                                        <Input value="{LocalModel>newValorCAT}" editable="{= !${LocalModel>valorCAT}}" visible="{= !${LocalModel>valorCAT}}"/>
+                                    </VBox>
                                 </cells>
                             </ColumnListItem>
                         </items>

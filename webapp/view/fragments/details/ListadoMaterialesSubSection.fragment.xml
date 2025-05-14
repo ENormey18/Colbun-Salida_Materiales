@@ -84,7 +84,7 @@
                     <Text text="{LocalModel>quantity}" />
                     <Text text="{LocalModel>unit}" />
                     <microchart:RadialMicroChart
-                        percentage="75"
+                        percentage="{ path: '{LocalModel>caracteristicas}', formatter: '.caracteristicasPorcentageFormatter'}"
                         size="XS"
                         valueColor="Sequence7"
                         press=".onPressMaterial"

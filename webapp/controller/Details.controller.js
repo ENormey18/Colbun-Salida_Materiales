@@ -107,7 +107,19 @@ sap.ui.define([
             this.caracteristicasMaterialesDialog.bindElement(`LocalModel>${oBindingPath}`);
             this.caracteristicasMaterialesDialog.open();
         },
-        onAceptarCaracteristicas(){
+        onAceptarCaracteristicas(oEvent){
+            const localModel = this.getView().getModel("LocalModel");
+            const bindingPath = oEvent.getSource()?.getBindingContext("LocalModel")?.sPath;
+            if(!bindingPath) return MessageToast.show("Error al modificar caracteristicas del material");
+            const caracteristicas = localModel.getProperty(`${bindingPath}/caracteristicas`);
+            const caracteristicasModificadas = caracteristicas?.filter(c => c.newValorCAT);
+            if(caracteristicasModificadas && caracteristicasModificadas.length > 0){
+                caracteristicasModificadas.forEach(c => {
+                    c.valorCAT = c.newValorCAT;
+                    delete(c.newValorCAT);
+                })
+                localModel.setProperty(`${bindingPath}/caracteristicas`, caracteristicas);
+            }
             this.caracteristicasMaterialesDialog.close();
         },
         onCancelarCaracteristicas(){
@@ -135,6 +147,9 @@ sap.ui.define([
                 oButton.addDependent(this.oMessagePopover);
             }
             this.oMessagePopover.toggle(oEvent.getSource());
+        },
+        caracteristicasPorcentageFormatter(args){
+            console.log(args);
         },
     });
 });
