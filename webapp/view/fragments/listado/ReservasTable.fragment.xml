@@ -44,6 +44,7 @@
                     <ObjectIdentifier
                         title="{LocalModel>orderId}"
                         titleActive="true"
+                        titlePress=".onItemPress"
                     />
                     <Text text="{LocalModel>state}" />
                     <Text text="{LocalModel>changedOn}" />

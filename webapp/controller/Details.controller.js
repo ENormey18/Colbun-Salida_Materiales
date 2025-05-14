@@ -16,7 +16,7 @@ sap.ui.define([
             const reservaId = oEvent.mParameters?.arguments?.reservaId;
             const localModel = this.getView().getModel("LocalModel");
             const reservas = localModel.getProperty("/reservas");
-            const reservaIndex = reservas.findIndex(r => r.orderId === reservaId);
+            const reservaIndex = reservas.findIndex(r => r.id === reservaId);
             this.getView().bindElement(`LocalModel>/reservas/${reservaIndex}`);
         },
         onAfterRenderingCanvas() {

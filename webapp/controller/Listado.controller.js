@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
-], (Controller, Filter, FilterOperator) => {
+    "sap/ui/model/FilterOperator",
+    "sap/m/MessageToast",
+], (Controller, Filter, FilterOperator, MessageToast) => {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.Listado", {
@@ -12,8 +13,14 @@ sap.ui.define([
         },
         onRouteMatched(oEvent) {
             const args = oEvent.getParameter("arguments");
-            if (!args) return;
-            const { materialFrom, materialTo, centro } = args['?query'];
+            const queries = args['?query'];
+            if (!queries){
+                const localModel = this.getView().getModel("LocalModel");
+                const reservas = localModel.getProperty("/reservas");
+                localModel.setProperty("/filteredReservas", reservas)
+                return;
+            };
+            const { materialFrom, materialTo, centro } = queries;
             this.filterLocalModel(parseInt(materialFrom), parseInt(materialTo), centro);
         },
         isMaterialInRange(material, materialFrom, materialTo){
@@ -86,11 +93,13 @@ sap.ui.define([
         },
         onItemPress(oEvent) {
             const localModel = this.getView().getModel("LocalModel");
-            const bindingPath = oEvent?.oSource?.getBindingContextPath();
+            const bindingContext = oEvent.oSource.getBindingContext("LocalModel");
+            const bindingPath = bindingContext?.sPath;
+            if(!bindingPath) return MessageToast.show("Error al mostrar reserva");
             const reserva = localModel.getProperty(bindingPath);
-            if (!reserva) return;
+            if (!reserva) return MessageToast.show("Error al mostrar reserva");
             this.getOwnerComponent().getRouter().navTo("RouteDetails", {
-                reservaId: reserva.orderId
+                reservaId: reserva.id
             });
         },
     });
