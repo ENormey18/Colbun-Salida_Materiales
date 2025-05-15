@@ -112,13 +112,14 @@ sap.ui.define([
             const bindingPath = oEvent.getSource()?.getBindingContext("LocalModel")?.sPath;
             if(!bindingPath) return MessageToast.show("Error al modificar caracteristicas del material");
             const caracteristicas = localModel.getProperty(`${bindingPath}/caracteristicas`);
-            const caracteristicasModificadas = caracteristicas?.filter(c => c.newValorCAT);
+            const newCaracteristicas = structuredClone(caracteristicas)
+            const caracteristicasModificadas = newCaracteristicas?.filter(c => c.newValorCAT);
             if(caracteristicasModificadas && caracteristicasModificadas.length > 0){
                 caracteristicasModificadas.forEach(c => {
                     c.valorCAT = c.newValorCAT;
                     delete(c.newValorCAT);
                 })
-                localModel.setProperty(`${bindingPath}/caracteristicas`, caracteristicas);
+                localModel.setProperty(`${bindingPath}/caracteristicas`, newCaracteristicas);
             }
             this.caracteristicasMaterialesDialog.close();
         },
@@ -148,8 +149,11 @@ sap.ui.define([
             }
             this.oMessagePopover.toggle(oEvent.getSource());
         },
-        caracteristicasPorcentageFormatter(args){
-            console.log(args);
+        caracteristicasPorcentageFormatter(caracteristicas){
+            if(!caracteristicas) return 0;
+            const cantidadCaracteristicasCompletas = caracteristicas.filter(c => c.valorCAT !== '').length;
+            const cantidadCaracteristicas = caracteristicas.length;
+            return (cantidadCaracteristicasCompletas/cantidadCaracteristicas)*100
         },
     });
 });
