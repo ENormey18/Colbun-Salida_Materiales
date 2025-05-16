@@ -6,6 +6,7 @@
     <Table
         id="materialsTable"
         items="{ path:'LocalModel>materiales' }"
+        autoPopinMode="true"
     >
         <headerToolbar>
             <OverflowToolbar>
@@ -26,40 +27,40 @@
             </OverflowToolbar>
         </headerToolbar>
         <columns>
-            <Column>
+            <Column  >
                 <Text text="Material" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" popinDisplay="WithoutHeader" >
                 <Text text="" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="Pos." />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="Cent. Alm." />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" popinDisplay="WithoutHeader">
                 <Text text="" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="Fecha" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="Ubicación" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="Retira" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="Pendiente" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="Cantidad" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" >
                 <Text text="UMB" />
             </Column>
-            <Column>
+            <Column autoPopinWidth="6" popinDisplay="WithoutHeader" >
                 <Text text="" />
             </Column>
         </columns>

@@ -11,8 +11,11 @@
         <uxap:blocks>
             <VBox>
                 <Title text="Firmas" />
-                <HBox justifyContent="SpaceBetween">
-                    <VBox width="33%">
+                <HBox justifyContent="SpaceBetween" wrap="Wrap">
+                    <VBox >
+                        <layoutData>
+                            <FlexItemData maxWidth="300px"/>
+                        </layoutData>
                         <Label
                             text="Autorizador (Creador)"
                             showColon="true"
@@ -35,7 +38,10 @@
                             />
                         </HBox>
                     </VBox>
-                    <VBox width="33%">
+                    <VBox >
+                        <layoutData>
+                            <FlexItemData maxWidth="300px"/>
+                        </layoutData>
                         <Label
                             text="Recibi Conforme"
                             showColon="true"
@@ -58,7 +64,10 @@
                             />
                         </HBox>
                     </VBox>
-                    <VBox width="33%">
+                    <VBox >
+                        <layoutData>
+                            <FlexItemData maxWidth="300px"/>
+                        </layoutData>
                         <Label
                             text="Entregado por"
                             showColon="true"

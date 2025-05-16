@@ -11,6 +11,7 @@
         headerText="Reservas"
         growing="true"
         growingScrollToLoad="true"
+        autoPopinMode="true"
     >
         <columns>
             <Column>
