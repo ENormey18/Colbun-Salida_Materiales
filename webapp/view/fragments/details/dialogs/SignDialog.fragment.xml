@@ -1,4 +1,4 @@
-<core:FragmentDefinition
+<core:FragmentDefinition xmlns:layout="sap.ui.layout"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
 >

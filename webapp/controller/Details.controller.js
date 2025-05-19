@@ -4,12 +4,14 @@ sap.ui.define([
     "sap/m/MessageToast",
     'sap/m/MessagePopover',
     'sap/m/MessageItem',
-], (Controller, Fragment, MessageToast, MessagePopover, MessageItem) => {
+    'sap/ui/Device'
+], (Controller, Fragment, MessageToast, MessagePopover, MessageItem, Device) => {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.Details", {
         onInit() {
             const oRouter = this.getOwnerComponent().getRouter();
+            Device.resize.attachHandler(this.changeCanvasSize, this);
             oRouter.getRoute("RouteDetails").attachPatternMatched(this.onRouteMatched, this);
         },
         onRouteMatched(oEvent){
@@ -34,10 +36,27 @@ sap.ui.define([
                     id: "signatureDialog"
                 });
                 this.getView().addDependent(this.signatureDialog);
-                Fragment.byId("signatureDialog", "signatureCanvas")?.setContent("<div><canvas id='signatureCanvas' width='500' height='300'></canvas><div style='width: 470px; height: 1px; position: relative;left: 15px; bottom: 20px;background-color: black;'></div></div>");
+                const deviceModel = this.getView().getModel("device");
+                const {width} = deviceModel.getProperty("/resize");
+                const canvasWidth = width > 600 ? 500 : 300;
+                const canvasHeight = width > 600 ? 300 : 180;
+                Fragment.byId("signatureDialog", "signatureCanvas")?.setContent(`<div><canvas id='signatureCanvas' width='${canvasWidth}' height='${canvasHeight}'></canvas><div id='canvasLine' style='width: ${canvasWidth-30}px; height: 1px; position: relative;left: 15px; bottom: 20px;background-color: black;'></div></div>`);
             }
             this.signatureDialog.data("belongsTo", belongsTo);
             this.signatureDialog.open();
+        },
+        changeCanvasSize(oEvent){
+            const deviceModel = this.getView().getModel("device");
+            const {width} = deviceModel.getProperty("/resize");
+            const canvasWidth = width > 600 ? 500 : 300;
+            const canvasHeight = width > 600 ? 300 : 180;
+            const canvas = document.getElementById("signatureCanvas");
+            const line = document.getElementById("canvasLine");
+            canvas.style.height = canvasHeight + "px";
+            canvas.style.width = canvasWidth + "px";
+            canvas.height = canvasHeight;
+            canvas.width = canvasWidth;
+            line.style.width = (canvasWidth - 30) + "px";
         },
         onCloseSignatureDialog() {
             this.signaturePad.clear();
