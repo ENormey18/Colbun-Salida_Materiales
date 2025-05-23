@@ -1,12 +1,18 @@
-<mvc:View
+<core:FragmentDefinition
     xmlns:form="sap.ui.layout.form"
-    controllerName="salidademateriales.controller.InitialFilters"
     xmlns="sap.m"
     xmlns:f="sap.f"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
 >
-    <Page title="Datos de reserva">
+    <Dialog>
+        <customHeader>
+            <OverflowToolbar >
+                <Title text="Datos de reserva"/>
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press=".onCloseInitialFilters"/>
+            </OverflowToolbar>
+        </customHeader>
         <content>
             <form:SimpleForm>
                 <Label text="Material" />
@@ -21,9 +27,9 @@
                 <ToolbarSpacer />
                 <Button
                     text="Buscar"
-                    press=".onBuscar"
+                    press=".onInitialBuscar"
                 />
             </OverflowToolbar>
         </footer>
-    </Page>
-</mvc:View>
+    </Dialog>
+</core:FragmentDefinition>

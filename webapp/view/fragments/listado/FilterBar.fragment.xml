@@ -35,6 +35,16 @@
                     <DatePicker valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" name="pocNac" id="pocNacFilter"/>
                 </fb:control>
             </fb:FilterGroupItem>
+            <fb:FilterGroupItem
+                groupName="Group1"
+                name="Initial filters"
+                label=""
+                visibleInFilterBar="true"
+            >
+                <fb:control>
+                    <Button text="Abrir filtros iniciales" press=".openInitialFilters"/>
+                </fb:control>
+            </fb:FilterGroupItem>
         </fb:filterGroupItems>
     </fb:FilterBar>
 </core:FragmentDefinition>
