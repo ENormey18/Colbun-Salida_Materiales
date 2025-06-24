@@ -12,7 +12,7 @@
             <VBox>
                 <Title text="Firmas" />
                 <HBox justifyContent="SpaceBetween" wrap="Wrap">
-                    <!-- <VBox >
+                    <VBox >
                         <layoutData>
                             <FlexItemData maxWidth="300px"/>
                         </layoutData>
@@ -20,7 +20,8 @@
                             text="Autorizador (Creador)"
                             showColon="true"
                         />
-                        <Image
+                        <Text text="Jose Cristial Gavilan" />
+                        <!-- <Image
                             width="100%"
                             src="{LocalModel>/firmas/autorizador}"
                             visible="{= !!${LocalModel>/firmas/autorizador} }"
@@ -36,8 +37,8 @@
                                 text="Dibujar firma"
                                 press=".onOpenSignatureCanvas($event, 'autorizador')"
                             />
-                        </HBox>
-                    </VBox> -->
+                        </HBox> -->
+                    </VBox>
                     <VBox >
                         <layoutData>
                             <FlexItemData maxWidth="300px"/>
@@ -64,7 +65,7 @@
                             />
                         </HBox>
                     </VBox>
-                    <!-- <VBox >
+                    <VBox >
                         <layoutData>
                             <FlexItemData maxWidth="300px"/>
                         </layoutData>
@@ -72,7 +73,8 @@
                             text="Entregado por"
                             showColon="true"
                         />
-                        <Image
+                        <Text text="Peter Sanzana" />
+                        <!-- <Image
                             width="100%"
                             src="{LocalModel>/firmas/entregadoPor}"
                             visible="{= !!${LocalModel>/firmas/entregadoPor} }"
@@ -90,8 +92,8 @@
                                 text="Dibujar firma"
                                 press=".onOpenSignatureCanvas($event, 'entregadoPor')"
                             />
-                        </HBox>
-                    </VBox> -->
+                        </HBox> -->
+                    </VBox>
                 </HBox>
             </VBox>
         </uxap:blocks>

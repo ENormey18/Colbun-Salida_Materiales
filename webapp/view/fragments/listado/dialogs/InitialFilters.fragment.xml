@@ -8,18 +8,25 @@
     <Dialog>
         <customHeader>
             <OverflowToolbar >
-                <Title text="Datos de reserva"/>
+                <Title text="Filtrar reserva:"/>
                 <ToolbarSpacer />
                 <Button icon="sap-icon://decline" press=".onCloseInitialFilters"/>
             </OverflowToolbar>
         </customHeader>
         <content>
             <form:SimpleForm>
+                <Label text="Reserva"/>
+                <Input id="reservaInput" value="{LocalModel>/filters/reserva}"/>
+                <Label text="Fecha de necesidad"/>
+                <DatePicker placeholder="from" id="fechaNecesidadFromInput" value="{LocalModel>/filters/fechaNecesidad}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
+                <DatePicker placeholder="to" id="fechaNecesidadToInput" value="{LocalModel>/filters/fechaNecesidad}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
                 <Label text="Material" />
-                <Input id="materialFromInput" placeholder="from" />
-                <Input id="materialToInput" placeholder="to" />
+                <Input id="materialFromInput" placeholder="from" value="{LocalModel>/filters/materialFrom}"/>
+                <Input id="materialToInput" placeholder="to" value="{LocalModel>/filters/materialTo}"/>
                 <Label text="Centro" />
-                <Input id="centroInput" />
+                <ComboBox id="centroInput" items='{LocalModel>/centros}' selectedKey="{LocalModel>/filters/centro}">
+                    <core:ListItem key="{LocalModel>id}" text="{LocalModel>id} - {LocalModel>name}"/>
+                </ComboBox>
             </form:SimpleForm>
         </content>
         <footer>

@@ -1,50 +1,62 @@
-<core:FragmentDefinition
+<core:FragmentDefinition xmlns:layout="sap.ui.layout"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:fb="sap.ui.comp.filterbar"
 >
-    <fb:FilterBar id="filterBar" useToolbar="false" search=".onSearch" showClearOnFB="true" clear=".onClear">
-        <fb:filterGroupItems>
-            <fb:FilterGroupItem
-                groupName="Group1"
-                name="generalFilter"
-                label=""
-                visibleInFilterBar="true"
-            >
-                <fb:control>
-                    <SearchField id="generalFilter"/>
-                </fb:control>
-            </fb:FilterGroupItem>
-            <fb:FilterGroupItem
-                groupName="Group1"
-                name="Orden"
-                label="Orden"
-                visibleInFilterBar="true"
-            >
-                <fb:control>
-                    <SearchField id="ordenFilter"/>
-                </fb:control>
-            </fb:FilterGroupItem>
-            <fb:FilterGroupItem
-                groupName="Group1"
-                name="Poc Nac"
-                label="Poc Nac"
-                visibleInFilterBar="true"
-            >
-                <fb:control>
-                    <DatePicker valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" name="pocNac" id="pocNacFilter"/>
-                </fb:control>
-            </fb:FilterGroupItem>
-            <fb:FilterGroupItem
-                groupName="Group1"
-                name="Initial filters"
-                label=""
-                visibleInFilterBar="true"
-            >
-                <fb:control>
-                    <Button text="Abrir filtros iniciales" press=".openInitialFilters"/>
-                </fb:control>
-            </fb:FilterGroupItem>
-        </fb:filterGroupItems>
-    </fb:FilterBar>
+    <layout:Grid>
+        <HBox wrap="Wrap" alignItems="End">
+            <layoutData>
+                <layout:GridData span="XL10 L10 M9 S12"/>
+            </layoutData>
+            <SearchField
+                id="generalFilter"
+                width="150px"
+            />
+
+            <VBox>
+                <Label
+                    text="Orden"
+                    showColon="true"
+                />
+                <SearchField
+                    id="ordenFilter"
+                    width="150px"
+                />
+            </VBox>
+
+            <VBox>
+                <Label
+                    text="Poc. Nac"
+                    showColon="true"
+                />
+                <DatePicker
+                    valueFormat="yyyy-MM-dd"
+                    displayFormat="yyyy-MM-dd"
+                    name="pocNac"
+                    id="pocNacFilter"
+                    width="150px"
+                />
+            </VBox>
+        </HBox>
+        <VBox >
+            <layoutData>
+                    <layout:GridData span="XL2 L2 M3 S12"/>
+            </layoutData>
+            <HBox gap="10px">
+                <Button
+                    icon="sap-icon://filter"
+                    press=".openInitialFilters"
+                />
+                <Button
+                    text="Go"
+                    press=".onSearch"
+                    type="Emphasized"
+                />
+                <Button
+                    text="Clear"
+                    press=".onClear"
+                />
+            </HBox>
+        </VBox>
+    </layout:Grid>
 </core:FragmentDefinition>

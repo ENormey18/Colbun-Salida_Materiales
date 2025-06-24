@@ -425,5 +425,222 @@
         "title": "Information message",
         "description": "First Information message description",
         "subtitle": "Example of subtitle"
-    }]
+    }],
+    "centros":[
+        {
+          "id" : "0001",
+          "name" : "Werk 0001"
+        },
+        {
+          "id" : "0003",
+          "name" : "Plant 0003 (is-ht-sw)"
+        },
+        {
+          "id" : "CD00",
+          "name" : "Colbun Desarrollo"
+        },
+        {
+          "id" : "CL00",
+          "name" : "Casa Matríz Santiago"
+        },
+        {
+          "id" : "CL01",
+          "name" : "Central Colbun"
+        },
+        {
+          "id" : "CL02",
+          "name" : "Central San Clemente"
+        },
+        {
+          "id" : "CL03",
+          "name" : "Central La Mina"
+        },
+        {
+          "id" : "CL04",
+          "name" : "Central Machicura"
+        },
+        {
+          "id" : "CL05",
+          "name" : "Central Chiburgo"
+        },
+        {
+          "id" : "CL06",
+          "name" : "Central San Ignacio"
+        },
+        {
+          "id" : "CL07",
+          "name" : "Central Los Quilos"
+        },
+        {
+          "id" : "CL08",
+          "name" : "Central Hornitos"
+        },
+        {
+          "id" : "CL09",
+          "name" : "Central Juncalito"
+        },
+        {
+          "id" : "CL10",
+          "name" : "Central Juncal"
+        },
+        {
+          "id" : "CL11",
+          "name" : "Central Blanco"
+        },
+        {
+          "id" : "CL12",
+          "name" : "Central Chacabuquito"
+        },
+        {
+          "id" : "CL13",
+          "name" : "Central Carena"
+        },
+        {
+          "id" : "CL14",
+          "name" : "Central Canutillar"
+        },
+        {
+          "id" : "CL15",
+          "name" : "Central Angostura"
+        },
+        {
+          "id" : "CL16",
+          "name" : "Central Rucue"
+        },
+        {
+          "id" : "CL17",
+          "name" : "Central Quilleco"
+        },
+        {
+          "id" : "CL18",
+          "name" : "Central Nehuenco I"
+        },
+        {
+          "id" : "CL19",
+          "name" : "Central Nehuenco II"
+        },
+        {
+          "id" : "CL20",
+          "name" : "Central Nehuenco III"
+        },
+        {
+          "id" : "CL21",
+          "name" : "Central Candelaria"
+        },
+        {
+          "id" : "CL22",
+          "name" : "Central Los Pinos"
+        },
+        {
+          "id" : "CL23",
+          "name" : "Central Santa María"
+        },
+        {
+          "id" : "CL24",
+          "name" : "Central Ovejería"
+        },
+        {
+          "id" : "CL25",
+          "name" : "Central Machicura Solar"
+        },
+        {
+          "id" : "CL26",
+          "name" : "Central Diego de Almagro"
+        },
+        {
+          "id" : "CL27",
+          "name" : "Central Horizonte"
+        },
+        {
+          "id" : "CL28",
+          "name" : "BESS Celda Solar"
+        },
+        {
+          "id" : "CL90",
+          "name" : "Proyectos General"
+        },
+        {
+          "id" : "CLUT",
+          "name" : "Santiago"
+        },
+        {
+          "id" : "CM00",
+          "name" : "Complejo Marítimo Taltal"
+        },
+        {
+          "id" : "CP00",
+          "name" : "Colbun Perú"
+        },
+        {
+          "id" : "CS00",
+          "name" : "Colbun Soluciones Santiago"
+        },
+        {
+          "id" : "CT00",
+          "name" : "Transmisión Santiago"
+        },
+        {
+          "id" : "CT10",
+          "name" : "Transmisión Centro Norte"
+        },
+        {
+          "id" : "CT20",
+          "name" : "Transmisión Centro Sur"
+        },
+        {
+          "id" : "CT30",
+          "name" : "Transmisión Zona Sur"
+        },
+        {
+          "id" : "CTUT",
+          "name" : "Santiago"
+        },
+        {
+          "id" : "DP00",
+          "name" : "Desala Petorca"
+        },
+        {
+          "id" : "FC00",
+          "name" : "Fundación Colbun"
+        },
+        {
+          "id" : "FP00",
+          "name" : "Casa Matríz Lima"
+        },
+        {
+          "id" : "FP01",
+          "name" : "Central Fénix"
+        },
+        {
+          "id" : "FR00",
+          "name" : "Faraday"
+        },
+        {
+          "id" : "IC00",
+          "name" : "Inversiones de las Canteras SA"
+        },
+        {
+          "id" : "IL00",
+          "name" : "Inversiones Latin America"
+        },
+        {
+          "id" : "NO01",
+          "name" : "Parque Eólico Totoral"
+        },
+        {
+          "id" : "SJ01",
+          "name" : "Parque Eólico San Juan"
+        },
+        {
+          "id" : "SS00",
+          "name" : "Santa Sofía"
+        },
+        {"id" : "TQ00",
+          "name" : "Transquillota"
+        },
+        {"id" : "TRUT",
+          "name" : "Transmisora Eléctrica Quillota"
+        }
+      ],
+      "filters":{}
 }

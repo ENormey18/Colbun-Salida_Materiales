@@ -12,7 +12,26 @@
         <f:title>
             <f:DynamicPageTitle>
                 <f:heading>
-                    <Title text="Listado" level="H3"/>
+                    <VariantManagement id="vm"
+                            defaultKey="Standard"
+                            selectedKey="Standard"
+							select="onSelect"
+							save="onSave"
+							manage="onManage"
+							showFooter="true"
+							popoverTitle="my Favorites">
+							<items>
+								<VariantItem key="Standard" title="Listado"
+									author="B"
+									favorite="true"
+									visible="true"
+									executeOnSelect="false"
+									rename="false"
+									changeable="false"
+									remove="false"
+									sharing="Public" />
+							</items>
+						</VariantManagement>
                 </f:heading>
             </f:DynamicPageTitle>
         </f:title>

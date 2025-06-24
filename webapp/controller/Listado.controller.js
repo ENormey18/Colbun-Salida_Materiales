@@ -23,10 +23,7 @@ sap.ui.define([
             this.initialFiltersDialog.open();
         },
         onInitialBuscar(){
-            const materialFrom = Fragment.byId('initialFilters', 'materialFromInput')?.getValue();
-            const materialTo = Fragment.byId('initialFilters', 'materialToInput')?.getValue();
-            const centro = Fragment.byId('initialFilters', 'centroInput')?.getValue();
-            this.filterLocalModel(parseInt(materialFrom), parseInt(materialTo), centro);
+            this.filterLocalModel();
             this.initialFiltersDialog.close();
         },
         onCloseInitialFilters(){
@@ -42,19 +39,31 @@ sap.ui.define([
             if(!isMaterialFromNaN && isMaterialToNaN) return materialId >= materialFrom;
             return materialId >= materialFrom && materialId <= materialTo;
         },
-        filterLocalModel(materialFrom, materialTo, centro){
+        filterLocalModel(){
             const localModel = this.getView().getModel("LocalModel");
             const reservas = localModel.getProperty("/reservas");
-            const materialFromInt = parseInt(materialFrom);
-            const materialToInt = parseInt(materialTo);
-            const filteredReservas = reservas.filter(r => {
-                const matchesCentro = !centro || r.center === centro;
+            const filters = localModel.getProperty("/filters");
+            const filteredReservas = this.getFilteredReservas(reservas, filters);
+            localModel.setProperty("/filteredReservas", filteredReservas);
+            if(filters.reserva && filteredReservas.length === 1){
+                const reserva = filteredReservas[0];
+                this.getOwnerComponent().getRouter().navTo("RouteDetails", { reservaId: reserva.id });
+            }
+        },
+        getFilteredReservas(reservas, filters){
+            let filteredReservas = [...reservas];
+            if(!filters) return reservas;
+            if(filters.reserva) filteredReservas = filteredReservas.filter(r => r.id === filters.reserva);
+            const materialFromInt = parseInt(filters.materialFrom);
+            const materialToInt = parseInt(filters.materialTo);
+            filteredReservas = filteredReservas.filter(r => {
+                const matchesCentro = !filters.centro || r.center === filters.centro;
                 let matchesMaterial;
                 if(isNaN(materialFromInt) && isNaN(materialToInt)) matchesMaterial = true;
                 else matchesMaterial = r.materiales?.some(m => this.isMaterialInRange(m, materialFromInt, materialToInt));
                 return matchesCentro && matchesMaterial;
             });
-            localModel.setProperty("/filteredReservas", filteredReservas);
+            return filteredReservas;
         },
         onSearch(oEvent) {
             const generalFilterValue = this.getFilterValue("generalFilter");
@@ -96,9 +105,13 @@ sap.ui.define([
             return new Filter("changedOn", FilterOperator.EQ, pocNacFilterValue);
         },
         onClear() {
-            const filterBar = this.byId("filterBar");
-            filterBar.getAllFilterItems()?.forEach(i => i.getControl()?.setValue(''));
-            filterBar.fireSearch();
+            const filters = [
+                "generalFilter",
+                "ordenFilter",
+                "pocNacFilter"
+            ];
+            filters.forEach(f => this.byId(f)?.setValue(''));
+            this.onSearch();
         },
         onItemPress(oEvent) {
             const localModel = this.getView().getModel("LocalModel");

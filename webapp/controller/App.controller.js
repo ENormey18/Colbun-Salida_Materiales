@@ -11,7 +11,8 @@ sap.ui.define([
         },
         async loadLocalModel() {
             const localModel = new JSONModel();
-            await localModel.loadData("../model/mockdata/localmodel.json");
+            const mockModelUrl = sap.ui.require.toUrl('salidademateriales/model/mockdata/localmodel.json')
+            await localModel.loadData(mockModelUrl);
             const reservas = localModel.getProperty("/reservas")
             localModel.setProperty("/filteredReservas", reservas);
             this.getOwnerComponent().setModel(localModel, "LocalModel");
