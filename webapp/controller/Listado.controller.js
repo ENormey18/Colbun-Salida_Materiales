@@ -4,12 +4,244 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
     "sap/ui/core/Fragment",
-], (Controller, Filter, FilterOperator, MessageToast, Fragment) => {
+    "sap/ui/model/json/JSONModel"
+], (Controller, Filter, FilterOperator, MessageToast, Fragment, JSONModel) => {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.Listado", {
         onInit() {
+            const oView = this.getView();
+            const oModelR = new JSONModel({
+                ReservasSet: [],
+                filters: {
+                    reserva: "",
+                    fechaFrom: "",
+                    fechaTo: "",
+                    materialFrom: "",
+                    materialTo: "",
+                    centro: "",
+                },
+                centros: [ {
+                            "id" : "0001",
+                            "name" : "Werk 0001"
+                            },
+                            {
+                            "id" : "0003",
+                            "name" : "Plant 0003 (is-ht-sw)"
+                            },
+                            {
+                            "id" : "CD00",
+                            "name" : "Colbun Desarrollo"
+                            },
+                            {
+                            "id" : "CL00",
+                            "name" : "Casa Matríz Santiago"
+                            },
+                            {
+                            "id" : "CL01",
+                            "name" : "Central Colbun"
+                            },
+                            {
+                            "id" : "CL02",
+                            "name" : "Central San Clemente"
+                            },
+                            {
+                            "id" : "CL03",
+                            "name" : "Central La Mina"
+                            },
+                            {
+                            "id" : "CL04",
+                            "name" : "Central Machicura"
+                            },
+                            {
+                            "id" : "CL05",
+                            "name" : "Central Chiburgo"
+                            },
+                            {
+                            "id" : "CL06",
+                            "name" : "Central San Ignacio"
+                            },
+                            {
+                            "id" : "CL07",
+                            "name" : "Central Los Quilos"
+                            },
+                            {
+                            "id" : "CL08",
+                            "name" : "Central Hornitos"
+                            },
+                            {
+                            "id" : "CL09",
+                            "name" : "Central Juncalito"
+                            },
+                            {
+                            "id" : "CL10",
+                            "name" : "Central Juncal"
+                            },
+                            {
+                            "id" : "CL11",
+                            "name" : "Central Blanco"
+                            },
+                            {
+                            "id" : "CL12",
+                            "name" : "Central Chacabuquito"
+                            },
+                            {
+                            "id" : "CL13",
+                            "name" : "Central Carena"
+                            },
+                            {
+                            "id" : "CL14",
+                            "name" : "Central Canutillar"
+                            },
+                            {
+                            "id" : "CL15",
+                            "name" : "Central Angostura"
+                            },
+                            {
+                            "id" : "CL16",
+                            "name" : "Central Rucue"
+                            },
+                            {
+                            "id" : "CL17",
+                            "name" : "Central Quilleco"
+                            },
+                            {
+                            "id" : "CL18",
+                            "name" : "Central Nehuenco I"
+                            },
+                            {
+                            "id" : "CL19",
+                            "name" : "Central Nehuenco II"
+                            },
+                            {
+                            "id" : "CL20",
+                            "name" : "Central Nehuenco III"
+                            },
+                            {
+                            "id" : "CL21",
+                            "name" : "Central Candelaria"
+                            },
+                            {
+                            "id" : "CL22",
+                            "name" : "Central Los Pinos"
+                            },
+                            {
+                            "id" : "CL23",
+                            "name" : "Central Santa María"
+                            },
+                            {
+                            "id" : "CL24",
+                            "name" : "Central Ovejería"
+                            },
+                            {
+                            "id" : "CL25",
+                            "name" : "Central Machicura Solar"
+                            },
+                            {
+                            "id" : "CL26",
+                            "name" : "Central Diego de Almagro"
+                            },
+                            {
+                            "id" : "CL27",
+                            "name" : "Central Horizonte"
+                            },
+                            {
+                            "id" : "CL28",
+                            "name" : "BESS Celda Solar"
+                            },
+                            {
+                            "id" : "CL90",
+                            "name" : "Proyectos General"
+                            },
+                            {
+                            "id" : "CLUT",
+                            "name" : "Santiago"
+                            },
+                            {
+                            "id" : "CM00",
+                            "name" : "Complejo Marítimo Taltal"
+                            },
+                            {
+                            "id" : "CP00",
+                            "name" : "Colbun Perú"
+                            },
+                            {
+                            "id" : "CS00",
+                            "name" : "Colbun Soluciones Santiago"
+                            },
+                            {
+                            "id" : "CT00",
+                            "name" : "Transmisión Santiago"
+                            },
+                            {
+                            "id" : "CT10",
+                            "name" : "Transmisión Centro Norte"
+                            },
+                            {
+                            "id" : "CT20",
+                            "name" : "Transmisión Centro Sur"
+                            },
+                            {
+                            "id" : "CT30",
+                            "name" : "Transmisión Zona Sur"
+                            },
+                            {
+                            "id" : "CTUT",
+                            "name" : "Santiago"
+                            },
+                            {
+                            "id" : "DP00",
+                            "name" : "Desala Petorca"
+                            },
+                            {
+                            "id" : "FC00",
+                            "name" : "Fundación Colbun"
+                            },
+                            {
+                            "id" : "FP00",
+                            "name" : "Casa Matríz Lima"
+                            },
+                            {
+                            "id" : "FP01",
+                            "name" : "Central Fénix"
+                            },
+                            {
+                            "id" : "FR00",
+                            "name" : "Faraday"
+                            },
+                            {
+                            "id" : "IC00",
+                            "name" : "Inversiones de las Canteras SA"
+                            },
+                            {
+                            "id" : "IL00",
+                            "name" : "Inversiones Latin America"
+                            },
+                            {
+                            "id" : "NO01",
+                            "name" : "Parque Eólico Totoral"
+                            },
+                            {
+                            "id" : "SJ01",
+                            "name" : "Parque Eólico San Juan"
+                            },
+                            {
+                            "id" : "SS00",
+                            "name" : "Santa Sofía"
+                            },
+                            {"id" : "TQ00",
+                            "name" : "Transquillota"
+                            },
+                            {"id" : "TRUT",
+                            "name" : "Transmisora Eléctrica Quillota"
+                            }
+                        ],
+            });
+
+            oView.setModel(oModelR, "Reservas");
+
             this.openInitialFilters();
+
         },
         async openInitialFilters(){
             if (!this.initialFiltersDialog) {
@@ -22,8 +254,31 @@ sap.ui.define([
             }
             this.initialFiltersDialog.open();
         },
-        onInitialBuscar(){
-            this.filterLocalModel();
+        onSearch(){
+            const oDataModel = this.getOwnerComponent().getModel();
+            
+            const oView = this.getView();
+            const reservasModel =oView.getModel("Reservas");
+            const filters = reservasModel.getProperty("/filters");
+        
+            this.byId('reservasTable').setBusy(true);
+            const aFilters = this.getReservasFilters(filters);
+             oDataModel.read("/ReservasSet", {
+                filters: aFilters, 
+
+                success: function (oData) {
+                    reservasModel.setProperty("/ReservasSet", oData.results)
+                    this.byId('reservasTable').setBusy(false);
+                }.bind(this), // .bind(this) es crucial para poder usar "this.getView()" dentro del callback
+
+                // 6. MANEJAR ERRORES
+                error: function (oError) {
+                    console.error("Error en la llamada OData:", oError);
+                    MessageToast.show("Ocurrió un error al buscar los datos.");
+                    this.byId('reservasTable').setBusy(false);
+                }.bind(this)
+            });
+
             this.initialFiltersDialog.close();
         },
         onCloseInitialFilters(){
@@ -39,89 +294,61 @@ sap.ui.define([
             if(!isMaterialFromNaN && isMaterialToNaN) return materialId >= materialFrom;
             return materialId >= materialFrom && materialId <= materialTo;
         },
-        filterLocalModel(){
-            const localModel = this.getView().getModel("LocalModel");
-            const reservas = localModel.getProperty("/reservas");
-            const filters = localModel.getProperty("/filters");
-            const filteredReservas = this.getFilteredReservas(reservas, filters);
-            localModel.setProperty("/filteredReservas", filteredReservas);
-            if(filters.reserva && filteredReservas.length === 1){
-                const reserva = filteredReservas[0];
-                this.getOwnerComponent().getRouter().navTo("RouteDetails", { reservaId: reserva.id });
+        getReservasFilters(filters){
+            const aFilter = [];
+
+            if (filters.reserva) aFilter.push( new Filter({path: 'id', operator: FilterOperator.EQ, value1: filters.reserva}));
+            if (filters.orden) aFilter.push( new Filter({path: 'orderId', operator: FilterOperator.EQ, value1: filters.orden}));
+            if (filters.fechaFrom && filters.fechaTo) aFilter.push(new Filter({path: 'baseReqDate', operator: FilterOperator.BT, value1: filters.fechaFrom, value2: filters.fechaTo}))
+            else if (filters.fechaFrom) aFilter.push(new Filter({path: 'baseReqDate', operator: FilterOperator.GE, value1: filters.fechaFrom}))
+            else if (filters.fechaTo) aFilter.push(new Filter ({path: 'baseReqDate', operator: FilterOperator.LE, value1: filters.fechaTo}));
+            
+            const aMaterialFilters = [];
+            if (filters.materialFrom && filters.materialTo) {
+                aMaterialFilters.push(new Filter({path: 'id', operator: FilterOperator.BT, value1: filters.materialFrom, value2: filters.materialTo}));
+            }else if (filters.materialFrom) {
+                aMaterialFilters.push(new Filter({path: 'id', operator: FilterOperator.GE, value1: filters.materialFrom}));
+            }else if (filters.materialTo){
+                aMaterialFilters.push(new Filter({path: 'id', operator: FilterOperator.LE, value1: filters.materialTo}));
             }
+            if (filters.centro){
+                aMaterialFilters.push(new Filter({path: 'center', operator: FilterOperator.EQ, value1: filters.centro}));
+            }
+            if (aMaterialFilters.length>0){
+                const oCombinedMaterialFilter = new Filter({
+                    path: 'ToMateriales',
+                    operator: FilterOperator.Any,
+                    filters: aMaterialFilters
+                });
+                aFilter.push(oCombinedMaterialFilter);
+            }
+            return aFilter;
         },
-        getFilteredReservas(reservas, filters){
-            let filteredReservas = [...reservas];
-            if(!filters) return reservas;
-            if(filters.reserva) filteredReservas = filteredReservas.filter(r => r.id === filters.reserva);
-            const materialFromInt = parseInt(filters.materialFrom);
-            const materialToInt = parseInt(filters.materialTo);
-            filteredReservas = filteredReservas.filter(r => {
-                const matchesCentro = !filters.centro || r.center === filters.centro;
-                let matchesMaterial;
-                if(isNaN(materialFromInt) && isNaN(materialToInt)) matchesMaterial = true;
-                else matchesMaterial = r.materiales?.some(m => this.isMaterialInRange(m, materialFromInt, materialToInt));
-                return matchesCentro && matchesMaterial;
-            });
-            return filteredReservas;
+        onFiltrarTable() {
+
         },
-        onSearch(oEvent) {
-            const generalFilterValue = this.getFilterValue("generalFilter");
-            const ordenFilterValue = this.getFilterValue("ordenFilter");
-            const pocNacFilterValue = this.getFilterValue("pocNacFilter");
-            const mainTableBinding = this.byId("mainTable").getBinding("items");
-            const aFilters = [];
-            if (generalFilterValue) aFilters.push(this.getGeneralFilter(generalFilterValue));
-            if (ordenFilterValue) aFilters.push(this.getOrdenFilter(ordenFilterValue));
-            if (pocNacFilterValue) aFilters.push(this.getPocNacFilter(pocNacFilterValue));
-            const totalFilter = new Filter({
-                filters: aFilters,
-                and: true
-            });
-            mainTableBinding.filter(totalFilter);
-        },
-        getFilterValue(id) {
-            return this.byId(id)?.getValue() || "";
-        },
-        getGeneralFilter(generalFilterValue) {
-            const generalFilter = new Filter({
-                filters: [
-                    new Filter('orderId', FilterOperator.Contains, generalFilterValue),
-                    new Filter('state', FilterOperator.Contains, generalFilterValue),
-                    new Filter('changedOn', FilterOperator.Contains, generalFilterValue),
-                    new Filter('customer', FilterOperator.Contains, generalFilterValue),
-                    new Filter('customerContact', FilterOperator.Contains, generalFilterValue),
-                    new Filter('quantity', FilterOperator.Contains, generalFilterValue),
-                    new Filter('netAmount', FilterOperator.Contains, generalFilterValue),
-                    new Filter('currency', FilterOperator.Contains, generalFilterValue),
-                ],
-            })
-            return generalFilter;
-        },
-        getOrdenFilter(ordenFilterValue) {
-            return new Filter("orderId", FilterOperator.Contains, ordenFilterValue);
-        },
-        getPocNacFilter(pocNacFilterValue) {
-            return new Filter("changedOn", FilterOperator.EQ, pocNacFilterValue);
-        },
+
         onClear() {
-            const filters = [
-                "generalFilter",
-                "ordenFilter",
-                "pocNacFilter"
-            ];
-            filters.forEach(f => this.byId(f)?.setValue(''));
-            this.onSearch();
+            const oReservasModel = this.getView().getModel("Reservas");
+            oReservasModel.setProperty('/filters',  {
+                    reserva: "",
+                    fechaFrom: "",
+                    fechaTo: "",
+                    materialFrom: "",
+                    materialTo: "",
+                    centro: "",
+            });
         },
         onItemPress(oEvent) {
-            const localModel = this.getView().getModel("LocalModel");
-            const bindingContext = oEvent.oSource.getBindingContext("LocalModel");
-            const bindingPath = bindingContext?.sPath;
-            if(!bindingPath) return MessageToast.show("Error al mostrar reserva");
-            const reserva = localModel.getProperty(bindingPath);
-            if (!reserva) return MessageToast.show("Error al mostrar reserva");
+            const oBindingContext = oEvent.getSource().getBindingContext("Reservas");
+            const oSelectedReserva = oBindingContext.getObject();
+
+            if (!oSelectedReserva) {
+                sap.m.MessageToast.show("Error al obtener los datos de la reserva.");
+                return;
+            }
             this.getOwnerComponent().getRouter().navTo("RouteDetails", {
-                reservaId: reserva.id
+                reservaId: oSelectedReserva.id 
             });
         },
     });

@@ -12,21 +12,21 @@
             <VBox>
                 <Title text="Firmas" />
                 <HBox justifyContent="SpaceBetween" wrap="Wrap">
-                    <VBox >
+                    <VBox>
                         <layoutData>
                             <FlexItemData maxWidth="300px"/>
                         </layoutData>
                         <Label
-                            text="Autorizador (Creador)"
+                            text="Autorizador"
                             showColon="true"
                         />
-                        <Text text="Jose Cristial Gavilan" />
-                        <!-- <Image
+                        <Text text="{detalleReserva>/firmas/autorizador/nombre}" />
+                        <Image
                             width="100%"
-                            src="{LocalModel>/firmas/autorizador}"
-                            visible="{= !!${LocalModel>/firmas/autorizador} }"
+                            src="{detalleReserva>/firmas/autorizador/firma}"
+                            visible="{= !!${detalleReserva>/firmas/autorizador} }"
                         />
-                        <HBox visible="{= !${LocalModel>/firmas/autorizador} }">
+                        <HBox visible="{= !${detalleReserva>/firmas/autorizador} }">
                             <unified:FileUploader
                                 buttonText="Subir firma"
                                 change=".onChangeFile($event, 'autorizador')"
@@ -37,7 +37,7 @@
                                 text="Dibujar firma"
                                 press=".onOpenSignatureCanvas($event, 'autorizador')"
                             />
-                        </HBox> -->
+                        </HBox> 
                     </VBox>
                     <VBox >
                         <layoutData>
@@ -47,12 +47,13 @@
                             text="Recibi Conforme"
                             showColon="true"
                         />
+                        <Text text="{detalleReserva/firmas/conforme/nombre}"/>
                         <Image
                             width="100%"
-                            src="{LocalModel>/firmas/conforme}"
-                            visible="{= !!${LocalModel>/firmas/conforme} }"
+                            src="{detalleReserva>/firmas/conforme/firma}"
+                            visible="{= !!${detalleReserva>/firmas/conforme} }"
                         />
-                        <HBox visible="{= !${LocalModel>/firmas/conforme} }">
+                        <HBox visible="{= !${detalleReserva>/firmas/conforme} }">
                             <unified:FileUploader
                                 buttonText="Subir firma"
                                 change=".onChangeFile($event, 'conforme')"
@@ -73,26 +74,26 @@
                             text="Entregado por"
                             showColon="true"
                         />
-                        <Text text="Peter Sanzana" />
-                        <!-- <Image
+                        <Text text="{detalleReserva>firmas/entregador/nombre}" />
+                        <Image
                             width="100%"
-                            src="{LocalModel>/firmas/entregadoPor}"
-                            visible="{= !!${LocalModel>/firmas/entregadoPor} }"
+                            src="{detalleReserva>/firmas/entregador/firma}"
+                            visible="{= !!${detalleReserva>/firmas/entregador} }"
                         />
                         <HBox
-                            visible="{= !${LocalModel>/firmas/entregadoPor} }"
+                            visible="{= !${detalleReserva>/firmas/entregador} }"
                         >
                             <unified:FileUploader
                                 buttonText="Subir firma"
-                                change=".onChangeFile($event, 'entregadoPor')"
+                                change=".onChangeFile($event, 'entregador')"
                                 buttonOnly="true"
                                 fileType="jpg,jpeg,png,gif,bmp,webp"
                             />
                             <Button
                                 text="Dibujar firma"
-                                press=".onOpenSignatureCanvas($event, 'entregadoPor')"
+                                press=".onOpenSignatureCanvas($event, 'entregador')"
                             />
-                        </HBox> -->
+                        </HBox>
                     </VBox>
                 </HBox>
             </VBox>

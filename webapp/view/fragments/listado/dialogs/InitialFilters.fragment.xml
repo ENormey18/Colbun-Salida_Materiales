@@ -16,16 +16,16 @@
         <content>
             <form:SimpleForm>
                 <Label text="Reserva"/>
-                <Input id="reservaInput" value="{LocalModel>/filters/reserva}"/>
+                <Input id="reservaInput" value="{Reservas>/filters/reserva}"/>
                 <Label text="Fecha de necesidad"/>
-                <DatePicker placeholder="from" id="fechaNecesidadFromInput" value="{LocalModel>/filters/fechaNecesidad}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
-                <DatePicker placeholder="to" id="fechaNecesidadToInput" value="{LocalModel>/filters/fechaNecesidad}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
+                <DatePicker placeholder="from" id="fechaNecesidadFromInput" value="{Reservas>/filters/fechaFrom}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
+                <DatePicker placeholder="to" id="fechaNecesidadToInput" value="{Reservas>/filters/fechaTo}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
                 <Label text="Material" />
-                <Input id="materialFromInput" placeholder="from" value="{LocalModel>/filters/materialFrom}"/>
-                <Input id="materialToInput" placeholder="to" value="{LocalModel>/filters/materialTo}"/>
+                <Input id="materialFromInput" placeholder="from" value="{Reservas>/filters/materialFrom}"/>
+                <Input id="materialToInput" placeholder="to" value="{Reservas>/filters/materialTo}"/>
                 <Label text="Centro" />
-                <ComboBox id="centroInput" items='{LocalModel>/centros}' selectedKey="{LocalModel>/filters/centro}">
-                    <core:ListItem key="{LocalModel>id}" text="{LocalModel>id} - {LocalModel>name}"/>
+                <ComboBox id="centroInput" items='{Reservas>/centros}' selectedKey="{Reservas>/filters/centro}">
+                    <core:ListItem key="{Reservas>id}" text="{Reservas>id} - {Reservas>name}"/>
                 </ComboBox>
             </form:SimpleForm>
         </content>
@@ -34,7 +34,7 @@
                 <ToolbarSpacer />
                 <Button
                     text="Buscar"
-                    press=".onInitialBuscar"
+                    press=".onSearch"
                 />
             </OverflowToolbar>
         </footer>

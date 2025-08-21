@@ -5,7 +5,7 @@
 >
     <Table
         id="materialsTable"
-        items="{ path:'LocalModel>materiales' }"
+        items="{detalleReserva>/ToMateriales/results}"
         autoPopinMode="true"
     >
         <headerToolbar>
@@ -69,27 +69,27 @@
                 <cells>
                     <ObjectIdentifier
                         titleActive="true"
-                        title="{LocalModel>id}"
+                        title="{detalleReserva>id}"
                     />
-                    <Text text="{LocalModel>description}" />
-                    <Text text="{LocalModel>position}" />
-                    <Text text="{LocalModel>center}" />
-                    <Text text="{LocalModel>storage}" />
-                    <Text text="{LocalModel>date}" />
-                    <Text text="{LocalModel>location}" />
+                    <Text text="{detalleReserva>description}" />
+                    <Text text="{detalleReserva>position}" />
+                    <Text text="{detalleReserva>center}" />
+                    <Text text="{detalleReserva>storage}" />
+                    <Text text="{detalleReserva>date}" />
+                    <Text text="{detalleReserva>location}" />
                     <Input
-                        value="{LocalModel>pending}"
+                        value="{detalleReserva>pending}"
                         type="Number"
                     />
-                    <Text text="{LocalModel>pending}" />
-                    <Text text="{LocalModel>quantity}" />
-                    <Text text="{LocalModel>unit}" />
-                    <microchart:RadialMicroChart
-                        percentage="{ path: 'LocalModel>caracteristicas', formatter: '.caracteristicasPorcentageFormatter' }"
+                    <Text text="{detalleReserva>pending}" />
+                    <Text text="{detalleReserva>quantity}" />
+                    <Text text="{detalleReserva>unit}" />
+                    <!-- <microchart:RadialMicroChart
+                        percentage="{ path: 'caracteristicas', formatter: '.caracteristicasPorcentageFormatter' }"
                         size="XS"
                         valueColor="Sequence7"
                         press=".onPressMaterial"
-                    />
+                    /> -->
                 </cells>
             </ColumnListItem>
         </items>

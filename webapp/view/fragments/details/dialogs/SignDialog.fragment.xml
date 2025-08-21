@@ -11,6 +11,17 @@
                 <Button text="Save" press=".onSaveSignature"/>
             </Toolbar>
         </customHeader>
+        <VBox class="sapUiSmallMargin">
+            <Label
+                required="true"
+                text="Nombre: "
+                labelFor="nombreFirmante"
+            />
+            <Input
+                id="nombreFirmante"
+                value="{detalleReserva>/nombreFirmanteAux}"
+            />
+        </VBox>
         <core:HTML id="signatureCanvas" afterRendering=".onAfterRenderingCanvas"/>
         <footer>
             <Toolbar style="Clear">

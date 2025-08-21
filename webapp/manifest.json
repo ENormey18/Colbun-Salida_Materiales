@@ -16,6 +16,14 @@
       "toolsId": "8c9c3efe-33ac-415a-a5c8-2cc99fc5c671"
     },
     "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/Z_SALIDA_MAT_SRV/",
+        "type": "OData",
+        "settings": {
+            "odataVersion": "2.0",
+            "localUri": "localService/metadata.xml"
+        }
+      }
     },
     "crossNavigation": {
       "inbounds": {
@@ -52,7 +60,8 @@
       "minUI5Version": "1.136.1",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.uxap": {}
       }
     },
     "contentDensities": {
@@ -64,6 +73,13 @@
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
           "bundleName": "salidademateriales.i18n.i18n"
+        }
+      },
+      "": { 
+        "dataSource": "mainService", 
+        "preload": true,
+        "settings": {
+            "defaultBindingMode": "TwoWay"
         }
       }
     },

@@ -12,7 +12,7 @@
                 wrap="Wrap"
             >
                 <ObjectAttribute title="Autor" />
-                <Text text="{LocalModel>customerContact}" />
+                <Text text="{detalleReserva>/customerContact}" />
             </HBox>
             <HBox
                 gap="5px"
@@ -26,14 +26,14 @@
                 wrap="Wrap"
             >
                 <ObjectAttribute title="Centro" />
-                <Text text="{LocalModel>center}" />
+                <Text text="{detalleReserva>/center}" />
             </HBox>
         </VBox>
         <VBox>
             <ObjectStatus title="Status" />
             <ObjectStatus
                 class="sapMObjectStatusLarge"
-                text="{LocalModel>state}"
+                text="{detalleReserva>/state}"
                 state="Success"
             />
         </VBox>

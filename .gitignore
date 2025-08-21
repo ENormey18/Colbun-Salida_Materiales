@@ -7,4 +7,7 @@ mta_archives
 mta-*
 resources
 archive.zip
+package-lock.json
 .*_mta_build_tmp
+.vscode/launch.json
+package-lock.json

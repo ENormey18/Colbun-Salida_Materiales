@@ -10,9 +10,9 @@
             <VBox alignItems="Center">
                 <VBox width="90%">
                     <Table
-                        headerText="{LocalModel>description}"
+                        headerText="{detalleReserva>/itemSeleccionado/id}"
                         id="caracteristicasTable"
-                        items="{path:'LocalModel>caracteristicas'}"
+                        items="{path:'detalleReserva>/itemSeleccionado/caracteristicas/results'}"
                         mode="MultiSelect"
                     >
                         <columns>
@@ -30,11 +30,11 @@
                         <items>
                             <ColumnListItem>
                                 <cells>
-                                    <Text text="{LocalModel>cat}" />
-                                    <Text text="{LocalModel>descripcionCAT}" />
+                                    <Text text="{cat}" />
+                                    <Text text="{descripcionCAT}" />
                                     <VBox >
-                                        <Text text="{LocalModel>valorCAT}" visible="{= !!${LocalModel>valorCAT}}"/>
-                                        <Input value="{LocalModel>newValorCAT}" editable="{= !${LocalModel>valorCAT}}" visible="{= !${LocalModel>valorCAT}}"/>
+                                        <Text text="{valorCAT}" visible="{= !!${valorCAT}}"/>
+                                        <Input value="{newValorCAT}" editable="{= !${valorCAT}}" visible="{= !!${valorCAT}}"/>
                                     </VBox>
                                 </cells>
                             </ColumnListItem>

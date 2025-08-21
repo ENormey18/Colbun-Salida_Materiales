@@ -4,10 +4,9 @@
     xmlns:fb="sap.ui.comp.filterbar"
 >
     <Table
-        id="mainTable"
-        items="{ path:'LocalModel>/filteredReservas' }"
+        id="reservasTable"
+        items="{Reservas>/ReservasSet}"
         mode="MultiSelect"
-        inset="false"
         headerText="Reservas"
         growing="true"
         growingScrollToLoad="true"
@@ -43,18 +42,18 @@
             >
                 <cells>
                     <ObjectIdentifier
-                        title="{LocalModel>orderId}"
+                        title="{Reservas>orderId}"
                         titleActive="true"
                         titlePress=".onItemPress"
                     />
-                    <Text text="{LocalModel>state}" />
-                    <Text text="{LocalModel>changedOn}" />
-                    <ObjectIdentifier title="{LocalModel>customer}" />
-                    <Text text="{LocalModel>customerContact}" />
-                    <Text text="{LocalModel>quantity}" />
+                    <Text text="{Reservas>state}" />
+                    <Text text="{Reservas>LocalModel>baseReqDate}" />
+                    <ObjectIdentifier title="{Reservas>customer}" />
+                    <Text text="{Reservas>customerContact}" />
+                    <Text text="{Reservas>LocalModel>quantity}" />
                     <HBox>
-                        <Text text="{LocalModel>netAmount}" />
-                        <Text text="{LocalModel>currency}" />
+                        <Text text="{Reservas>netAmount}" />
+                        <Text text="{Reservas>currency}" />
                     </HBox>
                 </cells>
             </ColumnListItem>

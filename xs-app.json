@@ -19,6 +19,17 @@
       "target": "$1",
       "service": "html5-apps-repo-rt",
       "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/sap/opu/odata/sap/(.*)$",
+      "target": "/sap/opu/odata/sap/$1",
+      "destination": "MiSistemaBackend",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/api-dms/(.*)$", 
+      "target": "/$1",
+      "destination": "mi_servicio_dms"
     }
   ]
 }

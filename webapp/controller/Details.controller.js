@@ -4,8 +4,9 @@ sap.ui.define([
     "sap/m/MessageToast",
     'sap/m/MessagePopover',
     'sap/m/MessageItem',
-    'sap/ui/Device'
-], (Controller, Fragment, MessageToast, MessagePopover, MessageItem, Device) => {
+    "sap/ui/model/json/JSONModel",
+    'sap/ui/Device',
+], (Controller, Fragment, MessageToast, MessagePopover, MessageItem,JSONModel, Device) => {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.Details", {
@@ -15,12 +16,61 @@ sap.ui.define([
             oRouter.getRoute("RouteDetails").attachPatternMatched(this.onRouteMatched, this);
         },
         onRouteMatched(oEvent){
-            const reservaId = oEvent.mParameters?.arguments?.reservaId;
-            const localModel = this.getView().getModel("LocalModel");
-            const reservas = localModel.getProperty("/reservas");
-            const reservaIndex = reservas.findIndex(r => r.id === reservaId);
-            this.getView().bindElement(`LocalModel>/reservas/${reservaIndex}`);
+             const sReservaId = oEvent.getParameter("arguments").reservaId;
+            const oODataModel = this.getOwnerComponent().getModel();  
+            const sPath = this.getOwnerComponent().getModel().createKey("/ReservasSet", {
+                id: sReservaId
+            });
+
+            this.getView().setBusy(true);
+            oODataModel.read(sPath, {
+                urlParameters: {
+                    "$expand": "ToMateriales"
+                },
+                success: function (oData) {
+                    oData.firmas = {};
+                    const oDetalleModel = new JSONModel(oData);
+                    this.getView().setModel(oDetalleModel, "detalleReserva");
+                    /*this.__cargarFirmasDeDMS();*/
+                    
+                    this.getView().setBusy(false);
+                }.bind(this),
+                error: function (oError) {
+                    console.log("Error al traer datos con $expand: ", oError);
+                    this.getView().setBusy(false);
+                }.bind(this)
+            });
+
         },
+
+        _cargarFirmasDeDMS: function(sReservaId) {
+            const oDetalleModel = this.getView().getModel("detalleReserva");
+            
+            // La API de DMS te permite buscar documentos por propiedades personalizadas.
+            // Asumimos que al guardar un documento le pusiste una propiedad "reservaId".
+            // La URL exacta dependerá de la especificación de la API de DMS.
+            const sDmsUrl = `/api-dms/browser/root/objects?cmisselector=properties&objectId=cmis:document&propertyId[0]=reservaId&propertyValue[0]=${sReservaId}`;
+            
+            // Usamos la API fetch
+            fetch(sDmsUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta de la red de DMS');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Procesar data de la api
+                    let firmasObj = procesar(data);
+                    oDetalleModel.setProperty("firmas", firmasObj);
+                    this.getView().setBusy(false); // Detenemos el indicador de carga al final
+                })
+                .catch(error => {
+                    console.error('Hubo un problema con la llamada a DMS:', error);
+                    this.getView().setBusy(false);
+                });
+        },
+
         onAfterRenderingCanvas() {
             if (!this.signaturePad) {
                 const canvas = document.getElementById("signatureCanvas");
@@ -28,7 +78,7 @@ sap.ui.define([
                 this.signaturePad = new window.SignaturePad(canvas);
             }
         },
-        async onOpenSignatureCanvas(oEvent, belongsTo) {
+        async onOpenSignatureCanvas(oEvent, tipoSujeto) {
             if (!this.signatureDialog) {
                 this.signatureDialog = await Fragment.load({
                     name: "salidademateriales.view.fragments.details.dialogs.SignDialog",
@@ -42,7 +92,7 @@ sap.ui.define([
                 const canvasHeight = width > 600 ? 300 : 180;
                 Fragment.byId("signatureDialog", "signatureCanvas")?.setContent(`<div><canvas id='signatureCanvas' width='${canvasWidth}' height='${canvasHeight}'></canvas><div id='canvasLine' style='width: ${canvasWidth-30}px; height: 1px; position: relative;left: 15px; bottom: 20px;background-color: black;'></div></div>`);
             }
-            this.signatureDialog.data("belongsTo", belongsTo);
+            this.signatureDialog.data("tipoSujeto", tipoSujeto);
             this.signatureDialog.open();
         },
         changeCanvasSize(oEvent){
@@ -65,12 +115,29 @@ sap.ui.define([
         onClearSignature() {
             this.signaturePad.clear();
         },
-        onSaveSignature(oEvent) {
-            const belongsTo = this.signatureDialog.data("belongsTo");
+        onSaveSignature() {
+            const oDetalleModel = this.getView().getModel("detalleReserva");
+            const tipoSujeto = this.signatureDialog.data("tipoSujeto");
+
             const base64 = this.signaturePad.toDataURL();
-            const localModel = this.getView().getModel("LocalModel");
-            localModel.setProperty(`/firmas/${belongsTo}`, base64);
-            this.signatureDialog.data("belongsTo", undefined);
+            const nombreFirmante =  oDetalleModel.getProperty("/nombreFirmanteAux");
+            if(!nombreFirmante){
+                console.log("nombre firma vacío")
+                return;
+            }
+
+            const sujeto = {
+                nombre: nombreFirmante,
+                firma: base64
+            };
+            const sPath = `/firmas/${tipoSujeto}`;
+            oDetalleModel.setProperty(sPath, sujeto);
+            const sPathNombre = `/firmas/${tipoSujeto}/nombre`;
+            oDetalleModel.setProperty(sPathNombre, nombreFirmante);//sino no se actualiza el componente text
+
+
+            oDetalleModel.setProperty("/nombreFirmanteAux","");
+            this.signatureDialog.data("tipoSujeto", undefined);
             this.signaturePad.clear();
             this.signatureDialog.close();
             // this.downloadBase64File(base64);
@@ -98,10 +165,11 @@ sap.ui.define([
             link.click();
             document.body.removeChild(link);
         },
-        async onChangeFile(oEvent, belongsTo) {
+        async onChangeFile(oEvent, tipoSujeto) {
             const file = await this.toBase64(oEvent.mParameters.files[0]);
-            const localModel = this.getView().getModel("LocalModel");
-            localModel.setProperty(`/firmas/${belongsTo}`, file);
+            const oDetalleModel = this.getView().getModel("detalleReserva");
+            oDetalleModel.setProperty(`firmas/${tipoSujeto}/firma`, file);
+            oDetalleModel.setProperty(`firmas/${tipoSujeto}/nombre`, "default");
         },
         toBase64(file) {
             return new Promise((resolve, reject)=>{

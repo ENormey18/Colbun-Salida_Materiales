@@ -17,48 +17,29 @@
             <core:Title text="Detalle de cabecera" />
             <layout:VerticalLayout>
                 <Label text="Reserva ID:" />
-                <Text text="{LocalModel>id}" />
+                <Text text="{detalleReserva>/id}" />
 
                 <Label text="Contract:" />
-                <Text text="{LocalModel>contract}" />
+                <Text text="{detalleReserva>/contract}" />
 
-                <Label text="Transaction Date:" />
-                <Text text="May 6, 2021" />
+                <Label text="Base Requirmente Date:" />
+                <Text text="{detalleReserva>/baseReqDate}" />
             </layout:VerticalLayout>
 
             <layout:VerticalLayout>
-                <Label text="Expected Delivery Date:" />
-                <Text text="June 23, 2021" />
-
-                <Label text="Factory:" />
-                <Text text="Orlando, FL" />
-
-                <Label text="Supplier:" />
-                <Text text="Robotech" />
+                <Label text="Changed On:" />
+                <Text text="{detalleReserva>changedOn}" />
             </layout:VerticalLayout>
 
             <core:Title text="Otros detalles" />
             <layout:VerticalLayout>
-                <Label text="Model:" />
-                <Text text="Robot Arm Series 9" />
-
-                <Label text="Color:" />
-                <Text text="White (default)" />
-
-                <Label text="Socket:" />
-                <Text text="Default Socket 10" />
             </layout:VerticalLayout>
             <layout:VerticalLayout>
-                <Label text="Leasing Instalment:" />
-                <Text text="379.99 USD per month" />
-
-                <Label text="Axis:" />
-                <Text text="6 Axis" />
             </layout:VerticalLayout>
         </form:SimpleForm>
-        <Toolbar style="Clear">
+        <!-- <Toolbar style="Clear">
             <ToolbarSpacer />
             <Button text="Show More" />
-        </Toolbar>
+        </Toolbar> -->
     </VBox>
 </core:FragmentDefinition>

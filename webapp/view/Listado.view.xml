@@ -7,7 +7,6 @@
 >
     <f:DynamicPage
         id="page"
-        toggleHeaderOnTitleClick="true"
     >
         <f:title>
             <f:DynamicPageTitle>
@@ -18,17 +17,11 @@
 							select="onSelect"
 							save="onSave"
 							manage="onManage"
-							showFooter="true"
-							popoverTitle="my Favorites">
+							popoverTitle="Sección">
 							<items>
 								<VariantItem key="Standard" title="Listado"
 									author="B"
-									favorite="true"
-									visible="true"
-									executeOnSelect="false"
 									rename="false"
-									changeable="false"
-									remove="false"
 									sharing="Public" />
 							</items>
 						</VariantManagement>

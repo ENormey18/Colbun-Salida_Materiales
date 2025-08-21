@@ -1,0 +1,301 @@
+[
+    {
+        "id": "147169",
+        "reservaId": "113493",
+        "description": "Interruptor diferencial 25A",
+        "position": "00004",
+        "center": "CL23",
+        "storage": "ALO1",
+        "state": "New",
+        "date": "11/15/21",
+        "location": "202-MR21C4",
+        "pending": 2,
+        "quantity": 12,
+        "unit": "EUR",
+        "caracteristicas": [
+            {
+                "cat": "CAT0124",
+                "descripcionCAT": "ACABADO SUPERFICIAL",
+                "valorCAT": "12"
+            },
+            {
+                "cat": "CAT0031",
+                "descripcionCAT": "TIPO",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0014",
+                "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                "valorCAT": ""
+            },
+            {
+                "cat": "CAT0028",
+                "descripcionCAT": "NORMAS Y ESTANDARES",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0210",
+                "descripcionCAT": "FACTOR DE SEGURIDAD",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0299",
+                "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                "valorCAT": "50"
+            },
+            {
+                "cat": "CAT0249",
+                "descripcionCAT": "TIPO DE TERMINALES",
+                "valorCAT": "2"
+            },
+            {
+                "cat": "CAT0420",
+                "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                "valorCAT": "20 MM"
+            },
+            {
+                "cat": "CAT0124",
+                "descripcionCAT": "ACABADO SUPERFICIAL",
+                "valorCAT": "12"
+            },
+            {
+                "cat": "CAT0031",
+                "descripcionCAT": "TIPO",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0014",
+                "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                "valorCAT": ""
+            },
+            {
+                "cat": "CAT0028",
+                "descripcionCAT": "NORMAS Y ESTANDARES",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0210",
+                "descripcionCAT": "FACTOR DE SEGURIDAD",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0299",
+                "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                "valorCAT": "50"
+            },
+            {
+                "cat": "CAT0249",
+                "descripcionCAT": "TIPO DE TERMINALES",
+                "valorCAT": "2"
+            },
+            {
+                "cat": "CAT0420",
+                "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                "valorCAT": "20 MM"
+            },
+            {
+                "cat": "CAT0124",
+                "descripcionCAT": "ACABADO SUPERFICIAL",
+                "valorCAT": "12"
+            },
+            {
+                "cat": "CAT0031",
+                "descripcionCAT": "TIPO",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0014",
+                "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                "valorCAT": ""
+            },
+            {
+                "cat": "CAT0028",
+                "descripcionCAT": "NORMAS Y ESTANDARES",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0210",
+                "descripcionCAT": "FACTOR DE SEGURIDAD",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0299",
+                "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                "valorCAT": "50"
+            },
+            {
+                "cat": "CAT0249",
+                "descripcionCAT": "TIPO DE TERMINALES",
+                "valorCAT": "2"
+            },
+            {
+                "cat": "CAT0420",
+                "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                "valorCAT": "20 MM"
+            },
+            {
+                "cat": "CAT0124",
+                "descripcionCAT": "ACABADO SUPERFICIAL",
+                "valorCAT": "12"
+            },
+            {
+                "cat": "CAT0031",
+                "descripcionCAT": "TIPO",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0014",
+                "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                "valorCAT": ""
+            },
+            {
+                "cat": "CAT0028",
+                "descripcionCAT": "NORMAS Y ESTANDARES",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0210",
+                "descripcionCAT": "FACTOR DE SEGURIDAD",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0299",
+                "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                "valorCAT": "50"
+            },
+            {
+                "cat": "CAT0249",
+                "descripcionCAT": "TIPO DE TERMINALES",
+                "valorCAT": "2"
+            },
+            {
+                "cat": "CAT0420",
+                "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                "valorCAT": "20 MM"
+            },
+            {
+                "cat": "CAT0124",
+                "descripcionCAT": "ACABADO SUPERFICIAL",
+                "valorCAT": "12"
+            },
+            {
+                "cat": "CAT0031",
+                "descripcionCAT": "TIPO",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0014",
+                "descripcionCAT": "CARACTERISTICAS ADICIONALES",
+                "valorCAT": ""
+            },
+            {
+                "cat": "CAT0028",
+                "descripcionCAT": "NORMAS Y ESTANDARES",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0210",
+                "descripcionCAT": "FACTOR DE SEGURIDAD",
+                "valorCAT": "Attribute"
+            },
+            {
+                "cat": "CAT0299",
+                "descripcionCAT": "CARGA MAXIMA DE TRABAJO",
+                "valorCAT": "50"
+            },
+            {
+                "cat": "CAT0249",
+                "descripcionCAT": "TIPO DE TERMINALES",
+                "valorCAT": "2"
+            },
+            {
+                "cat": "CAT0420",
+                "descripcionCAT": "TAMAÑO DE LA ROSCA",
+                "valorCAT": "20 MM"
+            },
+            {
+                "cat": "CAT0015",
+                "descripcionCAT": "DESIGNACION DEL FABRICANTE",
+                "valorCAT": "Pendiente"
+            }
+        ]
+    },
+    {
+        "id": "302198",
+        "reservaId": "113493",
+        "description": "Automático 15A",
+        "position": "00006",
+        "center": "FR89",
+        "storage": "ALO1",
+        "date": "11/15/22",
+        "location": "202-MR21D8",
+        "pending": 9,
+        "quantity": 9,
+        "unit": "EUR"
+    },
+    {
+        "id": "237193",
+        "reservaId": "113493",
+        "description": "Termoregulardor 1P",
+        "position": "00009",
+        "center": "UL23",
+        "storage": "ALO1",
+        "date": "11/20/21",
+        "location": "202-MR21A5",
+        "pending": 2,
+        "quantity": 2,
+        "unit": "EUR"
+    },
+    {
+        "id": "237652",
+        "reservaId": "113493",
+        "description": "Cable Fuerza 750V",
+        "position": "00004",
+        "center": "CL23",
+        "storage": "ALO1",
+        "date": "11/24/21",
+        "location": "202-MR24T6",
+        "pending": 0,
+        "quantity": 1,
+        "unit": "EUR"
+    },
+    {
+        "id": "776827",
+        "reservaId": "113493",
+        "description": "Jologa",
+        "position": "00016",
+        "center": "CL23",
+        "storage": "ALO1",
+        "date": "11/19/23",
+        "location": "202-MR21C4",
+        "pending": 6,
+        "quantity": 12,
+        "unit": "EUR"
+    },
+    {
+        "id": "235263",
+        "reservaId": "113493",
+        "description": "Exotic Liquids",
+        "position": "00004",
+        "center": "CL23",
+        "storage": "ALO1",
+        "date": "11/01/23",
+        "location": "202-MR21D8",
+        "pending": 2,
+        "quantity": 2,
+        "unit": "EUR"
+    },
+    {
+        "id": "535211",
+        "reservaId": "113493",
+        "description": "DelBont Industries",
+        "position": "00001",
+        "center": "CL23",
+        "storage": "ALO1",
+        "date": "09/15/21",
+        "location": "202-MR21U0",
+        "pending": 1,
+        "quantity": 1,
+        "unit": "EUR"
+    }
+]

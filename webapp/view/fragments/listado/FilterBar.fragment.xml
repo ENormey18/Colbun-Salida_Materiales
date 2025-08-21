@@ -8,11 +8,17 @@
             <layoutData>
                 <layout:GridData span="XL10 L10 M9 S12"/>
             </layoutData>
-            <SearchField
-                id="generalFilter"
-                width="150px"
-            />
-
+            <VBox>
+                <Label
+                        text="Reserva"
+                        showColon="true"
+                />
+                <SearchField
+                    id="filtroReservas"
+                    value="{Reservas>/filters/reserva}"
+                    width="150px"
+                />
+            </VBox>
             <VBox>
                 <Label
                     text="Orden"
@@ -21,6 +27,7 @@
                 <SearchField
                     id="ordenFilter"
                     width="150px"
+                    value="{Reservas>/filters/orden}"
                 />
             </VBox>
 
@@ -34,6 +41,7 @@
                     displayFormat="yyyy-MM-dd"
                     name="pocNac"
                     id="pocNacFilter"
+                    value="{Reservas>/filters/fechaFrom}"
                     width="150px"
                 />
             </VBox>
