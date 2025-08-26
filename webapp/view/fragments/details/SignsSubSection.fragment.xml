@@ -27,7 +27,7 @@
                             visible="{= !!${detalleReserva>/firmas/autorizador} }"
                         />
                         <HBox visible="{= !${detalleReserva>/firmas/autorizador} }">
-                            <unified:FileUploader
+                            <!-- <unified:FileUploader
                                 buttonText="Subir firma"
                                 change=".onChangeFile($event, 'autorizador')"
                                 buttonOnly="true"
@@ -36,7 +36,7 @@
                             <Button
                                 text="Dibujar firma"
                                 press=".onOpenSignatureCanvas($event, 'autorizador')"
-                            />
+                            /> -->
                         </HBox> 
                     </VBox>
                     <VBox >
@@ -83,7 +83,7 @@
                         <HBox
                             visible="{= !${detalleReserva>/firmas/entregador} }"
                         >
-                            <unified:FileUploader
+                            <!-- <unified:FileUploader
                                 buttonText="Subir firma"
                                 change=".onChangeFile($event, 'entregador')"
                                 buttonOnly="true"
@@ -92,7 +92,7 @@
                             <Button
                                 text="Dibujar firma"
                                 press=".onOpenSignatureCanvas($event, 'entregador')"
-                            />
+                            /> -->
                         </HBox>
                     </VBox>
                 </HBox>

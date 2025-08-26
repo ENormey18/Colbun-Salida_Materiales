@@ -28,19 +28,37 @@ sap.ui.define([
                     "$expand": "ToItems"
                 },
                 success: function (oData) {
-                    oData.firmas = {};
-                    const oDetalleModel = new JSONModel(oData);
-                    this.getView().setModel(oDetalleModel, "detalleReserva");
+                    this._setModel(oData);
                     /*this.__cargarFirmasDeDMS();*/
-                    
                     this.getView().setBusy(false);
                 }.bind(this),
                 error: function (oError) {
                     console.log("Error al traer datos con $expand: ", oError);
+                    this._setModel();
                     this.getView().setBusy(false);
                 }.bind(this)
             });
+        },
 
+        _setModel: function(reservaOData) {
+            const detalleObj = {
+                Reserva : {
+                    Id: (reservaOData) ? reservaOData.Id : 0,
+                    User: (reservaOData) ? reservaOData.User: null,
+                    BaseDate: (reservaOData) ? reservaOData.BaseDate : null,
+                    MovCode: (reservaOData) ? reservaOData.MovCode : null ,
+                    CostCenter: (reservaOData) ? reservaOData.CostCenter: null,
+                    Customer: (reservaOData) ? reservaOData.Customer: null,
+                    Order: (reservaOData) ? reservaOData.Order: null,
+                    Status: (reservaOData) ? reservaOData.Status: null,
+                },
+                Items: (reservaOData) ? reservaOData.ToItems.results : [],
+                FilteredItems: (reservaOData) ? reservaOData.ToItems.results.filter((item) => {return item.Status !== 'Cerrada'}) : [],
+                Firmas: {},
+                ShowingItems: "pending"
+            }
+            const oDetalleModel = new JSONModel(detalleObj);
+            this.getView().setModel(oDetalleModel, "detalleReserva");
         },
 
         _cargarFirmasDeDMS: function(sReservaId) {
@@ -62,7 +80,7 @@ sap.ui.define([
                 .then(data => {
                     // Procesar data de la api
                     let firmasObj = procesar(data);
-                    oDetalleModel.setProperty("firmas", firmasObj);
+                    oDetalleModel.setProperty("Firmas", firmasObj);
                     this.getView().setBusy(false); // Detenemos el indicador de carga al final
                 })
                 .catch(error => {
@@ -130,9 +148,9 @@ sap.ui.define([
                 nombre: nombreFirmante,
                 firma: base64
             };
-            const sPath = `/firmas/${tipoSujeto}`;
+            const sPath = `/Firmas/${tipoSujeto}`;
             oDetalleModel.setProperty(sPath, sujeto);
-            const sPathNombre = `/firmas/${tipoSujeto}/nombre`;
+            const sPathNombre = `/Firmas/${tipoSujeto}/nombre`;
             oDetalleModel.setProperty(sPathNombre, nombreFirmante);//sino no se actualiza el componente text
 
 
@@ -168,8 +186,8 @@ sap.ui.define([
         async onChangeFile(oEvent, tipoSujeto) {
             const file = await this.toBase64(oEvent.mParameters.files[0]);
             const oDetalleModel = this.getView().getModel("detalleReserva");
-            oDetalleModel.setProperty(`firmas/${tipoSujeto}/firma`, file);
-            oDetalleModel.setProperty(`firmas/${tipoSujeto}/nombre`, "default");
+            oDetalleModel.setProperty(`Firmas/${tipoSujeto}/firma`, file);
+            oDetalleModel.setProperty(`Firmas/${tipoSujeto}/nombre`, "default");
         },
         toBase64(file) {
             return new Promise((resolve, reject)=>{
@@ -242,5 +260,57 @@ sap.ui.define([
             const cantidadCaracteristicas = caracteristicas.length;
             return (cantidadCaracteristicasCompletas/cantidadCaracteristicas)*100
         },
+
+        showCompleted(){
+            const oDetalleModel = this.getView().getModel("detalleReserva");
+            const aux = oDetalleModel.getProperty("/ShowingItems");
+            if (aux !== 'completed'){
+                const items = oDetalleModel.getProperty("/Items");
+                const filteredItems = items.filter((item) => {return item.Status === 'Cerrada'});
+                console.log(filteredItems);
+                oDetalleModel.setProperty('/FilteredItems',filteredItems);
+                oDetalleModel.setProperty("/ShowingItems", 'completed');
+            }
+        },
+        showPending(){
+            const oDetalleModel = this.getView().getModel("detalleReserva");
+            const aux = oDetalleModel.getProperty("/ShowingItems");
+            if (aux !== 'pending'){
+                const items = oDetalleModel.getProperty("/Items");
+                const filteredItems = items.filter((item) => {return item.Status !== 'Cerrada'});
+                console.log(filteredItems);
+                oDetalleModel.setProperty('/FilteredItems',filteredItems);
+                oDetalleModel.setProperty("/ShowingItems", 'pending');
+            }
+        },
+
+        onSearchMaterial: function(oEvent) {
+            const sQuery = oEvent.getParameter("query").trim().toLowerCase();
+            const oDetalleModel = this.getView().getModel("detalleReserva");
+            if (!oDetalleModel) { return; }
+
+            const aAllItems = oDetalleModel.getProperty("/Items");
+            const sCurrentStatusFilter = oDetalleModel.getProperty("/ShowingItems"); 
+
+            let aFilteredItems = aAllItems;
+            // --- PRIMER FILTRO: Por estado (SegmentedButton) ---
+            if (sCurrentStatusFilter === "completed") {
+                aFilteredItems = aFilteredItems.filter( (oItem) => { return oItem.Status === "Cerrada";});
+            } else if (sCurrentStatusFilter === "pending") {
+                aFilteredItems = aFilteredItems.filter( (oItem) => {return oItem.Status !== "Cerrada";});
+            }
+            // --- SEGUNDO FILTRO: Por texto de búsqueda (SearchField) ---
+            if (sQuery && sQuery.length > 0) {
+                aFilteredItems = aFilteredItems.filter(function(oItem) {
+                    // Comprobamos si el texto de búsqueda está en la Descripción O en el ID del Material.
+                    // .toLowerCase() hace que la búsqueda no sea sensible a mayúsculas/minúsculas.
+                    const sDescription = oItem.Description ? oItem.Description.toLowerCase() : "";
+                    const sMaterialId = oItem.Material ? oItem.Material.toLowerCase() : "";
+                    return sDescription.includes(sQuery) || sMaterialId.includes(sQuery);
+                });
+            }
+            oDetalleModel.setProperty("/FilteredItems", aFilteredItems);
+        },
+
     });
 });

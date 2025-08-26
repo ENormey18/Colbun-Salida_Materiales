@@ -12,21 +12,21 @@
                 wrap="Wrap"
             >
                 <ObjectAttribute title="Usuario " />
-                <Text text="{detalleReserva>/User}" />
+                <Text text="{detalleReserva>/Reserva/User}" />
             </HBox>
             <HBox
                 gap="5px"
                 wrap="Wrap"
             >
                 <ObjectAttribute title="Orden " />
-                <Text text="{detalleReserva>/Order}" />
+                <Text text="{detalleReserva>/Reserva/Order}" />
             </HBox>
         </VBox>
         <VBox>
             <ObjectStatus title="Status" />
             <ObjectStatus
                 class="sapMObjectStatusLarge"
-                text="{detalleReserva>/Status}"
+                text="{detalleReserva>/Reserva/Status}"
                 state="Success"
             />
         </VBox>

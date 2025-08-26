@@ -5,7 +5,7 @@
 >
     <Table
         id="materialsTable"
-        items="{detalleReserva>/ToItems/results}"
+        items="{detalleReserva>/FilteredItems}"
         autoPopinMode="true"
         mode="MultiSelect"
     >
@@ -15,14 +15,13 @@
                 <ToolbarSpacer />
                 <SegmentedButton>
                     <items>
-                        <SegmentedButtonItem text="Pendientes" />
-                        <SegmentedButtonItem text="Completados" />
+                        <SegmentedButtonItem text="Pendientes" press="showPending" />
+                        <SegmentedButtonItem text="Completados" press="showCompleted" />
                     </items>
                 </SegmentedButton>
                 <ToolbarSpacer width="50px" />
-                <SearchField width="250px" />
+                <SearchField width="250px" placeholder="Material" search="onSearchMaterial" />
                 <ToolbarSeparator />
-                <Button icon="sap-icon://print" />
                 <ToolbarSeparator />
                 <Button icon="sap-icon://full-screen" />
             </OverflowToolbar>

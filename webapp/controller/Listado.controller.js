@@ -297,30 +297,21 @@ sap.ui.define([
         getReservasFilters(filters){
             const aFilter = [];
 
-            if (filters.reserva) aFilter.push( new Filter({path: 'id', operator: FilterOperator.EQ, value1: filters.reserva}));
-            if (filters.orden) aFilter.push( new Filter({path: 'orderId', operator: FilterOperator.EQ, value1: filters.orden}));
-            if (filters.fechaFrom && filters.fechaTo) aFilter.push(new Filter({path: 'baseReqDate', operator: FilterOperator.BT, value1: filters.fechaFrom, value2: filters.fechaTo}))
-            else if (filters.fechaFrom) aFilter.push(new Filter({path: 'baseReqDate', operator: FilterOperator.GE, value1: filters.fechaFrom}))
-            else if (filters.fechaTo) aFilter.push(new Filter ({path: 'baseReqDate', operator: FilterOperator.LE, value1: filters.fechaTo}));
+            if (filters.reserva) aFilter.push( new Filter({path: 'ReservaId', operator: FilterOperator.EQ, value1: parseInt(filters.reserva.trim())}));
+            if (filters.orden) aFilter.push( new Filter({path: 'Order', operator: FilterOperator.EQ, value1: parseInt(filters.orden.trim())}));
+            if (filters.fechaFrom && filters.fechaTo) aFilter.push(new Filter({path: 'ReqDate', operator: FilterOperator.BT, value1: filters.fechaFrom, value2: filters.fechaTo}))
+            else if (filters.fechaFrom) aFilter.push(new Filter({path: 'ReqDate', operator: FilterOperator.GE, value1: filters.fechaFrom}))
+            else if (filters.fechaTo) aFilter.push(new Filter ({path: 'ReqDate', operator: FilterOperator.LE, value1: filters.fechaTo}));
             
-            const aMaterialFilters = [];
             if (filters.materialFrom && filters.materialTo) {
-                aMaterialFilters.push(new Filter({path: 'id', operator: FilterOperator.BT, value1: filters.materialFrom, value2: filters.materialTo}));
+                aFilter.push(new Filter({path: 'Material', operator: FilterOperator.BT, value1: filters.materialFrom.trim(), value2: filters.materialTo.trim()}));
             }else if (filters.materialFrom) {
-                aMaterialFilters.push(new Filter({path: 'id', operator: FilterOperator.GE, value1: filters.materialFrom}));
+                aFilter.push(new Filter({path: 'Material', operator: FilterOperator.GE, value1: filters.materialFrom.trim()}));
             }else if (filters.materialTo){
-                aMaterialFilters.push(new Filter({path: 'id', operator: FilterOperator.LE, value1: filters.materialTo}));
+                aFilter.push(new Filter({path: 'Material', operator: FilterOperator.LE, value1: filters.materialTo.trim()}));
             }
             if (filters.centro){
-                aMaterialFilters.push(new Filter({path: 'center', operator: FilterOperator.EQ, value1: filters.centro}));
-            }
-            if (aMaterialFilters.length>0){
-                const oCombinedMaterialFilter = new Filter({
-                    path: 'ToMateriales',
-                    operator: FilterOperator.Any,
-                    filters: aMaterialFilters
-                });
-                aFilter.push(oCombinedMaterialFilter);
+                aFilter.push(new Filter({path: 'Center', operator: FilterOperator.EQ, value1: filters.centro}));
             }
             return aFilter;
         },
@@ -338,12 +329,11 @@ sap.ui.define([
                     materialTo: "",
                     centro: "",
             });
+            this.onSearch();
         },
         onItemPress(oEvent) {
             const oBindingContext = oEvent.getSource().getBindingContext("Reservas");
             const oSelectedReserva = oBindingContext.getObject();
-            console.log(oSelectedReserva.ReservaId);
-
             if (!oSelectedReserva) {
                 sap.m.MessageToast.show("Error al obtener los datos de la reserva.");
                 return;

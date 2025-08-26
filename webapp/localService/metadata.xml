@@ -24,7 +24,7 @@
                 </Key>
                 <Property Name="ReservaId" Type="Edm.String" Nullable="false"/>
                 <Property Name="Pos" Type="Edm.String" Nullable="false"/>
-                <Property Name="Orden" Type="Edm.String"/>
+                <Property Name="Order" Type="Edm.String"/>
                 <Property Name="Status" Type="Edm.String"/>
                 <Property Name="User" Type="Edm.String"/>
                 <Property Name="Dest" Type="Edm.String"/>
