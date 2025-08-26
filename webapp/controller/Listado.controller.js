@@ -12,7 +12,7 @@ sap.ui.define([
         onInit() {
             const oView = this.getView();
             const oModelR = new JSONModel({
-                ReservasSet: [],
+                ItemsSet: [],
                 filters: {
                     reserva: "",
                     fechaFrom: "",
@@ -263,11 +263,11 @@ sap.ui.define([
         
             this.byId('reservasTable').setBusy(true);
             const aFilters = this.getReservasFilters(filters);
-             oDataModel.read("/ReservasSet", {
+             oDataModel.read("/ItemsSet", {
                 filters: aFilters, 
 
                 success: function (oData) {
-                    reservasModel.setProperty("/ReservasSet", oData.results)
+                    reservasModel.setProperty("/ItemsSet", oData.results)
                     this.byId('reservasTable').setBusy(false);
                 }.bind(this), // .bind(this) es crucial para poder usar "this.getView()" dentro del callback
 
@@ -342,13 +342,14 @@ sap.ui.define([
         onItemPress(oEvent) {
             const oBindingContext = oEvent.getSource().getBindingContext("Reservas");
             const oSelectedReserva = oBindingContext.getObject();
+            console.log(oSelectedReserva.ReservaId);
 
             if (!oSelectedReserva) {
                 sap.m.MessageToast.show("Error al obtener los datos de la reserva.");
                 return;
             }
             this.getOwnerComponent().getRouter().navTo("RouteDetails", {
-                reservaId: oSelectedReserva.id 
+                reservaId: oSelectedReserva.ReservaId 
             });
         },
     });

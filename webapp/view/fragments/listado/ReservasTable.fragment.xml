@@ -5,8 +5,8 @@
 >
     <Table
         id="reservasTable"
-        items="{Reservas>/ReservasSet}"
-        mode="MultiSelect"
+        items="{Reservas>/ItemsSet}"
+        mode="None"
         headerText="Reservas"
         growing="true"
         growingScrollToLoad="true"
@@ -14,25 +14,43 @@
     >
         <columns>
             <Column>
+                <Text text="N° Reserva" />
+            </Column>
+            <Column>
+                <Text text="Posicion" />
+            </Column>
+            <Column>
                 <Text text="Orden" />
+            </Column>
+            <Column>
+                <Text text="Código Mov." />
             </Column>
             <Column>
                 <Text text="Estado" />
             </Column>
             <Column>
-                <Text text="Changed On" />
+                <Text text="Usuario" />
             </Column>
             <Column>
-                <Text text="Customer" />
+                <Text text="Destinatario" />
             </Column>
             <Column>
-                <Text text="Customer Contact" />
+                <Text text="Material" />
             </Column>
             <Column>
-                <Text text="Quantity" />
+                <Text text="Descipción" />
             </Column>
             <Column>
-                <Text text="Net Amount" />
+                <Text text="Lote" />
+            </Column>
+            <Column>
+                <Text text="Centro" />
+            </Column>
+            <Column>
+                <Text text="Cantidad Necesaria" />
+            </Column>
+            <Column>
+                <Text text="Fecha Necesidad" />
             </Column>
         </columns>
         <items>
@@ -42,19 +60,22 @@
             >
                 <cells>
                     <ObjectIdentifier
-                        title="{Reservas>orderId}"
+                        title="{Reservas>ReservaId}"
                         titleActive="true"
                         titlePress=".onItemPress"
                     />
-                    <Text text="{Reservas>state}" />
-                    <Text text="{Reservas>LocalModel>baseReqDate}" />
-                    <ObjectIdentifier title="{Reservas>customer}" />
-                    <Text text="{Reservas>customerContact}" />
-                    <Text text="{Reservas>LocalModel>quantity}" />
-                    <HBox>
-                        <Text text="{Reservas>netAmount}" />
-                        <Text text="{Reservas>currency}" />
-                    </HBox>
+                    <Text text="{Reservas>Pos}" />
+                    <Text text="{Reservas>Order}" />
+                    <Text text="{Reservas>MovCode}" />
+                    <Text text="{Reservas>Status}" />
+                    <Text text="{Reservas>User}" />
+                    <Text text="{Reservas>Dest}" />
+                    <Text text="{Reservas>Material}" />
+                    <Text text="{Reservas>Description}" />
+                    <Text text="{Reservas>Batch}" />
+                    <Text text="{Reservas>Center}" />
+                    <Text text="{Reservas>ReqQuantity}" />
+                    <Text text="{Reservas>ReqDate}" />
                 </cells>
             </ColumnListItem>
         </items>

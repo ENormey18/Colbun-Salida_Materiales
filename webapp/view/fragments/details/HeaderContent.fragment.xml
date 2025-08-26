@@ -11,29 +11,22 @@
                 gap="5px"
                 wrap="Wrap"
             >
-                <ObjectAttribute title="Autor" />
-                <Text text="{detalleReserva>/customerContact}" />
+                <ObjectAttribute title="Usuario " />
+                <Text text="{detalleReserva>/User}" />
             </HBox>
             <HBox
                 gap="5px"
                 wrap="Wrap"
             >
-                <ObjectAttribute title="Area" />
-                <Text text="ELE CL23" />
-            </HBox>
-            <HBox
-                gap="5px"
-                wrap="Wrap"
-            >
-                <ObjectAttribute title="Centro" />
-                <Text text="{detalleReserva>/center}" />
+                <ObjectAttribute title="Orden " />
+                <Text text="{detalleReserva>/Order}" />
             </HBox>
         </VBox>
         <VBox>
             <ObjectStatus title="Status" />
             <ObjectStatus
                 class="sapMObjectStatusLarge"
-                text="{detalleReserva>/state}"
+                text="{detalleReserva>/Status}"
                 state="Success"
             />
         </VBox>

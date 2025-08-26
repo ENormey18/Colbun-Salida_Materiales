@@ -10,8 +10,8 @@
             <uxap:ObjectPageDynamicHeaderTitle>
                 <uxap:content>
                     <ObjectIdentifier
-                        title="Reserva {detalleReserva>id}"
-                        text="{detalleReserva>id}"
+                        title="Reserva {detalleReserva>Id}"
+                        text="{detalleReserva>Id}"
                     />
                 </uxap:content>
             </uxap:ObjectPageDynamicHeaderTitle>

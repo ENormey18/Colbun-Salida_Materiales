@@ -19,13 +19,13 @@ sap.ui.define([
              const sReservaId = oEvent.getParameter("arguments").reservaId;
             const oODataModel = this.getOwnerComponent().getModel();  
             const sPath = this.getOwnerComponent().getModel().createKey("/ReservasSet", {
-                id: sReservaId
+                Id: sReservaId,
             });
 
             this.getView().setBusy(true);
             oODataModel.read(sPath, {
                 urlParameters: {
-                    "$expand": "ToMateriales"
+                    "$expand": "ToItems"
                 },
                 success: function (oData) {
                     oData.firmas = {};

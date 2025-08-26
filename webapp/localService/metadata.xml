@@ -5,21 +5,65 @@
             
             <EntityType Name="Reserva">
                 <Key>
-                    <PropertyRef Name="id"/>
+                    <PropertyRef Name="Id"/>
                 </Key>
-                <Property Name="id" Type="Edm.String" Nullable="false"/>
-                <Property Name="center" Type="Edm.String"/>
-                <Property Name="orderId" Type="Edm.String"/>
-                <Property Name="state" Type="Edm.String"/>
-                <Property Name="baseReqDate" Type="Edm.String"/>
-                <Property Name="customer" Type="Edm.String"/>
-                <Property Name="customerContact" Type="Edm.String"/>
-                <Property Name="quantity" Type="Edm.String"/>
-                <Property Name="netAmount" Type="Edm.String"/>
-                <Property Name="currency" Type="Edm.String"/>
-                <Property Name="contract" Type="Edm.String"/>
-                <NavigationProperty Name="ToMateriales" Relationship="Z_SALIDA_MAT_SRV.ReservaToMaterial" FromRole="FromReserva" ToRole="ToMaterial"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false"/>
+                <Property Name="BaseDate" Type="Edm.String"/>
+                <Property Name="User" Type="Edm.String"/>
+                <Property Name="Order" Type="Edm.String"/>
+                <Property Name="Customer" Type="Edm.String"/>
+                <Property Name="MovCode" Type="Edm.String"/>
+                <Property Name="CostCenter" Type="Edm.String"/>
+                <NavigationProperty Name="ToItems" Relationship="Z_SALIDA_MAT_SRV.ReservaToItem" FromRole="FromReserva" ToRole="ToItem"/>
             </EntityType>
+
+             <EntityType Name="ReservaItem">
+                <Key>
+                    <PropertyRef Name="ReservaId"/>
+                    <PropertyRef Name="Pos"/>
+                </Key>
+                <Property Name="ReservaId" Type="Edm.String" Nullable="false"/>
+                <Property Name="Pos" Type="Edm.String" Nullable="false"/>
+                <Property Name="Orden" Type="Edm.String"/>
+                <Property Name="Status" Type="Edm.String"/>
+                <Property Name="User" Type="Edm.String"/>
+                <Property Name="Dest" Type="Edm.String"/>
+                <Property Name="ReqDate" Type="Edm.String"/>
+                <Property Name="Material" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="Batch" Type="Edm.String"/>
+                <Property Name="PendQuantity" Type="Edm.String"/>
+                <Property Name="Center" Type="Edm.String"/>
+                <Property Name="Area" Type="Edm.String"/>
+                <Property Name="ReqQuantity" Type="Edm.String"/>
+                <Property Name="PendQuantity" Type="Edm.String"/>
+                <Property Name="Unit" Type="Edm.String"/>
+            </EntityType>
+
+             <Association Name="ReservaToItem">
+                <End Type="Z_SALIDA_MAT_SRV.Reserva" Multiplicity="1" Role="FromReserva"/>
+                <End Type="Z_SALIDA_MAT_SRV.ReservaItem" Multiplicity="*" Role="ToItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromReserva">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="ToItem">
+                        <PropertyRef Name="ReservaId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            
+            <EntityContainer Name="Z_SALIDA_MAT_SRV_Entities" m:IsDefaultEntityContainer="true">
+                <!-- Un EntitySet para las cabeceras -->
+                <EntitySet Name="ReservasSet" EntityType="Z_SALIDA_MAT_SRV.Reserva"/>
+                <!-- Otro EntitySet para los ítems -->
+                <EntitySet Name="ItemsSet" EntityType="Z_SALIDA_MAT_SRV.ReservaItem"/>
+                <!-- El AssociationSet que conecta los dos EntitySets -->
+                <AssociationSet Name="ReservaToItem_AssocSet" Association="Z_SALIDA_MAT_SRV.ReservaToItem">
+                    <End EntitySet="ReservasSet" Role="FromReserva"/>
+                    <End EntitySet="ItemsSet" Role="ToItem"/>
+                </AssociationSet>
+            </EntityContainer>
 
             <EntityType Name="Material">
                 <Key>
@@ -38,28 +82,6 @@
                 <Property Name="quantity" Type="Edm.Int32"/>
                 <Property Name="unit" Type="Edm.String"/>
             </EntityType>
-
-            <Association Name="ReservaToMaterial">
-                <End Type="Z_SALIDA_MAT_SRV.Reserva" Multiplicity="1" Role="FromReserva"/>
-                <End Type="Z_SALIDA_MAT_SRV.Material" Multiplicity="*" Role="ToMaterial"/>
-                <ReferentialConstraint>
-                    <Principal Role="FromReserva">
-                        <PropertyRef Name="id"/>
-                    </Principal>
-                    <Dependent Role="ToMaterial">
-                        <PropertyRef Name="reservaId"/>
-                    </Dependent>
-                </ReferentialConstraint>
-            </Association>
-
-            <EntityContainer Name="Z_SALIDA_MAT_SRV_Entities" m:IsDefaultEntityContainer="true">
-                <EntitySet Name="ReservasSet" EntityType="Z_SALIDA_MAT_SRV.Reserva"/>
-                <EntitySet Name="MaterialesSet" EntityType="Z_SALIDA_MAT_SRV.Material"/>
-                <AssociationSet Name="ReservaToMaterial_AssocSet" Association="Z_SALIDA_MAT_SRV.ReservaToMaterial">
-                    <End EntitySet="ReservasSet" Role="FromReserva"/>
-                    <End EntitySet="MaterialesSet" Role="ToMaterial"/>
-                </AssociationSet>
-            </EntityContainer>
 
         </Schema>
     </edmx:DataServices>

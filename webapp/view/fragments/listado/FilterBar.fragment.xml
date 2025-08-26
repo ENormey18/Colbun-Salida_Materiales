@@ -33,7 +33,7 @@
 
             <VBox>
                 <Label
-                    text="Poc. Nac"
+                    text="Fecha Necesidad"
                     showColon="true"
                 />
                 <DatePicker

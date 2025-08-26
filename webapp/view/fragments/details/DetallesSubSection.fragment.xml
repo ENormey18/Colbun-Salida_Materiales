@@ -17,18 +17,21 @@
             <core:Title text="Detalle de cabecera" />
             <layout:VerticalLayout>
                 <Label text="Reserva ID:" />
-                <Text text="{detalleReserva>/id}" />
+                <Text text="{detalleReserva>/Id}" />
 
-                <Label text="Contract:" />
-                <Text text="{detalleReserva>/contract}" />
+                <Label text="Fecha Base:" />
+                <Text text="{detalleReserva>/BaseDate}" />
 
-                <Label text="Base Requirmente Date:" />
-                <Text text="{detalleReserva>/baseReqDate}" />
+                <Label text="Código Movimiento:" />
+                <Text text="{detalleReserva>/MovCode}" />
             </layout:VerticalLayout>
 
             <layout:VerticalLayout>
-                <Label text="Changed On:" />
-                <Text text="{detalleReserva>changedOn}" />
+                <Label text="Centro:" />
+                <Text text="{detalleReserva>CostCenter}" />
+
+                <Label text="Destinatario:" />
+                <Text text="{detalleReserva>Customer}" />
             </layout:VerticalLayout>
 
             <core:Title text="Otros detalles" />
