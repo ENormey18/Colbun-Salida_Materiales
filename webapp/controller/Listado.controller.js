@@ -4,15 +4,18 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
     "sap/ui/core/Fragment",
-    "sap/ui/model/json/JSONModel"
-], (Controller, Filter, FilterOperator, MessageToast, Fragment, JSONModel) => {
+    "sap/ui/model/json/JSONModel",
+     "sap/ui/model/Sorter",
+    "../model/formatter"
+], (Controller, Filter, FilterOperator, MessageToast, Fragment, JSONModel,Sorter, formatter) => {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.Listado", {
+        formatter: formatter,
         onInit() {
             const oView = this.getView();
             const oModelR = new JSONModel({
-                ItemsSet: [],
+                ReservaSet: [],
                 filters: {
                     reserva: "",
                     fechaFrom: "",
@@ -263,11 +266,22 @@ sap.ui.define([
         
             this.byId('reservasTable').setBusy(true);
             const aFilters = this.getReservasFilters(filters);
-             oDataModel.read("/ItemsSet", {
+             oDataModel.read("/ReservaSet", {
                 filters: aFilters, 
 
                 success: function (oData) {
-                    reservasModel.setProperty("/ItemsSet", oData.results)
+                    oData.results.forEach((reserva) => {
+                        let aux = reserva.BaseDate;
+                        if (aux){
+                            reserva.BaseDate = aux.toISOString().slice(0,10);
+                        }
+                        aux = reserva.ReqDate;
+                        if (aux){
+                            reserva.ReqDate = aux.toISOString().slice(0,10);
+                        }
+                        
+                    })
+                    reservasModel.setProperty("/ReservaSet", oData.results)
                     this.byId('reservasTable').setBusy(false);
                 }.bind(this), // .bind(this) es crucial para poder usar "this.getView()" dentro del callback
 
@@ -297,8 +311,8 @@ sap.ui.define([
         getReservasFilters(filters){
             const aFilter = [];
 
-            if (filters.reserva) aFilter.push( new Filter({path: 'ReservaId', operator: FilterOperator.EQ, value1: parseInt(filters.reserva.trim())}));
-            if (filters.orden) aFilter.push( new Filter({path: 'Order', operator: FilterOperator.EQ, value1: parseInt(filters.orden.trim())}));
+            if (filters.reserva) aFilter.push( new Filter({path: 'Id', operator: FilterOperator.EQ, value1: String(parseInt(filters.reserva.trim()))}));
+            if (filters.orden) aFilter.push( new Filter({path: 'Orden', operator: FilterOperator.EQ, value1: String(parseInt(filters.orden.trim()))}));
             if (filters.fechaFrom && filters.fechaTo) aFilter.push(new Filter({path: 'ReqDate', operator: FilterOperator.BT, value1: filters.fechaFrom, value2: filters.fechaTo}))
             else if (filters.fechaFrom) aFilter.push(new Filter({path: 'ReqDate', operator: FilterOperator.GE, value1: filters.fechaFrom}))
             else if (filters.fechaTo) aFilter.push(new Filter ({path: 'ReqDate', operator: FilterOperator.LE, value1: filters.fechaTo}));
@@ -311,12 +325,53 @@ sap.ui.define([
                 aFilter.push(new Filter({path: 'Material', operator: FilterOperator.LE, value1: filters.materialTo.trim()}));
             }
             if (filters.centro){
-                aFilter.push(new Filter({path: 'Center', operator: FilterOperator.EQ, value1: filters.centro}));
+                aFilter.push(new Filter({path: 'Centro', operator: FilterOperator.EQ, value1: filters.centro}));
             }
+            console.log(aFilter)
             return aFilter;
         },
         onFiltrarTable() {
 
+        },
+
+        _bDescendingSort: false,
+
+        onSort: function (oEvent) {
+            // 1. Obtener la propiedad por la que se debe ordenar desde los datos personalizados
+            const sSortProperty = oEvent.getSource().data("sortProperty");
+            
+            // 2. Invertir la dirección del ordenamiento
+            //    Si la última vez fue descendente, ahora será ascendente, y viceversa.
+            this._bDescendingSort = !this._bDescendingSort;
+
+            // 3. Crear el objeto Sorter
+            const oSorter = new Sorter(sSortProperty, this._bDescendingSort);
+
+            // 4. Obtener el binding de la tabla y aplicar el ordenamiento
+            const oTable = this.byId("reservasTable");
+            const oBinding = oTable.getBinding("items");
+            
+            oBinding.sort(oSorter);
+
+            // 5. (Opcional pero recomendado) Actualizar el ícono para dar feedback visual
+            this._updateSortIndicator(oEvent.getSource());
+        },
+
+        // Función auxiliar para actualizar los íconos
+        _updateSortIndicator: function (oPressedButton) {
+            const oTable = this.byId("reservasTable");
+            
+            // Primero, reseteamos todos los íconos al ícono por defecto
+            oTable.getColumns().forEach(function (oColumn) {
+                const oHeader = oColumn.getHeader();
+                if (oHeader instanceof sap.m.Button) {
+                    oHeader.setIcon("sap-icon://sort");
+                }
+            });
+
+            // Luego, establecemos el ícono correcto (arriba o abajo) solo para el botón presionado
+            const sNewIcon = this._bDescendingSort ? "sap-icon://sort-descending" : "sap-icon://sort-ascending";
+            oPressedButton.setIcon(sNewIcon);
         },
 
         onClear() {

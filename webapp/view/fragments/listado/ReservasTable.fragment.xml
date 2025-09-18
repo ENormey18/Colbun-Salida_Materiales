@@ -2,31 +2,39 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 >
     <Table
         id="reservasTable"
-        items="{Reservas>/ItemsSet}"
+        items="{Reservas>/ReservaSet}"
         mode="None"
-        headerText="Reservas"
+        headerText="Reservas [{= ${Reservas>/ReservaSet}.length}]"
         growing="true"
-        growingScrollToLoad="true"
+        growingThreshold="100"
+        growingScrollToLoad="false"
         autoPopinMode="true"
     >
         <columns>
             <Column>
-                <Text text="N° Reserva" />
+                <Button
+                    text="N° Reserva"
+                    type="Transparent"
+                    icon="sap-icon://sort"
+                    press="onSort"
+                    app:sortProperty="Id" 
+                />
             </Column>
             <Column>
-                <Text text="Posicion" />
+                 <Button
+                    text="Código Mov."
+                    type="Transparent"
+                    icon="sap-icon://sort"
+                    press="onSort"
+                    app:sortProperty="MovCode"
+                />
             </Column>
             <Column>
                 <Text text="Orden" />
-            </Column>
-            <Column>
-                <Text text="Código Mov." />
-            </Column>
-            <Column>
-                <Text text="Estado" />
             </Column>
             <Column>
                 <Text text="Usuario" />
@@ -35,22 +43,31 @@
                 <Text text="Destinatario" />
             </Column>
             <Column>
-                <Text text="Material" />
+                 <Button
+                    text="Estado"
+                    type="Transparent"
+                    icon="sap-icon://sort"
+                    press="onSort"
+                    app:sortProperty="Status"
+                />
             </Column>
             <Column>
-                <Text text="Descipción" />
+                <Text text="Centro de Coste" />
             </Column>
             <Column>
-                <Text text="Lote" />
+                <Text text="Fecha Base" />
+            </Column>
+            <Column>
+                <Button
+                    text="Fecha Necesidad"
+                    type="Transparent"
+                    icon="sap-icon://sort"
+                    press="onSort"
+                    app:sortProperty="ReqDate"
+                />
             </Column>
             <Column>
                 <Text text="Centro" />
-            </Column>
-            <Column>
-                <Text text="Cantidad Necesaria" />
-            </Column>
-            <Column>
-                <Text text="Fecha Necesidad" />
             </Column>
         </columns>
         <items>
@@ -60,22 +77,32 @@
             >
                 <cells>
                     <ObjectIdentifier
-                        title="{Reservas>ReservaId}"
+                        title="{Reservas>Id}"
                         titleActive="true"
                         titlePress=".onItemPress"
                     />
-                    <Text text="{Reservas>Pos}" />
-                    <Text text="{Reservas>Order}" />
                     <Text text="{Reservas>MovCode}" />
-                    <Text text="{Reservas>Status}" />
-                    <Text text="{Reservas>User}" />
+                    <Text text="{Reservas>Orden}" />
+                    <Text text="{Reservas>Usuario}" />
                     <Text text="{Reservas>Dest}" />
-                    <Text text="{Reservas>Material}" />
-                    <Text text="{Reservas>Description}" />
-                    <Text text="{Reservas>Batch}" />
-                    <Text text="{Reservas>Center}" />
-                    <Text text="{Reservas>ReqQuantity}" />
+                    <ObjectStatus
+                        icon="{
+                            path: 'Reservas>Status',
+                            formatter: '.formatter.statusIcon'
+                        }"
+                        text="{
+                            path: 'Reservas>Status',
+                            formatter: '.formatter.statusText'
+                        }"
+                        state="{
+                            path: 'Reservas>Status',
+                            formatter: '.formatter.statusTextState'
+                        }"
+                    />  
+                    <Text text="{Reservas>CostCenter}" />
+                    <Text text="{Reservas>BaseDate}" />
                     <Text text="{Reservas>ReqDate}" />
+                    <Text text="{Reservas>Centro}" />
                 </cells>
             </ColumnListItem>
         </items>

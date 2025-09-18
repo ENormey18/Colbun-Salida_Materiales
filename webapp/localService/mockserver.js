@@ -8,8 +8,7 @@ sap.ui.define([
         init: function () {
             // create
             var oMockServer = new MockServer({
-                // Reemplaza "Z_SALIDA_MAT_SRV" con el namespace real si es diferente
-                rootUri: "/sap/opu/odata/sap/Z_SALIDA_MAT_SRV/" 
+                rootUri: "/sap/opu/odata/sap/ZSALIDAMATSRV_SRV/" 
             });
 
             var oUriParameters = new UriParameters(window.location.href);

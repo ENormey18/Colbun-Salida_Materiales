@@ -1,88 +1,129 @@
-
-<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
-    <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
-        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Z_SALIDA_MAT_SRV">
-            
-            <EntityType Name="Reserva">
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSALIDAMATSRV_SRV" xml:lang="es" sap:schema-version="1">
+            <Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="ZCL_Centro" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZCL_Reserva" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Id"/>
                 </Key>
-                <Property Name="Id" Type="Edm.String" Nullable="false"/>
-                <Property Name="BaseDate" Type="Edm.String"/>
-                <Property Name="User" Type="Edm.String"/>
-                <Property Name="Order" Type="Edm.String"/>
-                <Property Name="Customer" Type="Edm.String"/>
-                <Property Name="MovCode" Type="Edm.String"/>
-                <Property Name="CostCenter" Type="Edm.String"/>
-                <NavigationProperty Name="ToItems" Relationship="Z_SALIDA_MAT_SRV.ReservaToItem" FromRole="FromReserva" ToRole="ToItem"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="18" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="MovCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BaseDate" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Cronomarcador" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ReqDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Cronomarcador" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Centro" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroD" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Orden" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Dest" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenter" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CostCenterD" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToItems" Relationship="ZSALIDAMATSRV_SRV.ReservaToItem" FromRole="FromRole_ReservaToItem" ToRole="ToRole_ReservaToItem"/>
             </EntityType>
-
-             <EntityType Name="ReservaItem">
+            <EntityType Name="ZCL_ReservaItem" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="ReservaId"/>
                     <PropertyRef Name="Pos"/>
                 </Key>
-                <Property Name="ReservaId" Type="Edm.String" Nullable="false"/>
-                <Property Name="Pos" Type="Edm.String" Nullable="false"/>
-                <Property Name="Order" Type="Edm.String"/>
-                <Property Name="Status" Type="Edm.String"/>
-                <Property Name="User" Type="Edm.String"/>
-                <Property Name="Dest" Type="Edm.String"/>
-                <Property Name="ReqDate" Type="Edm.String"/>
-                <Property Name="Material" Type="Edm.String"/>
-                <Property Name="Description" Type="Edm.String"/>
-                <Property Name="Batch" Type="Edm.String"/>
-                <Property Name="PendQuantity" Type="Edm.String"/>
-                <Property Name="Center" Type="Edm.String"/>
-                <Property Name="Area" Type="Edm.String"/>
-                <Property Name="ReqQuantity" Type="Edm.String"/>
-                <Property Name="PendQuantity" Type="Edm.String"/>
-                <Property Name="Unit" Type="Edm.String"/>
+                <Property Name="ReservaId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Pos" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Orden" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usuario" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Destinatario" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Descripcion" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lote" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Centro" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CentroD" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Almacen" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AlmacenD" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ubicacion" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CantNecesitada" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CantRetirada" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CantPendiente" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unidad" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FechaNecesidad" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false" sap:label="Cronomarcador" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="CantUT" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToReserva" Relationship="ZSALIDAMATSRV_SRV.ReservaToItem" FromRole="ToRole_ReservaToItem" ToRole="FromRole_ReservaToItem"/>
             </EntityType>
-
-             <Association Name="ReservaToItem">
-                <End Type="Z_SALIDA_MAT_SRV.Reserva" Multiplicity="1" Role="FromReserva"/>
-                <End Type="Z_SALIDA_MAT_SRV.ReservaItem" Multiplicity="*" Role="ToItem"/>
+            <EntityType Name="ZCL_ClaseMat" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                    <PropertyRef Name="Clase"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Clase" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Denominacion" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToCaracteristicas" Relationship="ZSALIDAMATSRV_SRV.ClaseToCaracteristica" FromRole="FromRole_ClaseToCaracteristica" ToRole="ToRole_ClaseToCaracteristica"/>
+            </EntityType>
+            <EntityType Name="ZCL_CaractMat" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                    <PropertyRef Name="Clase"/>
+                    <PropertyRef Name="Caracteristica"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Clase" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Caracteristica" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descripcion" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Valor" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unidad" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Moneda" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ClaseToCaracteristica" sap:content-version="1">
+                <End Type="ZSALIDAMATSRV_SRV.ZCL_ClaseMat" Multiplicity="1" Role="FromRole_ClaseToCaracteristica"/>
+                <End Type="ZSALIDAMATSRV_SRV.ZCL_CaractMat" Multiplicity="*" Role="ToRole_ClaseToCaracteristica"/>
                 <ReferentialConstraint>
-                    <Principal Role="FromReserva">
+                    <Principal Role="FromRole_ClaseToCaracteristica">
+                        <PropertyRef Name="Clase"/>
+                        <PropertyRef Name="Material"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ClaseToCaracteristica">
+                        <PropertyRef Name="Clase"/>
+                        <PropertyRef Name="Material"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ReservaToItem" sap:content-version="1">
+                <End Type="ZSALIDAMATSRV_SRV.ZCL_Reserva" Multiplicity="1" Role="FromRole_ReservaToItem"/>
+                <End Type="ZSALIDAMATSRV_SRV.ZCL_ReservaItem" Multiplicity="*" Role="ToRole_ReservaToItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ReservaToItem">
                         <PropertyRef Name="Id"/>
                     </Principal>
-                    <Dependent Role="ToItem">
+                    <Dependent Role="ToRole_ReservaToItem">
                         <PropertyRef Name="ReservaId"/>
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            
-            <EntityContainer Name="Z_SALIDA_MAT_SRV_Entities" m:IsDefaultEntityContainer="true">
-                <!-- Un EntitySet para las cabeceras -->
-                <EntitySet Name="ReservasSet" EntityType="Z_SALIDA_MAT_SRV.Reserva"/>
-                <!-- Otro EntitySet para los ítems -->
-                <EntitySet Name="ItemsSet" EntityType="Z_SALIDA_MAT_SRV.ReservaItem"/>
-                <!-- El AssociationSet que conecta los dos EntitySets -->
-                <AssociationSet Name="ReservaToItem_AssocSet" Association="Z_SALIDA_MAT_SRV.ReservaToItem">
-                    <End EntitySet="ReservasSet" Role="FromReserva"/>
-                    <End EntitySet="ItemsSet" Role="ToItem"/>
+            <EntityContainer Name="ZSALIDAMATSRV_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CentroSet" EntityType="ZSALIDAMATSRV_SRV.ZCL_Centro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ReservaSet" EntityType="ZSALIDAMATSRV_SRV.ZCL_Reserva" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ReservaItemSet" EntityType="ZSALIDAMATSRV_SRV.ZCL_ReservaItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ClaseMatSet" EntityType="ZSALIDAMATSRV_SRV.ZCL_ClaseMat" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CaractMatSet" EntityType="ZSALIDAMATSRV_SRV.ZCL_CaractMat" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="ClaseToCaracteristicaSet" Association="ZSALIDAMATSRV_SRV.ClaseToCaracteristica" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ClaseMatSet" Role="FromRole_ClaseToCaracteristica"/>
+                    <End EntitySet="CaractMatSet" Role="ToRole_ClaseToCaracteristica"/>
+                </AssociationSet>
+                <AssociationSet Name="ReservaToItemSet" Association="ZSALIDAMATSRV_SRV.ReservaToItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ReservaSet" Role="FromRole_ReservaToItem"/>
+                    <End EntitySet="ReservaItemSet" Role="ToRole_ReservaToItem"/>
                 </AssociationSet>
             </EntityContainer>
-
-            <EntityType Name="Material">
-                <Key>
-                    <PropertyRef Name="id"/>
-                </Key>
-                <Property Name="id" Type="Edm.String" Nullable="false"/>
-                <Property Name="reservaId" Type="Edm.String"/> 
-                <Property Name="description" Type="Edm.String"/>
-                <Property Name="position" Type="Edm.String"/>
-                <Property Name="center" Type="Edm.String"/>
-                <Property Name="storage" Type="Edm.String"/>
-                <Property Name="state" Type="Edm.String"/>
-                <Property Name="date" Type="Edm.String"/>
-                <Property Name="location" Type="Edm.String"/>
-                <Property Name="pending" Type="Edm.Int32"/>
-                <Property Name="quantity" Type="Edm.Int32"/>
-                <Property Name="unit" Type="Edm.String"/>
-            </EntityType>
-
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://vhcbns4tci.sap.colbunsa.cl:8000/sap/opu/odata/sap/ZSALIDAMATSRV_SRV/$metadata"/>
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://vhcbns4tci.sap.colbunsa.cl:8000/sap/opu/odata/sap/ZSALIDAMATSRV_SRV/$metadata"/>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
