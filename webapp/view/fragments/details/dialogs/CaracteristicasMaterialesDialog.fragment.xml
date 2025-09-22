@@ -3,44 +3,72 @@
     xmlns:core="sap.ui.core"
 >
     <Dialog
-        title="Modificación Características Materiales"
+        title="Modificación Características Material {detalleReserva>Material}"
         resizable="true"
     >
         <content>
-            <VBox alignItems="Center">
-                <VBox width="90%">
-                    <Table
-                        headerText="{detalleReserva>/itemSeleccionado/id}"
-                        id="caracteristicasTable"
-                        items="{path:'detalleReserva>/itemSeleccionado/caracteristicas/results'}"
-                        mode="MultiSelect"
-                    >
-                        <columns>
-                            <Column>
-                                <Text text="CAT" />
-                            </Column>
-                            <Column>
-                                <Text text="Descripción CAT" />
-                            </Column>
-                            <Column>
-                                <Text text="Valor CAT" />
-                            </Column>
-                        </columns>
-
-                        <items>
-                            <ColumnListItem>
-                                <cells>
-                                    <Text text="{cat}" />
-                                    <Text text="{descripcionCAT}" />
-                                    <VBox >
-                                        <Text text="{valorCAT}" visible="{= !!${valorCAT}}"/>
-                                        <Input value="{newValorCAT}" editable="{= !${valorCAT}}" visible="{= !!${valorCAT}}"/>
-                                    </VBox>
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                </VBox>
+            <HBox class="sapUiTinyMarginBeginEnd">
+                <SegmentedButton
+                    selectedKey="Tecnica"
+                    selectionChange="onClassTypeSelect"
+                >
+                    <items>
+                        <SegmentedButtonItem
+                            key="General"
+                            text="General"
+                        />
+                        <SegmentedButtonItem
+                            key="Tecnica"
+                            text="Técnica"
+                        />
+                    </items>
+                </SegmentedButton>
+            </HBox>
+            <VBox
+                id="charContentVBox"
+                alignItems="Center"
+                width="90%"
+                class="smallUiSmallMargin"
+            >
+                <Table
+                    headerText="Clase {detalleReserva>Denominacion}"
+                    id="caracteristicasTable"
+                    items="{
+                        path: 'detalleReserva>ToCaracteristicas/results'
+                    }"
+                    mode="MultiSelect"
+                >
+                    <columns>
+                        <Column>
+                            <Text text="Característica" />
+                        </Column>
+                        <Column>
+                            <Text text="Descripción" />
+                        </Column>
+                        <Column>
+                            <Text text="Valor" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{detalleReserva>Caracteristica}" />
+                                <Text text="{detalleReserva>Descripcion}" />
+                                <VBox>
+                                    <Text
+                                        text="{detalleReserva>Valor}"
+                                        visible="{= !(!${detalleReserva>Valor} || ${detalleReserva>Valor}==='') }"
+                                    />
+                                    <Input
+                                        value="{detalleReserva>NuevoValor}"
+                                        editable="{= !${detalleReserva>Valor} || ${detalleReserva>Valor}==='' }"
+                                        visible="{= !${detalleReserva>Valor} || ${detalleReserva>Valor}==='' }"
+                                    />
+                                </VBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
             </VBox>
         </content>
         <beginButton>

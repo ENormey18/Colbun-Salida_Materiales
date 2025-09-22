@@ -20,13 +20,13 @@
                             text="Autorizador"
                             showColon="true"
                         />
-                        <Text text="{detalleReserva>/firmas/autorizador/nombre}" />
+                        <Text text="{detalleReserva>/Firmas/autorizador/nombre}" />
                         <Image
                             width="100%"
-                            src="{detalleReserva>/firmas/autorizador/firma}"
-                            visible="{= !!${detalleReserva>/firmas/autorizador} }"
+                            src="{detalleReserva>/Firmas/autorizador/firma}"
+                            visible="{= !!${detalleReserva>/Firmas/autorizador} }"
                         />
-                        <HBox visible="{= !${detalleReserva>/firmas/autorizador} }">
+                        <HBox visible="{= !${detalleReserva>/Firmas/autorizador} }">
                             <!-- <unified:FileUploader
                                 buttonText="Subir firma"
                                 change=".onChangeFile($event, 'autorizador')"
@@ -47,13 +47,13 @@
                             text="Recibi Conforme"
                             showColon="true"
                         />
-                        <Text text="{detalleReserva/firmas/conforme/nombre}"/>
+                        <Text text="{detalleReserva/Firmas/conforme/nombre}"/>
                         <Image
                             width="100%"
-                            src="{detalleReserva>/firmas/conforme/firma}"
-                            visible="{= !!${detalleReserva>/firmas/conforme} }"
+                            src="{detalleReserva>/Firmas/conforme/firma}"
+                            visible="{= !!${detalleReserva>/Firmas/conforme} }"
                         />
-                        <HBox visible="{= !${detalleReserva>/firmas/conforme} }">
+                        <HBox visible="{= !${detalleReserva>/Firmas/conforme} }">
                             <unified:FileUploader
                                 buttonText="Subir firma"
                                 change=".onChangeFile($event, 'conforme')"
@@ -74,14 +74,14 @@
                             text="Entregado por"
                             showColon="true"
                         />
-                        <Text text="{detalleReserva>firmas/entregador/nombre}" />
+                        <Text text="{detalleReserva>Firmas/entregador/nombre}" />
                         <Image
                             width="100%"
-                            src="{detalleReserva>/firmas/entregador/firma}"
-                            visible="{= !!${detalleReserva>/firmas/entregador} }"
+                            src="{detalleReserva>/Firmas/entregador/firma}"
+                            visible="{= !!${detalleReserva>/Firmas/entregador} }"
                         />
                         <HBox
-                            visible="{= !${detalleReserva>/firmas/entregador} }"
+                            visible="{= !${detalleReserva>/Firmas/entregador} }"
                         >
                             <!-- <unified:FileUploader
                                 buttonText="Subir firma"

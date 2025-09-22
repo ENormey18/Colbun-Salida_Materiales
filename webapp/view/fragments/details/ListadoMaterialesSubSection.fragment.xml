@@ -11,12 +11,12 @@
     >
         <headerToolbar>
             <OverflowToolbar>
-                <Title text="Title" />
+                <Title text="Items en Reserva" />
                 <ToolbarSpacer />
-                <SegmentedButton>
+                <SegmentedButton selectedKey="{detalleReserva>/ShowingItems}" selectionChange="onShowItems">
                     <items>
-                        <SegmentedButtonItem text="Pendientes" press="showPending" />
-                        <SegmentedButtonItem text="Completados" press="showCompleted" />
+                        <SegmentedButtonItem key="P" text="Pendientes"/>
+                        <SegmentedButtonItem key="C" text="Completados"/>
                     </items>
                 </SegmentedButton>
                 <ToolbarSpacer width="50px" />
@@ -37,13 +37,13 @@
                 <Text text="Pos." />
             </Column>
             <Column autoPopinWidth="6" >
-                <Text text="Cent. Alm." />
+                <Text text="Centro" />
             </Column>
             <Column autoPopinWidth="6" popinDisplay="WithoutHeader">
-                <Text text="" />
+                <Text text="Alamacén" />
             </Column>
             <Column autoPopinWidth="6" >
-                <Text text="Fecha" />
+                <Text text="Fecha Nec." />
             </Column>
             <Column autoPopinWidth="6" >
                 <Text text="Ubicación" />
@@ -63,37 +63,40 @@
             <Column autoPopinWidth="6" hAlign="Center" >
                 <Text text="% Enriquecimiento" />
             </Column>
-            <Column autoPopinWidth="6" popinDisplay="WithoutHeader" >
-                <Text text="" />
-            </Column>
         </columns>
         <items>
             <ColumnListItem>
                 <cells>
                     <ObjectIdentifier
                         titleActive="true"
-                        title="{detalleReserva>Material}"
+                        title="{
+                            path: 'detalleReserva>Material',
+                            formatter: '.formatter.removeLeadingZeros'}"
                     />
-                    <Text text="{detalleReserva>Description}" />
+                    <Text text="{detalleReserva>Descripcion}" />
                     <Text text="{detalleReserva>Pos}" />
-                    <Text text="{detalleReserva>Center}" />
-                    <Text text="{detalleReserva>Area}" />
-                    <Text text="{detalleReserva>ReqDate}" />
-                    <Text text="{detalleReserva>Location}" />
-                    <Input
-                        value="{detalleReserva>pending}"
-                        type="Number"
+                    <Text text="{detalleReserva>Centro} - {detalleReserva>CentroD}" />
+                    <Text text="{detalleReserva>Almacen} - {detalleReserva>AlmacenD}" />
+                    <Text text="{detalleReserva>FechaNecesidad}" 
                     />
-                    <Text text="{detalleReserva>PendQuantity}" />
-                    <Text text="{detalleReserva>ReqQuantity}" />
-                    <Text text="{detalleReserva>Unit}" />
-                    <Text text="{detalleReserva>Enhancement}"/>
-                   
+                    <Text text="{detalleReserva>Ubicacion}" />
+                    <Input
+                        value="{detalleReserva>Retira}"
+                        type="Number"
+                        enabled="{= ${detalleReserva>CantPendiente} > 0}"
+                    />
+                    <Text text="{detalleReserva>CantPendiente}" />
+                    <Text text="{detalleReserva>CantNecesitada}" />
+                    <Text text="{detalleReserva>Unidad}" />   
                     <microchart:RadialMicroChart
-                        percentage="{detalleReserva>Enhancement}"
+                        percentage="{
+                            path: 'detalleReserva>Enhancement',
+                            formatter: '.formatter.enchancementPercentage' 
+                        }"
                         size="XS"
                         valueColor="Sequence7"
                         press=".onPressMaterial"
+                        alignContent="Center"
                     />
                    
                 </cells>

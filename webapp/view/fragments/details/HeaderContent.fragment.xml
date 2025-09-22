@@ -3,31 +3,35 @@
     xmlns="sap.m"
 >
     <HBox
-        gap="5%"
+        gap='5%'
         wrap="Wrap"
     >
-        <VBox>
+        <VBox rowGap='20%'>
             <HBox
-                gap="5px"
                 wrap="Wrap"
             >
                 <ObjectAttribute title="Usuario " />
-                <Text text="{detalleReserva>/Reserva/User}" />
+                <Text text="{detalleReserva>/Reserva/Usuario}" />
             </HBox>
             <HBox
-                gap="5px"
                 wrap="Wrap"
             >
-                <ObjectAttribute title="Orden " />
-                <Text text="{detalleReserva>/Reserva/Order}" />
+                <ObjectAttribute title="Reserva " />
+                <Text text="{detalleReserva>/Reserva/Id}" />
             </HBox>
         </VBox>
         <VBox>
             <ObjectStatus title="Status" />
             <ObjectStatus
                 class="sapMObjectStatusLarge"
-                text="{detalleReserva>/Reserva/Status}"
-                state="Success"
+                text="{
+                    path: 'detalleReserva>/Reserva/Status',
+                    formatter: '.formatter.statusText'
+                }"
+                state="{
+                    path: 'detalleReserva>/Reserva/Status',
+                    formatter: '.formatter.statusTextState'
+                }"
             />
         </VBox>
     </HBox>

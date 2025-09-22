@@ -1,0 +1,502 @@
+[
+    {
+        "Material": "000000000000134312",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "MR004_021",
+        "Denominacion": "REPUESTOS APARATO FUERZA  CONTROL MANDO"
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "MM010_037",
+        "Denominacion": "VARIOS FERRETERIA ELECTRICA"
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Denominacion": "AVISADORES DE INCENDIO"
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Denominacion": "AISLANTE TERMICO"
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "MR016_011",
+        "Denominacion": "FAB PZAS O PARTES DE TURBINAS"
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "MR016_005",
+        "Denominacion": "PIEZAS O PARTES DE TURBINAS"
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "MR014_009",
+        "Denominacion": "PIEZAS O PARTES DE VALVULAS"
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Denominacion": "TRANSMISOR DE FLUJO"
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Denominacion": "VALVULAS DE RETENCION"
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Denominacion": "JUNTAS DE BRIDA"
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "MM011_005",
+        "Denominacion": "PARTES O PIEZAS EQUIPO CORTE Y SOLDADURA"
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Denominacion": "TECLES"
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Denominacion": "RELE DIGITAL PROTECCION"
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Denominacion": "PROTECTORES SOLARES"
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "MR016_005",
+        "Denominacion": "PIEZAS O PARTES DE TURBINAS"
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "MR016_005",
+        "Denominacion": "PIEZAS O PARTES DE TURBINAS"
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "MR001_004",
+        "Denominacion": "CABLES DE COMUNICACION ENSAMBLADOS"
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Denominacion": "RELE DIGITAL PROTECCION"
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Denominacion": "PARTIDORES SUAVES"
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "MR014_009",
+        "Denominacion": "PIEZAS O PARTES DE VALVULAS"
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "MR001_010",
+        "Denominacion": "MODULOS Y TARJETAS COMPUTACIONALES"
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Denominacion": "AMARRAS PLASTICAS PARA CABLES"
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Denominacion": "AMARRAS PLASTICAS PARA CABLES"
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Denominacion": "AMARRAS PLASTICAS PARA CABLES"
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "MM004_001",
+        "Denominacion": "PETROLEO DIESEL"
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Denominacion": "GUANTES PROTECTORES"
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Denominacion": "GUANTES PROTECTORES"
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Denominacion": "GUANTES PROTECTORES"
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Denominacion": "GUANTES PROTECTORES"
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Denominacion": "GUANTES PROTECTORES"
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Denominacion": "LUMINARIAS"
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Denominacion": "ROPA IGNIFUGA"
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Denominacion": "ROPA IGNIFUGA"
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Denominacion": "ROPA IGNIFUGA"
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Denominacion": "ROPA IGNIFUGA"
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Denominacion": "CONTENEDORES"
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Denominacion": "CALZADO DE SEGURIDAD"
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Denominacion": "PROTECTORES AUDITIVOS"
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "MM012_024",
+        "Denominacion": "PROTECCION DE VISTA"
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "MM012_024",
+        "Denominacion": "PROTECCION DE VISTA"
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Denominacion": "ARTICULOS DE SEGURIDAD Y SEÑALETICA"
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Denominacion": "PROTECTORES RESPIRATORIOS"
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Denominacion": "PROTECTORES RESPIRATORIOS"
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Denominacion": "PAÑOS DE LIMPIEZA"
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Denominacion": "ELEMENTOS Y COMPUESTOS QUIMICOS"
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Denominacion": "ROPA IGNIFUGA"
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Denominacion": "ROPA IGNIFUGA"
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Denominacion": "ROPA IGNIFUGA"
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Denominacion": "CINTAS DE ETIQUETADO"
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "CG_01",
+        "Denominacion": "CLASE GENERAL"
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Denominacion": "CINTAS DE ETIQUETADO"
+    }
+]

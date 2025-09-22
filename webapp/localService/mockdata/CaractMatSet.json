@@ -1,0 +1,6347 @@
+[
+    {
+        "Material": "000000000000134312",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ROCKWELL ALLEN BRADLEY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "F435120002",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "MR004_021",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "SELECTOR SWITCH",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "MR004_021",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "800F-X10, 800FP-SB32, 800F-ALP",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000134312",
+        "Clase": "MR004_021",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "MM010_037",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "BROCA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "MM010_037",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "AC RAPIDO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109355",
+        "Clase": "MM010_037",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "14MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OCM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "TAUNUSLICHT",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "5530",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "AMPOLLETA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "5530",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "50MA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0028",
+        "Descripcion": "NORMAS Y ESTANDARES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0029",
+        "Descripcion": "TIPO DE ACCIONAMIENTO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0116",
+        "Descripcion": "TEMPERATURA DE SERVICIO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0180",
+        "Descripcion": "TENSION DE ALIMENTACION",
+        "Valor": "24V",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0181",
+        "Descripcion": "DIMENSIONES",
+        "Valor": "30X5,40MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0203",
+        "Descripcion": "CAPACIDAD DE CONTACTOS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0354",
+        "Descripcion": "HUMEDAD RELATIVA",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129263",
+        "Clase": "MR005_002",
+        "Caracteristica": "CAT0750",
+        "Descripcion": "MATERIAL AVISADORES INCENDIO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "LAINA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0039",
+        "Descripcion": "ANCHO",
+        "Valor": "3MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "FIBRA VIDRIO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0111",
+        "Descripcion": "ESPESOR",
+        "Valor": "20MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "TIRA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0116",
+        "Descripcion": "TEMPERATURA DE SERVICIO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0225",
+        "Descripcion": "LARGO",
+        "Valor": "140MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0674",
+        "Descripcion": "MATERIAL AISLANTE TERMICO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000129277",
+        "Clase": "MM009_003",
+        "Caracteristica": "CAT0789",
+        "Descripcion": "FORMATO SUMINISTRO AISLANTE TE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ANDRITZ HYDRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "228214",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "MR016_011",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "BUJE MOVIL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "MR016_011",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "MR016_011",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "MR016_011",
+        "Caracteristica": "CAT0375",
+        "Descripcion": "PLANO REFERENCIAL",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100185",
+        "Clase": "MR016_011",
+        "Caracteristica": "CAT0376",
+        "Descripcion": "POSICION EN EL PLANO",
+        "Valor": "891045837",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OCM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ANDRITZ HYDRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "85-9171238",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "ANILLO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "MOVIL SUP EXT CRNI 13,4",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "RODETE FRANCIS CHACABUQUITO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100154",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0374",
+        "Descripcion": "MODELO DEL EQUIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OCM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ANDRITZ HYDRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PORTA BUJE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "VALVULA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100004",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0374",
+        "Descripcion": "MODELO DEL EQUIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ENDRESS+HAUSER",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "5WBB3H-AAHAMBJA0DUD210AA1+AD",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "MEDIDOR FLUJO PROMAG W10 5WBB3",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "MEDIDOR CAUDAL AGUA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0026",
+        "Descripcion": "GRADO DE PROTECCION",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0141",
+        "Descripcion": "RANGO DE MEDICION",
+        "Valor": "4MA MIN. 0,0M3/H-20MA MAX. 750",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0152",
+        "Descripcion": "TIPO DE MONTAJE",
+        "Valor": "ENTRE BRIDAS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0178",
+        "Descripcion": "SEÑAL DE SALIDA",
+        "Valor": "4-20MA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0180",
+        "Descripcion": "TENSION DE ALIMENTACION",
+        "Valor": "100-240VAC/24VDC",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0281",
+        "Descripcion": "TAMAÑO/TIPO CONEXION",
+        "Valor": "ROSCA NPT1/2\"",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0308",
+        "Descripcion": "CONEXION ELECTRICA",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159492",
+        "Clase": "MR005_041",
+        "Caracteristica": "CAT0550",
+        "Descripcion": "TIPO TRANSMISOR FLUJO",
+        "Valor": "CAUDALIMETRO ELECTROMAGNETICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "NIBCO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "VALVULA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "CLASE 150",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0027",
+        "Descripcion": "PRESION NOMINAL",
+        "Valor": "300PSI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0075",
+        "Descripcion": "DIAMETRO NOMINAL",
+        "Valor": "1.1/2\" NPT",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0077",
+        "Descripcion": "TIPO DE CONEXION",
+        "Valor": "ROSCADO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0079",
+        "Descripcion": "MATERIAL DEL CUERPO",
+        "Valor": "BRONCE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0081",
+        "Descripcion": "MATERIAL DEL ASIENTO",
+        "Valor": "BRONCE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0088",
+        "Descripcion": "MATERIAL DEL OBTURADOR",
+        "Valor": "BRONCE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000102940",
+        "Clase": "MR014_023",
+        "Caracteristica": "CAT0090",
+        "Descripcion": "TIPO DISEÑO DE LA VALVULA",
+        "Valor": "TIPO Y",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERAL ELECTRIC",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "372A1159P005",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "GASKET 372A1159P005",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "CIRCULAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Caracteristica": "CAT0027",
+        "Descripcion": "PRESION NOMINAL",
+        "Valor": "150L",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Caracteristica": "CAT0028",
+        "Descripcion": "NORMAS Y ESTANDARES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "ACERO INOXIDABLE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Caracteristica": "CAT0075",
+        "Descripcion": "DIAMETRO NOMINAL",
+        "Valor": "1.50\"",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000116271",
+        "Clase": "MR009_005",
+        "Caracteristica": "CAT0768",
+        "Descripcion": "MATERIAL JUNTASBRIDA",
+        "Valor": "SS304/FG",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "MM011_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PARTE O PIEZA EQUIPO SOLDADURA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "MM011_005",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "300A, KIT HERRAMIENTA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "MM011_005",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "TP JACKSON",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "MM011_005",
+        "Caracteristica": "CAT0028",
+        "Descripcion": "NORMAS Y ESTANDARES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "MM011_005",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000103811",
+        "Clase": "MM011_005",
+        "Caracteristica": "CAT0075",
+        "Descripcion": "DIAMETRO NOMINAL",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "COFFING",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "C120016",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "TECLE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "T508 D",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "SE ADJUNTA FICHA TECNICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "TIRFOR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0187",
+        "Descripcion": "ALTURA MAXIMA DE ELEVACION",
+        "Valor": "20M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0255",
+        "Descripcion": "CAPACIDAD DE CARGA",
+        "Valor": "0,8T",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0393",
+        "Descripcion": "NUMERO DE RAMALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000101524",
+        "Clase": "MM006_011",
+        "Caracteristica": "CAT0407",
+        "Descripcion": "TIPO TECLES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "SIEMENS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "3RN2010-1CW30",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "RELE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "IP20",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "SIRIUS 3RN2, RIEL LING, 2LED",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "PROTECCION TERMICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0132",
+        "Descripcion": "TENSION NOMINAL",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0151",
+        "Descripcion": "CORRIENTE NOMINAL",
+        "Valor": "0,208333333",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0163",
+        "Descripcion": "FRECUENCIA",
+        "Valor": "50..60HZ",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0178",
+        "Descripcion": "SEÑAL DE SALIDA",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0179",
+        "Descripcion": "SEÑAL DE ENTRADA",
+        "Valor": "24..240VCA/CC",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0301",
+        "Descripcion": "VOLTAJE",
+        "Valor": "230VAC",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0303",
+        "Descripcion": "PROTOCOLO COMUNICACION",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0327",
+        "Descripcion": "CORRIENTE NEUTRO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0328",
+        "Descripcion": "TIPO PUERTO SERIAL",
+        "Valor": "PINES CALIBRE AWG12-40",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000121721",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0367",
+        "Descripcion": "FUNCION DE PROTECCION",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PROTECTOR SOLAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "DESECHABLE, HIPOALERGENICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Caracteristica": "CAT0016",
+        "Descripcion": "TIPO DE ENVASE",
+        "Valor": "PLASTICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Caracteristica": "CAT0017",
+        "Descripcion": "CAPACIDAD DEL ENVASE",
+        "Valor": "120G",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Caracteristica": "CAT0311",
+        "Descripcion": "FACTOR DE PROTECCION SOLAR",
+        "Valor": "50+FPS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Caracteristica": "CAT0312",
+        "Descripcion": "ASPECTO",
+        "Valor": "CREMA NO GRASO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000109525",
+        "Clase": "MM012_028",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OCM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "POWER MACHINES",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "2328119",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "ALABE DISTRIBUIDOR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100030",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0374",
+        "Descripcion": "MODELO DEL EQUIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ANDRITZ HYDRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "CUERPO INYECTOR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100003",
+        "Clase": "MR016_005",
+        "Caracteristica": "CAT0374",
+        "Descripcion": "MODELO DEL EQUIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "SIEMENS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "DK2ZNGODLPODLP65M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "MR001_004",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "CABLE DE COMUNICACION",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "MR001_004",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "FIBRA OPTICA H-FPC200",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "MR001_004",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "CENTRAL HORNITOS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "MR001_004",
+        "Caracteristica": "CAT0224",
+        "Descripcion": "TIPO DE CONECTORES",
+        "Valor": "CF-2071",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100262",
+        "Clase": "MR001_004",
+        "Caracteristica": "CAT0225",
+        "Descripcion": "LARGO",
+        "Valor": "65M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "SIEMENS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "BM2008003745",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "RELE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "PROTECCION 7UM85 P1L112660",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "P1L112660",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "DIGITAL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0132",
+        "Descripcion": "TENSION NOMINAL",
+        "Valor": "1..5A",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0151",
+        "Descripcion": "CORRIENTE NOMINAL",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0163",
+        "Descripcion": "FRECUENCIA",
+        "Valor": "50..60HZ",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0178",
+        "Descripcion": "SEÑAL DE SALIDA",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0179",
+        "Descripcion": "SEÑAL DE ENTRADA",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0301",
+        "Descripcion": "VOLTAJE",
+        "Valor": "100..125V",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0303",
+        "Descripcion": "PROTOCOLO COMUNICACION",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0327",
+        "Descripcion": "CORRIENTE NEUTRO",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0328",
+        "Descripcion": "TIPO PUERTO SERIAL",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100164",
+        "Clase": "MR004_017",
+        "Caracteristica": "CAT0367",
+        "Descripcion": "FUNCION DE PROTECCION",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "SIEMENS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "4,01121E+12",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PARTIDOR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "SIRIUS 22Kw 3RW",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "3RW4036-1BB14",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0092",
+        "Descripcion": "TENSION DE CONTROL",
+        "Valor": "110..230VCA/DC",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0151",
+        "Descripcion": "CORRIENTE NOMINAL",
+        "Valor": "45A",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0163",
+        "Descripcion": "FRECUENCIA",
+        "Valor": "50..60HZ",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0180",
+        "Descripcion": "TENSION DE ALIMENTACION",
+        "Valor": "200..480V",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0262",
+        "Descripcion": "NUMERO DE FASES",
+        "Valor": "3",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0267",
+        "Descripcion": "POTENCIA",
+        "Valor": "22KW",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000154020",
+        "Clase": "MR006_033",
+        "Caracteristica": "CAT0286",
+        "Descripcion": "TEMPERATURA MAXIMA RESISTENCIA",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OCM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "VOITH",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "253-18118",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "VALVULA AIRE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "DN700",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0047",
+        "Descripcion": "EQUIP/COMPONENTE QUE PERTENECE",
+        "Valor": "VALVULA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000100258",
+        "Clase": "MR014_009",
+        "Caracteristica": "CAT0374",
+        "Descripcion": "MODELO DEL EQUIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "SEGNET",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "FN-TRAN-LX",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "MR001_010",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "TRANSCEIVER MODULE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "MR001_010",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "-40..85°C, SMF, SFP, SFP/SFP+",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "MR001_010",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "FN-TRAN-LX",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "MR001_010",
+        "Caracteristica": "CAT0028",
+        "Descripcion": "NORMAS Y ESTANDARES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000159357",
+        "Clase": "MR001_010",
+        "Caracteristica": "CAT0204",
+        "Descripcion": "APROBACIONES Y CERTIFICACIONES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "AMARRA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "CABLE TEMP OP -40..85Â°C",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0039",
+        "Descripcion": "ANCHO",
+        "Valor": "3,6MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "BLANCO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "PLASTICO HDPE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0127",
+        "Descripcion": "LONGITUD TOTAL",
+        "Valor": "292MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0137",
+        "Descripcion": "DIAMETRO MAXIMO DE AMARRE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0138",
+        "Descripcion": "PROTECCION UV",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000132324",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0811",
+        "Descripcion": "MATERIAL AMARRAS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "CABLE TIES",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "I0602036",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "AMARRA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "PROTECCION ULTRAVIOLETA (U.V.)",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0039",
+        "Descripcion": "ANCHO",
+        "Valor": "4,8MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "NEGRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "PLASTICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0127",
+        "Descripcion": "LONGITUD TOTAL",
+        "Valor": "250MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0137",
+        "Descripcion": "DIAMETRO MAXIMO DE AMARRE",
+        "Valor": "LONG 70MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0138",
+        "Descripcion": "PROTECCION UV",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147567",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0811",
+        "Descripcion": "MATERIAL AMARRAS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "AMARRA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0039",
+        "Descripcion": "ANCHO",
+        "Valor": "2,5MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "BLANCO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "PLASTICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0127",
+        "Descripcion": "LONGITUD TOTAL",
+        "Valor": "100MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0137",
+        "Descripcion": "DIAMETRO MAXIMO DE AMARRE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0138",
+        "Descripcion": "PROTECCION UV",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000133716",
+        "Clase": "MM009_005",
+        "Caracteristica": "CAT0811",
+        "Descripcion": "MATERIAL AMARRAS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "MM004_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PETROLEO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "MM004_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "NU1202",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "MM004_001",
+        "Caracteristica": "CAT0022",
+        "Descripcion": "DESIGNACION DEL GRADO",
+        "Valor": "B1",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "MM004_001",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "DIESEL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "MM004_001",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "GRANEL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146937",
+        "Clase": "MM004_001",
+        "Caracteristica": "CAT0324",
+        "Descripcion": "ESTADO FISICO",
+        "Valor": "LIQUIDO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ANSELL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "11-801",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "GUANTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "HYFLEX",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "T8",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "NYLON / ESPUMA NITRILO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "PAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0197",
+        "Descripcion": "MEDIOS EL CUAL FUE DISEÑADO",
+        "Valor": "MANIPULACION PIEZAS MANIOBRAS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0734",
+        "Descripcion": "MATERIAL GUANTES PROTECTORES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147473",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0804",
+        "Descripcion": "FORMATO SUMINISTRO GUANTES PRO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ANSELL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "HYFLEX 11-801 T9",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "GUANTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "HYFLEXI 11-801, BORDE CAFE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "9",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "SIN METODO DE ABROCHADO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "NYLON / ESPUMA NITRILO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "PAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0197",
+        "Descripcion": "MEDIOS EL CUAL FUE DISEÑADO",
+        "Valor": "MANIPULACION PIEZAS, CARGA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0734",
+        "Descripcion": "MATERIAL GUANTES PROTECTORES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148080",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0804",
+        "Descripcion": "FORMATO SUMINISTRO GUANTES PRO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ANSELL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "11-801",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "GUANTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "HYFLEX 11-801, TRICOTADO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "10",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TEJIDO ELASTICO ESPANDEX NYLON",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "PAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0197",
+        "Descripcion": "MEDIOS EL CUAL FUE DISEÑADO",
+        "Valor": "PROTECCION PERSONAL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0734",
+        "Descripcion": "MATERIAL GUANTES PROTECTORES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000122333",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0804",
+        "Descripcion": "FORMATO SUMINISTRO GUANTES PRO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "GUANTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "PUÑO CORTO SIN FORRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "CUERO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "PAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0197",
+        "Descripcion": "MEDIOS EL CUAL FUE DISEÑADO",
+        "Valor": "PROTECCION PERSONAL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0734",
+        "Descripcion": "MATERIAL GUANTES PROTECTORES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147188",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0804",
+        "Descripcion": "FORMATO SUMINISTRO GUANTES PRO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ATOX GROUP",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "11459",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "GUANTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "PUÃ‘O CORTO CON FORRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "9",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "SIN BROCHE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "CABRITILLA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "PAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0197",
+        "Descripcion": "MEDIOS EL CUAL FUE DISEÑADO",
+        "Valor": "PROTECCION PERSONAL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0734",
+        "Descripcion": "MATERIAL GUANTES PROTECTORES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000146856",
+        "Clase": "MM012_018",
+        "Caracteristica": "CAT0804",
+        "Descripcion": "FORMATO SUMINISTRO GUANTES PRO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OCM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "STREAM LIGHT",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "‎61436",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "LINTERNA CASCO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "TIPO MINERO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "LED",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0019",
+        "Descripcion": "USO O APLICACION",
+        "Valor": "ILUMINACION",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0026",
+        "Descripcion": "GRADO DE PROTECCION",
+        "Valor": "IPX4",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0079",
+        "Descripcion": "MATERIAL DEL CUERPO",
+        "Valor": "PLASTICO HDPE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0119",
+        "Descripcion": "MATERIAL DE LA CUBIERTA",
+        "Valor": "PLASTICO HDPE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0132",
+        "Descripcion": "TENSION NOMINAL",
+        "Valor": "4,5V DC",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0134",
+        "Descripcion": "POTENCIA DE LAMPARA",
+        "Valor": "200 LUMENES",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0135",
+        "Descripcion": "NUMERO DE FUENTES LUMINOSAS",
+        "Valor": "4",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000136457",
+        "Clase": "MM010_033",
+        "Caracteristica": "CAT0136",
+        "Descripcion": "TIPO DE REFLECTOR",
+        "Valor": "UNICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MARSHALL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "OVEROL IGNIFUGO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "WORK_COVERALL_OCL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "88% COTTON, 12% NYLON",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "AZUL NAVY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0377",
+        "Descripcion": "CARGA CALORICA",
+        "Valor": "11,5CAL/CM2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158816",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0745",
+        "Descripcion": "MATERIAL ROPA IGNIFUGA",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MARSHALL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "CONJUNTO PIJAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "ARC_FLASH_SLEEPWEAR_CPCH",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "86%COTTON, 12%NYLON, 2%SPANDEX",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "AZUL NAVY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0377",
+        "Descripcion": "CARGA CALORICA",
+        "Valor": "12,1 CAL/CM2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158832",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0745",
+        "Descripcion": "MATERIAL ROPA IGNIFUGA",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MARSHALL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "ESCLAVINA IGNIFUGA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "ARC_FLASH_BALACLAVA_ECL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "86%COTTON, 12%NYLON, 2%SPANDEX",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "ESTANDAR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "AZUL NAVY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "SIN BROCHE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0377",
+        "Descripcion": "CARGA CALORICA",
+        "Valor": "12,1 CAL/CM2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158825",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0745",
+        "Descripcion": "MATERIAL ROPA IGNIFUGA",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MARSHALL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "CONJUNTO PIJAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "ARC_FLASH_SLEEPWEAR_CPCH",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "86%COTTON, 12%NYLON, 2%SPANDEX",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "L",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "AZUL NAVY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0377",
+        "Descripcion": "CARGA CALORICA",
+        "Valor": "12,1 CAL/CM2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158833",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0745",
+        "Descripcion": "MATERIAL ROPA IGNIFUGA",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "ESE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "NO APLICA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "CONTENEDOR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0019",
+        "Descripcion": "USO O APLICACION",
+        "Valor": "BASURA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "VERDE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "POLIETILENO DE ALTA DENSIDAD",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0147",
+        "Descripcion": "ACCESORIOS",
+        "Valor": "TAPA/2 RUEDAS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0181",
+        "Descripcion": "DIMENSIONES",
+        "Valor": "ALTO 106.2CM ANCHO 57CM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0204",
+        "Descripcion": "APROBACIONES Y CERTIFICACIONES",
+        "Valor": "EN840/ISO9001/ISO14000",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0310",
+        "Descripcion": "CAPACIDAD",
+        "Valor": "240L",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0457",
+        "Descripcion": "TIPO CONTENEDORES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147479",
+        "Clase": "MM009_019",
+        "Caracteristica": "CAT0687",
+        "Descripcion": "MATERIAL CONTENEDORES",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "NORSEG",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "NS10201183",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "ZAPATO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "SEGURIDAD NEW ONTARIO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "2 PARES CORDONES",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0041",
+        "Descripcion": "NUMERO DE CALZADO",
+        "Valor": "42",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "TAUPE / VERDE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0043",
+        "Descripcion": "PROTECCION AMBIENTAL/PERSONAL",
+        "Valor": "PERSONAL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0044",
+        "Descripcion": "MATERIAL DE COMPONENTES",
+        "Valor": "PERSONAL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "CORDON",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148208",
+        "Clase": "MM012_010",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "3M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "X4P5E-EU",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PROTECTOR AUDITIVO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "PELTOR X4P5",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "DIELECTRICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0028",
+        "Descripcion": "NORMAS Y ESTANDARES",
+        "Valor": "ISP",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "POLIURETANO TERMOPLASTICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0055",
+        "Descripcion": "ATENUACION DE RUIDO",
+        "Valor": "85DB",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148354",
+        "Clase": "MM012_025",
+        "Caracteristica": "CAT0739",
+        "Descripcion": "MATERIAL PROTECTORES AUDITIVOS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "3M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "70-0716-4735-1",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "LENTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "VIRTUA CCS 11874",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "SELLADO IN/OUT A",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "TRANSPARENTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148203",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "LENTE SOBRE LENTE OSCURO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "LENTES SOBRE LENTE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "PROTECCION LATERAL, FILTRO UV+",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "NEGRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000160291",
+        "Clase": "MM012_024",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "STEELPRO SAFETY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PORTA GUANTES",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Caracteristica": "CAT0013",
+        "Descripcion": "CARACTERISTICAS GENERALES",
+        "Valor": "CLIP PLASTICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "CLIP PORTA GUANTES",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "AUTOAJUSTABLE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "POLIPROPILENO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Caracteristica": "CAT0181",
+        "Descripcion": "DIMENSIONES",
+        "Valor": "140MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148291",
+        "Clase": "MM017_002",
+        "Caracteristica": "CAT0724",
+        "Descripcion": "MATERIAL ARTI SEGURIDAD Y SEÑA",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "OEM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "3M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "6200/07025",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "PROTECTOR",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "6200",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "RESPIRATORIO MEDIO ROSTRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0028",
+        "Descripcion": "NORMAS Y ESTANDARES",
+        "Valor": "NIOSH",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "FACIAL ELASTOMERO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0056",
+        "Descripcion": "TIPO DE CONTAMINANTE",
+        "Valor": "GASES, VAPORES ORGANICOS-ACID",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147554",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0741",
+        "Descripcion": "MATERIAL PROTECT RESPIRATORIOS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "3M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "7093C",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "FILTRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "7093C",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "PARTICULAS CONEXION BAYONETA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0028",
+        "Descripcion": "NORMAS Y ESTANDARES",
+        "Valor": "NIOSH",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "PAPEL/FIBRA VIDRIO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0056",
+        "Descripcion": "TIPO DE CONTAMINANTE",
+        "Valor": "VAPORES ORGANICOS/GASES ACIDOS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0396",
+        "Descripcion": "REQUIERE CERTIFICADO ISP",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000148121",
+        "Clase": "MM012_027",
+        "Caracteristica": "CAT0741",
+        "Descripcion": "MATERIAL PROTECT RESPIRATORIOS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "WIPE MASTER",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "WM-75",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "COLOR AZUL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0019",
+        "Descripcion": "USO O APLICACION",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0031",
+        "Descripcion": "TIPO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0112",
+        "Descripcion": "FORMATO DE SUMINISTRO",
+        "Valor": "ROLLO POR 1000UNIDADES",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0181",
+        "Descripcion": "DIMENSIONES",
+        "Valor": "30 X 40 CM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0467",
+        "Descripcion": "TIPO PAÑOSLIMPIEZA",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0701",
+        "Descripcion": "MATERIAL PAÑOS LIMPIEZA",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000143155",
+        "Clase": "MM009_039",
+        "Caracteristica": "CAT0793",
+        "Descripcion": "FORMATO SUMINISTRO PAÑOS LIMPI",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "SI",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MESSER",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "CL 2.2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "NITROGENO COMPRIMIDO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "CLASE PELIGRO 2.2, UN 1066",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0016",
+        "Descripcion": "TIPO DE ENVASE",
+        "Valor": "CILINDRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0017",
+        "Descripcion": "CAPACIDAD DEL ENVASE",
+        "Valor": "10M3",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0019",
+        "Descripcion": "USO O APLICACION",
+        "Valor": "AGENTE LIMPIEZA, SECADO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0217",
+        "Descripcion": "FORMA FISICA",
+        "Valor": "GAS",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0384",
+        "Descripcion": "COMPOSICION Y PORCENTAJE",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147135",
+        "Clase": "MM005_004",
+        "Caracteristica": "CAT0385",
+        "Descripcion": "NUMERO CAS",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MARSHALL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "CONJUNTO PIJAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "ARC_FLASH_SLEEPWEAR_CPCH",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "86%COTTON, 12%NYLON, 2%SPANDEX",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "XL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "AZUL NAVY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0377",
+        "Descripcion": "CARGA CALORICA",
+        "Valor": "12,1 CAL/CM2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158834",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0745",
+        "Descripcion": "MATERIAL ROPA IGNIFUGA",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MARSHALL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "OVEROL IGNIFUGO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "WORK_COVERALL_OCL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "88% COTTON, 12% NYLON",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "XL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "AZUL NAVY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0377",
+        "Descripcion": "CARGA CALORICA",
+        "Valor": "11,5CAL/CM2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158818",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0745",
+        "Descripcion": "MATERIAL ROPA IGNIFUGA",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "MARSHALL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "OVEROL IGNIFUGO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0012",
+        "Descripcion": "DESIGNACION DEL MODELO",
+        "Valor": "WORK_COVERALL_OCL",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "88% COTTON, 12% NYLON",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0040",
+        "Descripcion": "TALLA DE LA PRENDA",
+        "Valor": "L",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "AZUL NAVY",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0045",
+        "Descripcion": "METODO DE ABROCHADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0377",
+        "Descripcion": "CARGA CALORICA",
+        "Valor": "11,5CAL/CM2",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000158817",
+        "Clase": "MM012_001",
+        "Caracteristica": "CAT0745",
+        "Descripcion": "MATERIAL ROPA IGNIFUGA",
+        "Valor": "TELA IGNIFUGA ANTIFLAMA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "DEMARKA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "40403-1",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "CINTA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "TRANSFERENCIA TIPO IN",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "40403-1",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0019",
+        "Descripcion": "USO O APLICACION",
+        "Valor": "IMPRESORA CODIGOS SAP",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0039",
+        "Descripcion": "ANCHO",
+        "Valor": "110MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "NEGRO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "RESINA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0199",
+        "Descripcion": "LONGITUD",
+        "Valor": "360M",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147989",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0686",
+        "Descripcion": "MATERIAL CINTAS ETIQUETADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0001",
+        "Descripcion": "CLASIFICACION MATERIAL",
+        "Valor": "GENERICO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0002",
+        "Descripcion": "VENCIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0003",
+        "Descripcion": "REQUIERE MANTENIMIENTO",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0004",
+        "Descripcion": "REQUIERE HOJA DE SEGURIDAD",
+        "Valor": "NO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0005",
+        "Descripcion": "FABRICANTE",
+        "Valor": "DEMARKA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "CG_01",
+        "Caracteristica": "CAT0006",
+        "Descripcion": "NUMERO DE PARTE",
+        "Valor": "40812-7",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0011",
+        "Descripcion": "NOMBRE DEL ARTICULO",
+        "Valor": "ETIQUETA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0014",
+        "Descripcion": "CARACTERISTICAS ADICIONALES",
+        "Valor": "AUTOADHESIVA",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0015",
+        "Descripcion": "DESIGNACION DEL FABRICANTE",
+        "Valor": "40812-7",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0019",
+        "Descripcion": "USO O APLICACION",
+        "Valor": "IMPRESION ETIQUETA ALMACEN",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0039",
+        "Descripcion": "ANCHO",
+        "Valor": "60MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0042",
+        "Descripcion": "COLOR",
+        "Valor": "BLANCO",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0046",
+        "Descripcion": "MATERIAL",
+        "Valor": "FILM OPP MATE",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0199",
+        "Descripcion": "LONGITUD",
+        "Valor": "100MM",
+        "Unidad": "",
+        "Moneda": ""
+    },
+    {
+        "Material": "000000000000147988",
+        "Clase": "MM009_017",
+        "Caracteristica": "CAT0686",
+        "Descripcion": "MATERIAL CINTAS ETIQUETADO",
+        "Valor": "",
+        "Unidad": "",
+        "Moneda": ""
+    }
+]

@@ -25,8 +25,14 @@
                 <Input id="materialToInput" placeholder="to" value="{Reservas>/filters/materialTo}"/>
                 <Label text="Centro" />
                 <ComboBox id="centroInput" items='{Reservas>/centros}' selectedKey="{Reservas>/filters/centro}">
-                    <core:ListItem key="{Reservas>id}" text="{Reservas>id} - {Reservas>name}"/>
+                    <core:ListItem key="{Reservas>ID}" text="{Reservas>ID} - {Reservas>Name}"/>
                 </ComboBox>
+                <SegmentedButton selectedKey="{Reservas>/filters/status}">
+                    <items>
+                        <SegmentedButtonItem text="Pendientes" key="O"/>
+                        <SegmentedButtonItem text="Completados" key="C"/>
+                    </items>
+                </SegmentedButton>
             </form:SimpleForm>
         </content>
         <footer>

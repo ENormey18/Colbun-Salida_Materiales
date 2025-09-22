@@ -14,10 +14,10 @@
             labelSpanS="12"
             adjustLabelSpan="false"
         >
-            <core:Title text="Detalle de cabecera" />
+            <core:Title text="Información" />
             <layout:VerticalLayout>
-                <Label text="Reserva ID:" />
-                <Text text="{detalleReserva>/Reserva/Id}" />
+                <Label text="Orden" showColon="true" />
+                <Text text="{detalleReserva>/Reserva/Orden}" />
 
                 <Label text="Fecha Base:" />
                 <Text text="{detalleReserva>/Reserva/BaseDate}" />
@@ -27,11 +27,14 @@
             </layout:VerticalLayout>
 
             <layout:VerticalLayout>
-                <Label text="Centro:" />
-                <Text text="{detalleReserva>/Reserva/CostCenter}" />
+                <Label text="Centro de Coste:" />
+                <Text text="{detalleReserva>/Reserva/CostCenter} - {detalleReserva>/Reserva/CostCenterD}" />
 
                 <Label text="Destinatario:" />
-                <Text text="{detalleReserva>/Reserva/Customer}" />
+                <Text text="{detalleReserva>/Reserva/Dest}" />
+
+                <Label text="Centro:" />
+                <Text text="{detalleReserva>/Reserva/Centro} - {detalleReserva>/Reserva/CentroD}" />
             </layout:VerticalLayout>
 
             <core:Title text="Otros detalles" />

@@ -5,59 +5,58 @@
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
 >
-    <uxap:ObjectPageLayout showFooter="true">
-        <uxap:headerTitle>
-            <uxap:ObjectPageDynamicHeaderTitle>
-                <uxap:content>
-                    <ObjectIdentifier
-                        title="Reserva {detalleReserva>Id}"
-                        text="{detalleReserva>Id}"
-                    />
-                </uxap:content>
-            </uxap:ObjectPageDynamicHeaderTitle>
-        </uxap:headerTitle>
-        <uxap:headerContent>
-            <core:Fragment fragmentName="salidademateriales.view.fragments.details.HeaderContent" type="XML" />
-        </uxap:headerContent>
-        <uxap:sections>
-            <uxap:ObjectPageSection title="Home">
-                <uxap:subSections>
-                    <uxap:ObjectPageSubSection
-                        title="Detalles"
-                        showTitle="false"
-                    >
+    <Page title="Gestión Reservas" showNavButton="true" navButtonPress=".onNavBack">
+        <uxap:ObjectPageLayout showFooter="true">
+            <uxap:headerTitle>
+                <uxap:ObjectPageDynamicHeaderTitle>
+                    <uxap:content>
+                        <ObjectIdentifier
+                            title="Reserva {detalleReserva>Id}"
+                            text="{detalleReserva>Id}"
+                        />
+                    </uxap:content>
+                </uxap:ObjectPageDynamicHeaderTitle>
+            </uxap:headerTitle>
+            <uxap:headerContent>
+                <core:Fragment fragmentName="salidademateriales.view.fragments.details.HeaderContent" type="XML"/>
+            </uxap:headerContent>
+            <uxap:sections>
+                <uxap:ObjectPageSection title="Reserva" titleUppercase="false">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection title="Detalles Cabecera">
+                            <core:Fragment
+                                fragmentName="salidademateriales.view.fragments.details.DetallesSubSection"
+                                type="XML"
+                            />
+                        </uxap:ObjectPageSubSection>
+                        <uxap:ObjectPageSubSection title="Listado de materiales">
+                            <core:Fragment
+                                fragmentName="salidademateriales.view.fragments.details.ListadoMaterialesSubSection"
+                                type="XML"
+                            />
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+                <uxap:ObjectPageSection
+                    title="Contact Information"
+                    titleUppercase="false"
+                >
+                    <uxap:subSections>
                         <core:Fragment
-                            fragmentName="salidademateriales.view.fragments.details.DetallesSubSection"
+                            fragmentName="salidademateriales.view.fragments.details.SignsSubSection"
                             type="XML"
                         />
-                    </uxap:ObjectPageSubSection>
-                    <uxap:ObjectPageSubSection title="Listado de materiales">
-                        <core:Fragment
-                            fragmentName="salidademateriales.view.fragments.details.ListadoMaterialesSubSection"
-                            type="XML"
-                        />
-                    </uxap:ObjectPageSubSection>
-                </uxap:subSections>
-            </uxap:ObjectPageSection>
-            <uxap:ObjectPageSection
-                title="Contact Information"
-                titleUppercase="false"
-            >
-                <uxap:subSections>
-                    <core:Fragment
-                        fragmentName="salidademateriales.view.fragments.details.SignsSubSection"
-                        type="XML"
-                    />
-                </uxap:subSections>
-            </uxap:ObjectPageSection>
-        </uxap:sections>
-        <uxap:footer>
-            <OverflowToolbar >
-                <Button type="Negative" text="2" press=".onShowMessagePopover" id="messagePopoverButton"/>
-                <ToolbarSpacer />
-                <Button type="Emphasized" text="Contabilizar"/>
-                <Button text="Cancel"/>
-            </OverflowToolbar>
-        </uxap:footer>
-    </uxap:ObjectPageLayout>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+            <uxap:footer>
+                <OverflowToolbar >
+                    <Button type="Negative" text="2" press=".onShowMessagePopover" id="messagePopoverButton"/>
+                    <ToolbarSpacer />
+                    <Button type="Emphasized" text="Contabilizar"/>
+                    <Button text="Cancel"/>
+                </OverflowToolbar>
+            </uxap:footer>
+        </uxap:ObjectPageLayout>
+    </Page>
 </mvc:View>

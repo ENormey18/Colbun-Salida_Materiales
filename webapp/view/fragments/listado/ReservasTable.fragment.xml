@@ -1,7 +1,6 @@
 <core:FragmentDefinition
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:fb="sap.ui.comp.filterbar"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 >
     <Table
@@ -12,10 +11,25 @@
         growing="true"
         growingThreshold="100"
         growingScrollToLoad="false"
-        autoPopinMode="true"
+        sticky="HeaderToolbar"  
     >
+        <headerToolbar >
+            <OverflowToolbar
+                design="Solid"
+                
+            >
+                <Title text="Reservas [{= ${Reservas>/ReservaSet}.length}]"/>
+                <ToolbarSpacer/>
+                <SearchField
+                    id="tableSearchField"
+                    width="30%"
+                    placeholder="Filtrar por N° Reserva, Orden, Usuario, Destinatario, Centro..."
+                    search="onFiltrarTable"
+                />
+            </OverflowToolbar>
+        </headerToolbar>
         <columns>
-            <Column>
+            <Column hAlign="Center">
                 <Button
                     text="N° Reserva"
                     type="Transparent"
@@ -24,7 +38,7 @@
                     app:sortProperty="Id" 
                 />
             </Column>
-            <Column>
+            <Column minScreenWidth="Desktop" demandPopin="false" hAlign="Center">
                  <Button
                     text="Código Mov."
                     type="Transparent"
@@ -33,16 +47,16 @@
                     app:sortProperty="MovCode"
                 />
             </Column>
-            <Column>
+            <Column minScreenWidth="Desktop" demandPopin="false">
                 <Text text="Orden" />
             </Column>
-            <Column>
+            <Column minScreenWidth="Tablet" demandPopin="false">
                 <Text text="Usuario" />
             </Column>
-            <Column>
+            <Column minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline">
                 <Text text="Destinatario" />
             </Column>
-            <Column>
+            <Column hAlign="Center">
                  <Button
                     text="Estado"
                     type="Transparent"
@@ -51,10 +65,10 @@
                     app:sortProperty="Status"
                 />
             </Column>
-            <Column>
+            <Column minScreenWidth="Desktop" demandPopin="false">
                 <Text text="Centro de Coste" />
             </Column>
-            <Column>
+            <Column minScreenWidth="Desktop" demandPopin="false">
                 <Text text="Fecha Base" />
             </Column>
             <Column>
@@ -66,7 +80,7 @@
                     app:sortProperty="ReqDate"
                 />
             </Column>
-            <Column>
+            <Column minScreenWidth="Tablet" demandPopin="false">
                 <Text text="Centro" />
             </Column>
         </columns>
@@ -99,10 +113,16 @@
                             formatter: '.formatter.statusTextState'
                         }"
                     />  
-                    <Text text="{Reservas>CostCenter}" />
+                    <VBox>
+                        <Text text="{Reservas>CostCenter}" />
+                        <Text text="{Reservas>CostCenterD}" />
+                    </VBox>
                     <Text text="{Reservas>BaseDate}" />
                     <Text text="{Reservas>ReqDate}" />
-                    <Text text="{Reservas>Centro}" />
+                    <VBox>
+                        <Text text="{Reservas>Centro}" />
+                        <Text text="{Reservas>CentroD}" />
+                    </VBox>
                 </cells>
             </ColumnListItem>
         </items>

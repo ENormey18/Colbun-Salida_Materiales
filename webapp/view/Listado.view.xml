@@ -5,42 +5,41 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
 >
-    <f:DynamicPage
-        id="page"
-    >
-        <f:title>
-            <f:DynamicPageTitle>
-                <f:heading>
-                    <VariantManagement id="vm"
-                            defaultKey="Standard"
-                            selectedKey="Standard"
-							select="onSelect"
-							save="onSave"
-							manage="onManage"
-							popoverTitle="Sección">
-							<items>
-								<VariantItem key="Standard" title="Listado"
-									author="B"
-									rename="false"
-									sharing="Public" />
-							</items>
-						</VariantManagement>
-                </f:heading>
-            </f:DynamicPageTitle>
-        </f:title>
-        <f:header>
-            <f:DynamicPageHeader>
+    <Page title="Gestión Reservas">
+        <f:DynamicPage
+            id="page"
+        >
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                        <VariantManagement id="vm"
+                                defaultKey="Standard"
+                                selectedKey="Standard"
+                                popoverTitle="Sección">
+                                <items>
+                                    <VariantItem key="Standard" title="Listado"
+                                        author="B"
+                                        rename="false"
+                                        sharing="Public" />
+                                </items>
+                            </VariantManagement>
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title>
+            <f:header>
+                <f:DynamicPageHeader>
+                    <core:Fragment
+                        fragmentName="salidademateriales.view.fragments.listado.FilterBar"
+                        type="XML"
+                    />
+                </f:DynamicPageHeader>
+            </f:header>
+            <f:content>
                 <core:Fragment
-                    fragmentName="salidademateriales.view.fragments.listado.FilterBar"
+                    fragmentName="salidademateriales.view.fragments.listado.ReservasTable"
                     type="XML"
                 />
-            </f:DynamicPageHeader>
-        </f:header>
-        <f:content>
-            <core:Fragment
-                fragmentName="salidademateriales.view.fragments.listado.ReservasTable"
-                type="XML"
-            />
-        </f:content>
-    </f:DynamicPage>
+            </f:content>
+        </f:DynamicPage>
+    </Page>
 </mvc:View>

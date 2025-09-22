@@ -1,316 +1,512 @@
-sap.ui.define([
+sap.ui.define(
+  [
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
+    "sap/ui/core/routing/History",
     "sap/m/MessageToast",
-    'sap/m/MessagePopover',
-    'sap/m/MessageItem',
+    "sap/m/MessagePopover",
+    "sap/m/MessageItem",
     "sap/ui/model/json/JSONModel",
-    'sap/ui/Device',
-], (Controller, Fragment, MessageToast, MessagePopover, MessageItem,JSONModel, Device) => {
+    "sap/ui/Device",
+    "../model/formatter",
+  ],
+  (
+    Controller,
+    Fragment,
+    History,
+    MessageToast,
+    MessagePopover,
+    MessageItem,
+    JSONModel,
+    Device,
+    formatter
+  ) => {
     "use strict";
-
     return Controller.extend("salidademateriales.controller.Details", {
-        onInit() {
-            const oRouter = this.getOwnerComponent().getRouter();
-            Device.resize.attachHandler(this.changeCanvasSize, this);
-            oRouter.getRoute("RouteDetails").attachPatternMatched(this.onRouteMatched, this);
-        },
-        onRouteMatched(oEvent){
-             const sReservaId = oEvent.getParameter("arguments").reservaId;
-            const oODataModel = this.getOwnerComponent().getModel();  
-            const sPath = this.getOwnerComponent().getModel().createKey("/ReservasSet", {
-                Id: sReservaId,
+      formatter: formatter,
+      onInit() {
+        const oRouter = this.getOwnerComponent().getRouter();
+        Device.resize.attachHandler(this.changeCanvasSize, this);
+        oRouter
+          .getRoute("RouteDetails")
+          .attachPatternMatched(this.onRouteMatched, this);
+      },
+      onRouteMatched(oEvent) {
+        const sReservaId = oEvent.getParameter("arguments").reservaId;
+        const oODataModel = this.getOwnerComponent().getModel();
+        const sPath = this.getOwnerComponent()
+          .getModel()
+          .createKey("/ReservaSet", {
+            Id: sReservaId,
+          });
+        this._setModel(null);
+        this.getView().setBusy(true);
+        oODataModel.read(sPath, {
+          urlParameters: {
+            $expand: "ToItems",
+          },
+          success: function (oData) {
+            const reserva = oData;
+            let aux = reserva.BaseDate;
+            if (aux) {
+              reserva.BaseDate = aux.toISOString().slice(0, 10);
+            }
+            aux = reserva.ReqDate;
+            if (aux) {
+              reserva.ReqDate = aux.toISOString().slice(0, 10);
+            }
+            reserva.ToItems.results.forEach((item) => {
+              let aux = item.FechaNecesidad;
+              if (aux) {
+                item.FechaNecesidad = aux.toISOString().slice(0, 10);
+              }
+              item.Clases = [];
+              item.Enhancement = 0;
             });
+            this._setModel(oData);
+            /*this.__cargarFirmasDeDMS();*/
+            this.getView().setBusy(false);
+          }.bind(this),
+          error: function (oError) {
+            console.log("Error al traer datos con $expand: ", oError);
+            this._setModel(null);
+            this.getView().setBusy(false);
+          }.bind(this),
+        });
+      },
 
-            this.getView().setBusy(true);
-            oODataModel.read(sPath, {
-                urlParameters: {
-                    "$expand": "ToItems"
-                },
-                success: function (oData) {
-                    this._setModel(oData);
-                    /*this.__cargarFirmasDeDMS();*/
-                    this.getView().setBusy(false);
-                }.bind(this),
-                error: function (oError) {
-                    console.log("Error al traer datos con $expand: ", oError);
-                    this._setModel();
-                    this.getView().setBusy(false);
-                }.bind(this)
+      onNavBack: function () {
+        const oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("RouteListado");
+      },
+
+      _setModel: async function (reservaOData) {
+        const detalleObj = {
+          Reserva: {
+            Id: reservaOData && reservaOData.Id ? reservaOData.Id : 0,
+            Usuario:
+              reservaOData && reservaOData.Usuario ? reservaOData.Usuario : "-",
+            BaseDate:
+              reservaOData && reservaOData.BaseDate
+                ? reservaOData.BaseDate
+                : "-",
+            ReqDate:
+              reservaOData && reservaOData.ReqDate ? reservaOData.ReqDate : "-",
+            MovCode:
+              reservaOData && reservaOData.MovCode ? reservaOData.MovCode : "-",
+            Orden:
+              reservaOData && reservaOData.Orden ? reservaOData.Orden : "-",
+            Status:
+              reservaOData && reservaOData.Status ? reservaOData.Status : "?",
+            Dest: reservaOData && reservaOData.Dest ? reservaOData.Dest : "-",
+            Centro:
+              reservaOData && reservaOData.Centro ? reservaOData.Centro : "",
+            CentroD:
+              reservaOData && reservaOData.CentroD ? reservaOData.CentroD : "",
+            CostCenter:
+              reservaOData && reservaOData.CostCenter
+                ? reservaOData.CostCenter
+                : "",
+            CostCenterD:
+              reservaOData && reservaOData.CostCenterD
+                ? reservaOData.CostCenterD
+                : "",
+          },
+          Items: reservaOData ? reservaOData.ToItems.results : [],
+          FilteredItems: reservaOData
+            ? reservaOData.ToItems.results.filter((item) => {
+                return item.CantPendiente != 0;
+              })
+            : [],
+          Firmas: {},
+          ShowingItems: "P",
+        };
+        //Load Classes and Characteristics for items in Reservation
+        if (detalleObj.Items.length !== 0) {
+          const aItems = detalleObj.Items;
+          let aClasses = [];
+          try {
+            const oModel = this.getOwnerComponent().getModel();
+            aClasses = await this.__loadCharactItems(oModel, aItems);
+          } catch (err) {
+            console.error("Error en la llamada OData:", err);
+            MessageToast.show(
+              "Ocurrió un error al buscar los datos de clases de material."
+            );
+          }
+          aClasses.forEach((oClass) => {
+            const aItemsMat = aItems.filter(
+              (oItem) => oItem.Material === oClass.Material
+            );
+            aItemsMat.forEach((oItem) => {
+              if (oItem["Clases"]) oItem["Clases"].push(oClass);
+              else oItem["Clases"] = [oClass];
             });
-        },
+          });
+        }
+        const oDetalleModel = new JSONModel(detalleObj);
+        this.getView().setModel(oDetalleModel, "detalleReserva");
+        this.__setItemsEnhancement();
+      },
+      __loadCharactItems(oModel, aItems) {
+        const aMaterials = [];
+        aItems.forEach((item) => {
+          if (!aMaterials.includes(item.Material))
+            aMaterials.push(item.Material);
+        });
+        const aFilters = aMaterials.map(
+          (m) =>
+            new sap.ui.model.Filter(
+              "Material",
+              sap.ui.model.FilterOperator.EQ,
+              m
+            )
+        );
+        const oFilter = new sap.ui.model.Filter({
+          filters: aFilters,
+          and: false,
+        });
+        return new Promise(function (resolve, reject) {
+          oModel.read("/ClaseMatSet", {
+            filters: [oFilter],
+            urlParameters: {
+              $expand: "ToCaracteristicas",
+            },
+            success: function (oData) {
+              resolve(oData.results);
+            },
+            error: function (oError) {
+              reject(oError);
+            },
+          });
+        });
+      },
 
-        _setModel: function(reservaOData) {
-            const detalleObj = {
-                Reserva : {
-                    Id: (reservaOData) ? reservaOData.Id : 0,
-                    User: (reservaOData) ? reservaOData.User: null,
-                    BaseDate: (reservaOData) ? reservaOData.BaseDate : null,
-                    MovCode: (reservaOData) ? reservaOData.MovCode : null ,
-                    CostCenter: (reservaOData) ? reservaOData.CostCenter: null,
-                    Customer: (reservaOData) ? reservaOData.Customer: null,
-                    Order: (reservaOData) ? reservaOData.Order: null,
-                    Status: (reservaOData) ? reservaOData.Status: null,
-                },
-                Items: (reservaOData) ? reservaOData.ToItems.results : [],
-                FilteredItems: (reservaOData) ? reservaOData.ToItems.results.filter((item) => {return item.Status !== 'Cerrada'}) : [],
-                Firmas: {},
-                ShowingItems: "pending"
-            }
-            const oDetalleModel = new JSONModel(detalleObj);
-            this.getView().setModel(oDetalleModel, "detalleReserva");
-        },
-
-        _cargarFirmasDeDMS: function(sReservaId) {
-            const oDetalleModel = this.getView().getModel("detalleReserva");
-            
-            // La API de DMS te permite buscar documentos por propiedades personalizadas.
-            // Asumimos que al guardar un documento le pusiste una propiedad "reservaId".
-            // La URL exacta dependerá de la especificación de la API de DMS.
-            const sDmsUrl = `/api-dms/browser/root/objects?cmisselector=properties&objectId=cmis:document&propertyId[0]=reservaId&propertyValue[0]=${sReservaId}`;
-            
-            // Usamos la API fetch
-            fetch(sDmsUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta de la red de DMS');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Procesar data de la api
-                    let firmasObj = procesar(data);
-                    oDetalleModel.setProperty("Firmas", firmasObj);
-                    this.getView().setBusy(false); // Detenemos el indicador de carga al final
-                })
-                .catch(error => {
-                    console.error('Hubo un problema con la llamada a DMS:', error);
-                    this.getView().setBusy(false);
+      __setItemsEnhancement: function () {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        if (!oDetalleModel) {
+          console.error("Modelo no cargado aún.");
+        }
+        const aItems = oDetalleModel.getProperty("/Items")
+          ? oDetalleModel.getProperty("/Items")
+          : [];
+        if (aItems.length > 0) {
+          aItems.forEach((oItem, i) => {
+            oItem.Clases.forEach((oClass) => {
+              if (oClass.Clase != "CG_01") {
+                const aCharact = oClass.ToCaracteristicas.results;
+                const iCantChar = aCharact.length;
+                let iCantCharFalt = 0;
+                aCharact.forEach((oCharact) => {
+                  if (oCharact.Valor === "" || oCharact.Valor === 0.0) {
+                    iCantCharFalt++;
+                  }
                 });
-        },
+                const fResult = (iCantChar - iCantCharFalt) / iCantChar;
+                oDetalleModel.setProperty(`/Items/${i}/Enhancement`, fResult);
+              }
+            });
+          });
+        }
+      },
 
-        onAfterRenderingCanvas() {
-            if (!this.signaturePad) {
-                const canvas = document.getElementById("signatureCanvas");
-                if (!canvas) return console.log("Couldn't find canvas");
-                this.signaturePad = new window.SignaturePad(canvas);
-            }
-        },
-        async onOpenSignatureCanvas(oEvent, tipoSujeto) {
-            if (!this.signatureDialog) {
-                this.signatureDialog = await Fragment.load({
-                    name: "salidademateriales.view.fragments.details.dialogs.SignDialog",
-                    controller: this,
-                    id: "signatureDialog"
-                });
-                this.getView().addDependent(this.signatureDialog);
-                const deviceModel = this.getView().getModel("device");
-                const {width} = deviceModel.getProperty("/resize");
-                const canvasWidth = width > 600 ? 500 : 300;
-                const canvasHeight = width > 600 ? 300 : 180;
-                Fragment.byId("signatureDialog", "signatureCanvas")?.setContent(`<div><canvas id='signatureCanvas' width='${canvasWidth}' height='${canvasHeight}'></canvas><div id='canvasLine' style='width: ${canvasWidth-30}px; height: 1px; position: relative;left: 15px; bottom: 20px;background-color: black;'></div></div>`);
-            }
-            this.signatureDialog.data("tipoSujeto", tipoSujeto);
-            this.signatureDialog.open();
-        },
-        changeCanvasSize(oEvent){
-            const deviceModel = this.getView().getModel("device");
-            const {width} = deviceModel.getProperty("/resize");
-            const canvasWidth = width > 600 ? 500 : 300;
-            const canvasHeight = width > 600 ? 300 : 180;
-            const canvas = document.getElementById("signatureCanvas");
-            const line = document.getElementById("canvasLine");
-            canvas.style.height = canvasHeight + "px";
-            canvas.style.width = canvasWidth + "px";
-            canvas.height = canvasHeight;
-            canvas.width = canvasWidth;
-            line.style.width = (canvasWidth - 30) + "px";
-        },
-        onCloseSignatureDialog() {
-            this.signaturePad.clear();
-            this.signatureDialog.close();
-        },
-        onClearSignature() {
-            this.signaturePad.clear();
-        },
-        onSaveSignature() {
-            const oDetalleModel = this.getView().getModel("detalleReserva");
-            const tipoSujeto = this.signatureDialog.data("tipoSujeto");
+      onAfterRenderingCanvas() {
+        if (!this.signaturePad) {
+          const canvas = document.getElementById("signatureCanvas");
+          if (!canvas) return console.log("Couldn't find canvas");
+          this.signaturePad = new window.SignaturePad(canvas);
+        }
+      },
+      async onOpenSignatureCanvas(oEvent, tipoSujeto) {
+        if (!this.signatureDialog) {
+          this.signatureDialog = await Fragment.load({
+            name: "salidademateriales.view.fragments.details.dialogs.SignDialog",
+            controller: this,
+            id: "signatureDialog",
+          }).then((oSignaturetDialog) => {
+            this.getView().addDependent(oSignaturetDialog);
+            return oSignaturetDialog;
+          });
+          const deviceModel = this.getView().getModel("device");
+          const { width } = deviceModel.getProperty("/resize");
+          const canvasWidth = width > 600 ? 500 : 300;
+          const canvasHeight = width > 600 ? 300 : 180;
+          Fragment.byId("signatureDialog", "signatureCanvas")?.setContent(
+            `<div><canvas id='signatureCanvas' width='${canvasWidth}' height='${canvasHeight}'></canvas><div id='canvasLine' style='width: ${
+              canvasWidth - 30
+            }px; height: 1px; position: relative;left: 15px; bottom: 20px;background-color: black;'></div></div>`
+          );
+        }
+        this.signatureDialog.data("tipoSujeto", tipoSujeto);
+        this.signatureDialog.open();
+      },
+      changeCanvasSize(oEvent) {
+        const deviceModel = this.getView().getModel("device");
+        const { width } = deviceModel.getProperty("/resize");
+        const canvasWidth = width > 600 ? 500 : 300;
+        const canvasHeight = width > 600 ? 300 : 180;
+        const canvas = document.getElementById("signatureCanvas");
+        const line = document.getElementById("canvasLine");
+        canvas.style.height = canvasHeight + "px";
+        canvas.style.width = canvasWidth + "px";
+        canvas.height = canvasHeight;
+        canvas.width = canvasWidth;
+        line.style.width = canvasWidth - 30 + "px";
+      },
+      onCloseSignatureDialog() {
+        this.signaturePad.clear();
+        this.signatureDialog.close();
+      },
+      onClearSignature() {
+        this.signaturePad.clear();
+      },
+      onSaveSignature() {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const tipoSujeto = this.signatureDialog.data("tipoSujeto");
 
-            const base64 = this.signaturePad.toDataURL();
-            const nombreFirmante =  oDetalleModel.getProperty("/nombreFirmanteAux");
-            if(!nombreFirmante){
-                console.log("nombre firma vacío")
-                return;
-            }
+        const base64 = this.signaturePad.toDataURL();
+        const nombreFirmante = oDetalleModel.getProperty("/nombreFirmanteAux");
+        if (!nombreFirmante) {
+          console.log("nombre firma vacío");
+          return;
+        }
 
-            const sujeto = {
-                nombre: nombreFirmante,
-                firma: base64
-            };
-            const sPath = `/Firmas/${tipoSujeto}`;
-            oDetalleModel.setProperty(sPath, sujeto);
-            const sPathNombre = `/Firmas/${tipoSujeto}/nombre`;
-            oDetalleModel.setProperty(sPathNombre, nombreFirmante);//sino no se actualiza el componente text
+        const sujeto = {
+          nombre: nombreFirmante,
+          firma: base64,
+        };
+        const sPath = `/Firmas/${tipoSujeto}`;
+        oDetalleModel.setProperty(sPath, sujeto);
+        const sPathNombre = `/Firmas/${tipoSujeto}/nombre`;
+        oDetalleModel.setProperty(sPathNombre, nombreFirmante); //sino no se actualiza el componente text
 
+        oDetalleModel.setProperty("/nombreFirmanteAux", "");
+        this.signatureDialog.data("tipoSujeto", undefined);
+        this.signaturePad.clear();
+        this.signatureDialog.close();
+        // this.downloadBase64File(base64);
+      },
+      downloadBase64File(base64Data, filename) {
+        // Split off metadata (e.g., data:image/png;base64,...)
+        const arr = base64Data.split(",");
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        const len = bstr.length;
+        const u8arr = new Uint8Array(len);
 
-            oDetalleModel.setProperty("/nombreFirmanteAux","");
-            this.signatureDialog.data("tipoSujeto", undefined);
-            this.signaturePad.clear();
-            this.signatureDialog.close();
-            // this.downloadBase64File(base64);
-        },
-        downloadBase64File(base64Data, filename) {
-            // Split off metadata (e.g., data:image/png;base64,...)
-            const arr = base64Data.split(",");
-            const mime = arr[0].match(/:(.*?);/)[1];
-            const bstr = atob(arr[1]);
-            const len = bstr.length;
-            const u8arr = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+          u8arr[i] = bstr.charCodeAt(i);
+        }
 
-            for (let i = 0; i < len; i++) {
-                u8arr[i] = bstr.charCodeAt(i);
-            }
+        // Create Blob from binary data
+        const blob = new Blob([u8arr], { type: mime });
 
-            // Create Blob from binary data
-            const blob = new Blob([u8arr], { type: mime });
+        // Trigger download
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      },
+      async onChangeFile(oEvent, tipoSujeto) {
+        const file = await this.toBase64(oEvent.mParameters.files[0]);
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        oDetalleModel.setProperty(`Firmas/${tipoSujeto}/firma`, file);
+        oDetalleModel.setProperty(`Firmas/${tipoSujeto}/nombre`, "default");
+      },
+      toBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+        });
+      },
+      async onPressMaterial(oEvent) {
+        if (!this.caracteristicasMaterialesDialog) {
+          this.caracteristicasMaterialesDialog = await Fragment.load({
+            name: "salidademateriales.view.fragments.details.dialogs.CaracteristicasMaterialesDialog",
+            controller: this,
+            id: "caracteristicasMaterialesDialog",
+          }).then((oCharactMatDialog) => {
+            this.getView().addDependent(oCharactMatDialog);
+            return oCharactMatDialog;
+          });
+          this.caracteristicasMaterialesDialog.open();
+        }
+        const oBindingContext =
+          oEvent.oSource?.getBindingContext("detalleReserva");
+        const sBindingPath = oBindingContext?.sPath;
+        if (!sBindingPath) {
+          return MessageToast.show(
+            "Error al mostrar caracteristicas del material"
+          );
+        } else {
+          const oDetalleModel = this.getView().getModel("detalleReserva");
+          const oItem = oDetalleModel.getProperty(sBindingPath);
+          this.caracteristicasMaterialesDialog.bindElement({
+            path: sBindingPath,
+            model: "detalleReserva",
+          });
+          this.caracteristicasMaterialesDialog.open();
+          this.updateCharTableBinding("Tecnica");
+        }
+      },
+      onClassTypeSelect: function (oEvent) {
+        const sSelectedKey = oEvent.getSource().getSelectedKey();
+        this.updateCharTableBinding(sSelectedKey);
+      },
+      updateCharTableBinding: function (sClassTypeKey) {
+        const oItemContext =
+          this.caracteristicasMaterialesDialog.getBindingContext(
+            "detalleReserva"
+          );
+        const oItemData = oItemContext.getObject();
 
-            // Trigger download
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        },
-        async onChangeFile(oEvent, tipoSujeto) {
-            const file = await this.toBase64(oEvent.mParameters.files[0]);
-            const oDetalleModel = this.getView().getModel("detalleReserva");
-            oDetalleModel.setProperty(`Firmas/${tipoSujeto}/firma`, file);
-            oDetalleModel.setProperty(`Firmas/${tipoSujeto}/nombre`, "default");
-        },
-        toBase64(file) {
-            return new Promise((resolve, reject)=>{
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-            })
-        },
-        async onPressMaterial(oEvent){
-            if (!this.caracteristicasMaterialesDialog) {
-                this.caracteristicasMaterialesDialog = await Fragment.load({
-                    name: "salidademateriales.view.fragments.details.dialogs.CaracteristicasMaterialesDialog",
-                    controller: this,
-                    id: "caracteristicasMaterialesDialog"
-                });
-                this.getView().addDependent(this.caracteristicasMaterialesDialog);
-            }
-            const oBindingContext = oEvent.oSource?.getBindingContext("LocalModel");
-            const oBindingPath = oBindingContext?.getPath();
-            if(!oBindingPath) return MessageToast.show("Error al mostrar caracteristicas del material");
-            this.caracteristicasMaterialesDialog.bindElement(`LocalModel>${oBindingPath}`);
-            this.caracteristicasMaterialesDialog.open();
-        },
-        onAceptarCaracteristicas(oEvent){
-            const localModel = this.getView().getModel("LocalModel");
-            const bindingPath = oEvent.getSource()?.getBindingContext("LocalModel")?.sPath;
-            if(!bindingPath) return MessageToast.show("Error al modificar caracteristicas del material");
-            const caracteristicas = localModel.getProperty(`${bindingPath}/caracteristicas`);
-            const newCaracteristicas = structuredClone(caracteristicas)
-            const caracteristicasModificadas = newCaracteristicas?.filter(c => c.newValorCAT);
-            if(caracteristicasModificadas && caracteristicasModificadas.length > 0){
-                caracteristicasModificadas.forEach(c => {
-                    c.valorCAT = c.newValorCAT;
-                    delete(c.newValorCAT);
-                })
-                localModel.setProperty(`${bindingPath}/caracteristicas`, newCaracteristicas);
-            }
-            this.caracteristicasMaterialesDialog.close();
-        },
-        onCancelarCaracteristicas(){
-            this.caracteristicasMaterialesDialog.close();
-        },
-        initMessagepopover(){
-            const oMessageTemplate = new MessageItem({
-				type: '{LocalModel>type}',
-				title: '{LocalModel>title}',
-				description: '{LocalModel>description}',
-				subtitle: '{LocalModel>subtitle}',
-			});
+        let iClassIndex = -1;
+        if (sClassTypeKey === "General") {
+          iClassIndex = oItemData.Clases.findIndex((c) =>
+            c.Denominacion.toUpperCase().includes("GENERAL")
+          );
+        } else {
+          iClassIndex = oItemData.Clases.findIndex(
+            (c) => !c.Denominacion.toUpperCase().includes("GENERAL")
+          );
+        }
+        const oVBox = Fragment.byId(
+          "caracteristicasMaterialesDialog",
+          "charContentVBox"
+        );
 
-            this.oMessagePopover = new MessagePopover({
-				items: {
-					path: 'LocalModel>/popoverMessages',
-					template: oMessageTemplate
-				}
-			});
-        },
-        onShowMessagePopover(oEvent){
-            if(!this.oMessagePopover){
-                this.initMessagepopover();
-                const oButton = oEvent.getSource();
-                oButton.addDependent(this.oMessagePopover);
-            }
-            this.oMessagePopover.toggle(oEvent.getSource());
-        },
-        caracteristicasPorcentageFormatter(caracteristicas){
-            if(!caracteristicas) return 0;
-            const cantidadCaracteristicasCompletas = caracteristicas.filter(c => c.valorCAT !== '').length;
-            const cantidadCaracteristicas = caracteristicas.length;
-            return (cantidadCaracteristicasCompletas/cantidadCaracteristicas)*100
-        },
+        if (iClassIndex > -1) {
+          const sClassPath = `${oItemContext.getPath()}/Clases/${iClassIndex}`;
+          oVBox.bindElement({
+            path: sClassPath,
+            model: "detalleReserva",
+          });
+        } else {
+          console.error("No se encontró la clase ", sClassTypeKey);
+          oVBox.unbindElement("detalleReserva");
+        }
+      },
+      onAceptarCaracteristicas(oEvent) {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const oTable = Fragment.byId(
+          "caracteristicasMaterialesDialog",
+          "caracteristicasTable"
+        );
+        const sClassBindingPath =
+          oTable.getBindingContext("detalleReserva")?.sPath;
+        if (!sClassBindingPath)
+          return MessageToast.show(
+            "Error al modificar caracteristicas del material"
+          );
 
-        showCompleted(){
-            const oDetalleModel = this.getView().getModel("detalleReserva");
-            const aux = oDetalleModel.getProperty("/ShowingItems");
-            if (aux !== 'completed'){
-                const items = oDetalleModel.getProperty("/Items");
-                const filteredItems = items.filter((item) => {return item.Status === 'Cerrada'});
-                console.log(filteredItems);
-                oDetalleModel.setProperty('/FilteredItems',filteredItems);
-                oDetalleModel.setProperty("/ShowingItems", 'completed');
-            }
-        },
-        showPending(){
-            const oDetalleModel = this.getView().getModel("detalleReserva");
-            const aux = oDetalleModel.getProperty("/ShowingItems");
-            if (aux !== 'pending'){
-                const items = oDetalleModel.getProperty("/Items");
-                const filteredItems = items.filter((item) => {return item.Status !== 'Cerrada'});
-                console.log(filteredItems);
-                oDetalleModel.setProperty('/FilteredItems',filteredItems);
-                oDetalleModel.setProperty("/ShowingItems", 'pending');
-            }
-        },
+        const caracteristicas = oDetalleModel.getProperty(
+          `${sClassBindingPath}/ToCaracteristicas/results`
+        );
+        const caracteristicasModificadas = caracteristicas?.filter(
+          (c) => c.NuevoValor
+        );
+        if (
+          caracteristicasModificadas &&
+          caracteristicasModificadas.length > 0
+        ) {
+          //Armar post/create
+        } else {
+          return MessageToast.show("No se han modificado caracterísitcas.");
+        }
+        this.caracteristicasMaterialesDialog.close();
+      },
+      onCancelarCaracteristicas() {
+        this.caracteristicasMaterialesDialog.close();
+      },
+      initMessagepopover() {
+        const oMessageTemplate = new MessageItem({
+          type: "{LocalModel>type}",
+          title: "{LocalModel>title}",
+          description: "{LocalModel>description}",
+          subtitle: "{LocalModel>subtitle}",
+        });
 
-        onSearchMaterial: function(oEvent) {
-            const sQuery = oEvent.getParameter("query").trim().toLowerCase();
-            const oDetalleModel = this.getView().getModel("detalleReserva");
-            if (!oDetalleModel) { return; }
+        this.oMessagePopover = new MessagePopover({
+          items: {
+            path: "LocalModel>/popoverMessages",
+            template: oMessageTemplate,
+          },
+        });
+      },
+      onShowMessagePopover(oEvent) {
+        if (!this.oMessagePopover) {
+          this.initMessagepopover();
+          const oButton = oEvent.getSource();
+          oButton.addDependent(this.oMessagePopover);
+        }
+        this.oMessagePopover.toggle(oEvent.getSource());
+      },
+      showCompleted() {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const items = oDetalleModel.getProperty("/Items");
+        const filteredItems = items.filter((item) => {
+          return item.CantPendiente == 0;
+        });
+        oDetalleModel.setProperty("/FilteredItems", filteredItems);
+        oDetalleModel.setProperty("/ShowingItems", "C");
+      },
+      showPending() {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const items = oDetalleModel.getProperty("/Items");
+        const filteredItems = items.filter((item) => {
+          return item.CantPendiente != 0;
+        });
+        oDetalleModel.setProperty("/FilteredItems", filteredItems);
+      },
 
-            const aAllItems = oDetalleModel.getProperty("/Items");
-            const sCurrentStatusFilter = oDetalleModel.getProperty("/ShowingItems"); 
+      onShowItems(oEvent){
+        const sSelectedKey = oEvent.getSource().getSelectedKey();
+        if (sSelectedKey==='P'){
+          this.showPending();
+        }else{
+          this.showCompleted();
+        }
+      },
 
-            let aFilteredItems = aAllItems;
-            // --- PRIMER FILTRO: Por estado (SegmentedButton) ---
-            if (sCurrentStatusFilter === "completed") {
-                aFilteredItems = aFilteredItems.filter( (oItem) => { return oItem.Status === "Cerrada";});
-            } else if (sCurrentStatusFilter === "pending") {
-                aFilteredItems = aFilteredItems.filter( (oItem) => {return oItem.Status !== "Cerrada";});
-            }
-            // --- SEGUNDO FILTRO: Por texto de búsqueda (SearchField) ---
-            if (sQuery && sQuery.length > 0) {
-                aFilteredItems = aFilteredItems.filter(function(oItem) {
-                    // Comprobamos si el texto de búsqueda está en la Descripción O en el ID del Material.
-                    // .toLowerCase() hace que la búsqueda no sea sensible a mayúsculas/minúsculas.
-                    const sDescription = oItem.Description ? oItem.Description.toLowerCase() : "";
-                    const sMaterialId = oItem.Material ? oItem.Material.toLowerCase() : "";
-                    return sDescription.includes(sQuery) || sMaterialId.includes(sQuery);
-                });
-            }
-            oDetalleModel.setProperty("/FilteredItems", aFilteredItems);
-        },
+      onSearchMaterial: function (oEvent) {
+        const sQuery = oEvent.getParameter("query").trim().toLowerCase();
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        if (!oDetalleModel) {
+          return;
+        }
 
+        const aAllItems = oDetalleModel.getProperty("/Items");
+        const sCurrentStatusFilter = oDetalleModel.getProperty("/ShowingItems");
+
+        let aFilteredItems = aAllItems;
+        if (sCurrentStatusFilter === "completed") {
+          aFilteredItems = aFilteredItems.filter((oItem) => {
+            return oItem.Status === "Cerrada";
+          });
+        } else if (sCurrentStatusFilter === "pending") {
+          aFilteredItems = aFilteredItems.filter((oItem) => {
+            return oItem.Status !== "Cerrada";
+          });
+        }
+        if (sQuery && sQuery.length > 0) {
+          aFilteredItems = aFilteredItems.filter(function (oItem) {
+            const sDescription = oItem.Description
+              ? oItem.Description.toLowerCase()
+              : "";
+            const sMaterialId = oItem.Material
+              ? oItem.Material.toLowerCase()
+              : "";
+            return (
+              sDescription.includes(sQuery) || sMaterialId.includes(sQuery)
+            );
+          });
+        }
+        oDetalleModel.setProperty("/FilteredItems", aFilteredItems);
+      },
     });
-});
+  }
+);

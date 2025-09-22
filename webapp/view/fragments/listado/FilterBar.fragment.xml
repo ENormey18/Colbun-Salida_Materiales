@@ -1,70 +1,44 @@
 <core:FragmentDefinition xmlns:layout="sap.ui.layout"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    xmlns:fb="sap.ui.comp.filterbar"
->
+    xmlns:core="sap.ui.core">
     <layout:Grid>
         <HBox wrap="Wrap" alignItems="End">
             <layoutData>
                 <layout:GridData span="XL10 L10 M9 S12"/>
             </layoutData>
             <VBox>
-                <Label
-                        text="Reserva"
-                        showColon="true"
-                />
-                <SearchField
-                    id="filtroReservas"
-                    value="{Reservas>/filters/reserva}"
-                    width="150px"
-                />
+                <Label text="Reserva" showColon="true" />
+                <SearchField id="filtroReservas" value="{Reservas>/filters/reserva}" width="150px" />
             </VBox>
             <VBox>
-                <Label
-                    text="Orden"
-                    showColon="true"
-                />
-                <SearchField
-                    id="ordenFilter"
-                    width="150px"
-                    value="{Reservas>/filters/orden}"
-                />
+                <Label text="Centro" showColon="true" />
+                <ComboBox items='{Reservas>/centros}' selectedKey="{Reservas>/filters/centro}">
+                    <core:ListItem key="{Reservas>ID}" text="{Reservas>ID} - {Reservas>Name}"/>
+                </ComboBox>
             </VBox>
 
             <VBox>
-                <Label
-                    text="Fecha Necesidad"
-                    showColon="true"
-                />
-                <DatePicker
-                    valueFormat="yyyy-MM-dd"
-                    displayFormat="yyyy-MM-dd"
-                    name="pocNac"
-                    id="pocNacFilter"
-                    value="{Reservas>/filters/fechaFrom}"
-                    width="150px"
-                />
+                <Label text="Fecha Necesidad" showColon="true" />
+                <DatePicker valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" name="pocNac" id="pocNacFilter" value="{Reservas>/filters/fechaFrom}" width="150px" />
             </VBox>
         </HBox>
         <VBox >
             <layoutData>
-                    <layout:GridData span="XL2 L2 M3 S12"/>
+                <layout:GridData span="XL2 L2 M3 S12"/>
             </layoutData>
-            <HBox gap="10px">
-                <Button
-                    icon="sap-icon://filter"
-                    press=".openInitialFilters"
-                />
-                <Button
-                    text="Go"
-                    press=".onSearch"
-                    type="Emphasized"
-                />
-                <Button
-                    text="Clear"
-                    press=".onClear"
-                />
+            <HBox gap='10px'>
+                <Button icon="sap-icon://filter" press=".openInitialFilters" />
+                <Button text="Go" press=".onSearch" type="Emphasized" />
+                <Button text="Clear" press=".onClear" />
             </HBox>
         </VBox>
+        <HBox >
+            <SegmentedButton selectedKey="{Reservas>/filters/status}">
+                <items>
+                    <SegmentedButtonItem text="Pendientes" key="O"/>
+                    <SegmentedButtonItem text="Completados" key="C"/>
+                </items>
+            </SegmentedButton>
+        </HBox>
     </layout:Grid>
 </core:FragmentDefinition>
