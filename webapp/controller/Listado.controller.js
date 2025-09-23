@@ -213,23 +213,30 @@ sap.ui.define(
           );
         }
         if (filters.status) {
-          if (filters.status === "O") {
-            aFilter.push(
-              new Filter({
-                path: "Status",
-                operator: FilterOperator.NE,
-                value1: "C",
-              })
-            );
-          } else {
-            aFilter.push(
-              new Filter({
-                path: "Status",
-                operator: FilterOperator.EQ,
-                value1: filters.status,
-              })
-            );
-          }
+          // if (filters.status === "O") {
+          //   aFilter.push(
+          //     new Filter({
+          //       path: "Status",
+          //       operator: FilterOperator.EQ,
+          //       value1: "O",
+          //     })
+          //   );
+          // } else {
+          //   aFilter.push(
+          //     new Filter({
+          //       path: "Status",
+          //       operator: FilterOperator.EQ,
+          //       value1: filters.status,
+          //     })
+          //   );
+          // }
+          aFilter.push(
+               new Filter({
+                 path: "Status",
+                 operator: FilterOperator.EQ,
+                 value1: filters.status,
+               })
+             );
         }
         return aFilter;
       },

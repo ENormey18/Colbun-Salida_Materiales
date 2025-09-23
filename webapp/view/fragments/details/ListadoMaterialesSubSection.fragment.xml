@@ -63,6 +63,9 @@
             <Column autoPopinWidth="6" hAlign="Center" >
                 <Text text="% Enriquecimiento" />
             </Column>
+            <Column autoPopinWidth="6" hAlign="Center" >
+                <Text text="Cant UTs" />
+            </Column>
         </columns>
         <items>
             <ColumnListItem>
@@ -98,7 +101,7 @@
                         press=".onPressMaterial"
                         alignContent="Center"
                     />
-                   
+                     <Text text="{detalleReserva>CantUT}" />  
                 </cells>
             </ColumnListItem>
         </items>

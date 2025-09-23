@@ -2,7 +2,8 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
-    "sap/ui/core/routing/History",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
     "sap/m/MessagePopover",
     "sap/m/MessageItem",
@@ -13,7 +14,8 @@ sap.ui.define(
   (
     Controller,
     Fragment,
-    History,
+    Filter,
+    FilterOperator,
     MessageToast,
     MessagePopover,
     MessageItem,
@@ -156,13 +158,13 @@ sap.ui.define(
         });
         const aFilters = aMaterials.map(
           (m) =>
-            new sap.ui.model.Filter(
+            new Filter(
               "Material",
-              sap.ui.model.FilterOperator.EQ,
+              FilterOperator.EQ,
               m
             )
         );
-        const oFilter = new sap.ui.model.Filter({
+        const oFilter = new Filter({
           filters: aFilters,
           and: false,
         });
