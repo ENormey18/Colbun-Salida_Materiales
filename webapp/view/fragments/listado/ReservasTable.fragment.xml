@@ -23,7 +23,7 @@
                 <SearchField
                     id="tableSearchField"
                     width="30%"
-                    placeholder="Filtrar por N° Reserva, Orden, Usuario, Destinatario, Centro..."
+                    placeholder="Filtrar por N° Reserva, Orden, Usuario, Centro..."
                     search="onFiltrarTable"
                 />
             </OverflowToolbar>

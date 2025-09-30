@@ -29,7 +29,7 @@ sap.ui.define(
         let aCentros = [];
         const oModel = this.getOwnerComponent().getModel();
         this.__loadWerks(oModel)
-          .then((aCentros)=>{
+          .then((aCentros) => {
             const oModelR = new JSONModel({
               ReservaSet: [],
               filters: {
@@ -38,7 +38,7 @@ sap.ui.define(
                 fechaTo: "",
                 materialFrom: "",
                 materialTo: "",
-                centro: "",
+                centros: [],
                 status: "O",
               },
               centros: aCentros,
@@ -59,10 +59,9 @@ sap.ui.define(
             name: "salidademateriales.view.fragments.listado.dialogs.InitialFilters",
             controller: this,
             id: "initialFilters",
-          })
-            .then((oInitialFiltersDialog)=>{
-              this.getView().addDependent(oInitialFiltersDialog);
-              return oInitialFiltersDialog;
+          }).then((oInitialFiltersDialog) => {
+            this.getView().addDependent(oInitialFiltersDialog);
+            return oInitialFiltersDialog;
           });
         }
         this.initialFiltersDialog.open();
@@ -75,18 +74,16 @@ sap.ui.define(
               resolve(oData.results);
             },
             error: function (oError) {
-              reject(oError)
+              reject(oError);
             },
           });
         });
       },
       onSearch() {
         const oDataModel = this.getOwnerComponent().getModel();
-
         const oView = this.getView();
         const reservasModel = oView.getModel("Reservas");
         const filters = reservasModel.getProperty("/filters");
-
         this.byId("reservasTable").setBusy(true);
         const aFilters = this.getReservasFilters(filters);
         oDataModel.read("/ReservaSet", {
@@ -105,9 +102,7 @@ sap.ui.define(
             });
             reservasModel.setProperty("/ReservaSet", oData.results);
             this.byId("reservasTable").setBusy(false);
-          }.bind(this), // .bind(this) es crucial para poder usar "this.getView()" dentro del callback
-
-          // 6. MANEJAR ERRORES
+          }.bind(this),
           error: function (oError) {
             console.error("Error en la llamada OData:", oError);
             MessageToast.show("Ocurrió un error al buscar los datos.");
@@ -116,6 +111,9 @@ sap.ui.define(
         });
 
         this.initialFiltersDialog.close();
+        const oTable = this.byId("reservasTable");
+        const oBinding = oTable.getBinding("items");
+        oBinding.filter([]);
       },
       onCloseInitialFilters() {
         this.initialFiltersDialog.close();
@@ -182,8 +180,8 @@ sap.ui.define(
             new Filter({
               path: "Material",
               operator: FilterOperator.BT,
-              value1: filters.materialFrom.trim(),
-              value2: filters.materialTo.trim(),
+              value1: filters.materialFrom.trim().padStart(18, "0"),
+              value2: filters.materialTo.trim().padStart(18, "0"),
             })
           );
         } else if (filters.materialFrom) {
@@ -191,7 +189,7 @@ sap.ui.define(
             new Filter({
               path: "Material",
               operator: FilterOperator.GE,
-              value1: filters.materialFrom.trim(),
+              value1: filters.materialFrom.trim().padStart(18, "0"),
             })
           );
         } else if (filters.materialTo) {
@@ -199,44 +197,31 @@ sap.ui.define(
             new Filter({
               path: "Material",
               operator: FilterOperator.LE,
-              value1: filters.materialTo.trim(),
+              value1: filters.materialTo.trim().padStart(18, "0"),
             })
           );
         }
-        if (filters.centro) {
-          aFilter.push(
-            new Filter({
-              path: "Centro",
-              operator: FilterOperator.EQ,
-              value1: filters.centro,
-            })
-          );
+        if (filters.centros.length !== 0) {
+          const aCentrosFilter = [];
+          filters.centros.forEach((sCentro) => {
+            aCentrosFilter.push(
+              new Filter({
+                path: "Centro",
+                operator: FilterOperator.EQ,
+                value1: sCentro,
+              })
+            );
+          });
+          aFilter.push(new Filter({ filters: aCentrosFilter, and: false }));
         }
         if (filters.status) {
-          // if (filters.status === "O") {
-          //   aFilter.push(
-          //     new Filter({
-          //       path: "Status",
-          //       operator: FilterOperator.EQ,
-          //       value1: "O",
-          //     })
-          //   );
-          // } else {
-          //   aFilter.push(
-          //     new Filter({
-          //       path: "Status",
-          //       operator: FilterOperator.EQ,
-          //       value1: filters.status,
-          //     })
-          //   );
-          // }
           aFilter.push(
-               new Filter({
-                 path: "Status",
-                 operator: FilterOperator.EQ,
-                 value1: filters.status,
-               })
-             );
+            new Filter({
+              path: "Status",
+              operator: FilterOperator.EQ,
+              value1: filters.status,
+            })
+          );
         }
         return aFilter;
       },
@@ -248,12 +233,12 @@ sap.ui.define(
           fechaTo: "",
           materialFrom: "",
           materialTo: "",
-          centro: "",
+          centros: [],
           status: "O",
         });
-        this.onSearch();
+        this.byId("combo-centros").removeAllSelectedItems();
+        //this.onSearch();
       },
-
       onFiltrarTable: function (oEvent) {
         const sQuery = oEvent.getParameter("query");
         const aFilters = [];
@@ -282,11 +267,7 @@ sap.ui.define(
       _bDescendingSort: false,
       _sCurrentSortProperty: "Id",
       onSort: function (oEvent) {
-        // 1. Obtener la propiedad por la que se debe ordenar desde los datos personalizados
         const sSortProperty = oEvent.getSource().data("sortProperty");
-
-        // Comprobamos si se está ordenando por la misma columna
-        // Si es así, invertimos la dirección. Si no, reseteamos a ascendente.
         if (this._sCurrentSortProperty === sSortProperty) {
           this._bDescendingSort = !this._bDescendingSort;
         } else {
@@ -295,7 +276,6 @@ sap.ui.define(
         this._sCurrentSortProperty = sSortProperty;
 
         let oSorter;
-
         if (sSortProperty === "Id" || sSortProperty === "Orden") {
           oSorter = new Sorter(
             sSortProperty,
@@ -322,28 +302,20 @@ sap.ui.define(
           oSorter = new Sorter(sSortProperty, this._bDescendingSort);
         }
 
-        //Obtener el binding de la tabla y aplicar el ordenamiento
         const oTable = this.byId("reservasTable");
         const oBinding = oTable.getBinding("items");
-
         oBinding.sort(oSorter);
 
-        //Actualizar el ícono para dar feedback visual
         this._updateSortIndicator(oEvent.getSource());
       },
-      // Función auxiliar para actualizar los íconos
       _updateSortIndicator: function (oPressedButton) {
         const oTable = this.byId("reservasTable");
-
-        // Primero, reseteamos todos los íconos al ícono por defecto
         oTable.getColumns().forEach(function (oColumn) {
           const oHeader = oColumn.getHeader();
           if (oHeader instanceof sap.m.Button) {
             oHeader.setIcon("sap-icon://sort");
           }
         });
-
-        // Establecemos el ícono correcto
         const sNewIcon = this._bDescendingSort
           ? "sap-icon://sort-descending"
           : "sap-icon://sort-ascending";

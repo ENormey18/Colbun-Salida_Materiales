@@ -11,10 +11,10 @@
                 <SearchField id="filtroReservas" value="{Reservas>/filters/reserva}" width="150px" />
             </VBox>
             <VBox>
-                <Label text="Centro" showColon="true" />
-                <ComboBox items='{Reservas>/centros}' selectedKey="{Reservas>/filters/centro}">
+                <Label text="Centros" showColon="true" />
+                <MultiComboBox width="300px" id="combo-centros" selectedKeys="{Reservas>/filters/centros}" items='{Reservas>/centros}'>
                     <core:ListItem key="{Reservas>ID}" text="{Reservas>ID} - {Reservas>Name}"/>
-                </ComboBox>
+                </MultiComboBox>
             </VBox>
 
             <VBox>

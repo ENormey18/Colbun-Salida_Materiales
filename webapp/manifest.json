@@ -31,6 +31,8 @@
           "semanticObject": "salida_de_materiales",
           "action": "display",
           "title": "{{salida_de_materiales-display.flpTitle}}",
+          "info": "{{appTitle}}",
+          "icon": "sap-icon://activity-items",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"

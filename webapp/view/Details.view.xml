@@ -11,8 +11,7 @@
                 <uxap:ObjectPageDynamicHeaderTitle>
                     <uxap:content>
                         <ObjectIdentifier
-                            title="Reserva {detalleReserva>Id}"
-                            text="{detalleReserva>Id}"
+                            title="Reserva {detalleReserva>/Reserva/Id}"
                         />
                     </uxap:content>
                 </uxap:ObjectPageDynamicHeaderTitle>
@@ -51,7 +50,13 @@
             </uxap:sections>
             <uxap:footer>
                 <OverflowToolbar >
-                    <Button type="Negative" text="2" press=".onShowMessagePopover" id="messagePopoverButton"/>
+                    <Button 
+                        id="messagePopoverButton" visible="{= ${detalleReserva>/Messages}.length > 0}" 
+                        icon="{ path: 'detalleReserva>/Messages', formatter: '.formatter.buttonIconFormatter' }"
+                        type="{ path: 'detalleReserva>/Messages', formatter: '.formatter.buttonTypeFormatter' }"
+                        text= "{path: 'detalleReserva>/Messages', formatter: '.formatter.highestSeverityMessages' }"  
+                        press=".onShowMessagePopover"
+                    />
                     <ToolbarSpacer />
                     <Button type="Emphasized" text="Contabilizar"/>
                     <Button text="Cancel"/>

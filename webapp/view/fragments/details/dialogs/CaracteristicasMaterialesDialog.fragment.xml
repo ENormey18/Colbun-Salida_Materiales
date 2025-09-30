@@ -9,6 +9,7 @@
         <content>
             <HBox class="sapUiTinyMarginBeginEnd">
                 <SegmentedButton
+                    id="select-class-mat"
                     selectedKey="Tecnica"
                     selectionChange="onClassTypeSelect"
                 >

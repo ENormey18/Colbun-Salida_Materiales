@@ -26,6 +26,7 @@ sap.ui.define(
     "use strict";
     return Controller.extend("salidademateriales.controller.Details", {
       formatter: formatter,
+      __oMessagePopover: null,
       onInit() {
         const oRouter = this.getOwnerComponent().getRouter();
         Device.resize.attachHandler(this.changeCanvasSize, this);
@@ -41,9 +42,10 @@ sap.ui.define(
           .createKey("/ReservaSet", {
             Id: sReservaId,
           });
-        this._setModel(null);
+        this.__setModel(null);
         this.getView().setBusy(true);
         oODataModel.read(sPath, {
+          //filters: [oFilter],
           urlParameters: {
             $expand: "ToItems",
           },
@@ -65,14 +67,17 @@ sap.ui.define(
               item.Clases = [];
               item.Enhancement = 0;
             });
-            this._setModel(oData);
-            /*this.__cargarFirmasDeDMS();*/
-            this.getView().setBusy(false);
+            this.__setModel(reserva).then(() => {
+              this.__setItemsEnhancement();
+              this.__checkUTs();
+              this.getView().setBusy(false);
+            });
           }.bind(this),
           error: function (oError) {
             console.log("Error al traer datos con $expand: ", oError);
-            this._setModel(null);
-            this.getView().setBusy(false);
+            this.__setModel(null).then(() => {
+              this.getView().setBusy(false);
+            });
           }.bind(this),
         });
       },
@@ -82,7 +87,7 @@ sap.ui.define(
         oRouter.navTo("RouteListado");
       },
 
-      _setModel: async function (reservaOData) {
+      __setModel: async function (reservaOData) {
         const detalleObj = {
           Reserva: {
             Id: reservaOData && reservaOData.Id ? reservaOData.Id : 0,
@@ -99,7 +104,7 @@ sap.ui.define(
             Orden:
               reservaOData && reservaOData.Orden ? reservaOData.Orden : "-",
             Status:
-              reservaOData && reservaOData.Status ? reservaOData.Status : "?",
+              reservaOData && reservaOData.Status ? reservaOData.Status : "-",
             Dest: reservaOData && reservaOData.Dest ? reservaOData.Dest : "-",
             Centro:
               reservaOData && reservaOData.Centro ? reservaOData.Centro : "",
@@ -113,15 +118,35 @@ sap.ui.define(
               reservaOData && reservaOData.CostCenterD
                 ? reservaOData.CostCenterD
                 : "",
+            CantItems: reservaOData ? reservaOData.ToItems.results.length : 0,
+            CantItemsP: reservaOData
+              ? reservaOData.ToItems.results.filter(
+                  (item) => item.CantPendiente != 0
+                ).length
+              : 0,
+            CantItemsC: reservaOData
+              ? reservaOData.ToItems.results.filter(
+                  (item) => item.CantPendiente == 0
+                ).length
+              : 0,
           },
           Items: reservaOData ? reservaOData.ToItems.results : [],
-          FilteredItems: reservaOData
-            ? reservaOData.ToItems.results.filter((item) => {
-                return item.CantPendiente != 0;
-              })
-            : [],
+          FilteredItems:
+            reservaOData && reservaOData.ToItems
+              ? reservaOData.ToItems.results.filter((item) => {
+                  if (reservaOData.Status && reservaOData.Status !== "C") {
+                    return item.CantPendiente != 0;
+                  } else {
+                    return item.CantPendiente == 0;
+                  }
+                })
+              : [],
           Firmas: {},
-          ShowingItems: "P",
+          ShowingItems:
+            reservaOData && reservaOData.Status && reservaOData.Status !== "C"
+              ? "P"
+              : "C",
+          Messages: [],
         };
         //Load Classes and Characteristics for items in Reservation
         if (detalleObj.Items.length !== 0) {
@@ -148,7 +173,6 @@ sap.ui.define(
         }
         const oDetalleModel = new JSONModel(detalleObj);
         this.getView().setModel(oDetalleModel, "detalleReserva");
-        this.__setItemsEnhancement();
       },
       __loadCharactItems(oModel, aItems) {
         const aMaterials = [];
@@ -157,12 +181,7 @@ sap.ui.define(
             aMaterials.push(item.Material);
         });
         const aFilters = aMaterials.map(
-          (m) =>
-            new Filter(
-              "Material",
-              FilterOperator.EQ,
-              m
-            )
+          (m) => new Filter("Material", FilterOperator.EQ, m)
         );
         const oFilter = new Filter({
           filters: aFilters,
@@ -211,7 +230,33 @@ sap.ui.define(
           });
         }
       },
-
+      __checkUTs() {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const aItems = oDetalleModel.getProperty("/Items");
+        const aItemsWithoutUTs = aItems.filter((oItem) => oItem.CantUT === 0);
+        const aMessages = [];
+        aItemsWithoutUTs.forEach((oItem, index) => {
+          const sDescription =
+            "El material " +
+            this.formatter.removeLeadingZeros(oItem.Material) +
+            " no tiene ubicacion técnica en el centro " +
+            oItem.Centro;
+          const message = {
+            type: "Warning",
+            title: "Ubicacion Técnica",
+            active: true,
+            description: sDescription,
+            counter: index + 1,
+          };
+          aMessages.push(message);
+        });
+        const aOldMessag = oDetalleModel.getProperty("/Messages");
+        let aNewMessag = aOldMessag.filter(
+          (oMess) => oMess.tiltle !== "Ubicacion Técnica"
+        );
+        aNewMessag = aNewMessag.concat(aMessages);
+        oDetalleModel.setProperty("/Messages", aNewMessag);
+      },
       onAfterRenderingCanvas() {
         if (!this.signaturePad) {
           const canvas = document.getElementById("signatureCanvas");
@@ -346,7 +391,6 @@ sap.ui.define(
           );
         } else {
           const oDetalleModel = this.getView().getModel("detalleReserva");
-          const oItem = oDetalleModel.getProperty(sBindingPath);
           this.caracteristicasMaterialesDialog.bindElement({
             path: sBindingPath,
             model: "detalleReserva",
@@ -369,11 +413,11 @@ sap.ui.define(
         let iClassIndex = -1;
         if (sClassTypeKey === "General") {
           iClassIndex = oItemData.Clases.findIndex((c) =>
-            c.Denominacion.toUpperCase().includes("GENERAL")
+            c.Clase.toUpperCase().includes("CG_01")
           );
         } else {
           iClassIndex = oItemData.Clases.findIndex(
-            (c) => !c.Denominacion.toUpperCase().includes("GENERAL")
+            (c) => !c.Clase.toUpperCase().includes("CG_01")
           );
         }
         const oVBox = Fragment.byId(
@@ -391,6 +435,12 @@ sap.ui.define(
           console.error("No se encontró la clase ", sClassTypeKey);
           oVBox.unbindElement("detalleReserva");
         }
+
+        const oSelectBtn = Fragment.byId(
+          "caracteristicasMaterialesDialog",
+          "select-class-mat"
+        );
+        oSelectBtn.setSelectedKey(sClassTypeKey);
       },
       onAceptarCaracteristicas(oEvent) {
         const oDetalleModel = this.getView().getModel("detalleReserva");
@@ -424,28 +474,29 @@ sap.ui.define(
       onCancelarCaracteristicas() {
         this.caracteristicasMaterialesDialog.close();
       },
-      initMessagepopover() {
+      __initMessagepopover() {
         const oMessageTemplate = new MessageItem({
-          type: "{LocalModel>type}",
-          title: "{LocalModel>title}",
-          description: "{LocalModel>description}",
-          subtitle: "{LocalModel>subtitle}",
+          type: "{detalleReserva>type}",
+          title: "{detalleReserva>title}",
+          activeTitle: "{detalleReserva>active}",
+          description: "{detalleReserva>description}",
+          counter: "{detalleReserva>counter}",
         });
 
-        this.oMessagePopover = new MessagePopover({
+        this.__oMessagePopover = new MessagePopover({
           items: {
-            path: "LocalModel>/popoverMessages",
+            path: "detalleReserva>/Messages",
             template: oMessageTemplate,
           },
         });
       },
       onShowMessagePopover(oEvent) {
-        if (!this.oMessagePopover) {
-          this.initMessagepopover();
+        if (!this.__oMessagePopover) {
+          this.__initMessagepopover();
           const oButton = oEvent.getSource();
-          oButton.addDependent(this.oMessagePopover);
+          oButton.addDependent(this.__oMessagePopover);
         }
-        this.oMessagePopover.toggle(oEvent.getSource());
+        this.__oMessagePopover.toggle(oEvent.getSource());
       },
       showCompleted() {
         const oDetalleModel = this.getView().getModel("detalleReserva");
@@ -465,11 +516,11 @@ sap.ui.define(
         oDetalleModel.setProperty("/FilteredItems", filteredItems);
       },
 
-      onShowItems(oEvent){
+      onShowItems(oEvent) {
         const sSelectedKey = oEvent.getSource().getSelectedKey();
-        if (sSelectedKey==='P'){
+        if (sSelectedKey === "P") {
           this.showPending();
-        }else{
+        } else {
           this.showCompleted();
         }
       },

@@ -1,8 +1,6 @@
 <core:FragmentDefinition
     xmlns:form="sap.ui.layout.form"
     xmlns="sap.m"
-    xmlns:f="sap.f"
-    xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
 >
     <Dialog>
@@ -24,9 +22,9 @@
                 <Input id="materialFromInput" placeholder="from" value="{Reservas>/filters/materialFrom}"/>
                 <Input id="materialToInput" placeholder="to" value="{Reservas>/filters/materialTo}"/>
                 <Label text="Centro" />
-                <ComboBox id="centroInput" items='{Reservas>/centros}' selectedKey="{Reservas>/filters/centro}">
+                <MultiComboBox width="300px" id="centroInput" selectedKeys="{Reservas>/filters/centros}" items='{Reservas>/centros}'>
                     <core:ListItem key="{Reservas>ID}" text="{Reservas>ID} - {Reservas>Name}"/>
-                </ComboBox>
+                </MultiComboBox>
                 <SegmentedButton selectedKey="{Reservas>/filters/status}">
                     <items>
                         <SegmentedButtonItem text="Pendientes" key="O"/>
