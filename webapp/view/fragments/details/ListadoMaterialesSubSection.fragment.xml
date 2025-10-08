@@ -11,12 +11,12 @@
     >
         <headerToolbar>
             <OverflowToolbar>
-                <Title text="Items en Reserva {detalleReserva>/Reserva/CantItems}" />
+                <Title text="Items en Reserva ({detalleReserva>/Reserva/CantItems})" />
                 <ToolbarSpacer />
                 <SegmentedButton selectedKey="{detalleReserva>/ShowingItems}" selectionChange="onShowItems">
                     <items>
-                        <SegmentedButtonItem key="P" text="Pendientes {detalleReserva>/Reserva/CantItemsP}"/>
-                        <SegmentedButtonItem key="C" text="Completados {detalleReserva>/Reserva/CantItemsC}"/>
+                        <SegmentedButtonItem key="P" text="Pendientes ({detalleReserva>/Reserva/CantItemsP})"/>
+                        <SegmentedButtonItem key="C" text="Completados ({detalleReserva>/Reserva/CantItemsC})"/>
                     </items>
                 </SegmentedButton>
                 <ToolbarSpacer width="50px" />

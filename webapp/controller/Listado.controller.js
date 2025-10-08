@@ -80,12 +80,14 @@ sap.ui.define(
         });
       },
       onSearch() {
+        if (!this.__validateFilters()) {
+          return;
+        }
         const oDataModel = this.getOwnerComponent().getModel();
         const oView = this.getView();
         const reservasModel = oView.getModel("Reservas");
-        const filters = reservasModel.getProperty("/filters");
         this.byId("reservasTable").setBusy(true);
-        const aFilters = this.getReservasFilters(filters);
+        const aFilters = this.__getReservasFilters();
         oDataModel.read("/ReservaSet", {
           filters: aFilters,
 
@@ -118,21 +120,59 @@ sap.ui.define(
       onCloseInitialFilters() {
         this.initialFiltersDialog.close();
       },
-      isMaterialInRange(material, materialFrom, materialTo) {
-        const materialId = parseInt(material?.id);
-        if (!material || isNaN(materialId)) throw "Invalid or missing material";
-        const isMaterialFromNaN = isNaN(materialFrom);
-        const isMaterialToNaN = isNaN(materialTo);
-        if (isMaterialFromNaN && isMaterialToNaN) return true;
-        if (isMaterialFromNaN && !isMaterialToNaN)
-          return materialId <= materialTo;
-        if (!isMaterialFromNaN && isMaterialToNaN)
-          return materialId >= materialFrom;
-        return materialId >= materialFrom && materialId <= materialTo;
+      __validateFilters() {
+        const oReservasModel = this.getView().getModel("Reservas");
+        const oFilters = oReservasModel.getProperty("/filters");
+        if (
+          oFilters.materialFrom &&
+          oFilters.materialTo &&
+          parseInt(oFilters.materialFrom) > parseInt(oFilters.materialFrom)
+        ) {
+          MessageToast.show("El rango de materiales es inválido");
+          return false;
+        }
+        if (
+          oFilters.fechaFrom &&
+          oFilters.fechaTo &&
+          oFilters.fechaFrom > oFilters.fechaTo
+        ) {
+          MessageToast.show("El rango de fechas es inválido");
+          return false;
+        }
+        if (oFilters.status == "C") {
+          if (
+            !oFilters.fechaFrom ||
+            !oFilters.fechaTo ||
+            oFilters.fechaFrom === "" ||
+            oFilters.fechaTo === ""
+          ) {
+            MessageToast.show(
+              "Debe especificar un rango de fechas para las reservas completadas"
+            );
+            return false;
+          }
+          const dateFrom = new Date(oFilters.fechaFrom);
+          const dateTo = new Date(oFilters.fechaTo);
+          if (isNaN(dateFrom) || isNaN(dateTo)) {
+            sap.m.MessageToast.show("Fechas inválidas");
+            return false;
+          }
+          const iDiffMs = dateTo - dateFrom;
+          const iDiffDays = Math.ceil(iDiffMs / (1000 * 60 * 60 * 24));
+          if (iDiffDays > 365) {
+            MessageToast.show(
+              "El rango máximo permitido para reservas completadas es un año"
+            );
+            return false;
+          }
+        }
+        return true;
       },
-      getReservasFilters(filters) {
+      __getReservasFilters() {
+        const oView = this.getView();
+        const reservasModel = oView.getModel("Reservas");
+        const filters = reservasModel.getProperty("/filters");
         const aFilter = [];
-
         if (filters.reserva)
           aFilter.push(
             new Filter({
