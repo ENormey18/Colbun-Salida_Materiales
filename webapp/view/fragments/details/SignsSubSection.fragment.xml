@@ -11,10 +11,13 @@
         <uxap:blocks>
             <VBox>
                 <Title text="Firmas" />
-                <HBox justifyContent="SpaceBetween" wrap="Wrap">
+                <HBox
+                    justifyContent="SpaceBetween"
+                    wrap="Wrap"
+                >
                     <VBox>
                         <layoutData>
-                            <FlexItemData maxWidth="300px"/>
+                            <FlexItemData maxWidth="300px" />
                         </layoutData>
                         <Label
                             text="Autorizador"
@@ -22,36 +25,52 @@
                         />
                         <Text text="{detalleReserva>/Reserva/Usuario}" />
                     </VBox>
-                    <VBox >
+                    <VBox>
                         <layoutData>
-                            <FlexItemData maxWidth="300px"/>
+                            <FlexItemData maxWidth="300px" />
                         </layoutData>
                         <Label
                             text="Recibi Conforme"
                             showColon="true"
                         />
-                        <Text text="{detalleReserva/Firmas/conforme/nombre}"/>
+                        <Input
+                            id="input-nombreReceptor"
+                            value="{detalleReserva>Receptor}"
+                            showSuggestion="true"
+                            suggestionItems="{
+                                path: 'detalleReserva>/Receptores'
+                            }"
+                            showValueHelp="true"
+                            valueHelpRequest="onReceptoresValueHelp" 
+                        >
+                            <suggestionItems>
+                                <core:ListItem
+                                    key="{detalleReserva>Usnam}"
+                                    text="{detalleReserva>Nombre}"
+                                />
+                            </suggestionItems>
+                        </Input>
                         <Image
                             width="100%"
-                            src="{detalleReserva>/Firmas/conforme/firma}"
-                            visible="{= !!${detalleReserva>/Firmas/conforme} }"
+                            src="{detalleReserva>/FirmaReceptor}"
+                            visible="{= !!${detalleReserva>/FirmaReceptor} }"
                         />
-                        <HBox visible="{= !${detalleReserva>/Firmas/conforme} }">
+                        <HBox visible="{= !${detalleReserva>/FirmaReceptor} }">
                             <unified:FileUploader
                                 buttonText="Subir firma"
-                                change=".onChangeFile($event, 'conforme')"
+                                change=".onChangeFile()"
                                 buttonOnly="true"
                                 fileType="jpg,jpeg,png,gif,bmp,webp"
                             />
                             <Button
                                 text="Dibujar firma"
-                                press=".onOpenSignatureCanvas($event, 'conforme')"
+                                press=".onOpenSignatureCanvas()"
                             />
                         </HBox>
                     </VBox>
-                    <VBox >
+                    <VBox>
                         <layoutData>
-                            <FlexItemData maxWidth="300px"/>
+                            <FlexItemData maxWidth="300px" />
                         </layoutData>
                         <Label
                             text="Entregado por"

@@ -82,7 +82,9 @@
         "preload": true,
         "settings": {
             "defaultBindingMode": "TwoWay",
-            "useBatch": false
+            "useBatch": false,
+            "tokenHandling": true,
+            "earlyTokenRequest": true
         }
       }
     },

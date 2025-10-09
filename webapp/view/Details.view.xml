@@ -58,8 +58,8 @@
                         press=".onShowMessagePopover"
                     />
                     <ToolbarSpacer />
-                    <Button type="Emphasized" text="Contabilizar"/>
-                    <Button text="Cancel"/>
+                    <Button type="Emphasized" text="Contabilizar" press="onConfirmarSalida"/>
+                    <Button text="Cancel" press="onLimpiarTabla"/>
                 </OverflowToolbar>
             </uxap:footer>
         </uxap:ObjectPageLayout>

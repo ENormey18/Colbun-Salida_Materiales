@@ -1,0 +1,91 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog title="Detalles Salida de Materiales">
+        <content>
+                <VBox class="sapUi-Std-PaddingM sapUiSmallMarginTopBottom">
+                    <Label
+                        text="Reserva"
+                        showColon="true"
+                    />
+                    <Text text="{detalleReserva>/Reserva}" />
+                    <Label
+                        text="Fecha"
+                        showColon="true"
+                    />
+                    <Text text="{detalleReserva>/SalidaMat/Fecha}" />
+                    <Label
+                        text="Fecha Contabilización"
+                        showColon="true"
+                    />
+                    <Input
+                        type="Date"
+                        value="{detalleReserva>/SalidaMat/FechaContabilizacion}"
+                        required="true"
+                    />
+                    <Label
+                        text="Destinatario"
+                        showColon="true"
+                    />
+                    <Text text="{detalleReserva>/SalidaMat/Destinatario}" />
+                </VBox>
+                <VBox
+                    id="salidaMatContentVBox"
+                    alignItems="Center"
+                    class="sapUi-Std-PaddingM sapUiSmallMarginBottom"
+                    justifyContent="Center"
+                >
+                    <Table
+                        headerText="Materiales"
+                        id="salidaMatTable"
+                        items="{
+                            path: 'detalleReserva>SalidaMat>Materiales'
+                        }"
+                    >
+                        <columns>
+                            <Column>
+                                <Text text="Posición en Reserva" />
+                            </Column>
+                            <Column>
+                                <Text text="Material" />
+                            </Column>
+                            <Column>
+                                <Text text="Descripción" />
+                            </Column>
+                            <Column>
+                                <Text text="Cantidad" />
+                            </Column>
+                            <Column>
+                                <Text text="Unidad" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{detalleReserva>Pos}" />
+                                    <Text text="{detalleReserva>Material}" />
+                                    <Text text="{detalleReserva>Descripcion}" />
+                                    <Text text="{detalleReserva>Cantidad}" />
+                                    <Text text="{detalleReserva>Unidad}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </VBox>
+        </content>
+        <beginButton>
+            <Button
+                text="OK"
+                type="Emphasized"
+                press=".onPostSalidaMat"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                text="Cancel"
+                press=".onCancelarSalidaMat"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

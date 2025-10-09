@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <SelectDialog
+        id="receptorSelectDialog"
+        title="Seleccionar Receptor"
+        contentHeight="50%" 
+        items="{
+            path: 'detalleReserva>/Receptores'
+        }"
+        search="onReceptoresValueHelpSearch"
+        confirm="onReceptoresValueHelpClose"
+        cancel="onReceptoresValueHelpClose"
+    >
+        <StandardListItem
+            title="{detalleReserva>Nombre}"
+            description="{detalleReserva>Usnam}"
+            type="Active"
+        />
+    </SelectDialog>
+</core:FragmentDefinition>
