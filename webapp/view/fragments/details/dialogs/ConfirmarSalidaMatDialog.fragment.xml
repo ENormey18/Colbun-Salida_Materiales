@@ -9,7 +9,7 @@
                         text="Reserva"
                         showColon="true"
                     />
-                    <Text text="{detalleReserva>/Reserva}" />
+                    <Text text="{detalleReserva>/SalidaMat/Reserva}" />
                     <Label
                         text="Fecha"
                         showColon="true"
@@ -22,13 +22,31 @@
                     <Input
                         type="Date"
                         value="{detalleReserva>/SalidaMat/FechaContabilizacion}"
+                        width="150px"
                         required="true"
                     />
                     <Label
                         text="Destinatario"
                         showColon="true"
                     />
-                    <Text text="{detalleReserva>/SalidaMat/Destinatario}" />
+                    <Input
+                            id="input-nombreDestinatario"
+                            value="{detalleReserva>/SalidaMat/Destinatario}"
+                            showSuggestion="true"
+                            suggestionItems="{
+                                path: 'detalleReserva>/Receptores'
+                            }"
+                            width="200px"
+                            showValueHelp="true"
+                            valueHelpRequest="onReceptoresValueHelp" 
+                        >
+                            <suggestionItems>
+                                <core:ListItem
+                                    key="{detalleReserva>Usnam}"
+                                    text="{detalleReserva>Nombre}"
+                                />
+                            </suggestionItems>
+                        </Input>
                 </VBox>
                 <VBox
                     id="salidaMatContentVBox"
@@ -40,7 +58,7 @@
                         headerText="Materiales"
                         id="salidaMatTable"
                         items="{
-                            path: 'detalleReserva>SalidaMat>Materiales'
+                            path: 'detalleReserva>/SalidaMat/Materiales'
                         }"
                     >
                         <columns>
@@ -64,9 +82,9 @@
                             <ColumnListItem>
                                 <cells>
                                     <Text text="{detalleReserva>Pos}" />
-                                    <Text text="{detalleReserva>Material}" />
+                                    <Text text="{path:'detalleReserva>Material', formatter:'.formatter.removeLeadingZeros'}" />
                                     <Text text="{detalleReserva>Descripcion}" />
-                                    <Text text="{detalleReserva>Cantidad}" />
+                                    <Text text="{ path: 'detalleReserva>Retira', formatter: '.formatter.numberDecimals'}" />
                                     <Text text="{detalleReserva>Unidad}" />
                                 </cells>
                             </ColumnListItem>

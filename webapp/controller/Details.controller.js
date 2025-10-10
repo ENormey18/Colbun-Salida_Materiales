@@ -147,17 +147,19 @@ sap.ui.define(
                   }
                 })
               : [],
-          Receptores: [{Usnam: "A", Nombre: "Armando"}],
-          Receptor: "",
-          FirmaReceptor: "",
           ShowingItems:
             reservaOData && reservaOData.Status && reservaOData.Status !== "C"
               ? "P"
               : "C",
+          MaterialDocuments: [],
+          MaterialDocumentSeleccionado: null,
+          Receptores: [{ Usnam: "Test", Nombre: "Tester" }],
+          Receptor: "",
+          FirmaReceptor: "",
           Messages: [],
           SalidaMat: {
             Fecha: new Date().toISOString().slice(0, 10),
-            FechaContabilizacion: "",
+            FechaContabilizacion: new Date().toISOString().slice(0, 10),
             Reserva: reservaOData && reservaOData.Id ? reservaOData.Id : "-",
             Destinatario: "",
             Materiales: [],
@@ -257,56 +259,66 @@ sap.ui.define(
             this.formatter.removeLeadingZeros(oItem.Material) +
             " no tiene ubicacion técnica en el centro " +
             oItem.Centro;
-          const message = {
+          const oMessage = {
             type: "Warning",
             title: "Ubicacion Técnica",
             active: true,
             description: sDescription,
             counter: index + 1,
           };
-          aMessages.push(message);
+          aMessages.push(oMessage);
         });
         const aOldMessag = oDetalleModel.getProperty("/Messages");
         let aNewMessag = aOldMessag.filter(
-          (oMess) => oMess.tiltle !== "Ubicacion Técnica"
+          (oMess) => oMess.title !== "Ubicacion Técnica"
         );
         aNewMessag = aNewMessag.concat(aMessages);
         oDetalleModel.setProperty("/Messages", aNewMessag);
       },
       onReceptoresValueHelp: function () {
-            const oView = this.getView();
-            if (!this.__receptoresDialog) {
-                this.__receptoresDialog = Fragment.load({
-                    id: oView.getId(),
-                    name: "salidademateriales.view.fragments.details.dialogs.ReceptoresSelectDialog", 
-                    controller: this
-                }).then(function (oDialog) {
-                    oView.addDependent(oDialog);
-                    return oDialog;
-                });
-            }
-            this.__receptoresDialog.then(function(oDialog) {
-                oDialog.open();
-            });
-        },
-        // Función para manejar la búsqueda dentro del diálogo de Select Receptores
-        onReceptoresValueHelpSearch: function (oEvent) {
-            const sValue = oEvent.getParameter("value");
-            const oFilter = new Filter("Nombre", FilterOperator.Contains, sValue);
-            const oBinding = oEvent.getSource().getBinding("items");
-            oBinding.filter([oFilter]);
-        },
-        // Función para manejar el cierre del diálogo de Select Receptores
-        onReceptoresValueHelpClose: function (oEvent) {
-            const oSelectedItem = oEvent.getParameter("selectedItem");
-            oEvent.getSource().getBinding("items").filter([]);
-            if (oSelectedItem) {
-                const sNombreReceptor = oSelectedItem.getTitle();
-                const oInput = this.byId("input-nombreReceptor");
-                oInput.setValue(sNombreReceptor);
-                this.getView().getModel("detalleReserva").setProperty("/Receptor", sNombreReceptor);
-            }
-        },
+        const oView = this.getView();
+        if (!this.__receptoresDialog) {
+          this.__receptoresDialog = Fragment.load({
+            id: oView.getId(),
+            name: "salidademateriales.view.fragments.details.dialogs.ReceptoresSelectDialog",
+            controller: this,
+          }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            return oDialog;
+          });
+        }
+        this.__receptoresDialog.then(function (oDialog) {
+          oDialog.open();
+        });
+      },
+      // Función para manejar la búsqueda dentro del diálogo de Select Receptores
+      onReceptoresValueHelpSearch: function (oEvent) {
+        const sValue = oEvent.getParameter("value");
+        const oFilter = new Filter("Nombre", FilterOperator.Contains, sValue);
+        const oBinding = oEvent.getSource().getBinding("items");
+        oBinding.filter([oFilter]);
+      },
+      // Función para manejar el cierre del diálogo de Select Receptores
+      onReceptoresValueHelpClose: function (oEvent) {
+        const oSelectedItem = oEvent.getParameter("selectedItem");
+        oEvent.getSource().getBinding("items").filter([]);
+        if (oSelectedItem) {
+          const sNombreReceptor = oSelectedItem.getTitle();
+          const oInputR = this.byId("input-nombreReceptor");
+          const oInputD = Fragment.byId(
+            "confirmarSalidaMatDialog",
+            "input-nombreDestinatario"
+          );
+          oInputR.setValue(sNombreReceptor);
+          oInputD.setValue(sNombreReceptor);
+          this.getView()
+            .getModel("detalleReserva")
+            .setProperty("/Receptor", sNombreReceptor);
+          this.getView()
+            .getModel("detalleReserva")
+            .setProperty("/SalidaMat/Destinatario", sNombreReceptor);
+        }
+      },
       onAfterRenderingCanvas() {
         if (!this.__signaturePad) {
           const canvas = document.getElementById("signatureCanvas");
@@ -314,7 +326,7 @@ sap.ui.define(
           this.__signaturePad = new window.SignaturePad(canvas);
         }
       },
-      async onOpenSignatureCanvas(oEvent, tipoSujeto) {
+      async onOpenSignatureCanvas() {
         if (!this.__signatureDialog) {
           this.__signatureDialog = await Fragment.load({
             name: "salidademateriales.view.fragments.details.dialogs.SignDialog",
@@ -360,6 +372,10 @@ sap.ui.define(
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const base64 = this.__signaturePad.toDataURL();
         oDetalleModel.setProperty("/FirmaReceptor", base64);
+        const oMatDocSelec = (oDetalleModel.getProperty("/MaterialDocumentSeleccionado"));
+        if (oMatDocSelec && !oMatDocSelec.Firmado){
+          this.__addSignatureToDocument();
+        }
         this.__signaturePad.clear();
         this.__signatureDialog.close();
         // this.downloadBase64File(base64);
@@ -400,6 +416,37 @@ sap.ui.define(
           reader.onload = () => resolve(reader.result);
           reader.onerror = reject;
         });
+      },
+      __processErrorResponse(oError) {
+        let sErrorMessage =
+          "Ocurrió un error inesperado al procesar la solicitud.";
+
+        if (oError) {
+          if (oError.responseText) {
+            try {
+              const oErrorBody = JSON.parse(oError.responseText);
+              if (
+                oErrorBody &&
+                oErrorBody.error &&
+                oErrorBody.error.message &&
+                oErrorBody.error.message.value
+              ) {
+                sErrorMessage = oErrorBody.error.message.value;
+              } else {
+                sErrorMessage = oError.responseText;
+              }
+            } catch (e) {
+              console.error(
+                "No se pudo parsear el responseText del error:",
+                oError.responseText
+              );
+              sErrorMessage = oError.responseText;
+            }
+          } else if (oError.message) {
+            sErrorMessage = oError.message;
+          }
+        }
+        return sErrorMessage;
       },
       async onPressMaterial(oEvent) {
         if (!this.__caracteristicasMaterialesDialog) {
@@ -522,7 +569,8 @@ sap.ui.define(
                 oCaracteristica
               );
             } catch (oError) {
-              oErrorMap.set(oCaracteristica.Caracteristica, oError.message);
+              const sErrorMessage = this.__processErrorResponse(oError);
+              oErrorMap.set(oCaracteristica.Caracteristica, sErrorMessage);
             }
           }
 
@@ -540,26 +588,27 @@ sap.ui.define(
 
           if (oErrorMap.size > 0) {
             const aMessages = [];
-            oErrorMap.forEach((oMessage, sCaracteristica) => {
-              const message = {
+            oErrorMap.forEach((oErrorMessage, sCaracteristica) => {
+              const oMessage = {
                 type: "Error",
                 title: "Modificación Característica",
                 subtitle:
                   "No se pudo modificar el valor de la característica " +
                   sCaracteristica,
                 active: true,
-                description: oMessage,
+                description: oErrorMessage,
               };
-              aMessages.push(message);
+              aMessages.push(oMessage);
             });
             const aOldMessag = oDetalleModel.getProperty("/Messages");
             const aNewMessag = aOldMessag.concat(aMessages);
             oDetalleModel.setProperty("/Messages", aNewMessag);
           } else {
-            const aMessag = oDetalleModel.getProperty("/Messages");
+            const aCurrentMessages = oDetalleModel.getProperty("/Messages");
+            const aNewMessages = [...aCurrentMessages];
             const aCaractUpd = Array.from(oCaractUpdatedMap.keys());
             const sMaterial = aCaractUpd[0].Material;
-            const message = {
+            const oMessage = {
               type: "Success",
               title: "Modificación Característica",
               subtitle: "Características modificadas con éxito",
@@ -570,8 +619,8 @@ sap.ui.define(
                 " del material " +
                 this.formatter.removeLeadingZeros(sMaterial),
             };
-            aMessag.push(message);
-            oDetalleModel.setProperty("/Messages", aMessag);
+            aNewMessages.push(oMessage);
+            oDetalleModel.setProperty("/Messages", aNewMessages);
           }
         } else {
           this.__caracteristicasMaterialesDialog.setBusy(false);
@@ -616,15 +665,17 @@ sap.ui.define(
         const aCaracteristicas = oDetalleModel.getProperty(
           `${sClassBindingPath}/ToCaracteristicas/results`
         );
-        aCaracteristicas.forEach((oCaract) => {
-          if (oCaract.NuevoValor) {
-            delete oCaract.NuevoValor;
-          }
-        });
-        oDetalleModel.setProperty(
-          `${sClassBindingPath}/ToCaracteristicas/results`,
-          aCaracteristicas
-        );
+        if (aCaracteristicas) {
+          aCaracteristicas.forEach((oCaract) => {
+            if (oCaract.NuevoValor) {
+              delete oCaract.NuevoValor;
+            }
+          });
+          oDetalleModel.setProperty(
+            `${sClassBindingPath}/ToCaracteristicas/results`,
+            aCaracteristicas
+          );
+        }
         this.__caracteristicasMaterialesDialog.close();
       },
       __initMessagepopover() {
@@ -654,6 +705,9 @@ sap.ui.define(
       },
       onShowItems(oEvent) {
         const sSelectedKey = oEvent.getSource().getSelectedKey();
+        this.__updateFilteredItems(sSelectedKey);
+      },
+      __updateFilteredItems(sSelectedKey) {
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const aItems = oDetalleModel.getProperty("/Items");
         let aFilteredItems = aItems;
@@ -719,13 +773,26 @@ sap.ui.define(
           return MessageToast.show("No ha seleccionado ningun item");
         }
 
-        if (aItems.find((oItem) => !oItem.Retira || oItem.Retira <= 0)) {
+        if (
+          aItems.find(
+            (oItem) =>
+              !oItem.Retira ||
+              isNaN(parseFloat(oItem.Retira)) ||
+              parseFloat(oItem.Retira) <= 0
+          )
+        ) {
           return MessageToast.show(
             "Debe especificar una cantidad a retirar positiva para todos los items seleccionados"
           );
         }
 
-        if (aItems.find((oItem) => !oItem.Retira || oItem.Retira > oItem.CantPendiente)) {
+        if (
+          aItems.find(
+            (oItem) =>
+              !oItem.Retira ||
+              parseFloat(oItem.Retira) > parseFloat(oItem.CantPendiente)
+          )
+        ) {
           return MessageToast.show(
             "No puede ingresar una cantidad a retirar mayor a la cantidad pendiente del item"
           );
@@ -734,13 +801,9 @@ sap.ui.define(
         const oDetalleReserva = this.getView().getModel("detalleReserva");
         const sReceptor = oDetalleReserva.getProperty("/Receptor");
 
-        if (!sReceptor) {
-          return MessageToast.show("Debe especificar un receptor");
-        }
-
         const oSalidaMat = oDetalleReserva.getProperty("/SalidaMat");
         oSalidaMat.Materiales = aItems;
-        oSalidaMat.Receptor = sReceptor;
+        oSalidaMat.Destinatario = sReceptor;
         oDetalleReserva.setProperty("/SalidaMat", oSalidaMat);
 
         if (!this.__confirmarSalidaMatDialog) {
@@ -760,7 +823,192 @@ sap.ui.define(
         });
         this.__confirmarSalidaMatDialog.open();
       },
-      onLimpiarTabla: function (oEvent) {},
+      onLimpiarTabla: function () {
+        const oItemsTable = this.byId("materialsTable");
+        oItemsTable.removeSelections(true);
+
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const aItems = oDetalleModel.getProperty("/FilteredItems");
+        aItems.forEach((oItem) => delete oItem.Retira);
+        oDetalleModel.setProperty("/FilteredItems", aItems);
+
+        this.__cleanSalidaMatModel();
+      },
+      __cleanSalidaMatModel() {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const sReservaId = oDetalleModel.getProperty("/Reserva/Id");
+        oDetalleModel.setProperty("/SalidaMat", {
+          Fecha: new Date().toISOString().slice(0, 10),
+          FechaContabilizacion: new Date().toISOString().slice(0, 10),
+          Reserva: sReservaId,
+          Destinatario: "",
+          Materiales: [],
+        });
+      },
+      onPostSalidaMat: async function (oEvent) {
+        const oView = this.getView();
+        const oDetalleReserva = oView.getModel("detalleReserva");
+        const oSalidaMat = oDetalleReserva.getProperty("/SalidaMat");
+
+        if (!this.__validateFieldsSalida(oSalidaMat)) {
+          return;
+        }
+
+        const oDialog = this.__confirmarSalidaMatDialog;
+
+        oDialog.attachEventOnce("afterClose", async () => {
+          oView.setBusy(true);
+          try {
+            const oODataModel = this.getOwnerComponent().getModel();
+            //Datos más recientes (luego del close)
+            const oDetalleActual = oView.getModel("detalleReserva");
+            const oSalidaMatActual = oDetalleActual.getProperty("/SalidaMat");
+
+            const oPostPayload = {
+              Fecha: oSalidaMatActual.Fecha,
+              FechaContabilizacion: oSalidaMatActual.FechaContabilizacion,
+              Texto: oSalidaMatActual.Destinatario,
+              ToItems: oSalidaMatActual.Materiales.map((oMaterial) => ({
+                ReservaId: oMaterial.ReservaId,
+                ReservaPos: oMaterial.Pos,
+                Cantidad: formatter.numberDecimals(oMaterial.Retira),
+                Texto: "",
+                Customer: oSalidaMatActual.Destinatario,
+              })),
+            };
+
+            const sPath = "/MDHeaderSet";
+            const { oCreatedEntity, oResponse } =
+              await this.__postSalidaMatAsync(oODataModel, sPath, oPostPayload);
+            this.__processSuccessSalida(oCreatedEntity);
+            MessageToast.show("Salida de materiales ejecutada");
+          } catch (oError) {
+            const sErrorMessage = this.__processErrorResponse(oError);
+            const oDetalleModel = this.getView().getModel("detalleReserva");
+            const aCurrentMessages =
+              oDetalleModel.getProperty("/Messages") || [];
+            const aNewMessages = [...aCurrentMessages];
+            const oMessage = {
+              type: "Error",
+              title: "Salida de Materiales",
+              subtitle: "Hubo un error al procesar la Salida de Materiales",
+              active: true,
+              description: sErrorMessage,
+            };
+            aNewMessages.push(oMessage);
+            oDetalleModel.setProperty("/Messages", aNewMessages);
+            MessageToast.show("Hubo un error con la salida de materiales");
+          } finally {
+            oView.setBusy(false);
+          }
+        }),
+          this.__confirmarSalidaMatDialog.close();
+      },
+      __postSalidaMatAsync: function (oODataModel, sPath, oData) {
+        return new Promise((resolve, reject) => {
+          oODataModel.create(sPath, oData, {
+            success: (oCreatedEntity, oResponse) =>
+              resolve({ oCreatedEntity, oResponse }),
+            error: (oError) => reject(oError),
+          });
+        });
+      },
+      __validateFieldsSalida: function (oSalidaMat) {
+        if (
+          !oSalidaMat.FechaContabilizacion ||
+          oSalidaMat.FechaContabilizacion === ""
+        ) {
+          MessageToast.show("Debe establecer una fecha de contabilización");
+          return false;
+        }
+        if (!oSalidaMat.Destinatario || oSalidaMat.Destinatario === "") {
+          MessageToast.show("Debe especificar un destinatario");
+          return false;
+        }
+        if (!oSalidaMat.Materiales || oSalidaMat.Materiales.length === 0) {
+          MessageToast.show(
+            "Error al obtener los materiales para el post. Cierre y abra el dialog nuevamente"
+          );
+          return false;
+        }
+        return true;
+      },
+      __processSuccessSalida: function (oCreatedEntity) {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const aPostedItems =
+          (oCreatedEntity.ToItems && oCreatedEntity.ToItems.results) || [];
+        this.__updateItemsPosted(aPostedItems);
+        const aCurrentMessages = oDetalleModel.getProperty("/Messages") || [];
+        const aNewMessages = [...aCurrentMessages];
+        const oMessage = {
+          type: "Success",
+          title: "Salida de Materiales",
+          subtitle: "Salida de Materiales ejecutada con éxito",
+          active: true,
+          description:
+            "Se ha generado el documento contable " +
+            oCreatedEntity.Numero +
+            "con fecha de contabilizacion " +
+            oCreatedEntity.FechaContabilizacion,
+        };
+        aNewMessages.push(oMessage);
+        oDetalleModel.setProperty("/Messages", aNewMessages);
+
+        this.onOpenSignatureCanvas();
+      },
+      __updateItemsPosted: function (aPostedItems) {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const aCurrentItems = oDetalleModel.getProperty("/Items");
+        const aNewItems = [...aCurrentItems];
+        const aCurrentMaterialDocuments =
+          oDetalleModel.getProperty("/MaterialDocuments") || [];
+        const aNewMaterialDocuments = [...aCurrentMaterialDocuments];
+        aPostedItems.forEach((oPostedItem) => {
+          const oItem = aNewItems.find(
+            (oItem) => parseInt(oItem.Pos) === parseInt(oPostedItem.ReservaPos)
+          );
+          if (oItem) {
+            oItem.CantPendiente = formatter.numberDecimals(
+              String(
+                parseFloat(oItem.CantPendiente) -
+                  parseFloat(oPostedItem.Cantidad)
+              )
+            );
+            oItem.CantRetirada = formatter.numberDecimals(
+              String(
+                parseFloat(oItem.CantRetirada) +
+                  parseFloat(oPostedItem.Cantidad)
+              )
+            );
+          }
+          const bExists = aNewMaterialDocuments.some(
+            (doc) =>
+              parseInt(doc.Number) === parseInt(oPostedItem.MatDocNum) &&
+              parseInt(doc.Year) === parseInt(new Date.getFullYear().toString())
+          );
+
+          if (!bExists) {
+            aNewMaterialDocuments.push({
+              Number: oPostedItem.MatDocNum,
+              Year: new Date().getFullYear().toString(),
+              Dest: oPostedItem.Customer,
+              Firmado: false,
+              Pdf:""
+            });
+
+          }
+        });
+        oDetalleModel.setProperty("/Items", aNewItems);
+        oDetalleModel.setProperty("/MaterialDocuments", aNewMaterialDocuments);
+        oDetalleModel.setProperty("/MaterialDocumentSeleccionado", aNewMaterialDocuments[aNewMaterialDocuments.length-1])
+
+        this.__updateFilteredItems("P");
+        this.onLimpiarTabla();
+      },
+      onCancelarSalidaMat: function () {
+        this.__cleanSalidaMatModel();
+        this.__confirmarSalidaMatDialog.close();
+      },
     });
   }
 );

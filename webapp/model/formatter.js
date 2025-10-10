@@ -31,22 +31,32 @@ sap.ui.define(["sap/ui/core/library"], (coreLibrary) => {
     });
 
     return sHighestSeverityIcon;
-  };
+  }
 
   return {
-    removeLeadingZeros: function (value) {
-      if (!value) {
+    removeLeadingZeros: function (sValue) {
+      if (!sValue) {
         return "";
       }
 
       // Si viene como string con ceros: "000123"
-      if (typeof value === "string") {
+      if (typeof sValue === "string") {
         // quitar ceros a la izquierda
-        return value.replace(/^0+/, "") || "0";
+        return sValue.replace(/^0+/, "") || "0";
       }
 
       // Si viene como número ya no necesita cambios
-      return String(value);
+      return String(sValue);
+    },
+    numberDecimals: function (sValue) {
+      if (sValue === null || sValue === undefined || sValue === "") {
+        return "0.000";
+      }
+      const nValue = Number(sValue);
+      if (isNaN(nValue)) {
+        return "0.000"; // o podrías devolver vacío según tu caso
+      }
+      return nValue.toFixed(3);
     },
     /**
      * Returns a ValueState based on the status text.
@@ -129,10 +139,10 @@ sap.ui.define(["sap/ui/core/library"], (coreLibrary) => {
       }
 
       return aMessages.reduce(function (iNumberOfMessages, oMessageItem) {
-          return oMessageItem.type === sHighestSeverityMessageType
-            ? ++iNumberOfMessages
-            : iNumberOfMessages;
-        }, 0);
+        return oMessageItem.type === sHighestSeverityMessageType
+          ? ++iNumberOfMessages
+          : iNumberOfMessages;
+      }, 0);
     },
     // Set the button icon according to the message with the highest severity
     buttonIconFormatter: function (aMessages) {

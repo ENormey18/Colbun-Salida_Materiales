@@ -35,7 +35,7 @@
                         />
                         <Input
                             id="input-nombreReceptor"
-                            value="{detalleReserva>Receptor}"
+                            value="{detalleReserva>/Receptor}"
                             showSuggestion="true"
                             suggestionItems="{
                                 path: 'detalleReserva>/Receptores'
@@ -55,7 +55,7 @@
                             src="{detalleReserva>/FirmaReceptor}"
                             visible="{= !!${detalleReserva>/FirmaReceptor} }"
                         />
-                        <HBox visible="{= !${detalleReserva>/FirmaReceptor} }">
+                        <HBox visible="false">   <!--{= !${detalleReserva>/FirmaReceptor} }-->
                             <unified:FileUploader
                                 buttonText="Subir firma"
                                 change=".onChangeFile()"
