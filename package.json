@@ -16,10 +16,10 @@
     "rimraf": "^5.0.5",
     "ui5-task-zipper": "^3.1.3"
   },
-  "ui5":{
-      "ui5linter": {
-			"idNamingPattern": "",
-			"eventNamingPattern": ""
+  "ui5": {
+    "ui5linter": {
+      "idNamingPattern": "",
+      "eventNamingPattern": ""
     }
   },
   "scripts": {
@@ -37,5 +37,8 @@
     "build:mta": "rimraf resources mta_archives && mbt build",
     "undeploy": "cf undeploy salidademateriales --delete-services --delete-service-keys --delete-service-brokers"
   },
-  "sapuxLayer": "CUSTOMER_BASE"
+  "sapuxLayer": "CUSTOMER_BASE",
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
 }

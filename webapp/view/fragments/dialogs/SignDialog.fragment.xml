@@ -2,16 +2,16 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
 >
-    <Dialog >
+    <Dialog afterOpen=".onAfterRenderingCanvas">
         <customHeader>
             <Toolbar style="Clear">
                 <Button icon="sap-icon://decline" press=".onCloseSignatureDialog"/>
-                <Title text="Signature"/>
+                <Title text="Firma Digital"/>
                 <ToolbarSpacer />
                 <Button text="Save" press=".onSaveSignature"/>
             </Toolbar>
         </customHeader>
-        <core:HTML id="signatureCanvas" afterRendering=".onAfterRenderingCanvas"/>
+        <core:HTML id="signatureCanvasContainer" />
         <footer>
             <Toolbar style="Clear">
                 <ToolbarSpacer />

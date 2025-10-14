@@ -1,0 +1,387 @@
+sap.ui.define(
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/Fragment",
+    "./fragments/SignatureHandler",
+    "sap/ui/Device",
+    "sap/m/MessageToast",
+    "sap/m/MessagePopover",
+    "sap/m/MessageItem",
+    "sap/ui/model/json/JSONModel",
+    "../model/formatter",
+  ],
+  function (
+    Controller,
+    Fragment,
+    SignatureHandler,
+    Device,
+    MessageToast,
+    MessagePopover,
+    MessageItem,
+    JSONModel,
+    formatter
+  ) {
+    "use strict";
+
+    return Controller.extend("salidademateriales.controller.PostGoodsIssue", {
+      formatter: formatter,
+      __signatureHandler: null,
+      __oMessagePopover: null,
+      onInit: function () {
+        const oRouter = this.getOwnerComponent().getRouter();
+        Device.resize.attachHandler(this.changeCanvasSize, this);
+        this.__signatureHandler = new SignatureHandler();
+        this.__signatureHandler.init(this.getView(), "salidaMateriales");
+        oRouter
+          .getRoute("RoutePostGoodsIssue")
+          .attachPatternMatched(this.__onRouteMatched, this);
+      },
+
+      __onRouteMatched: function (oEvent) {
+        const oSalidaModel =
+          this.getOwnerComponent().getModel("salidaMatModel");
+        const oSalidaMatData = oSalidaModel.getData();
+        oSalidaMatData.Messages = [];
+        oSalidaMatData.Ejecutada = false;
+        const oSalidaMatModel = new JSONModel(oSalidaMatData);
+
+        const oView = this.getView();
+        oView.setModel(oSalidaMatModel, "salidaMateriales");
+
+        oView.setBusy(true);
+        const oODataModel = this.getOwnerComponent().getModel();
+
+        oSalidaMatModel.setProperty("/Receptores", [
+          { Nombre: "Tester", Usnam: "Usnam" },
+        ]);
+        this.__loadReceptores(oODataModel)
+          .then((aReceptores) => {
+            oSalidaMatModel.setProperty("/Receptores", aReceptores);
+          })
+          .catch((err) => {
+            console.error("Error en la llamada OData:", err);
+            const sErrorMessage = this.__processErrorResponse(err);
+            const aCurrentMessages =
+              oSalidaModel.getProperty("/Messages") || [];
+            const aNewMessages = [...aCurrentMessages];
+            const oMessage = {
+              type: "Error",
+              title: "GET Servicio OData",
+              subtitle: "Ocurrió un error al buscar los destinatarios",
+              active: true,
+              description: sErrorMessage,
+            };
+            aNewMessages.push(oMessage);
+            oSalidaModel.setProperty("/Messages", aNewMessages);
+            MessageToast.show("Ocurrió un error al buscar los destinatarios");
+          })
+          .finally(() => {
+            oView.setBusy(false);
+          });
+      },
+      __loadReceptores: function (oModel) {
+        return new Promise(function (resolve, reject) {
+          oModel.read("/ReceptoresSet", {
+            success: function (oData) {
+              resolve(oData.results);
+            },
+            error: function (oError) {
+              reject(oError);
+            },
+          });
+        });
+      },
+      onNavBack: function () {
+        this.__cleanSalidaMatModel();
+        // Lógica para volver a la página anterior
+        const oHistory = sap.ui.core.routing.History.getInstance();
+        const sPreviousHash = oHistory.getPreviousHash();
+
+        if (sPreviousHash !== undefined) {
+          window.history.go(-1);
+        } else {
+          const oRouter = this.getOwnerComponent().getRouter();
+          oRouter.navTo("RouteListado", {}, {}, true);
+        }
+      },
+      __cleanSalidaMatModel() {
+        const oSalidaMatModel =
+          this.getOwnerComponent().getModel("salidaMatModel");
+        const oInitialData = {
+          Fecha: new Date().toISOString().slice(0, 10),
+          FechaContabilizacion: new Date().toISOString().slice(0, 10),
+          Reserva: "",
+          Destinatario: "",
+          Materiales: [],
+        };
+        oSalidaMatModel.setData(oInitialData);
+      },
+      onReceptoresValueHelp: function () {
+        const oView = this.getView();
+        if (!this.__receptoresDialog) {
+          this.__receptoresDialog = Fragment.load({
+            id: oView.getId(),
+            name: "salidademateriales.view.fragments.dialogs.ReceptoresSelectDialog",
+            controller: this,
+          }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            return oDialog;
+          });
+        }
+        this.__receptoresDialog.then(function (oDialog) {
+          oDialog.open();
+        });
+      },
+      // Función para manejar la búsqueda dentro del diálogo de Select Receptores
+      onReceptoresValueHelpSearch: function (oEvent) {
+        const sValue = oEvent.getParameter("value");
+        const oFilter = new Filter("Nombre", FilterOperator.Contains, sValue);
+        const oBinding = oEvent.getSource().getBinding("items");
+        oBinding.filter([oFilter]);
+      },
+      // Función para manejar el cierre del diálogo de Select Receptores
+      onReceptoresValueHelpClose: function (oEvent) {
+        const oSelectedItem = oEvent.getParameter("selectedItem");
+        oEvent.getSource().getBinding("items").filter([]);
+        if (oSelectedItem) {
+          const sNombreReceptor = oSelectedItem.getTitle();
+          const oInputD = this.byId("input-nombreDestinatario");
+          oInputD.setValue(sNombreReceptor);
+          this.getView()
+            .getModel("salidaMateriales")
+            .setProperty("/Destinatario", sNombreReceptor);
+        }
+      },
+      onPostSalidaMat: async function (oEvent) {
+        const oView = this.getView();
+        const oSalidaModel = oView.getModel("salidaMateriales");
+        const oSalidaData = oSalidaModel.getData();
+
+        if (!this.__validateFieldsSalida(oSalidaData)) {
+          return;
+        }
+
+        oView.setBusy(true);
+        MessageToast.show("Contabilizando Salida...");
+        try {
+          const oODataModel = this.getOwnerComponent().getModel();
+
+          const oPostPayload = {
+            Fecha: oSalidaData.Fecha,
+            FechaContabilizacion: oSalidaData.FechaContabilizacion,
+            Texto: oSalidaData.Destinatario,
+            ToItems: oSalidaData.Materiales.map((oMaterial) => ({
+              ReservaId: oMaterial.ReservaId,
+              ReservaPos: oMaterial.Pos,
+              Cantidad: formatter.numberDecimals(oMaterial.Retira),
+              Texto: "",
+              Customer: oSalidaData.Destinatario,
+            })),
+          };
+
+          const sPath = "/MDHeaderSet";
+          const { oCreatedEntity, oResponse } = await this.__postSalidaMatAsync(
+            oODataModel,
+            sPath,
+            oPostPayload
+          );
+          MessageToast.show("Salida de materiales ejecutada");
+          await this.__processSuccessSalida(oCreatedEntity);
+        } catch (oError) {
+          MessageToast.show("Hubo un error con la salida de materiales");
+          const sErrorMessage = this.__processErrorResponse(oError);
+          const aCurrentMessages = oSalidaModel.getProperty("/Messages") || [];
+          const aNewMessages = [...aCurrentMessages];
+          const oMessage = {
+            type: "Error",
+            title: "Salida de Materiales",
+            subtitle: "Hubo un error al procesar la Salida de Materiales",
+            active: true,
+            description: sErrorMessage,
+          };
+          aNewMessages.push(oMessage);
+          oSalidaModel.setProperty("/Messages", aNewMessages);
+        } finally {
+          oView.setBusy(false);
+        }
+      },
+      __postSalidaMatAsync: function (oODataModel, sPath, oData) {
+        return new Promise((resolve, reject) => {
+          oODataModel.create(sPath, oData, {
+            success: (oCreatedEntity, oResponse) =>
+              resolve({ oCreatedEntity, oResponse }),
+            error: (oError) => reject(oError),
+          });
+        });
+      },
+      __validateFieldsSalida: function (oSalidaMat) {
+        console.log(oSalidaMat);
+        if (
+          !oSalidaMat.FechaContabilizacion ||
+          oSalidaMat.FechaContabilizacion === ""
+        ) {
+          MessageToast.show("Debe establecer una fecha de contabilización");
+          return false;
+        }
+        if (!oSalidaMat.Destinatario || oSalidaMat.Destinatario === "") {
+          MessageToast.show("Debe especificar un destinatario");
+          return false;
+        }
+        if (!oSalidaMat.Materiales || oSalidaMat.Materiales.length === 0) {
+          MessageToast.show(
+            "Error al obtener los materiales para el post. Regrese y seleccione los materiales nuevamente"
+          );
+          return false;
+        }
+        return true;
+      },
+      __processSuccessSalida: async function (oCreatedEntity) {
+        const oSalidaModel = this.getView().getModel("salidaMateriales");
+        const aCurrentMessages = oSalidaModel.getProperty("/Messages") || [];
+        const aNewMessages = [...aCurrentMessages];
+        const oMessage = {
+          type: "Success",
+          title: "Salida de Materiales",
+          subtitle: "Salida de Materiales ejecutada con éxito",
+          active: true,
+          description:
+            "Se ha generado el documento contable " +
+            oCreatedEntity.Numero +
+            "con fecha de contabilizacion " +
+            oCreatedEntity.FechaContabilizacion,
+        };
+        aNewMessages.push(oMessage);
+        oSalidaModel.setProperty("/Messages", aNewMessages);
+        oSalidaModel.setProperty("/Ejecutada", true);
+
+        const sPdfMD = this.__getValeAcomp(
+          oCreatedEntity.Numero,
+          oCreatedEntity.Año
+        );
+        const oValeAcomp = {
+          Numero: oCreatedEntity.Numero,
+          Año: oCreatedEntity.Año,
+          Dest: oCreatedEntity.Texto,
+          Firmado: false,
+          Pdf: sPdfMD || "",
+        };
+        oSalidaModel.setProperty("/DocumentoSeleccionado", oValeAcomp);
+
+        await this.__signatureHandler.onOpenSignatureCanvas();
+      },
+      onFinished: function () {
+        this.getOwnerComponent().getModel("detailsStateModel").setData({
+          hasData: false,
+          reservaId: null,
+          data: {},
+          selectedPaths: [],
+        });
+        const oSalidaModel = this.getView().getModel("salidaMateriales");
+        const sReservaId = oSalidaModel.getProperty("/Reserva");
+
+        if (sReservaId) {
+          const oRouter = this.getOwnerComponent().getRouter();
+          oRouter.navTo(
+            "RouteDetails",
+            {
+              reservaId: sReservaId,
+            },
+            {},
+            true
+          );
+        } else {
+          const oRouter = this.getOwnerComponent().getRouter();
+          oRouter.navTo("RouteListado", {}, {}, true);
+        }
+      },
+      __processErrorResponse(oError) {
+        let sErrorMessage =
+          "Ocurrió un error inesperado al procesar la solicitud.";
+
+        if (oError) {
+          if (oError.responseText) {
+            try {
+              const oErrorBody = JSON.parse(oError.responseText);
+              if (
+                oErrorBody &&
+                oErrorBody.error &&
+                oErrorBody.error.message &&
+                oErrorBody.error.message.value
+              ) {
+                sErrorMessage = oErrorBody.error.message.value;
+              } else {
+                sErrorMessage = oError.responseText;
+              }
+            } catch (e) {
+              sErrorMessage = oError.responseText;
+            }
+          } else if (oError.message) {
+            sErrorMessage = oError.message;
+          }
+        }
+        return sErrorMessage;
+      },
+      __getValeAcomp(sNumber, sYear) {
+        const oODataModel = this.getOwnerComponent().getModel();
+
+        const sKey = oODataModel.createKey("PrintedDocumentSet", {
+          DocNumber: sNumber,
+          DocType: "M",
+          DocYear: sYear,
+        });
+        const sPath = "/" + sKey;
+        oODataModel.read(sPath, {
+          success: function (oData) {
+            return oData.xString;
+          },
+          error: function (oError) {
+            console.error("Error en la llamada OData:", oError);
+            const sErrorMessage = this.__processErrorResponse(oError);
+            const aCurrentMessages =
+              oSalidaModel.getProperty("/Messages") || [];
+            const aNewMessages = [...aCurrentMessages];
+            const oMessage = {
+              type: "Error",
+              title: "GET Servicio OData",
+              subtitle:
+                "Ocurrió un error al buscar el vale de acompañamiento del documento generado",
+              active: true,
+              description: sErrorMessage,
+            };
+            aNewMessages.push(oMessage);
+            oSalidaModel.setProperty("/Messages", aNewMessages);
+            MessageToast.show(
+              "Ocurrió un error al buscar el vale de acompañamiento"
+            );
+            return null;
+          },
+        });
+      },
+      __initMessagepopover() {
+        const oMessageTemplate = new MessageItem({
+          type: "{salidaMateriales>type}",
+          title: "{salidaMateriales>title}",
+          subtitle: "{salidaMateriales>subtitle}",
+          activeTitle: "{salidaMateriales>active}",
+          description: "{salidaMateriales>description}",
+          counter: "{salidaMateriales>counter}",
+        });
+
+        this.__oMessagePopover = new MessagePopover({
+          items: {
+            path: "salidaMateriales>/Messages",
+            template: oMessageTemplate,
+          },
+        });
+      },
+      onShowMessagePopover(oEvent) {
+        if (!this.__oMessagePopover) {
+          this.__initMessagepopover();
+          const oButton = oEvent.getSource();
+          oButton.addDependent(this.__oMessagePopover);
+        }
+        this.__oMessagePopover.toggle(oEvent.getSource());
+      },
+    });
+  }
+);

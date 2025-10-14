@@ -1,0 +1,92 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Table
+        id="documentsTable"
+        items="{detalleReserva>/Documentos}"
+        autoPopinMode="true"
+    >
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="Documentos Contables" />
+                <ToolbarSpacer />
+                <ToolbarSpacer width="50px" />
+                <SearchField
+                    width="250px"
+                    placeholder="Número"
+                    search="onSearchDocument"
+                />
+            </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+            <Column width="30%">
+                <Text text="Número de Documento" />
+            </Column>
+            <Column
+                autoPopinWidth="6"
+                width="10%"
+            >
+                <Text text="Año" />
+            </Column>
+            <Column
+                autoPopinWidth="6"
+                width="30%"
+            >
+                <Text text="Destinatario" />
+            </Column>
+            <Column
+                autoPopinWidth="6"
+                width="10%"
+                hAlign="Center"
+            >
+                <Text text="Firmado" />
+            </Column>
+            <Column
+                autoPopinWidth="6"
+                width="20%"
+                hAlign="Center"
+            >
+                <Text text="Visualizar" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <ObjectIdentifier
+                        titleActive="true"
+                        title="{
+                            path: 'detalleReserva>Numero',
+                            formatter: '.formatter.removeLeadingZeros'
+                        }"
+                    />
+                    <Text text="{detalleReserva>Año}" />
+                    <Text text="{detalleReserva>Dest}" />
+                    <VBox>
+                        <core:Icon
+                            src="sap-icon://signature"
+                            class="sapUiTinyMargin"
+                            color="Positive"
+                            tooltip="Documento Firmado"
+                            visible="{detalleReserva>Firmado}"
+                        />
+                        <Button
+                            text="Firmar"
+                            icon="sap-icon://edit"
+                            type="Transparent"
+                            tooltip="Firmar Documento"
+                            press="onFirmarDocumento"
+                            visible="{= !${detalleReserva>Firmado} }"
+                        />
+                    </VBox>
+                    <Button
+                        type="Transparent"
+                        tooltip="Open PDF"
+                        icon="sap-icon://pdf-attachment"
+                        press="onShowPDF"
+                    />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>

@@ -117,6 +117,11 @@
           "name": "RouteDetails",
           "pattern": "details/{reservaId}",
           "target": "TargetDetails"
+        },
+        {
+          "name": "RoutePostGoodsIssue",
+        "pattern": "post/{reservaId}",
+          "target": "TargetPostGoodsIssue"
         }
       ],
       "targets": {
@@ -127,6 +132,10 @@
         "TargetDetails": {
           "id": "Details",
           "name": "Details"
+        },
+        "TargetPostGoodsIssue": {
+          "id": "PostGoodsIssue",
+          "name": "PostGoodsIssue"
         }
       }
     },

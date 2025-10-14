@@ -4,6 +4,9 @@ sap.ui.define(["sap/ui/core/library"], (coreLibrary) => {
 
   function __buttonTypeFormatter(aMessages) {
     var sHighestSeverityIcon;
+    if (!aMessages || aMessages.length === 0) {
+      return "Neutral";
+    }
     aMessages.forEach(function (sMessage) {
       switch (sMessage.type) {
         case "Error":
@@ -147,7 +150,9 @@ sap.ui.define(["sap/ui/core/library"], (coreLibrary) => {
     // Set the button icon according to the message with the highest severity
     buttonIconFormatter: function (aMessages) {
       var sIcon;
-
+      if (!aMessages || aMessages.length === 0) {
+        return "sap-icon://information";
+      }
       aMessages.forEach(function (sMessage) {
         switch (sMessage.type) {
           case "Error":
@@ -168,6 +173,13 @@ sap.ui.define(["sap/ui/core/library"], (coreLibrary) => {
         }
       });
       return sIcon;
+    },
+    signedIcon: function (bStatus) {
+      if (bStatus) {
+        return "sap-icon://signature";
+      } else {
+        return "sap-icon://status-inactive";
+      }
     },
   };
 });

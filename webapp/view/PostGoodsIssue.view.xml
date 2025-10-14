@@ -1,0 +1,149 @@
+<mvc:View
+	controllerName="salidademateriales.controller.PostGoodsIssue"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+>
+	<Page title="Gestión Reservas">
+		<content>
+			<HBox>
+				<VBox class="sapUi-Std-PaddingM sapUiSmallMarginTopBottom">
+					<Label
+						text="Reserva"
+						showColon="true"
+					/>
+					<Text text="{salidaMateriales>/Reserva}" />
+					<Label
+						text="Fecha"
+						showColon="true"
+					/>
+					<Text text="{salidaMateriales>/Fecha}" />
+				</VBox>
+				<VBox class="sapUi-Std-PaddingM sapUiSmallMarginTopBottom">
+					<Label
+						text="Fecha Contabilización"
+						showColon="true"
+					/>
+					<Input
+						type="Date"
+						value="{salidaMateriales>/FechaContabilizacion}"
+						width="150px"
+						required="true"
+						editable="{= !${salidaMateriales>/Ejecutada}}"
+					/>
+					<Label
+						text="Destinatario"
+						showColon="true"
+					/>
+					<Input
+						id="input-nombreDestinatario"
+						value="{salidaMateriales>/Destinatario}"
+						showSuggestion="true"
+						suggestionItems="{
+							path: 'salidaMateriales>/Receptores'
+						}"
+						width="200px"
+						showValueHelp="true"
+						valueHelpRequest="onReceptoresValueHelp"
+						editable="{= !${salidaMateriales>/Ejecutada}}"
+					>
+						<suggestionItems>
+							<core:ListItem
+								key="{salidaMateriales>Usnam}"
+								text="{salidaMateriales>Nombre}"
+							/>
+						</suggestionItems>
+					</Input>
+				</VBox>
+			</HBox>
+			<VBox
+				id="salidaMatContentVBox"
+				alignItems="Center"
+				class="sapUi-Std-PaddingM sapUiSmallMarginBottom"
+				justifyContent="Center"
+			>
+				<Table
+					headerText="Materiales"
+					id="salidaMatTable"
+					items="{
+						path: 'salidaMateriales>/Materiales'
+					}"
+				>
+					<columns>
+						<Column>
+							<Text text="Posición en Reserva" />
+						</Column>
+						<Column>
+							<Text text="Material" />
+						</Column>
+						<Column>
+							<Text text="Descripción" />
+						</Column>
+						<Column>
+							<Text text="Cantidad" />
+						</Column>
+						<Column>
+							<Text text="Unidad" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{salidaMateriales>Pos}" />
+								<Text text="{
+									path: 'salidaMateriales>Material',
+									formatter: '.formatter.removeLeadingZeros'
+								}" />
+								<Text text="{salidaMateriales>Descripcion}" />
+								<Text text="{
+									path: 'salidaMateriales>Retira',
+									formatter: '.formatter.numberDecimals'
+								}" />
+								<Text text="{salidaMateriales>Unidad}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button
+					id="messagePopoverPostButton"
+					visible="{= ${salidaMateriales>/Messages}.length > 0}"
+					icon="{
+						path: 'salidaMateriales>/Messages',
+						formatter: '.formatter.buttonIconFormatter'
+					}"
+					type="{
+						path: 'salidaMateriales>/Messages',
+						formatter: '.formatter.buttonTypeFormatter'
+					}"
+					text="{
+						path: 'salidaMateriales>/Messages',
+						formatter: '.formatter.highestSeverityMessages'
+					}"
+					press=".onShowMessagePopover"
+				/>
+				<ToolbarSpacer />
+				<Button
+					visible="{= !${salidaMateriales>/Ejecutada}}"
+					text="Ejecutar"
+					type="Emphasized"
+					press=".onPostSalidaMat"
+				/>
+				<Button
+					visible="{= !${salidaMateriales>/Ejecutada}}"
+					text="Cancelar"
+					press=".onNavBack"
+				/>
+				<Button
+					visible="{salidaMateriales>/Ejecutada}"
+					text="Volver"
+					type="Emphasized"
+					press=".onFinished"
+				/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

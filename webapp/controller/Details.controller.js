@@ -2,6 +2,7 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
+    "./fragments/SignatureHandler",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
@@ -9,11 +10,14 @@ sap.ui.define(
     "sap/m/MessageItem",
     "sap/ui/model/json/JSONModel",
     "sap/ui/Device",
+    "sap/m/PDFViewer",
+    "sap/ui/core/util/File",
     "../model/formatter",
   ],
   (
     Controller,
     Fragment,
+    SignatureHandler,
     Filter,
     FilterOperator,
     MessageToast,
@@ -21,6 +25,8 @@ sap.ui.define(
     MessageItem,
     JSONModel,
     Device,
+    PDFViewer,
+    File,
     formatter
   ) => {
     "use strict";
@@ -28,63 +34,110 @@ sap.ui.define(
       formatter: formatter,
       __oMessagePopover: null,
       __caracteristicasMaterialesDialog: null,
-      __receptoresDialog: null,
-      __signatureDialog: null,
-      __signaturePad: null,
-      __confirmarSalidaMatDialog: null,
+      __signatureHandler: null,
+      _pPDFDialog: null,
+      _pdfViewer: null,
       onInit() {
         const oRouter = this.getOwnerComponent().getRouter();
         Device.resize.attachHandler(this.changeCanvasSize, this);
+        this.__signatureHandler = new SignatureHandler();
+        this.__signatureHandler.init(this.getView(), "detalleReserva");
+        this._pdfViewer = new PDFViewer({
+          isTrustedSource: true,
+        });
+        this.getView().addDependent(this._pdfViewer);
         oRouter
           .getRoute("RouteDetails")
           .attachPatternMatched(this.__onRouteMatched, this);
       },
       __onRouteMatched(oEvent) {
         const sReservaId = oEvent.getParameter("arguments").reservaId;
-        const oODataModel = this.getOwnerComponent().getModel();
-        oODataModel.early;
-        const sPath = this.getOwnerComponent()
-          .getModel()
-          .createKey("/ReservaSet", {
-            Id: sReservaId,
-          });
-        this.__setModel(null);
-        this.getView().setBusy(true);
-        oODataModel.read(sPath, {
-          //filters: [oFilter],
-          urlParameters: {
-            $expand: "ToItems",
-          },
-          success: function (oData) {
-            const reserva = oData;
-            let aux = reserva.BaseDate;
-            if (aux) {
-              reserva.BaseDate = aux.toISOString().slice(0, 10);
-            }
-            aux = reserva.ReqDate;
-            if (aux) {
-              reserva.ReqDate = aux.toISOString().slice(0, 10);
-            }
-            reserva.ToItems.results.forEach((item) => {
-              let aux = item.FechaNecesidad;
-              if (aux) {
-                item.FechaNecesidad = aux.toISOString().slice(0, 10);
+        const oDetailsStateModel =
+          this.getOwnerComponent().getModel("detailsStateModel");
+
+        if (
+          oDetailsStateModel.getProperty("/hasData") &&
+          oDetailsStateModel.getProperty("/reservaId") === sReservaId
+        ) {
+          // --- CASO 1: Hay estado guardado (estamos volviendo) ---
+          const oStateData = oDetailsStateModel.getProperty("/data");
+          const aSelectedPaths =
+            oDetailsStateModel.getProperty("/selectedPaths");
+
+          // Restauramos el modelo con los datos que tenía (incluyendo cantidades en "Retira")
+          this.getView().getModel("detalleReserva").setData(oStateData);
+
+          const oItemsTable = this.byId("materialsTable");
+          oItemsTable.attachEventOnce("updateFinished", () => {
+            aSelectedPaths.forEach((sPath) => {
+              const oItemToSelect = oItemsTable
+                .getItems()
+                .find(
+                  (oItem) =>
+                    oItem.getBindingContext("detalleReserva").getPath() ===
+                    sPath
+                );
+              if (oItemToSelect) {
+                oItemsTable.setSelectedItem(oItemToSelect, true);
               }
-              item.Clases = [];
-              item.Enhancement = 0;
             });
-            this.__setModel(reserva).then(() => {
-              this.__setItemsEnhancement();
-              this.__checkUTs();
-              this.getView().setBusy(false);
+          });
+          this.__cleanDetailsState();
+        } else {
+          // --- CASO 2: No hay estado guardado (primera visita o reserva diferente) ---
+          const oODataModel = this.getOwnerComponent().getModel();
+          oODataModel.early;
+          const sPath = this.getOwnerComponent()
+            .getModel()
+            .createKey("/ReservaSet", {
+              Id: sReservaId,
             });
-          }.bind(this),
-          error: function (oError) {
-            console.log("Error al traer datos con $expand: ", oError);
-            this.__setModel(null).then(() => {
-              this.getView().setBusy(false);
-            });
-          }.bind(this),
+          this.__setModel(null);
+          this.getView().setBusy(true);
+          oODataModel.read(sPath, {
+            //filters: [oFilter],
+            urlParameters: {
+              $expand: "ToItems",
+            },
+            success: function (oData) {
+              const reserva = oData;
+              let aux = reserva.BaseDate;
+              if (aux) {
+                reserva.BaseDate = aux.toISOString().slice(0, 10);
+              }
+              aux = reserva.ReqDate;
+              if (aux) {
+                reserva.ReqDate = aux.toISOString().slice(0, 10);
+              }
+              reserva.ToItems.results.forEach((item) => {
+                let aux = item.FechaNecesidad;
+                if (aux) {
+                  item.FechaNecesidad = aux.toISOString().slice(0, 10);
+                }
+                item.Clases = [];
+                item.Enhancement = 0;
+              });
+              this.__setModel(reserva).then(() => {
+                this.__setItemsEnhancement();
+                this.__checkUTs();
+                this.getView().setBusy(false);
+              });
+            }.bind(this),
+            error: function (oError) {
+              console.log("Error al traer datos con $expand: ", oError);
+              this.__setModel(null).then(() => {
+                this.getView().setBusy(false);
+              });
+            }.bind(this),
+          });
+        }
+      },
+      __cleanDetailsState: function () {
+        this.getOwnerComponent().getModel("detailsStateModel").setData({
+          hasData: false,
+          reservaId: null,
+          data: {},
+          selectedPaths: [],
         });
       },
 
@@ -151,11 +204,17 @@ sap.ui.define(
             reservaOData && reservaOData.Status && reservaOData.Status !== "C"
               ? "P"
               : "C",
-          MaterialDocuments: [],
-          MaterialDocumentSeleccionado: null,
-          Receptores: [{ Usnam: "Test", Nombre: "Tester" }],
-          Receptor: "",
-          FirmaReceptor: "",
+          Documentos: [
+            {
+              Numero: "00000001",
+              Año: "2025",
+              Dest: "Alguien",
+              Firmado: true,
+              Pdf: "JVBERi0xLjMNCiXi48/TDQolUlNUWFBERjMgUGFyYW1ldGVyczogI0RSU1RYaA0KMiAwIG9iag0KL1dpbkFuc2lFbmNvZGluZw0KZW5kb2JqDQozIDAgb2JqDQo8PA0KJURldnR5cGUgU0FQV0lOICAgRm9udCBDT1VSSUVSICBpdGFsaWMgTGFuZyBFUw0KL1R5cGUgL0ZvbnQNCi9TdWJ0eXBlIC9UeXBlMQ0KL0Jhc2VGb250IC9Db3VyaWVyLU9ibGlxdWUNCi9OYW1lIC9GMDAxDQovRW5jb2RpbmcgMiAwIFINCj4+DQplbmRvYmoNCjQgMCBvYmoNCjw8DQolRGV2dHlwZSBTQVBXSU4gICBGb250IENPVVJJRVIgIG5vcm1hbCBMYW5nIEVTDQovVHlwZSAvRm9udA0KL1N1YnR5cGUgL1R5cGUxDQovQmFzZUZvbnQgL0NvdXJpZXINCi9OYW1lIC9GMDAyDQovRW5jb2RpbmcgMiAwIFINCj4+DQplbmRvYmoNCjUgMCBvYmoNCjw8DQovTGVuZ3RoIDYgMCBSDQo+Pg0Kc3RyZWFtDQogL0YwMDEgMTIuMDAgVGYgMCBnIEJUIDE0LjQwIDU4Ni4yMCBUZCAwIFR3IDwzMDMwMzAzMTIwMzEzNTM3MzUzOTM4MjA0MzQxNEQ0OTUzNDEyMDQxNTU1MjRGNTI0MTIwNTg0QzIwNDgyMD5UaiBFVCAwIGcgQlQgMjM3LjYwIDU4Ni4yMCBUZCAwIFR3IDw0RTU1NDU1NjRGMjAyMDIwMjAyMDIwNDE0QzMwMzEyMDIwNUEzMDMyMkQ0RDUyMzAzMjQyMzQyMDIwMjA+VGogRVQgMCBnIEJUIDQ1My42MCA1ODYuMjAgVGQgMCBUdw0KIDwyMDIwMjAzMTIwMjAyMDIwNDMyRjU1PlRqIEVUIC9GMDAyIDEyLjAwIFRmIDAgZyBCVCAxNC40MCAxNTguMTUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCAxNTguMTUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUDQogNDYwLjgwIDE1OC4xNSBUZCAwIFR3IDwyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgMTQuNDAgMTM0LjE1IFRkIDAgVHcgPDQzNkM2MTczNjUyMDZENkY3NjY5NkQ2OTY1NkU3NDZGM0E+VGogRVQgMCBnIEJUIDE1Ni4xNSAxMzQuMTUgVGQgMCBUdyA8MzIzMDMxPlRqIEVUIDAgZyBCVCAxODQuNTAgMTM0LjE1IFRkIDAgVHcgPDUzNEQyMDcwNjE3MjYxMjA2MzY1NkU3NDcyNkYyMDYzNkY3Mzc0NjU+VGogRVQgMCBnIEJUDQogMzU0LjYwIDEzNC4xNSBUZCAwIFR3IDw0NTZENjk3MzZGNzIzQT5UaiBFVCAwIGcgQlQgNDExLjMwIDEzNC4xNSBUZCAwIFR3IDw0NTVGNTA1MDQxNTI0OTUzPlRqIEVUIDAgZyBCVCAxNC40MCAxMTAuMTUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCAxMTAuMTUgVGQgMCBUdw0KIDwyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgNDYwLjgwIDExMC4xNSBUZCAwIFR3IDwyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgMTQuNDAgOTguMTUgVGQgMCBUdyA8NTI2NTc0Njk3MjYxM0EyMDU0NjU3Mzc0NjU3Mj5UaiBFVCAwIGcgQlQgMTQuNDAgNzQuMTUgVGQgMCBUdyA8NDY2OTcyNkQ2MTNBPlRqIEVUIC9GMDAyIDEyLjAwIFRmDQogMCBnIEJUIDE0LjQwIDc4MS42NSBUZCAwIFR3IDw1NjIwNDEyMDRDMjA0NTIwMjAyMDQxMjA0MzIwNEYyMDREMjA1MDIwNDEyMEQxMjA0MTIwNEQyMDQ5MjA0NT5UaiBFVCAwIGcgQlQgMjM3LjYwIDc4MS42NSBUZCAwIFR3IDwyMDRFMjA1NDIwNEYyMDIwMjA0RDIwNDMyMENEMjA0MTJFMjAyMDIwPlRqIEVUIDAgZyBCVCAzODIuOTUgNzgxLjY1IFRkIDAgVHcgPDRFQkEyRT5UaiBFVCAwIGcgQlQgNDExLjMwIDc4MS42NSBUZCAwIFR3DQogPDM0MzkzMDMwMzEzNDMwMzczOTMxPlRqIEVUIDAgZyBCVCA0OTYuMzUgNzgxLjY1IFRkIDAgVHcgPDUwRTE2NzJFPlRqIEVUIDAgZyBCVCA1MjUuNjAgNzgxLjY1IFRkIDAgVHcgPDMxPlRqIEVUIDAgZyBCVCAxNC40MCA3NTcuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCA3NTcuNjUgVGQgMCBUdw0KIDwyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgNDYwLjgwIDc1Ny42NSBUZCAwIFR3IDwyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDE0LjQwIDczMy42NSBUZCAwIFR3IDw0NjY1NjM2ODYxMjA2MzZGNkU3NDYxNjI2OTZDNjk3QTYxNjM2OUYzNkUyRTIwM0E+VGogRVQgMCBnIEJUIDIxMi44NSA3MzMuNjUgVGQgMCBUdw0KIDwzMTMwMkUzMTMwMkUzMjMwMzIzNT5UaiBFVCAwIGcgQlQgMTQuNDAgNzIxLjY1IFRkIDAgVHcgPDQ2NjU2MzY4NjEyMDY0NjU2QzIwNjRFRDYxMjAyMDIwMjAyMDIwMjAyMDIwMjAzQT5UaiBFVCAwIGcgQlQgMjEyLjg1IDcyMS42NSBUZCAwIFR3IDwzMTMwMkUzMTMwMkUzMjMwMzIzNT5UaiBFVCAwIGcgQlQgMTQuNDAgNjg1LjY1IFRkIDAgVHcgPDQzNjU2RTc0NzI2RjIwMjAyMDIwMjAyMDIwMjAyMDIwMjAyMDNBPlRqIEVUIDAgZyBCVA0KIDE0LjQwIDY3My42NSBUZCAwIFR3IDw0NDY1NkU2RjZENjk2RTYxNjM2OUYzNkUyMDIwMjAyMDIwMjAzQT5UaiBFVCAwIGcgQlQgMTQuNDAgNjYxLjY1IFRkIDAgVHcgPDQ5NkQ3MDc1NzQ2MTYzNjlGMzZFMjAyMDIwMjAyMDIwMjAyMDNBPlRqIEVUIDAgZyBCVCAxNTYuMTUgNjYxLjY1IFRkIDAgVHcgPDRCMjA0MzY1NkU3NDcyNkYyMDY0NjUyMDYzNkY3Mzc0NjU+VGogRVQgMCBnIEJUIDE0LjQwIDY0OS42NSBUZCAwIFR3DQogPDRFQjAyMDY0NjUyMDcyNjU3MzY1NzI3NjYxMjAyMDIwMjAyMDNBPlRqIEVUIDAgZyBCVCAxNTYuMTUgNjQ5LjY1IFRkIDAgVHcgPDMxMzMzNjMyMzUzMj5UaiBFVCAwIGcgQlQgMTQuNDAgNjM3LjY1IFRkIDAgVHcgPDQ0NjU3Mzc0Njk2RTYxNzQ2MTcyNjk2RjIwNjQ2NTIwNkQ2NTcyNjM2MTZFNjNFRDYxM0EyMD5UaiBFVCAwIGcgQlQgMjA4LjgwIDYzNy42NSBUZCAwIFR3IDw1MjVBNDE1MDQxNTQ0MT5UaiBFVCAwIGcgQlQNCiAxNC40MCA2MjUuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCA2MjUuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDQ2MC44MCA2MjUuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEPlRqIEVUDQogMCBnIEJUIDE0LjQwIDYxMy42NSBUZCAwIFR3IDw1MDZGNzM+VGogRVQgMCBnIEJUIDUwLjQwIDYxMy42NSBUZCAwIFR3IDw0RDYxNzQ2NTcyNjk2MTZDMjA1NDY1Nzg3NDZGMjA2MjcyNjU3NjY1MjAyMDIwMjAyMDIwMjA0QzZGNzQ2NT5UaiBFVCAwIGcgQlQgMjczLjYwIDYxMy42NSBUZCAwIFR3IDwyMDIwMjAyMDIwNDE2QzZENjE2M0U5NkUyRjU1NjI2OTYzNjE2MzY5RjM2RTIwNDM2MTZFNzQ2OTY0NjE2ND5UaiBFVCAwIGcgQlQNCiA0OTYuODAgNjEzLjY1IFRkIDAgVHcgPDIwMjAyMDU1NEQ+VGogRVQNCmVuZHN0cmVhbQ0KZW5kb2JqDQo2IDAgb2JqDQozMjM3DQplbmRvYmoNCjcgMCBvYmoNCjw8DQovVHlwZSAvUGFnZQ0KL01lZGlhQm94DQpbMCAwIDU5NSA4NDJdDQovUGFyZW50IDEgMCBSDQovUmVzb3VyY2VzDQo8PA0KL1Byb2NTZXQNClsvUERGIC9UZXh0XQ0KL0ZvbnQNCjw8DQovRjAwMSAzIDAgUg0KL0YwMDIgNCAwIFINCj4+DQovWE9iamVjdA0KPDwNCj4+DQo+Pg0KL0NvbnRlbnRzIDUgMCBSDQo+Pg0KZW5kb2JqDQo4IDAgb2JqDQo8PA0KL0F1dGhvciAoRV9QUEFSSVMgKQ0KL0NyZWF0aW9uRGF0ZSAoRDoyMDI1MTAxNDE2MDIxMykNCi9DcmVhdG9yIChGb3JtIFpfVkFMRV9BQ09NUCBFUykNCi9Qcm9kdWNlciAoU0FQIE5ldFdlYXZlciA3NTcgKQ0KJVNBUGluZm9TdGFydCBUT0FfREFSQQ0KJUZVTkNUSU9OPSggICAgKQ0KJU1BTkRBTlQ9KCAgICkNCiVERUxfREFURT0oICAgICAgICApDQolU0FQX09CSkVDVD0oICAgICAgICAgICkNCiVBUl9PQkpFQ1Q9KCAgICAgICAgICApDQolT0JKRUNUX0lEPSggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiVGT1JNX0lEPSggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKQ0KJUZPUk1BUkNISVY9KCAgKQ0KJVJFU0VSVkU9KCAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiVOT1RJWj0oICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiUtKCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApDQolLSggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKQ0KJS0oICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiVTQVBpbmZvRW5kIFRPQV9EQVJBDQo+Pg0KZW5kb2JqDQoxIDAgb2JqDQo8PA0KL1R5cGUgL1BhZ2VzDQovS2lkcw0KWyA3IDAgUg0KXQ0KL0NvdW50IDENCj4+DQplbmRvYmoNCjkgMCBvYmoNCjw8DQovVHlwZSAvQ2F0YWxvZw0KL1BhZ2VzIDEgMCBSDQovUGFnZU1vZGUgL1VzZU5vbmUNCj4+DQplbmRvYmoNCnhyZWYNCjAgMTANCjAwMDAwMDAwMDAgNjU1MzUgZg0KMDAwMDAwNDY3NiAwMDAwMCBuDQowMDAwMDAwMDQ4IDAwMDAwIG4NCjAwMDAwMDAwODMgMDAwMDAgbg0KMDAwMDAwMDI0NCAwMDAwMCBuDQowMDAwMDAwMzk3IDAwMDAwIG4NCjAwMDAwMDM2OTUgMDAwMDAgbg0KMDAwMDAwMzcxOCAwMDAwMCBuDQowMDAwMDAzOTE3IDAwMDAwIG4NCjAwMDAwMDQ3NDQgMDAwMDAgbg0KdHJhaWxlcg0KPDwNCi9TaXplIDEwDQovUm9vdCA5IDAgUg0KL0luZm8gOCAwIFINCj4+DQpzdGFydHhyZWYNCjQ4MTkNCiUlRU9GDQo=",
+            },
+          ],
+          DocumentoSeleccionado: null,
+          Firma: "",
           Messages: [],
           SalidaMat: {
             Fecha: new Date().toISOString().slice(0, 10),
@@ -275,148 +334,6 @@ sap.ui.define(
         aNewMessag = aNewMessag.concat(aMessages);
         oDetalleModel.setProperty("/Messages", aNewMessag);
       },
-      onReceptoresValueHelp: function () {
-        const oView = this.getView();
-        if (!this.__receptoresDialog) {
-          this.__receptoresDialog = Fragment.load({
-            id: oView.getId(),
-            name: "salidademateriales.view.fragments.details.dialogs.ReceptoresSelectDialog",
-            controller: this,
-          }).then(function (oDialog) {
-            oView.addDependent(oDialog);
-            return oDialog;
-          });
-        }
-        this.__receptoresDialog.then(function (oDialog) {
-          oDialog.open();
-        });
-      },
-      // Función para manejar la búsqueda dentro del diálogo de Select Receptores
-      onReceptoresValueHelpSearch: function (oEvent) {
-        const sValue = oEvent.getParameter("value");
-        const oFilter = new Filter("Nombre", FilterOperator.Contains, sValue);
-        const oBinding = oEvent.getSource().getBinding("items");
-        oBinding.filter([oFilter]);
-      },
-      // Función para manejar el cierre del diálogo de Select Receptores
-      onReceptoresValueHelpClose: function (oEvent) {
-        const oSelectedItem = oEvent.getParameter("selectedItem");
-        oEvent.getSource().getBinding("items").filter([]);
-        if (oSelectedItem) {
-          const sNombreReceptor = oSelectedItem.getTitle();
-          const oInputR = this.byId("input-nombreReceptor");
-          const oInputD = Fragment.byId(
-            "confirmarSalidaMatDialog",
-            "input-nombreDestinatario"
-          );
-          oInputR.setValue(sNombreReceptor);
-          oInputD.setValue(sNombreReceptor);
-          this.getView()
-            .getModel("detalleReserva")
-            .setProperty("/Receptor", sNombreReceptor);
-          this.getView()
-            .getModel("detalleReserva")
-            .setProperty("/SalidaMat/Destinatario", sNombreReceptor);
-        }
-      },
-      onAfterRenderingCanvas() {
-        if (!this.__signaturePad) {
-          const canvas = document.getElementById("signatureCanvas");
-          if (!canvas) return console.log("Couldn't find canvas");
-          this.__signaturePad = new window.SignaturePad(canvas);
-        }
-      },
-      async onOpenSignatureCanvas() {
-        if (!this.__signatureDialog) {
-          this.__signatureDialog = await Fragment.load({
-            name: "salidademateriales.view.fragments.details.dialogs.SignDialog",
-            controller: this,
-            id: "signatureDialog",
-          }).then((oSignaturetDialog) => {
-            this.getView().addDependent(oSignaturetDialog);
-            return oSignaturetDialog;
-          });
-          const deviceModel = this.getView().getModel("device");
-          const { width } = deviceModel.getProperty("/resize");
-          const canvasWidth = width > 600 ? 500 : 300;
-          const canvasHeight = width > 600 ? 300 : 180;
-          Fragment.byId("signatureDialog", "signatureCanvas")?.setContent(
-            `<div><canvas id='signatureCanvas' width='${canvasWidth}' height='${canvasHeight}'></canvas><div id='canvasLine' style='width: ${
-              canvasWidth - 30
-            }px; height: 1px; position: relative;left: 15px; bottom: 20px;background-color: black;'></div></div>`
-          );
-        }
-        this.__signatureDialog.open();
-      },
-      changeCanvasSize(oEvent) {
-        const deviceModel = this.getView().getModel("device");
-        const { width } = deviceModel.getProperty("/resize");
-        const canvasWidth = width > 600 ? 500 : 300;
-        const canvasHeight = width > 600 ? 300 : 180;
-        const canvas = document.getElementById("signatureCanvas");
-        const line = document.getElementById("canvasLine");
-        canvas.style.height = canvasHeight + "px";
-        canvas.style.width = canvasWidth + "px";
-        canvas.height = canvasHeight;
-        canvas.width = canvasWidth;
-        line.style.width = canvasWidth - 30 + "px";
-      },
-      onCloseSignatureDialog() {
-        this.__signaturePad.clear();
-        this.__signatureDialog.close();
-      },
-      onClearSignature() {
-        this.__signaturePad.clear();
-      },
-      onSaveSignature() {
-        const oDetalleModel = this.getView().getModel("detalleReserva");
-        const base64 = this.__signaturePad.toDataURL();
-        oDetalleModel.setProperty("/FirmaReceptor", base64);
-        const oMatDocSelec = (oDetalleModel.getProperty("/MaterialDocumentSeleccionado"));
-        if (oMatDocSelec && !oMatDocSelec.Firmado){
-          this.__addSignatureToDocument();
-        }
-        this.__signaturePad.clear();
-        this.__signatureDialog.close();
-        // this.downloadBase64File(base64);
-      },
-      downloadBase64File(base64Data, filename) {
-        // Split off metadata (e.g., data:image/png;base64,...)
-        const arr = base64Data.split(",");
-        const mime = arr[0].match(/:(.*?);/)[1];
-        const bstr = atob(arr[1]);
-        const len = bstr.length;
-        const u8arr = new Uint8Array(len);
-
-        for (let i = 0; i < len; i++) {
-          u8arr[i] = bstr.charCodeAt(i);
-        }
-
-        // Create Blob from binary data
-        const blob = new Blob([u8arr], { type: mime });
-
-        // Trigger download
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      },
-      async onChangeFile(oEvent, tipoSujeto) {
-        const file = await this.toBase64(oEvent.mParameters.files[0]);
-        const oDetalleModel = this.getView().getModel("detalleReserva");
-        oDetalleModel.setProperty(`Firmas/${tipoSujeto}/firma`, file);
-        oDetalleModel.setProperty(`Firmas/${tipoSujeto}/nombre`, "default");
-      },
-      toBase64(file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = reject;
-        });
-      },
       __processErrorResponse(oError) {
         let sErrorMessage =
           "Ocurrió un error inesperado al procesar la solicitud.";
@@ -436,10 +353,6 @@ sap.ui.define(
                 sErrorMessage = oError.responseText;
               }
             } catch (e) {
-              console.error(
-                "No se pudo parsear el responseText del error:",
-                oError.responseText
-              );
               sErrorMessage = oError.responseText;
             }
           } else if (oError.message) {
@@ -799,29 +712,35 @@ sap.ui.define(
         }
 
         const oDetalleReserva = this.getView().getModel("detalleReserva");
-        const sReceptor = oDetalleReserva.getProperty("/Receptor");
 
         const oSalidaMat = oDetalleReserva.getProperty("/SalidaMat");
         oSalidaMat.Materiales = aItems;
-        oSalidaMat.Destinatario = sReceptor;
         oDetalleReserva.setProperty("/SalidaMat", oSalidaMat);
 
-        if (!this.__confirmarSalidaMatDialog) {
-          this.__confirmarSalidaMatDialog = await Fragment.load({
-            name: "salidademateriales.view.fragments.details.dialogs.ConfirmarSalidaMatDialog",
-            controller: this,
-            id: "confirmarSalidaMatDialog",
-          }).then((oConfirmarSalidaDialog) => {
-            this.getView().addDependent(oConfirmarSalidaDialog);
-            return oConfirmarSalidaDialog;
-          });
-        }
+        const oDetailsStateModel =
+          this.getOwnerComponent().getModel("detailsStateModel");
+        const oCurrentData = this.getView()
+          .getModel("detalleReserva")
+          .getData();
 
-        this.__confirmarSalidaMatDialog.bindElement({
-          path: "/SalidaMat",
-          model: "detalleReserva",
+        // Guardamos los "paths" de los items seleccionados, que es una forma robusta de re-seleccionarlos
+        const aSelectedPaths = oItemsTable.getSelectedItems().map((oItem) => {
+          return oItem.getBindingContext("detalleReserva").getPath();
         });
-        this.__confirmarSalidaMatDialog.open();
+
+        oDetailsStateModel.setData({
+          hasData: true,
+          reservaId: oCurrentData.Reserva.Id,
+          data: oCurrentData,
+          selectedPaths: aSelectedPaths,
+        });
+
+        const oSalidaMatModel =
+          this.getOwnerComponent().getModel("salidaMatModel");
+        oSalidaMatModel.setData(oSalidaMat);
+        this.getOwnerComponent().getRouter().navTo("RoutePostGoodsIssue", {
+          reservaId: oSalidaMat.Reserva,
+        });
       },
       onLimpiarTabla: function () {
         const oItemsTable = this.byId("materialsTable");
@@ -845,169 +764,201 @@ sap.ui.define(
           Materiales: [],
         });
       },
-      onPostSalidaMat: async function (oEvent) {
-        const oView = this.getView();
-        const oDetalleReserva = oView.getModel("detalleReserva");
-        const oSalidaMat = oDetalleReserva.getProperty("/SalidaMat");
-
-        if (!this.__validateFieldsSalida(oSalidaMat)) {
-          return;
+      onSearchDocument: function(oEvent){
+        const sQuery = oEvent.getParameter("query");
+        const aFilters = [];
+        if (sQuery && sQuery.length > 0) {
+          const oFilter = new Filter("Numero", FilterOperator.Contains, sQuery);
+          aFilters.push(oFilter);
         }
 
-        const oDialog = this.__confirmarSalidaMatDialog;
+        const oTable = this.byId("documentsTable");
+        const oBinding = oTable.getBinding("items");
+        oBinding.filter(aFilters);
+      },
+      onFirmarDocumento: async function (oEvent) {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const oContext = oEvent.getSource().getBindingContext("detalleReserva");
+        const oDocument = oContext.getObject();
 
-        oDialog.attachEventOnce("afterClose", async () => {
-          oView.setBusy(true);
+        if (!oDocument.Pdf || oDocument.Pdf === "") {
           try {
-            const oODataModel = this.getOwnerComponent().getModel();
-            //Datos más recientes (luego del close)
-            const oDetalleActual = oView.getModel("detalleReserva");
-            const oSalidaMatActual = oDetalleActual.getProperty("/SalidaMat");
-
-            const oPostPayload = {
-              Fecha: oSalidaMatActual.Fecha,
-              FechaContabilizacion: oSalidaMatActual.FechaContabilizacion,
-              Texto: oSalidaMatActual.Destinatario,
-              ToItems: oSalidaMatActual.Materiales.map((oMaterial) => ({
-                ReservaId: oMaterial.ReservaId,
-                ReservaPos: oMaterial.Pos,
-                Cantidad: formatter.numberDecimals(oMaterial.Retira),
-                Texto: "",
-                Customer: oSalidaMatActual.Destinatario,
-              })),
-            };
-
-            const sPath = "/MDHeaderSet";
-            const { oCreatedEntity, oResponse } =
-              await this.__postSalidaMatAsync(oODataModel, sPath, oPostPayload);
-            this.__processSuccessSalida(oCreatedEntity);
-            MessageToast.show("Salida de materiales ejecutada");
+            const sPdfMD = this.__getValeAcomp(oDocument.Numero, oDocument.Año);
+            oDocument.Pdf = sPdfMD || "";
           } catch (oError) {
             const sErrorMessage = this.__processErrorResponse(oError);
-            const oDetalleModel = this.getView().getModel("detalleReserva");
             const aCurrentMessages =
               oDetalleModel.getProperty("/Messages") || [];
             const aNewMessages = [...aCurrentMessages];
             const oMessage = {
               type: "Error",
-              title: "Salida de Materiales",
-              subtitle: "Hubo un error al procesar la Salida de Materiales",
+              title: "Vale de Acompañamiento",
+              subtitle:
+                "Ocurrió un error al intentar buscar el vale de acompañamiento del documento",
               active: true,
               description: sErrorMessage,
             };
             aNewMessages.push(oMessage);
             oDetalleModel.setProperty("/Messages", aNewMessages);
-            MessageToast.show("Hubo un error con la salida de materiales");
-          } finally {
-            oView.setBusy(false);
+            MessageToast.show(
+              "Ocurrió un error al buscar el vale de acompañamiento"
+            );
+            return;
           }
-        }),
-          this.__confirmarSalidaMatDialog.close();
+        }
+        oDetalleModel.setProperty("/DocumentoSeleccionado", oDocument);
+        await this.__signatureHandler.onOpenSignatureCanvas();
       },
-      __postSalidaMatAsync: function (oODataModel, sPath, oData) {
-        return new Promise((resolve, reject) => {
-          oODataModel.create(sPath, oData, {
-            success: (oCreatedEntity, oResponse) =>
-              resolve({ oCreatedEntity, oResponse }),
-            error: (oError) => reject(oError),
+      __getValeAcomp(sNumber, sYear) {
+        const oODataModel = this.getOwnerComponent().getModel();
+        const oDetalleModel = this.getView().getModel();
+
+        const sKey = oODataModel.createKey("PrintedDocumentSet", {
+          DocNumber: sNumber,
+          DocType: "M",
+          DocYear: sYear,
+        });
+        const sPath = "/" + sKey;
+        oODataModel.read(sPath, {
+          success: function (oData) {
+            return oData.xString;
+          },
+          error: function (oError) {
+            console.error("Error en la llamada OData:", oError);
+            const sErrorMessage = this.__processErrorResponse(oError);
+            const aCurrentMessages =
+              oDetalleModel.getProperty("/Messages") || [];
+            const aNewMessages = [...aCurrentMessages];
+            const oMessage = {
+              type: "Error",
+              title: "GET Servicio OData",
+              subtitle:
+                "Ocurrió un error al buscar el vale de acompañamiento del documento generado",
+              active: true,
+              description: sErrorMessage,
+            };
+            aNewMessages.push(oMessage);
+            oDetalleModel.setProperty("/Messages", aNewMessages);
+            MessageToast.show(
+              "Ocurrió un error al buscar el vale de acompañamiento"
+            );
+            return null;
+          },
+        });
+      },
+      __getValeAcompFirmado(sNumber, sYear) {},
+      onShowPDF: async function (oEvent) {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const oContext = oEvent.getSource().getBindingContext("detalleReserva");
+        const oDocument = oContext.getObject();
+
+        if (oDocument.Pdf && oDocument.Pdf != "") {
+          this.__openPDF(oDocument.Pdf,oDocument.Numero);
+        } else {
+          if (oDocument.Firmado) {
+            try {
+              const sPdfMD = this.__getValeAcompFirmado(
+                oDocument.Numero,
+                oDocument.Año
+              );
+              oDocument.Pdf = sPdfMD || "";
+            } catch (oError) {
+              const sErrorMessage = this.__processErrorResponse(oError);
+              const aCurrentMessages =
+                oDetalleModel.getProperty("/Messages") || [];
+              const aNewMessages = [...aCurrentMessages];
+              const oMessage = {
+                type: "Error",
+                title: "Vale de Acompañamiento",
+                subtitle:
+                  "Ocurrió un error al intentar buscar el vale de acompañamiento del documento",
+                active: true,
+                description: sErrorMessage,
+              };
+              aNewMessages.push(oMessage);
+              oDetalleModel.setProperty("/Messages", aNewMessages);
+              MessageToast.show(
+                "Ocurrió un error al buscar el vale de acompañamiento"
+              );
+              return;
+            }
+          } else {
+            try {
+              const sPdfMD = this.__getValeAcomp(
+                oDocument.Numero,
+                oDocument.Año
+              );
+              oDocument.Pdf = sPdfMD || "";
+            } catch (oError) {
+              const sErrorMessage = this.__processErrorResponse(oError);
+              const aCurrentMessages =
+                oDetalleModel.getProperty("/Messages") || [];
+              const aNewMessages = [...aCurrentMessages];
+              const oMessage = {
+                type: "Error",
+                title: "Vale de Acompañamiento",
+                subtitle:
+                  "Ocurrió un error al intentar buscar el vale de acompañamiento del documento",
+                active: true,
+                description: sErrorMessage,
+              };
+              aNewMessages.push(oMessage);
+              oDetalleModel.setProperty("/Messages", aNewMessages);
+              MessageToast.show(
+                "Ocurrió un error al buscar el vale de acompañamiento"
+              );
+              return;
+            }
+          }
+          const sPath = oContext.getPath();
+          oDetalleModel.setProperty(sPath, oDocument);
+          this.__openPDF(oDocument.Pdf,oDocument.Numero);
+        }
+      },
+      __openPDF: async function (sPDFBase64,sNumber) {
+        const oView = this.getView();
+
+        let sCleanBase64 = sPDFBase64;
+        if (sPDFBase64.startsWith("data:application/pdf;base64,")) {
+          sCleanBase64 = sPDFBase64.substring(
+            "data:application/pdf;base64,".length
+          );
+        }
+
+        if (!this._pPDFDialog) {
+          this._pPDFDialog = Fragment.load({
+            id: oView.getId(),
+            name: "salidademateriales.view.fragments.dialogs.PDFViewerDialog",
+            controller: this,
+          }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            return oDialog;
           });
-        });
-      },
-      __validateFieldsSalida: function (oSalidaMat) {
-        if (
-          !oSalidaMat.FechaContabilizacion ||
-          oSalidaMat.FechaContabilizacion === ""
-        ) {
-          MessageToast.show("Debe establecer una fecha de contabilización");
-          return false;
         }
-        if (!oSalidaMat.Destinatario || oSalidaMat.Destinatario === "") {
-          MessageToast.show("Debe especificar un destinatario");
-          return false;
+
+        const decodedPdfContent = atob(sCleanBase64); // Usamos la cadena limpia
+        const byteArray = new Uint8Array(decodedPdfContent.length);
+        for (var i = 0; i < decodedPdfContent.length; i++) {
+          byteArray[i] = decodedPdfContent.charCodeAt(i);
         }
-        if (!oSalidaMat.Materiales || oSalidaMat.Materiales.length === 0) {
-          MessageToast.show(
-            "Error al obtener los materiales para el post. Cierre y abra el dialog nuevamente"
+        const blob = new Blob([byteArray.buffer], { type: "application/pdf" });
+        const pdfurl = URL.createObjectURL(blob);
+
+        jQuery.sap.addUrlWhitelist("blob");
+        this._pdfViewer.downloadPDF = function () {
+          File.save(
+            byteArray.buffer,
+            `Vale_Acompañamiento-${sNumber}`,
+            "pdf",
+            "application/pdf",
+            "UTF-8"
           );
-          return false;
-        }
-        return true;
-      },
-      __processSuccessSalida: function (oCreatedEntity) {
-        const oDetalleModel = this.getView().getModel("detalleReserva");
-        const aPostedItems =
-          (oCreatedEntity.ToItems && oCreatedEntity.ToItems.results) || [];
-        this.__updateItemsPosted(aPostedItems);
-        const aCurrentMessages = oDetalleModel.getProperty("/Messages") || [];
-        const aNewMessages = [...aCurrentMessages];
-        const oMessage = {
-          type: "Success",
-          title: "Salida de Materiales",
-          subtitle: "Salida de Materiales ejecutada con éxito",
-          active: true,
-          description:
-            "Se ha generado el documento contable " +
-            oCreatedEntity.Numero +
-            "con fecha de contabilizacion " +
-            oCreatedEntity.FechaContabilizacion,
         };
-        aNewMessages.push(oMessage);
-        oDetalleModel.setProperty("/Messages", aNewMessages);
 
-        this.onOpenSignatureCanvas();
-      },
-      __updateItemsPosted: function (aPostedItems) {
-        const oDetalleModel = this.getView().getModel("detalleReserva");
-        const aCurrentItems = oDetalleModel.getProperty("/Items");
-        const aNewItems = [...aCurrentItems];
-        const aCurrentMaterialDocuments =
-          oDetalleModel.getProperty("/MaterialDocuments") || [];
-        const aNewMaterialDocuments = [...aCurrentMaterialDocuments];
-        aPostedItems.forEach((oPostedItem) => {
-          const oItem = aNewItems.find(
-            (oItem) => parseInt(oItem.Pos) === parseInt(oPostedItem.ReservaPos)
-          );
-          if (oItem) {
-            oItem.CantPendiente = formatter.numberDecimals(
-              String(
-                parseFloat(oItem.CantPendiente) -
-                  parseFloat(oPostedItem.Cantidad)
-              )
-            );
-            oItem.CantRetirada = formatter.numberDecimals(
-              String(
-                parseFloat(oItem.CantRetirada) +
-                  parseFloat(oPostedItem.Cantidad)
-              )
-            );
-          }
-          const bExists = aNewMaterialDocuments.some(
-            (doc) =>
-              parseInt(doc.Number) === parseInt(oPostedItem.MatDocNum) &&
-              parseInt(doc.Year) === parseInt(new Date.getFullYear().toString())
-          );
-
-          if (!bExists) {
-            aNewMaterialDocuments.push({
-              Number: oPostedItem.MatDocNum,
-              Year: new Date().getFullYear().toString(),
-              Dest: oPostedItem.Customer,
-              Firmado: false,
-              Pdf:""
-            });
-
-          }
-        });
-        oDetalleModel.setProperty("/Items", aNewItems);
-        oDetalleModel.setProperty("/MaterialDocuments", aNewMaterialDocuments);
-        oDetalleModel.setProperty("/MaterialDocumentSeleccionado", aNewMaterialDocuments[aNewMaterialDocuments.length-1])
-
-        this.__updateFilteredItems("P");
-        this.onLimpiarTabla();
-      },
-      onCancelarSalidaMat: function () {
-        this.__cleanSalidaMatModel();
-        this.__confirmarSalidaMatDialog.close();
+        this._pdfViewer.setSource(pdfurl);
+        this._pdfViewer.setTitle("Visualizador de Documentos");
+        this._pdfViewer.open();
+        
       },
     });
   }
