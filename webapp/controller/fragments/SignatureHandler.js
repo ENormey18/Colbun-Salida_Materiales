@@ -1,8 +1,6 @@
-// En webapp/controller/fragments/SignatureHandler.js
-
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/core/Fragment", "../../libs/pdf-lib.min" ],
-  function (Controller, Fragment, PDFLib) {
+  ["sap/ui/core/mvc/Controller", "sap/ui/core/Fragment"],
+  function (Controller, Fragment) {
     "use strict";
 
     return Controller.extend(
@@ -109,7 +107,7 @@ sap.ui.define(
             );
             if (oMatDocSelec.Pdf != null) {
               oMatDocSelec.Firmado = true;
-              const oMatDocSelec = oTargetModel.setProperty(
+              oTargetModel.setProperty(
                 "/DocumentoSeleccionado",
                 oMatDocSelec
               );
@@ -143,15 +141,15 @@ sap.ui.define(
             imgBase64Clean = sFirmaBase64.split("base64,")[1];
           }
           const isPng =
-            sImgBase64.startsWith("data:image/png") ||
+            sPdfBase64.startsWith("data:image/png") ||
             imgBase64Clean.startsWith("iVBOR");
-
-          const { PDFDocument } = PDFLib;
 
           try {
             const pdfBytes = Uint8Array.from(atob(sPdfBase64), (c) =>
               c.charCodeAt(0)
             );
+
+            const { PDFDocument } = window.PDFLib;
             const pdfDoc = await PDFDocument.load(pdfBytes);
 
             let imageEmbed;
@@ -173,8 +171,6 @@ sap.ui.define(
             });
 
             const modifiedPdfBase64 = await pdfDoc.saveAsBase64();
-            const dataUrl = "data:application/pdf;base64," + modifiedPdfBase64;
-            window.open(dataUrl);
             return modifiedPdfBase64;
           } catch (err) {
             console.error("Error al modificar pdf: ", err);

@@ -185,7 +185,7 @@ sap.ui.define(
             sPath,
             oPostPayload
           );
-          MessageToast.show("Salida de materiales ejecutada");
+          MessageToast.show("Salida de materiales ejecutada exitosamente");
           await this.__processSuccessSalida(oCreatedEntity);
         } catch (oError) {
           MessageToast.show("Hubo un error con la salida de materiales");
@@ -215,7 +215,6 @@ sap.ui.define(
         });
       },
       __validateFieldsSalida: function (oSalidaMat) {
-        console.log(oSalidaMat);
         if (
           !oSalidaMat.FechaContabilizacion ||
           oSalidaMat.FechaContabilizacion === ""
@@ -247,20 +246,21 @@ sap.ui.define(
           description:
             "Se ha generado el documento contable " +
             oCreatedEntity.Numero +
-            "con fecha de contabilizacion " +
+            " con fecha de contabilizacion " +
             oCreatedEntity.FechaContabilizacion,
         };
         aNewMessages.push(oMessage);
         oSalidaModel.setProperty("/Messages", aNewMessages);
         oSalidaModel.setProperty("/Ejecutada", true);
 
-        const sPdfMD = this.__getValeAcomp(
+        const sAñoDoc = oCreatedEntity.FechaContabilizacion.slice(0, 4);
+        const sPdfMD = await this.__getValeAcomp(
           oCreatedEntity.Numero,
-          oCreatedEntity.Año
+          sAñoDoc
         );
         const oValeAcomp = {
           Numero: oCreatedEntity.Numero,
-          Año: oCreatedEntity.Año,
+          Año: sAñoDoc,
           Dest: oCreatedEntity.Texto,
           Firmado: false,
           Pdf: sPdfMD || "",
@@ -321,40 +321,42 @@ sap.ui.define(
         }
         return sErrorMessage;
       },
-      __getValeAcomp(sNumber, sYear) {
+      __getValeAcomp: async function (sNumber, sYear) {
         const oODataModel = this.getOwnerComponent().getModel();
 
-        const sKey = oODataModel.createKey("PrintedDocumentSet", {
-          DocNumber: sNumber,
-          DocType: "M",
-          DocYear: sYear,
-        });
-        const sPath = "/" + sKey;
-        oODataModel.read(sPath, {
-          success: function (oData) {
-            return oData.xString;
-          },
-          error: function (oError) {
-            console.error("Error en la llamada OData:", oError);
-            const sErrorMessage = this.__processErrorResponse(oError);
-            const aCurrentMessages =
-              oSalidaModel.getProperty("/Messages") || [];
-            const aNewMessages = [...aCurrentMessages];
-            const oMessage = {
-              type: "Error",
-              title: "GET Servicio OData",
-              subtitle:
-                "Ocurrió un error al buscar el vale de acompañamiento del documento generado",
-              active: true,
-              description: sErrorMessage,
-            };
-            aNewMessages.push(oMessage);
-            oSalidaModel.setProperty("/Messages", aNewMessages);
-            MessageToast.show(
-              "Ocurrió un error al buscar el vale de acompañamiento"
-            );
-            return null;
-          },
+        return new Promise((resolve, reject) => {
+          const sKey = oODataModel.createKey("PrintedDocumentSet", {
+            DocNumber: sNumber,
+            DocType: "M",
+            DocYear: sYear,
+          });
+          const sPath = "/" + sKey;
+          oODataModel.read(sPath, {
+            success: function (oData) {
+              resolve(oData.xString);
+            },
+            error: function (oError) {
+              console.error("Error en la llamada OData:", oError);
+              const sErrorMessage = this.__processErrorResponse(oError);
+              const aCurrentMessages =
+                oSalidaModel.getProperty("/Messages") || [];
+              const aNewMessages = [...aCurrentMessages];
+              const oMessage = {
+                type: "Error",
+                title: "GET Servicio OData",
+                subtitle:
+                  "Ocurrió un error al buscar el vale de acompañamiento del documento generado",
+                active: true,
+                description: sErrorMessage,
+              };
+              aNewMessages.push(oMessage);
+              oSalidaModel.setProperty("/Messages", aNewMessages);
+              MessageToast.show(
+                "Ocurrió un error al buscar el vale de acompañamiento"
+              );
+              reject(oError);
+            },
+          });
         });
       },
       __initMessagepopover() {

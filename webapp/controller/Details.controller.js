@@ -95,9 +95,8 @@ sap.ui.define(
           this.__setModel(null);
           this.getView().setBusy(true);
           oODataModel.read(sPath, {
-            //filters: [oFilter],
             urlParameters: {
-              $expand: "ToItems",
+              $expand: "ToItems,ToMatDoc",
             },
             success: function (oData) {
               const reserva = oData;
@@ -204,15 +203,19 @@ sap.ui.define(
             reservaOData && reservaOData.Status && reservaOData.Status !== "C"
               ? "P"
               : "C",
-          Documentos: [
-            {
+          Documentos: reservaOData
+            ? reservaOData.ToMatDoc.results.map((oDocumento) => {
+                oDocumento.Firmado = false;
+                oDocumento.Pdf = "";
+                return oDocumento;
+              })
+            : [{
               Numero: "00000001",
               Año: "2025",
               Dest: "Alguien",
-              Firmado: true,
+              Firmado: false,
               Pdf: "JVBERi0xLjMNCiXi48/TDQolUlNUWFBERjMgUGFyYW1ldGVyczogI0RSU1RYaA0KMiAwIG9iag0KL1dpbkFuc2lFbmNvZGluZw0KZW5kb2JqDQozIDAgb2JqDQo8PA0KJURldnR5cGUgU0FQV0lOICAgRm9udCBDT1VSSUVSICBpdGFsaWMgTGFuZyBFUw0KL1R5cGUgL0ZvbnQNCi9TdWJ0eXBlIC9UeXBlMQ0KL0Jhc2VGb250IC9Db3VyaWVyLU9ibGlxdWUNCi9OYW1lIC9GMDAxDQovRW5jb2RpbmcgMiAwIFINCj4+DQplbmRvYmoNCjQgMCBvYmoNCjw8DQolRGV2dHlwZSBTQVBXSU4gICBGb250IENPVVJJRVIgIG5vcm1hbCBMYW5nIEVTDQovVHlwZSAvRm9udA0KL1N1YnR5cGUgL1R5cGUxDQovQmFzZUZvbnQgL0NvdXJpZXINCi9OYW1lIC9GMDAyDQovRW5jb2RpbmcgMiAwIFINCj4+DQplbmRvYmoNCjUgMCBvYmoNCjw8DQovTGVuZ3RoIDYgMCBSDQo+Pg0Kc3RyZWFtDQogL0YwMDEgMTIuMDAgVGYgMCBnIEJUIDE0LjQwIDU4Ni4yMCBUZCAwIFR3IDwzMDMwMzAzMTIwMzEzNTM3MzUzOTM4MjA0MzQxNEQ0OTUzNDEyMDQxNTU1MjRGNTI0MTIwNTg0QzIwNDgyMD5UaiBFVCAwIGcgQlQgMjM3LjYwIDU4Ni4yMCBUZCAwIFR3IDw0RTU1NDU1NjRGMjAyMDIwMjAyMDIwNDE0QzMwMzEyMDIwNUEzMDMyMkQ0RDUyMzAzMjQyMzQyMDIwMjA+VGogRVQgMCBnIEJUIDQ1My42MCA1ODYuMjAgVGQgMCBUdw0KIDwyMDIwMjAzMTIwMjAyMDIwNDMyRjU1PlRqIEVUIC9GMDAyIDEyLjAwIFRmIDAgZyBCVCAxNC40MCAxNTguMTUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCAxNTguMTUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUDQogNDYwLjgwIDE1OC4xNSBUZCAwIFR3IDwyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgMTQuNDAgMTM0LjE1IFRkIDAgVHcgPDQzNkM2MTczNjUyMDZENkY3NjY5NkQ2OTY1NkU3NDZGM0E+VGogRVQgMCBnIEJUIDE1Ni4xNSAxMzQuMTUgVGQgMCBUdyA8MzIzMDMxPlRqIEVUIDAgZyBCVCAxODQuNTAgMTM0LjE1IFRkIDAgVHcgPDUzNEQyMDcwNjE3MjYxMjA2MzY1NkU3NDcyNkYyMDYzNkY3Mzc0NjU+VGogRVQgMCBnIEJUDQogMzU0LjYwIDEzNC4xNSBUZCAwIFR3IDw0NTZENjk3MzZGNzIzQT5UaiBFVCAwIGcgQlQgNDExLjMwIDEzNC4xNSBUZCAwIFR3IDw0NTVGNTA1MDQxNTI0OTUzPlRqIEVUIDAgZyBCVCAxNC40MCAxMTAuMTUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCAxMTAuMTUgVGQgMCBUdw0KIDwyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgNDYwLjgwIDExMC4xNSBUZCAwIFR3IDwyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgMTQuNDAgOTguMTUgVGQgMCBUdyA8NTI2NTc0Njk3MjYxM0EyMDU0NjU3Mzc0NjU3Mj5UaiBFVCAwIGcgQlQgMTQuNDAgNzQuMTUgVGQgMCBUdyA8NDY2OTcyNkQ2MTNBPlRqIEVUIC9GMDAyIDEyLjAwIFRmDQogMCBnIEJUIDE0LjQwIDc4MS42NSBUZCAwIFR3IDw1NjIwNDEyMDRDMjA0NTIwMjAyMDQxMjA0MzIwNEYyMDREMjA1MDIwNDEyMEQxMjA0MTIwNEQyMDQ5MjA0NT5UaiBFVCAwIGcgQlQgMjM3LjYwIDc4MS42NSBUZCAwIFR3IDwyMDRFMjA1NDIwNEYyMDIwMjA0RDIwNDMyMENEMjA0MTJFMjAyMDIwPlRqIEVUIDAgZyBCVCAzODIuOTUgNzgxLjY1IFRkIDAgVHcgPDRFQkEyRT5UaiBFVCAwIGcgQlQgNDExLjMwIDc4MS42NSBUZCAwIFR3DQogPDM0MzkzMDMwMzEzNDMwMzczOTMxPlRqIEVUIDAgZyBCVCA0OTYuMzUgNzgxLjY1IFRkIDAgVHcgPDUwRTE2NzJFPlRqIEVUIDAgZyBCVCA1MjUuNjAgNzgxLjY1IFRkIDAgVHcgPDMxPlRqIEVUIDAgZyBCVCAxNC40MCA3NTcuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCA3NTcuNjUgVGQgMCBUdw0KIDwyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRD5UaiBFVCAwIGcgQlQgNDYwLjgwIDc1Ny42NSBUZCAwIFR3IDwyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDE0LjQwIDczMy42NSBUZCAwIFR3IDw0NjY1NjM2ODYxMjA2MzZGNkU3NDYxNjI2OTZDNjk3QTYxNjM2OUYzNkUyRTIwM0E+VGogRVQgMCBnIEJUIDIxMi44NSA3MzMuNjUgVGQgMCBUdw0KIDwzMTMwMkUzMTMwMkUzMjMwMzIzNT5UaiBFVCAwIGcgQlQgMTQuNDAgNzIxLjY1IFRkIDAgVHcgPDQ2NjU2MzY4NjEyMDY0NjU2QzIwNjRFRDYxMjAyMDIwMjAyMDIwMjAyMDIwMjAzQT5UaiBFVCAwIGcgQlQgMjEyLjg1IDcyMS42NSBUZCAwIFR3IDwzMTMwMkUzMTMwMkUzMjMwMzIzNT5UaiBFVCAwIGcgQlQgMTQuNDAgNjg1LjY1IFRkIDAgVHcgPDQzNjU2RTc0NzI2RjIwMjAyMDIwMjAyMDIwMjAyMDIwMjAyMDNBPlRqIEVUIDAgZyBCVA0KIDE0LjQwIDY3My42NSBUZCAwIFR3IDw0NDY1NkU2RjZENjk2RTYxNjM2OUYzNkUyMDIwMjAyMDIwMjAzQT5UaiBFVCAwIGcgQlQgMTQuNDAgNjYxLjY1IFRkIDAgVHcgPDQ5NkQ3MDc1NzQ2MTYzNjlGMzZFMjAyMDIwMjAyMDIwMjAyMDNBPlRqIEVUIDAgZyBCVCAxNTYuMTUgNjYxLjY1IFRkIDAgVHcgPDRCMjA0MzY1NkU3NDcyNkYyMDY0NjUyMDYzNkY3Mzc0NjU+VGogRVQgMCBnIEJUIDE0LjQwIDY0OS42NSBUZCAwIFR3DQogPDRFQjAyMDY0NjUyMDcyNjU3MzY1NzI3NjYxMjAyMDIwMjAyMDNBPlRqIEVUIDAgZyBCVCAxNTYuMTUgNjQ5LjY1IFRkIDAgVHcgPDMxMzMzNjMyMzUzMj5UaiBFVCAwIGcgQlQgMTQuNDAgNjM3LjY1IFRkIDAgVHcgPDQ0NjU3Mzc0Njk2RTYxNzQ2MTcyNjk2RjIwNjQ2NTIwNkQ2NTcyNjM2MTZFNjNFRDYxM0EyMD5UaiBFVCAwIGcgQlQgMjA4LjgwIDYzNy42NSBUZCAwIFR3IDw1MjVBNDE1MDQxNTQ0MT5UaiBFVCAwIGcgQlQNCiAxNC40MCA2MjUuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDIzNy42MCA2MjUuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEMkQ+VGogRVQgMCBnIEJUIDQ2MC44MCA2MjUuNjUgVGQgMCBUdyA8MkQyRDJEMkQyRDJEMkQyRDJEMkQyRDJEPlRqIEVUDQogMCBnIEJUIDE0LjQwIDYxMy42NSBUZCAwIFR3IDw1MDZGNzM+VGogRVQgMCBnIEJUIDUwLjQwIDYxMy42NSBUZCAwIFR3IDw0RDYxNzQ2NTcyNjk2MTZDMjA1NDY1Nzg3NDZGMjA2MjcyNjU3NjY1MjAyMDIwMjAyMDIwMjA0QzZGNzQ2NT5UaiBFVCAwIGcgQlQgMjczLjYwIDYxMy42NSBUZCAwIFR3IDwyMDIwMjAyMDIwNDE2QzZENjE2M0U5NkUyRjU1NjI2OTYzNjE2MzY5RjM2RTIwNDM2MTZFNzQ2OTY0NjE2ND5UaiBFVCAwIGcgQlQNCiA0OTYuODAgNjEzLjY1IFRkIDAgVHcgPDIwMjAyMDU1NEQ+VGogRVQNCmVuZHN0cmVhbQ0KZW5kb2JqDQo2IDAgb2JqDQozMjM3DQplbmRvYmoNCjcgMCBvYmoNCjw8DQovVHlwZSAvUGFnZQ0KL01lZGlhQm94DQpbMCAwIDU5NSA4NDJdDQovUGFyZW50IDEgMCBSDQovUmVzb3VyY2VzDQo8PA0KL1Byb2NTZXQNClsvUERGIC9UZXh0XQ0KL0ZvbnQNCjw8DQovRjAwMSAzIDAgUg0KL0YwMDIgNCAwIFINCj4+DQovWE9iamVjdA0KPDwNCj4+DQo+Pg0KL0NvbnRlbnRzIDUgMCBSDQo+Pg0KZW5kb2JqDQo4IDAgb2JqDQo8PA0KL0F1dGhvciAoRV9QUEFSSVMgKQ0KL0NyZWF0aW9uRGF0ZSAoRDoyMDI1MTAxNDE2MDIxMykNCi9DcmVhdG9yIChGb3JtIFpfVkFMRV9BQ09NUCBFUykNCi9Qcm9kdWNlciAoU0FQIE5ldFdlYXZlciA3NTcgKQ0KJVNBUGluZm9TdGFydCBUT0FfREFSQQ0KJUZVTkNUSU9OPSggICAgKQ0KJU1BTkRBTlQ9KCAgICkNCiVERUxfREFURT0oICAgICAgICApDQolU0FQX09CSkVDVD0oICAgICAgICAgICkNCiVBUl9PQkpFQ1Q9KCAgICAgICAgICApDQolT0JKRUNUX0lEPSggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiVGT1JNX0lEPSggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKQ0KJUZPUk1BUkNISVY9KCAgKQ0KJVJFU0VSVkU9KCAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiVOT1RJWj0oICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiUtKCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApDQolLSggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKQ0KJS0oICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICkNCiVTQVBpbmZvRW5kIFRPQV9EQVJBDQo+Pg0KZW5kb2JqDQoxIDAgb2JqDQo8PA0KL1R5cGUgL1BhZ2VzDQovS2lkcw0KWyA3IDAgUg0KXQ0KL0NvdW50IDENCj4+DQplbmRvYmoNCjkgMCBvYmoNCjw8DQovVHlwZSAvQ2F0YWxvZw0KL1BhZ2VzIDEgMCBSDQovUGFnZU1vZGUgL1VzZU5vbmUNCj4+DQplbmRvYmoNCnhyZWYNCjAgMTANCjAwMDAwMDAwMDAgNjU1MzUgZg0KMDAwMDAwNDY3NiAwMDAwMCBuDQowMDAwMDAwMDQ4IDAwMDAwIG4NCjAwMDAwMDAwODMgMDAwMDAgbg0KMDAwMDAwMDI0NCAwMDAwMCBuDQowMDAwMDAwMzk3IDAwMDAwIG4NCjAwMDAwMDM2OTUgMDAwMDAgbg0KMDAwMDAwMzcxOCAwMDAwMCBuDQowMDAwMDAzOTE3IDAwMDAwIG4NCjAwMDAwMDQ3NDQgMDAwMDAgbg0KdHJhaWxlcg0KPDwNCi9TaXplIDEwDQovUm9vdCA5IDAgUg0KL0luZm8gOCAwIFINCj4+DQpzdGFydHhyZWYNCjQ4MTkNCiUlRU9GDQo=",
-            },
-          ],
+            }],
           DocumentoSeleccionado: null,
           Firma: "",
           Messages: [],
@@ -764,7 +767,7 @@ sap.ui.define(
           Materiales: [],
         });
       },
-      onSearchDocument: function(oEvent){
+      onSearchDocument: function (oEvent) {
         const sQuery = oEvent.getParameter("query");
         const aFilters = [];
         if (sQuery && sQuery.length > 0) {
@@ -783,7 +786,7 @@ sap.ui.define(
 
         if (!oDocument.Pdf || oDocument.Pdf === "") {
           try {
-            const sPdfMD = this.__getValeAcomp(oDocument.Numero, oDocument.Año);
+            const sPdfMD = await this.__getValeAcomp(oDocument.Numero, oDocument.Año);
             oDocument.Pdf = sPdfMD || "";
           } catch (oError) {
             const sErrorMessage = this.__processErrorResponse(oError);
@@ -809,10 +812,11 @@ sap.ui.define(
         oDetalleModel.setProperty("/DocumentoSeleccionado", oDocument);
         await this.__signatureHandler.onOpenSignatureCanvas();
       },
-      __getValeAcomp(sNumber, sYear) {
+      __getValeAcomp: async function (sNumber, sYear) {
         const oODataModel = this.getOwnerComponent().getModel();
         const oDetalleModel = this.getView().getModel();
 
+       return new Promise((resolve, reject) => {
         const sKey = oODataModel.createKey("PrintedDocumentSet", {
           DocNumber: sNumber,
           DocType: "M",
@@ -821,7 +825,8 @@ sap.ui.define(
         const sPath = "/" + sKey;
         oODataModel.read(sPath, {
           success: function (oData) {
-            return oData.xString;
+            console.log(oData);
+            resolve(oData.xString); 
           },
           error: function (oError) {
             console.error("Error en la llamada OData:", oError);
@@ -842,22 +847,23 @@ sap.ui.define(
             MessageToast.show(
               "Ocurrió un error al buscar el vale de acompañamiento"
             );
-            return null;
+             reject(oError); 
           },
         });
+      });
       },
-      __getValeAcompFirmado(sNumber, sYear) {},
+      __getValeAcompFirmado: async function(sNumber, sYear) {},
       onShowPDF: async function (oEvent) {
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const oContext = oEvent.getSource().getBindingContext("detalleReserva");
         const oDocument = oContext.getObject();
 
         if (oDocument.Pdf && oDocument.Pdf != "") {
-          this.__openPDF(oDocument.Pdf,oDocument.Numero);
+          this.__openPDF(oDocument.Pdf, oDocument.Numero);
         } else {
           if (oDocument.Firmado) {
             try {
-              const sPdfMD = this.__getValeAcompFirmado(
+              const sPdfMD = await this.__getValeAcompFirmado(
                 oDocument.Numero,
                 oDocument.Año
               );
@@ -884,7 +890,7 @@ sap.ui.define(
             }
           } else {
             try {
-              const sPdfMD = this.__getValeAcomp(
+              const sPdfMD = await this.__getValeAcomp(
                 oDocument.Numero,
                 oDocument.Año
               );
@@ -912,10 +918,10 @@ sap.ui.define(
           }
           const sPath = oContext.getPath();
           oDetalleModel.setProperty(sPath, oDocument);
-          this.__openPDF(oDocument.Pdf,oDocument.Numero);
+          this.__openPDF(oDocument.Pdf, oDocument.Numero);
         }
       },
-      __openPDF: async function (sPDFBase64,sNumber) {
+      __openPDF: async function (sPDFBase64, sNumber) {
         const oView = this.getView();
 
         let sCleanBase64 = sPDFBase64;
@@ -958,7 +964,6 @@ sap.ui.define(
         this._pdfViewer.setSource(pdfurl);
         this._pdfViewer.setTitle("Visualizador de Documentos");
         this._pdfViewer.open();
-        
       },
     });
   }

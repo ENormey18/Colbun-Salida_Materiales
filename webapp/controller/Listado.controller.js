@@ -139,7 +139,7 @@ sap.ui.define(
           MessageToast.show("El rango de fechas es inválido");
           return false;
         }
-        if (oFilters.status == "C") {
+        if (oFilters.status == "C" && !oFilters.reserva.trim()) {
           if (
             !oFilters.fechaFrom ||
             !oFilters.fechaTo ||
