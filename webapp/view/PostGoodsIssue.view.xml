@@ -2,7 +2,6 @@
 	controllerName="salidademateriales.controller.PostGoodsIssue"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
 >
 	<Page title="Gestión Reservas">
 		<content>
@@ -36,24 +35,16 @@
 						showColon="true"
 					/>
 					<Input
-						id="input-nombreDestinatario"
-						value="{salidaMateriales>/Destinatario}"
-						showSuggestion="true"
-						suggestionItems="{
-							path: 'salidaMateriales>/Receptores'
-						}"
-						width="200px"
-						showValueHelp="true"
-						valueHelpRequest="onReceptoresValueHelp"
+						id="input-destinatario"
+						value="{salidaMateriales>/DestinatarioUser}"
+						placeholder="Buscar o ingresar un usuario receptor..."
+						width="300px"
+						maxLength="12"
 						editable="{= !${salidaMateriales>/Ejecutada}}"
-					>
-						<suggestionItems>
-							<core:ListItem
-								key="{salidaMateriales>Usnam}"
-								text="{salidaMateriales>Nombre}"
-							/>
-						</suggestionItems>
-					</Input>
+						showValueHelp="true"
+						valueHelpRequest="onDestinatarioValueHelp"
+						change="onDestinatarioChange"
+					/>
 				</VBox>
 			</HBox>
 			<VBox

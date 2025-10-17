@@ -35,7 +35,6 @@ sap.ui.define(
       __oMessagePopover: null,
       __caracteristicasMaterialesDialog: null,
       __signatureHandler: null,
-      _pPDFDialog: null,
       _pdfViewer: null,
       onInit() {
         const oRouter = this.getOwnerComponent().getRouter();
@@ -531,9 +530,7 @@ sap.ui.define(
               active: true,
               description:
                 "Se han modificado las características: " +
-                aCaractUpd.join(", ") +
-                " del material " +
-                this.formatter.removeLeadingZeros(sMaterial),
+                aCaractUpd.join(", "),
             };
             aNewMessages.push(oMessage);
             oDetalleModel.setProperty("/Messages", aNewMessages);
@@ -931,17 +928,6 @@ sap.ui.define(
           );
         }
 
-        if (!this._pPDFDialog) {
-          this._pPDFDialog = Fragment.load({
-            id: oView.getId(),
-            name: "salidademateriales.view.fragments.dialogs.PDFViewerDialog",
-            controller: this,
-          }).then(function (oDialog) {
-            oView.addDependent(oDialog);
-            return oDialog;
-          });
-        }
-
         const decodedPdfContent = atob(sCleanBase64); // Usamos la cadena limpia
         const byteArray = new Uint8Array(decodedPdfContent.length);
         for (var i = 0; i < decodedPdfContent.length; i++) {
@@ -951,7 +937,8 @@ sap.ui.define(
         const pdfurl = URL.createObjectURL(blob);
 
         jQuery.sap.addUrlWhitelist("blob");
-        this._pdfViewer.downloadPDF = function () {
+        this._pdfViewer.setShowDownloadButton(false);
+        this._pdfViewer.downloadPDF = function () { //Lograr redefinir esta funcion pues se queda con los datos del primer vez que se le hace visualizar
           File.save(
             byteArray.buffer,
             `Vale_Acompañamiento-${sNumber}`,

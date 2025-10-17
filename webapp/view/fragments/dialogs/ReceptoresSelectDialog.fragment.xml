@@ -15,7 +15,7 @@
     >
         <StandardListItem
             title="{salidaMateriales>Nombre}"
-            description="{salidaMateriales>Usnam}"
+            description="{salidaMateriales>Usuario}"
             type="Active"
         />
     </SelectDialog>

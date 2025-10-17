@@ -4,6 +4,8 @@ sap.ui.define(
     "sap/ui/core/Fragment",
     "./fragments/SignatureHandler",
     "sap/ui/Device",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
     "sap/m/MessagePopover",
     "sap/m/MessageItem",
@@ -15,6 +17,8 @@ sap.ui.define(
     Fragment,
     SignatureHandler,
     Device,
+    Filter,
+    FilterOperator,
     MessageToast,
     MessagePopover,
     MessageItem,
@@ -81,7 +85,7 @@ sap.ui.define(
       },
       __loadReceptores: function (oModel) {
         return new Promise(function (resolve, reject) {
-          oModel.read("/ReceptoresSet", {
+          oModel.read("/ReceptorSet", {
             success: function (oData) {
               resolve(oData.results);
             },
@@ -111,45 +115,80 @@ sap.ui.define(
           Fecha: new Date().toISOString().slice(0, 10),
           FechaContabilizacion: new Date().toISOString().slice(0, 10),
           Reserva: "",
-          Destinatario: "",
+          DestinatarioUser: "",
+          DestinatarioName: "",
           Materiales: [],
         };
         oSalidaMatModel.setData(oInitialData);
       },
-      onReceptoresValueHelp: function () {
-        const oView = this.getView();
-        if (!this.__receptoresDialog) {
-          this.__receptoresDialog = Fragment.load({
-            id: oView.getId(),
-            name: "salidademateriales.view.fragments.dialogs.ReceptoresSelectDialog",
+      onDestinatarioValueHelp: function () {
+        const sFragmentId = this.getView().createId("receptorSelectDialog");
+
+        if (!this._oReceptorDialog) {
+          this._oReceptorDialog = Fragment.load({
+            id: sFragmentId,
+            name: "salidademateriales.view.fragments.dialogs.ReceptoresSelectDialog", 
             controller: this,
-          }).then(function (oDialog) {
-            oView.addDependent(oDialog);
-            return oDialog;
-          });
+          }).then(
+            function (oDialog) {
+              this.getView().addDependent(oDialog);
+              return oDialog;
+            }.bind(this)
+          );
         }
-        this.__receptoresDialog.then(function (oDialog) {
+
+        this._oReceptorDialog.then(function (oDialog) {
           oDialog.open();
         });
       },
-      // Función para manejar la búsqueda dentro del diálogo de Select Receptores
       onReceptoresValueHelpSearch: function (oEvent) {
         const sValue = oEvent.getParameter("value");
-        const oFilter = new Filter("Nombre", FilterOperator.Contains, sValue);
+
+        const oFilter = new Filter({
+          filters: [
+            new Filter("Nombre", FilterOperator.Contains, sValue),
+            new Filter("Usuario", FilterOperator.Contains, sValue),
+          ],
+          and: false, // OR
+        });
         const oBinding = oEvent.getSource().getBinding("items");
         oBinding.filter([oFilter]);
       },
-      // Función para manejar el cierre del diálogo de Select Receptores
+
       onReceptoresValueHelpClose: function (oEvent) {
         const oSelectedItem = oEvent.getParameter("selectedItem");
-        oEvent.getSource().getBinding("items").filter([]);
+        const oViewModel = this.getView().getModel("salidaMateriales");
+
         if (oSelectedItem) {
-          const sNombreReceptor = oSelectedItem.getTitle();
-          const oInputD = this.byId("input-nombreDestinatario");
-          oInputD.setValue(sNombreReceptor);
-          this.getView()
-            .getModel("salidaMateriales")
-            .setProperty("/Destinatario", sNombreReceptor);
+          const oReceptorData = oSelectedItem
+            .getBindingContext("salidaMateriales")
+            .getObject();
+
+          oViewModel.setProperty("/DestinatarioName", oReceptorData.Nombre);
+          oViewModel.setProperty("/DestinatarioUser", oReceptorData.Usuario);
+        }
+        oEvent.getSource().getBinding("items").filter([]);
+      },
+
+      onDestinatarioChange: function (oEvent) {
+        const sValue = oEvent.getParameter("value");
+        const oViewModel = this.getView().getModel("salidaMateriales");
+        const aReceptores = oViewModel.getProperty("/Receptores") || []; 
+
+        if (!sValue) {
+          oViewModel.setProperty("/DestinatarioName", "");
+          oViewModel.setProperty("/DestinatarioUser", "");
+          return;
+        }
+
+        const oFoundReceptor = aReceptores.find(
+          (receptor) => receptor.Usuario.toUpperCase() === sValue.toUpperCase()
+        );
+        if (oFoundReceptor) {
+          oViewModel.setProperty("/DestinatarioName", oFoundReceptor.Nombre);
+          oViewModel.setProperty("/DestinatarioUser", oFoundReceptor.Usuario.toUpperCase());
+        } else {
+          oViewModel.setProperty("/DestinatarioUser", sValue.toUpperCase());
         }
       },
       onPostSalidaMat: async function (oEvent) {
@@ -169,13 +208,13 @@ sap.ui.define(
           const oPostPayload = {
             Fecha: oSalidaData.Fecha,
             FechaContabilizacion: oSalidaData.FechaContabilizacion,
-            Texto: oSalidaData.Destinatario,
+            Texto: oSalidaData.DestinatarioUser.toUpperCase(),
             ToItems: oSalidaData.Materiales.map((oMaterial) => ({
               ReservaId: oMaterial.ReservaId,
               ReservaPos: oMaterial.Pos,
               Cantidad: formatter.numberDecimals(oMaterial.Retira),
               Texto: "",
-              Customer: oSalidaData.Destinatario,
+              Customer: oSalidaData.DestinatarioUser.toUpperCase(),
             })),
           };
 
