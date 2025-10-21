@@ -261,7 +261,7 @@ sap.ui.define(
           MessageToast.show("Debe establecer una fecha de contabilización");
           return false;
         }
-        if (!oSalidaMat.Destinatario || oSalidaMat.Destinatario === "") {
+        if (!oSalidaMat.DestinatarioUser || oSalidaMat.DestinatarioUser === "") {
           MessageToast.show("Debe especificar un destinatario");
           return false;
         }
