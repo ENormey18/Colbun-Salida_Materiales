@@ -11,8 +11,11 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/ui/Device",
     "sap/m/PDFViewer",
-    "sap/ui/core/util/File",
     "../model/formatter",
+    "./fragments/Characteristics",
+    "../utils/DMSHandler",
+    "../utils/Utils",
+    "salidademateriales/utils/MessagePopoverHandler"
   ],
   (
     Controller,
@@ -26,30 +29,43 @@ sap.ui.define(
     JSONModel,
     Device,
     PDFViewer,
-    File,
-    formatter
+    formatter,
+    CharacteristicsHandler,
+    DMSHandler,
+    Utils,
+    MessagePopoverHandler
   ) => {
     "use strict";
     return Controller.extend("salidademateriales.controller.Details", {
       formatter: formatter,
-      __oMessagePopover: null,
-      __caracteristicasMaterialesDialog: null,
-      __signatureHandler: null,
+      _oMessagePopover: null,
+      _caracteristicasMaterialesDialog: null,
+      _signatureHandler: null,
       _pdfViewer: null,
       onInit() {
         const oRouter = this.getOwnerComponent().getRouter();
         Device.resize.attachHandler(this.changeCanvasSize, this);
-        this.__signatureHandler = new SignatureHandler();
-        this.__signatureHandler.init(this.getView(), "detalleReserva");
+
+        this._signatureHandler = new SignatureHandler();
+        this._signatureHandler.init(this.getView(), "detalleReserva");
+
         this._pdfViewer = new PDFViewer({
           isTrustedSource: true,
         });
         this.getView().addDependent(this._pdfViewer);
+
+        this._messagePopoverHandler = new MessagePopoverHandler(this.getView(), "detalleReserva", "/Messages");
+
+        CharacteristicsHandler.init(this);
+
+        DMSHandler.init(this.getOwnerComponent());
+        this._dmsHandler = DMSHandler;
+
         oRouter
           .getRoute("RouteDetails")
-          .attachPatternMatched(this.__onRouteMatched, this);
+          .attachPatternMatched(this._onRouteMatched, this);
       },
-      __onRouteMatched(oEvent) {
+      _onRouteMatched(oEvent) {
         const sReservaId = oEvent.getParameter("arguments").reservaId;
         const oDetailsStateModel =
           this.getOwnerComponent().getModel("detailsStateModel");
@@ -81,7 +97,7 @@ sap.ui.define(
               }
             });
           });
-          this.__cleanDetailsState();
+          this._cleanDetailsState();
         } else {
           // --- CASO 2: No hay estado guardado (primera visita o reserva diferente) ---
           const oODataModel = this.getOwnerComponent().getModel();
@@ -91,7 +107,7 @@ sap.ui.define(
             .createKey("/ReservaSet", {
               Id: sReservaId,
             });
-          this.__setModel(null);
+          this._setModel(null);
           this.getView().setBusy(true);
           oODataModel.read(sPath, {
             urlParameters: {
@@ -115,22 +131,23 @@ sap.ui.define(
                 item.Clases = [];
                 item.Enhancement = 0;
               });
-              this.__setModel(reserva).then(() => {
-                this.__setItemsEnhancement();
-                this.__checkUTs();
+              this._setModel(reserva).then(async () => {
+                this._setItemsEnhancement();
+                this._checkUTs();
+                await this._checkValesFirmados();
                 this.getView().setBusy(false);
               });
             }.bind(this),
             error: function (oError) {
               console.log("Error al traer datos con $expand: ", oError);
-              this.__setModel(null).then(() => {
+              this._setModel(null).then(() => {
                 this.getView().setBusy(false);
               });
             }.bind(this),
           });
         }
       },
-      __cleanDetailsState: function () {
+      _cleanDetailsState: function () {
         this.getOwnerComponent().getModel("detailsStateModel").setData({
           hasData: false,
           reservaId: null,
@@ -144,7 +161,7 @@ sap.ui.define(
         oRouter.navTo("RouteListado");
       },
 
-      __setModel: async function (reservaOData) {
+      _setModel: async function (reservaOData) {
         const detalleObj = {
           Reserva: {
             Id: reservaOData && reservaOData.Id ? reservaOData.Id : "-",
@@ -226,7 +243,7 @@ sap.ui.define(
           let aClasses = [];
           try {
             const oModel = this.getOwnerComponent().getModel();
-            aClasses = await this.__loadCharactItems(oModel, aItems);
+            aClasses = await this._loadCharactItems(oModel, aItems);
           } catch (err) {
             console.error("Error en la llamada OData:", err);
             MessageToast.show(
@@ -246,7 +263,7 @@ sap.ui.define(
         const oDetalleModel = new JSONModel(detalleObj);
         this.getView().setModel(oDetalleModel, "detalleReserva");
       },
-      __loadCharactItems(oModel, aItems) {
+      _loadCharactItems(oModel, aItems) {
         const aMaterials = [];
         aItems.forEach((item) => {
           if (!aMaterials.includes(item.Material))
@@ -275,7 +292,7 @@ sap.ui.define(
         });
       },
 
-      __setItemsEnhancement: function () {
+      _setItemsEnhancement: function () {
         const oDetalleModel = this.getView().getModel("detalleReserva");
         if (!oDetalleModel) {
           console.error("Modelo no cargado aún.");
@@ -303,10 +320,11 @@ sap.ui.define(
           });
         }
       },
-      __checkUTs() {
+      _checkUTs() {
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const aItems = oDetalleModel.getProperty("/Items");
         const aItemsWithoutUTs = aItems.filter((oItem) => oItem.CantUT === 0);
+        
         const aMessages = [];
         aItemsWithoutUTs.forEach((oItem, index) => {
           const sDescription =
@@ -323,269 +341,63 @@ sap.ui.define(
           };
           aMessages.push(oMessage);
         });
-        const aOldMessag = oDetalleModel.getProperty("/Messages");
-        let aNewMessag = aOldMessag.filter(
-          (oMess) => oMess.title !== "Ubicacion Técnica"
-        );
-        aNewMessag = aNewMessag.concat(aMessages);
-        oDetalleModel.setProperty("/Messages", aNewMessag);
+        this._messagePopoverHandler.setMessagesByTitle("Ubicacion Técnica", aMessages);
+        // const aOldMessag = oDetalleModel.getProperty("/Messages");
+        // let aNewMessag = aOldMessag.filter(
+        //   (oMess) => oMess.title !== "Ubicacion Técnica"
+        // );
+        // aNewMessag = aNewMessag.concat(aMessages);
+        // oDetalleModel.setProperty("/Messages", aNewMessag);
       },
-      __processErrorResponse(oError) {
-        let sErrorMessage =
-          "Ocurrió un error inesperado al procesar la solicitud.";
-
-        if (oError) {
-          if (oError.responseText) {
-            try {
-              const oErrorBody = JSON.parse(oError.responseText);
-              if (
-                oErrorBody &&
-                oErrorBody.error &&
-                oErrorBody.error.message &&
-                oErrorBody.error.message.value
-              ) {
-                sErrorMessage = oErrorBody.error.message.value;
-              } else {
-                sErrorMessage = oError.responseText;
-              }
-            } catch (e) {
-              sErrorMessage = oError.responseText;
-            }
-          } else if (oError.message) {
-            sErrorMessage = oError.message;
-          }
-        }
-        return sErrorMessage;
-      },
-      async onPressMaterial(oEvent) {
-        if (!this.__caracteristicasMaterialesDialog) {
-          this.__caracteristicasMaterialesDialog = await Fragment.load({
-            name: "salidademateriales.view.fragments.details.dialogs.CaracteristicasMaterialesDialog",
-            controller: this,
-            id: "caracteristicasMaterialesDialog",
-          }).then((oCharactMatDialog) => {
-            this.getView().addDependent(oCharactMatDialog);
-            return oCharactMatDialog;
-          });
-          this.__caracteristicasMaterialesDialog.open();
-        }
-        const oBindingContext =
-          oEvent.oSource?.getBindingContext("detalleReserva");
-        const sBindingPath = oBindingContext?.sPath;
-        if (!sBindingPath) {
-          return MessageToast.show(
-            "Error al mostrar caracteristicas del material"
-          );
-        } else {
-          const oDetalleModel = this.getView().getModel("detalleReserva");
-          this.__caracteristicasMaterialesDialog.bindElement({
-            path: sBindingPath,
-            model: "detalleReserva",
-          });
-          this.__caracteristicasMaterialesDialog.open();
-          this.__updateCharTableBinding("Tecnica");
-        }
-      },
-      onClassTypeSelect: function (oEvent) {
-        const sSelectedKey = oEvent.getSource().getSelectedKey();
-        this.__updateCharTableBinding(sSelectedKey);
-      },
-      __updateCharTableBinding: function (sClassTypeKey) {
-        const oItemContext =
-          this.__caracteristicasMaterialesDialog.getBindingContext(
-            "detalleReserva"
-          );
-        const oItemData = oItemContext.getObject();
-
-        let iClassIndex = -1;
-        if (sClassTypeKey === "General") {
-          iClassIndex = oItemData.Clases.findIndex((c) =>
-            c.Clase.toUpperCase().includes("CG_01")
-          );
-        } else {
-          iClassIndex = oItemData.Clases.findIndex(
-            (c) => !c.Clase.toUpperCase().includes("CG_01")
-          );
-        }
-        const oVBox = Fragment.byId(
-          "caracteristicasMaterialesDialog",
-          "charContentVBox"
-        );
-
-        if (iClassIndex > -1) {
-          const sClassPath = `${oItemContext.getPath()}/Clases/${iClassIndex}`;
-          oVBox.bindElement({
-            path: sClassPath,
-            model: "detalleReserva",
-          });
-        } else {
-          console.error("No se encontró la clase ", sClassTypeKey);
-          oVBox.unbindElement("detalleReserva");
-        }
-
-        const oSelectBtn = Fragment.byId(
-          "caracteristicasMaterialesDialog",
-          "select-class-mat"
-        );
-        oSelectBtn.setSelectedKey(sClassTypeKey);
-      },
-      async onAceptarCaracteristicas() {
-        this.getView().setBusy(true);
-        this.__caracteristicasMaterialesDialog.setBusy(true);
-
-        const oODataModel = this.getOwnerComponent().getModel();
+      async _checkValesFirmados() {
         const oDetalleModel = this.getView().getModel("detalleReserva");
-        const oTable = Fragment.byId(
-          "caracteristicasMaterialesDialog",
-          "caracteristicasTable"
-        );
-        const sClassBindingPath =
-          oTable.getBindingContext("detalleReserva")?.sPath;
-        if (!sClassBindingPath) {
-          return MessageToast.show(
-            "Error al modificar caracteristicas del material"
+        const sReservaId = oDetalleModel.getProperty("/Reserva/Id");
+        try {
+          const aObjects = await this._dmsHandler.getFolderContent(
+            `root/Vale_Acomp_Reservas/${sReservaId}`
           );
-        }
-        const aCaracteristicas = oDetalleModel.getProperty(
-          `${sClassBindingPath}/ToCaracteristicas/results`
-        );
-        const aCaracteristicasModificadas = aCaracteristicas?.filter(
-          (c) => c.NuevoValor
-        );
-        if (
-          aCaracteristicasModificadas &&
-          aCaracteristicasModificadas.length > 0
-        ) {
-          const oCaractUpdatedMap = new Map();
-          const oErrorMap = new Map();
-
-          for (const oCaracteristica of aCaracteristicasModificadas) {
-            const sKey = oODataModel.createKey("CaractMatSet", {
-              Material: oCaracteristica.Material,
-              Clase: oCaracteristica.Clase,
-              Caracteristica: oCaracteristica.Caracteristica,
-            });
-            const sPath = "/" + sKey;
-            try {
-              await this.__updateCaracteristicaAsync(oODataModel, sPath, {
-                Valor: oCaracteristica.NuevoValor.trim(),
-              });
-              oCaracteristica.Valor =
-                oCaracteristica.NuevoValor.trim().toUpperCase();
-              delete oCaracteristica.NuevoValor;
-              oCaractUpdatedMap.set(
-                oCaracteristica.Caracteristica,
-                oCaracteristica
-              );
-            } catch (oError) {
-              const sErrorMessage = this.__processErrorResponse(oError);
-              oErrorMap.set(oCaracteristica.Caracteristica, sErrorMessage);
+          const aOldDocs = oDetalleModel.getProperty("/Documentos");
+          const aMergedDocs = aOldDocs.map((oDoc) => {
+            const oObj = aObjects.find((o) => o.Name === oDoc.Numero);
+            if (oObj) {
+              oDoc.DMSId = oObj.Id;
+              oDoc.Firmado = true;
             }
+            return oDoc;
+          });
+          oDetalleModel.setProperty("/Documentos", aMergedDocs);
+        } catch (oError) {
+          const aCurrentMessages = oDetalleModel.getProperty("/Messages") || [];
+          const aNewMessages = [...aCurrentMessages];
+          let sDescription;
+          switch (oError.status) {
+            case 401:
+              sDescription = "Error Acceso: Token de acceso a DMS Inválido";
+              break;
+            case 404:
+              return;
+            default:
+              sDescription = "Error Interno: No se pudo comprobar la carpeta en DMS";
+              break;
           }
-
-          const oNewCaracteristicasMap = new Map();
-          aCaracteristicas.forEach((oCaract) => {
-            oNewCaracteristicasMap.set(oCaract.Caracteristica, oCaract);
-          });
-          oCaractUpdatedMap.forEach((oCaractUpd, sCaracteristica) => {
-            oNewCaracteristicasMap.set(sCaracteristica, oCaractUpd);
-          });
-          oDetalleModel.setProperty(
-            `${sClassBindingPath}/ToCaracteristicas/results`,
-            Array.from(oNewCaracteristicasMap.values())
-          );
-
-          if (oErrorMap.size > 0) {
-            const aMessages = [];
-            oErrorMap.forEach((oErrorMessage, sCaracteristica) => {
-              const oMessage = {
-                type: "Error",
-                title: "Modificación Característica",
-                subtitle:
-                  "No se pudo modificar el valor de la característica " +
-                  sCaracteristica,
-                active: true,
-                description: oErrorMessage,
-              };
-              aMessages.push(oMessage);
-            });
-            const aOldMessag = oDetalleModel.getProperty("/Messages");
-            const aNewMessag = aOldMessag.concat(aMessages);
-            oDetalleModel.setProperty("/Messages", aNewMessag);
-          } else {
-            const aCurrentMessages = oDetalleModel.getProperty("/Messages");
-            const aNewMessages = [...aCurrentMessages];
-            const aCaractUpd = Array.from(oCaractUpdatedMap.keys());
-            const sMaterial = aCaractUpd[0].Material;
-            const oMessage = {
-              type: "Success",
-              title: "Modificación Característica",
-              subtitle: "Características modificadas con éxito",
-              active: true,
-              description:
-                "Se han modificado las características: " +
-                aCaractUpd.join(", "),
-            };
-            aNewMessages.push(oMessage);
-            oDetalleModel.setProperty("/Messages", aNewMessages);
-          }
-        } else {
-          this.__caracteristicasMaterialesDialog.setBusy(false);
-          this.getView().setBusy(false);
-          return MessageToast.show(
-            "No hay nuevos valores de características a modificar."
+          const oMessage = {
+            type: "Error",
+            title: "Vale de Acompañamiento",
+            subtitle: "Ocurrió un error verificar los documentos en DMS",
+            active: true,
+            description: sDescription,
+          };
+          aNewMessages.push(oMessage);
+          oDetalleModel.setProperty("/Messages", aNewMessages);
+          MessageToast.show(
+            "Ocurrió un error al verificar los documentos en dms"
           );
         }
-        this.__setItemsEnhancement();
-        this.__caracteristicasMaterialesDialog.setBusy(false);
-        this.getView().setBusy(false);
-        this.__caracteristicasMaterialesDialog.close();
-        return MessageToast.show("Se han modificado las caraterísticas.");
       },
-
-      __updateCaracteristicaAsync(oODataModel, sPath, oData) {
-        return new Promise((resolve, reject) => {
-          oODataModel.update(sPath, oData, {
-            merge: false,
-            success: function (oResult) {
-              resolve(oResult);
-            },
-            error: function (oError) {
-              reject(oError);
-            },
-          });
-        });
+      onOpenCharacteristicsDialog: function (oEvent) {
+        CharacteristicsHandler.open(oEvent);
       },
-      onCancelarCaracteristicas(oEvent) {
-        const oDetalleModel = this.getView().getModel("detalleReserva");
-        const oTable = Fragment.byId(
-          "caracteristicasMaterialesDialog",
-          "caracteristicasTable"
-        );
-        const sClassBindingPath =
-          oTable.getBindingContext("detalleReserva")?.sPath;
-        if (!sClassBindingPath) {
-          return MessageToast.show(
-            "Error al modificar caracteristicas del material"
-          );
-        }
-        const aCaracteristicas = oDetalleModel.getProperty(
-          `${sClassBindingPath}/ToCaracteristicas/results`
-        );
-        if (aCaracteristicas) {
-          aCaracteristicas.forEach((oCaract) => {
-            if (oCaract.NuevoValor) {
-              delete oCaract.NuevoValor;
-            }
-          });
-          oDetalleModel.setProperty(
-            `${sClassBindingPath}/ToCaracteristicas/results`,
-            aCaracteristicas
-          );
-        }
-        this.__caracteristicasMaterialesDialog.close();
-      },
-      __initMessagepopover() {
+      _initMessagepopover() {
         const oMessageTemplate = new MessageItem({
           type: "{detalleReserva>type}",
           title: "{detalleReserva>title}",
@@ -595,26 +407,29 @@ sap.ui.define(
           counter: "{detalleReserva>counter}",
         });
 
-        this.__oMessagePopover = new MessagePopover({
+        this._oMessagePopover = new MessagePopover({
           items: {
             path: "detalleReserva>/Messages",
             template: oMessageTemplate,
           },
         });
       },
-      onShowMessagePopover(oEvent) {
-        if (!this.__oMessagePopover) {
-          this.__initMessagepopover();
-          const oButton = oEvent.getSource();
-          oButton.addDependent(this.__oMessagePopover);
-        }
-        this.__oMessagePopover.toggle(oEvent.getSource());
+      // onShowMessagePopover(oEvent) {
+      //   if (!this._oMessagePopover) {
+      //     this._initMessagepopover();
+      //     const oButton = oEvent.getSource();
+      //     oButton.addDependent(this._oMessagePopover);
+      //   }
+      //   this._oMessagePopover.toggle(oEvent.getSource());
+      // },
+      onShowMessagePopover: function (oEvent) {
+            this._messagePopoverHandler.toggleSource(oEvent);
       },
       onShowItems(oEvent) {
         const sSelectedKey = oEvent.getSource().getSelectedKey();
-        this.__updateFilteredItems(sSelectedKey);
+        this._updateFilteredItems(sSelectedKey);
       },
-      __updateFilteredItems(sSelectedKey) {
+      _updateFilteredItems(sSelectedKey) {
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const aItems = oDetalleModel.getProperty("/Items");
         let aFilteredItems = aItems;
@@ -745,9 +560,9 @@ sap.ui.define(
         aItems.forEach((oItem) => delete oItem.Retira);
         oDetalleModel.setProperty("/FilteredItems", aItems);
 
-        this.__cleanSalidaMatModel();
+        this._cleanSalidaMatModel();
       },
-      __cleanSalidaMatModel() {
+      _cleanSalidaMatModel() {
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const sReservaId = oDetalleModel.getProperty("/Reserva/Id");
         oDetalleModel.setProperty("/SalidaMat", {
@@ -777,13 +592,13 @@ sap.ui.define(
 
         if (!oDocument.Pdf || oDocument.Pdf === "") {
           try {
-            const sPdfMD = await this.__getValeAcomp(
+            const sPdfMD = await this._getValeAcomp(
               oDocument.Numero,
               oDocument.Año
             );
             oDocument.Pdf = sPdfMD || "";
           } catch (oError) {
-            const sErrorMessage = this.__processErrorResponse(oError);
+            const sErrorMessage = Utils.processErrorResponse(oError);
             const aCurrentMessages =
               oDetalleModel.getProperty("/Messages") || [];
             const aNewMessages = [...aCurrentMessages];
@@ -804,9 +619,9 @@ sap.ui.define(
           }
         }
         oDetalleModel.setProperty("/DocumentoSeleccionado", oDocument);
-        await this.__signatureHandler.onOpenSignatureCanvas();
+        await this._signatureHandler.onOpenSignatureCanvas();
       },
-      __getValeAcomp: async function (sNumber, sYear) {
+      _getValeAcomp: async function (sNumber, sYear) {
         const oODataModel = this.getOwnerComponent().getModel();
         const oDetalleModel = this.getView().getModel();
 
@@ -823,7 +638,7 @@ sap.ui.define(
             },
             error: function (oError) {
               console.error("Error en la llamada OData:", oError);
-              const sErrorMessage = this.__processErrorResponse(oError);
+              const sErrorMessage = Utils.processErrorResponse(oError);
               const aCurrentMessages =
                 oDetalleModel.getProperty("/Messages") || [];
               const aNewMessages = [...aCurrentMessages];
@@ -845,24 +660,53 @@ sap.ui.define(
           });
         });
       },
-      __getValeAcompFirmado: async function (sNumber, sYear) {},
+      _getValeAcompFirmado: async function (sObjId) {
+        const oDetalleModel = this.getView().getModel("detalleReserva");
+        const sReservaId = oDetalleModel.getProperty("/Reserva/Id");
+        try {
+          const blob = await this._dmsHandler.getObjectContent(
+            `root/Vale_Acomp_Reservas/${sReservaId}`,
+            sObjId
+          );
+          if (blob) {
+            return await Utils.blobToBase64(blob);
+          } else {
+            return null;
+          }
+        } catch (oError) {
+          console.error("Error en la llamada DMS:", oError);
+          const sErrorMessage = Utils.processErrorResponse(oError);
+          const aCurrentMessages = oDetalleModel.getProperty("/Messages") || [];
+          const aNewMessages = [...aCurrentMessages];
+          const oMessage = {
+            type: "Error",
+            title: "GET Servicio DMS",
+            subtitle:
+              "Ocurrió un error al buscar el vale de acompañamiento firmado en DMS",
+            active: true,
+            description: sErrorMessage,
+          };
+          aNewMessages.push(oMessage);
+          oDetalleModel.setProperty("/Messages", aNewMessages);
+          MessageToast.show(
+            "Ocurrió un error al buscar el vale de acompañamiento"
+          );
+        }
+      },
       onShowPDF: async function (oEvent) {
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const oContext = oEvent.getSource().getBindingContext("detalleReserva");
         const oDocument = oContext.getObject();
 
         if (oDocument.Pdf && oDocument.Pdf != "") {
-          this.__openPDF(oDocument.Pdf, oDocument.Numero);
+          this._openPDF(oDocument.Pdf, oDocument.Numero);
         } else {
           if (oDocument.Firmado) {
             try {
-              const sPdfMD = await this.__getValeAcompFirmado(
-                oDocument.Numero,
-                oDocument.Año
-              );
+              const sPdfMD = await this._getValeAcompFirmado(oDocument.DMSId);
               oDocument.Pdf = sPdfMD || "";
             } catch (oError) {
-              const sErrorMessage = this.__processErrorResponse(oError);
+              const sErrorMessage = Utils.processErrorResponse(oError);
               const aCurrentMessages =
                 oDetalleModel.getProperty("/Messages") || [];
               const aNewMessages = [...aCurrentMessages];
@@ -870,7 +714,7 @@ sap.ui.define(
                 type: "Error",
                 title: "Vale de Acompañamiento",
                 subtitle:
-                  "Ocurrió un error al intentar buscar el vale de acompañamiento del documento",
+                  "Ocurrió un error al intentar buscar el vale de acompañamiento firmado",
                 active: true,
                 description: sErrorMessage,
               };
@@ -883,13 +727,13 @@ sap.ui.define(
             }
           } else {
             try {
-              const sPdfMD = await this.__getValeAcomp(
+              const sPdfMD = await this._getValeAcomp(
                 oDocument.Numero,
                 oDocument.Año
               );
               oDocument.Pdf = sPdfMD || "";
             } catch (oError) {
-              const sErrorMessage = this.__processErrorResponse(oError);
+              const sErrorMessage = Utils.processErrorResponse(oError);
               const aCurrentMessages =
                 oDetalleModel.getProperty("/Messages") || [];
               const aNewMessages = [...aCurrentMessages];
@@ -911,10 +755,10 @@ sap.ui.define(
           }
           const sPath = oContext.getPath();
           oDetalleModel.setProperty(sPath, oDocument);
-          this.__openPDF(oDocument.Pdf, oDocument.Numero);
+          this._openPDF(oDocument.Pdf, oDocument.Numero);
         }
       },
-      __openPDF: async function (sPDFBase64, sNumber) {
+      _openPDF: async function (sPDFBase64, sNumber) {
         const oView = this.getView();
 
         let sCleanBase64 = sPDFBase64;
@@ -924,26 +768,11 @@ sap.ui.define(
           );
         }
 
-        const decodedPdfContent = atob(sCleanBase64); // Usamos la cadena limpia
-        const byteArray = new Uint8Array(decodedPdfContent.length);
-        for (var i = 0; i < decodedPdfContent.length; i++) {
-          byteArray[i] = decodedPdfContent.charCodeAt(i);
-        }
-        const blob = new Blob([byteArray.buffer], { type: "application/pdf" });
+        const blob = Utils.base64ToBlob(sCleanBase64, "application/pdf");
         const pdfurl = URL.createObjectURL(blob);
 
         jQuery.sap.addUrlWhitelist("blob");
         this._pdfViewer.setShowDownloadButton(false);
-        this._pdfViewer.downloadPDF = function () {
-          //Lograr redefinir esta funcion pues se queda con los datos del primer vez que se le hace visualizar
-          File.save(
-            byteArray.buffer,
-            `Vale_Acompañamiento-${sNumber}`,
-            "pdf",
-            "application/pdf",
-            "UTF-8"
-          );
-        };
 
         this._pdfViewer.setSource(pdfurl);
         this._pdfViewer.setTitle("Visualizador de Documentos");

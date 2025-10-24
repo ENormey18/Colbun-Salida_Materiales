@@ -99,7 +99,7 @@
                         }"
                         size="XS"
                         valueColor="Sequence7"
-                        press=".onPressMaterial"
+                        press=".onOpenCharacteristicsDialog"
                         alignContent="Center"
                     />
                      <Text text="{detalleReserva>CantUT}" />  

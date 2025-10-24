@@ -21,11 +21,11 @@ sap.ui.define(
         this.setModel(models.createDeviceModel(), "device");
 
         const oDetailsStateModel = new JSONModel({
-                hasData: false,
-                reservaId: null,
-                data: {},
-                selectedPaths: []
-            });
+          hasData: false,
+          reservaId: null,
+          data: {},
+          selectedPaths: [],
+        });
         this.setModel(oDetailsStateModel, "detailsStateModel");
 
         const oSalidaMatModel = new JSONModel({
@@ -37,7 +37,6 @@ sap.ui.define(
         });
         this.setModel(oSalidaMatModel, "salidaMatModel");
 
-        // enable routing
         this.getRouter().initialize();
       },
     });

@@ -11,6 +11,7 @@ sap.ui.define(
     "sap/m/MessageItem",
     "sap/ui/model/json/JSONModel",
     "../model/formatter",
+    "salidademateriales/utils/Utils"
   ],
   function (
     Controller,
@@ -23,7 +24,8 @@ sap.ui.define(
     MessagePopover,
     MessageItem,
     JSONModel,
-    formatter
+    formatter,
+    Utils
   ) {
     "use strict";
 
@@ -64,7 +66,7 @@ sap.ui.define(
           })
           .catch((err) => {
             console.error("Error en la llamada OData:", err);
-            const sErrorMessage = this.__processErrorResponse(err);
+            const sErrorMessage = Utils.processErrorResponse(err);
             const aCurrentMessages =
               oSalidaModel.getProperty("/Messages") || [];
             const aNewMessages = [...aCurrentMessages];
@@ -228,7 +230,7 @@ sap.ui.define(
           await this.__processSuccessSalida(oCreatedEntity);
         } catch (oError) {
           MessageToast.show("Hubo un error con la salida de materiales");
-          const sErrorMessage = this.__processErrorResponse(oError);
+          const sErrorMessage = Utils.processErrorResponse(oError);
           const aCurrentMessages = oSalidaModel.getProperty("/Messages") || [];
           const aNewMessages = [...aCurrentMessages];
           const oMessage = {
@@ -333,33 +335,6 @@ sap.ui.define(
           oRouter.navTo("RouteListado", {}, {}, true);
         }
       },
-      __processErrorResponse(oError) {
-        let sErrorMessage =
-          "Ocurrió un error inesperado al procesar la solicitud.";
-
-        if (oError) {
-          if (oError.responseText) {
-            try {
-              const oErrorBody = JSON.parse(oError.responseText);
-              if (
-                oErrorBody &&
-                oErrorBody.error &&
-                oErrorBody.error.message &&
-                oErrorBody.error.message.value
-              ) {
-                sErrorMessage = oErrorBody.error.message.value;
-              } else {
-                sErrorMessage = oError.responseText;
-              }
-            } catch (e) {
-              sErrorMessage = oError.responseText;
-            }
-          } else if (oError.message) {
-            sErrorMessage = oError.message;
-          }
-        }
-        return sErrorMessage;
-      },
       __getValeAcomp: async function (sNumber, sYear) {
         const oODataModel = this.getOwnerComponent().getModel();
 
@@ -376,7 +351,7 @@ sap.ui.define(
             },
             error: function (oError) {
               console.error("Error en la llamada OData:", oError);
-              const sErrorMessage = this.__processErrorResponse(oError);
+              const sErrorMessage = Utils.processErrorResponse(oError);
               const aCurrentMessages =
                 oSalidaModel.getProperty("/Messages") || [];
               const aNewMessages = [...aCurrentMessages];

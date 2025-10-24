@@ -10,6 +10,13 @@
       "csrfProtection": false
     },
     {
+      "source": "^/dms/(.*)$", 
+      "target": "/$1",
+      "destination": "DMS_Reservas",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    },
+    {
       "source": "^/resources/(.*)$",
       "target": "/resources/$1",
       "authenticationType": "none",
@@ -26,11 +33,6 @@
       "target": "$1",
       "service": "html5-apps-repo-rt",
       "authenticationType": "xsuaa"
-    },
-    {
-      "source": "^/api-dms/(.*)$", 
-      "target": "/$1",
-      "destination": "mi_servicio_dms"
     }
   ]
 }

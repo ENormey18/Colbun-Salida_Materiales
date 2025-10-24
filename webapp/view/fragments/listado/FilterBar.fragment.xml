@@ -19,7 +19,7 @@
 
             <VBox>
                 <Label text="Fecha Necesidad" showColon="true" />
-                <DatePicker valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" name="pocNac" id="pocNacFilter" value="{Reservas>/filters/fechaFrom}" width="150px" />
+                <DatePicker valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" name="pocNac" id="pocNacFilter" value="{Reservas>/filters/fechaFrom}" width="150px" change="onSetFromDate"/>
             </VBox>
         </HBox>
         <VBox >

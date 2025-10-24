@@ -16,7 +16,7 @@
                 <Label text="Reserva"/>
                 <Input id="reservaInput" value="{Reservas>/filters/reserva}"/>
                 <Label text="Fecha de necesidad"/>
-                <DatePicker placeholder="from" id="fechaNecesidadFromInput" value="{Reservas>/filters/fechaFrom}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
+                <DatePicker placeholder="from" id="fechaNecesidadFromInput" value="{Reservas>/filters/fechaFrom}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" change="onSetFromDate"/>
                 <DatePicker placeholder="to" id="fechaNecesidadToInput" value="{Reservas>/filters/fechaTo}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
                 <Label text="Material" />
                 <Input id="materialFromInput" placeholder="from" value="{Reservas>/filters/materialFrom}"/>

@@ -20,8 +20,8 @@
         "uri": "/sap/opu/odata/sap/ZSALIDAMATSRV_SRV/",
         "type": "OData",
         "settings": {
-            "odataVersion": "2.0",
-            "localUri": "localService/metadata.xml"
+          "odataVersion": "2.0",
+          "localUri": "localService/metadata.xml"
         }
       }
     },
@@ -77,14 +77,14 @@
           "bundleName": "salidademateriales.i18n.i18n"
         }
       },
-      "": { 
-        "dataSource": "mainService", 
+      "": {
+        "dataSource": "mainService",
         "preload": true,
         "settings": {
-            "defaultBindingMode": "TwoWay",
-            "useBatch": false,
-            "tokenHandling": true,
-            "earlyTokenRequest": true
+          "defaultBindingMode": "TwoWay",
+          "useBatch": false,
+          "tokenHandling": true,
+          "earlyTokenRequest": true
         }
       }
     },
@@ -125,7 +125,7 @@
         },
         {
           "name": "RoutePostGoodsIssue",
-        "pattern": "post/{reservaId}",
+          "pattern": "post/{reservaId}",
           "target": "TargetPostGoodsIssue"
         }
       ],

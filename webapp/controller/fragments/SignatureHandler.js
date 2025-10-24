@@ -1,46 +1,44 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/core/Fragment"],
-  function (Controller, Fragment) {
+  ["sap/ui/core/mvc/Controller", "sap/ui/core/Fragment", "../../utils/DMSHandler","sap/m/MessageToast","salidademateriales/utils/Utils"],
+  function (Controller, Fragment, DMSHandler,MessageToast, Utils) {
     "use strict";
 
     return Controller.extend(
       "salidademateriales.controller.fragments.SignatureHandler",
       {
-        /**
-         * @param {sap.ui.core.mvc.View} oView La vista que posee el fragmento.
-         * @param {string} sModelName El nombre del modelo en la vista que contiene los datos (ej: "detalleReserva").
-         */
+        
         init: function (oView, sModelName) {
-          this.oView = oView;
-          this.sModelName = sModelName;
-          this.__signaturePad = null;
-          this.__signatureDialog = null;
+          this._oView = oView;
+          this._sModelName = sModelName;
+          this._signaturePad = null;
+          this._signatureDialog = null;
+          this._dmsHandler = DMSHandler;
         },
 
         onAfterRenderingCanvas() {
-          if (!this.__signaturePad) {
+          if (!this._signaturePad) {
             const canvas = document.getElementById("signatureCanvas");
             if (!canvas) {
               console.log("No se pudo encontrar el canvas de la firma");
               return;
             }
-            this.__signaturePad = new window.SignaturePad(canvas);
+            this._signaturePad = new window.SignaturePad(canvas);
           }
         },
 
         async onOpenSignatureCanvas() {
-          const sFragmentId = this.oView.createId("signatureDialog");
+          const sFragmentId = this._oView.createId("signatureDialog");
 
-          if (!this.__signatureDialog) {
-            this.__signatureDialog = await Fragment.load({
+          if (!this._signatureDialog) {
+            this._signatureDialog = await Fragment.load({
               id: sFragmentId,
               name: "salidademateriales.view.fragments.dialogs.SignDialog",
               controller: this,
             }).then((oSignatureDialog) => {
-              this.oView.addDependent(oSignatureDialog);
+              this._oView.addDependent(oSignatureDialog);
               return oSignatureDialog;
             });
-            const deviceModel = this.oView.getModel("device");
+            const deviceModel = this._oView.getModel("device");
             const { width } = deviceModel.getProperty("/resize");
             const canvasWidth = width > 600 ? 500 : 300;
             const canvasHeight = width > 600 ? 300 : 180;
@@ -56,7 +54,7 @@ sap.ui.define(
               }px; height: 1px; position: relative;left: 15px; bottom: 30px;background-color: black;'></div></div>`
             );
           }
-          this.__signatureDialog.open();
+          this._signatureDialog.open();
         },
 
         changeCanvasSize(oEvent) {
@@ -74,26 +72,26 @@ sap.ui.define(
         },
 
         onCloseSignatureDialog() {
-          if (this.__signaturePad) {
-            this.__signaturePad.clear();
+          if (this._signaturePad) {
+            this._signaturePad.clear();
           }
-          this.__signatureDialog.close();
+          this._signatureDialog.close();
         },
 
         onClearSignature() {
-          if (this.__signaturePad) {
-            this.__signaturePad.clear();
+          if (this._signaturePad) {
+            this._signaturePad.clear();
           }
         },
 
         async onSaveSignature() {
-          if (!this.__signaturePad || this.__signaturePad.isEmpty()) {
-            sap.m.MessageToast.show("La firma no puede estar vacía.");
+          if (!this._signaturePad || this._signaturePad.isEmpty()) {
+            MessageToast.show("La firma no puede estar vacía.");
             return;
           }
 
-          const oTargetModel = this.oView.getModel(this.sModelName);
-          const base64 = this.__signaturePad.toDataURL();
+          const oTargetModel = this._oView.getModel(this._sModelName);
+          const base64 = this._signaturePad.toDataURL();
 
           oTargetModel.setProperty("/Firma", base64);
 
@@ -101,17 +99,35 @@ sap.ui.define(
             "/DocumentoSeleccionado"
           );
           if (oMatDocSelec && !oMatDocSelec.Firmado && oMatDocSelec.Pdf) {
-            oMatDocSelec.Pdf = await this.__addSignatureToDocument(
+            oMatDocSelec.Pdf = await this._addSignatureToDocument(
               oMatDocSelec,
               base64
             );
             if (oMatDocSelec.Pdf != null) {
+              //Logica para guardar en DMS
+              const blob = Utils.base64ToBlob(oMatDocSelec.Pdf, "application/pdf");
+              const sReservaId = oTargetModel.getProperty("/Reserva/Id") || oTargetModel.getProperty("/Reserva");
+              const oResult = await this._dmsHandler.uploadObject(`root/Vale_Acomp_Reservas/${sReservaId}`, oMatDocSelec.Numero, `${oMatDocSelec.Numero}.pdf`, blob);
+              if (oResult.error){
+                switch (oResult.error.status){
+                  case 409:
+                    MessageToast.show("Ya existe un archivo con el nombre del documento en DMS");
+                    throw new Error(oResult.error);
+                  case 401:
+                    MessageToast.show("Error Acceso: Token de acceso a DMS Inválido");
+                    throw new Error(oResult.error);
+                  default:
+                     MessageToast.show("Error Interno: No se pudo cargar el documento en DMS");
+                    throw new Error(oResult.error);
+                }
+              }
+
               oMatDocSelec.Firmado = true;
+              oMatDocSelec.DMSId = oResult.objId;
               oTargetModel.setProperty(
                 "/DocumentoSeleccionado",
                 oMatDocSelec
               );
-              //Logica para guardar en DMS
 
               //Logica para actualizar modelo en detalles reserva
               const aDocumentos = oTargetModel.getProperty("/Documentos");
@@ -130,10 +146,10 @@ sap.ui.define(
               }
             }
           }
-          this.__signaturePad.clear();
-          this.__signatureDialog.close();
+          this._signaturePad.clear();
+          this._signatureDialog.close();
         },
-        async __addSignatureToDocument(oMatDocSelec, sFirmaBase64) {
+        async _addSignatureToDocument(oMatDocSelec, sFirmaBase64) {
           const sPdfBase64 = oMatDocSelec.Pdf;
           let imgBase64Clean = sFirmaBase64;
 

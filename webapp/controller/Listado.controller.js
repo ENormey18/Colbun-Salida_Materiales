@@ -66,7 +66,18 @@ sap.ui.define(
         }
         this.initialFiltersDialog.open();
       },
+      onSetFromDate(oEvent) {
+        const oDatePickerFrom = oEvent.getSource(); 
+        const oFromDate = oDatePickerFrom.getDateValue(); 
+        const oReservasModel = this.getView().getModel("Reservas");
+        const oFilters = oReservasModel.getProperty("/filters");
 
+        if (oFilters.status === "C" && oFromDate) {
+          const oToDate = new Date(oFromDate);
+          oToDate.setFullYear(oToDate.getFullYear() + 1); 
+          oReservasModel.setProperty("/filters/fechaTo", oToDate.toISOString().slice(0,10));
+        }
+      },
       __loadWerks(oModel) {
         return new Promise(function (resolve, reject) {
           oModel.read("/CentroSet", {
@@ -139,7 +150,7 @@ sap.ui.define(
           MessageToast.show("El rango de fechas es inválido");
           return false;
         }
-        if (oFilters.status == "C" && !oFilters.reserva.trim()) {
+        if (oFilters.status === "C" && !oFilters.reserva.trim()) {
           if (
             !oFilters.fechaFrom ||
             !oFilters.fechaTo ||
