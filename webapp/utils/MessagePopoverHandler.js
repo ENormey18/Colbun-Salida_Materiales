@@ -68,9 +68,9 @@ sap.ui.define([
          */
         addMessage: function(oMessage) {
             const oModel = this._oView.getModel(this._sModelName);
-            const aMessages = oModel.getProperty(this._sMessagesPath.split(">")[1]) || [];
-            aMessages.push(oMessage);
-            oModel.setProperty(this._sMessagesPath.split(">")[1], aMessages);
+            const aOldMessages = oModel.getProperty(this._sMessagesPath.split(">")[1]) || [];
+            const aNewMessages = [...aOldMessages, oMessage];
+            oModel.setProperty(this._sMessagesPath.split(">")[1], aNewMessages);
         },
 
         /**
@@ -85,15 +85,11 @@ sap.ui.define([
             const sMessagesPath = this._sMessagesPath.split(">")[1]; // ej: "/Messages"
             const aCurrentMessages = oModel.getProperty(sMessagesPath) || [];
 
-            // 1. Filtrar los mensajes existentes para quitar los del tipo especificado
             const aFilteredMessages = aCurrentMessages.filter(
                 (oMsg) => oMsg.title !== sTitle
             );
 
-            // 2. Concatenar la lista filtrada con los nuevos mensajes
             const aFinalMessages = aFilteredMessages.concat(aNewMessages);
-            
-            // 3. Actualizar el modelo
             oModel.setProperty(sMessagesPath, aFinalMessages);
         },
 

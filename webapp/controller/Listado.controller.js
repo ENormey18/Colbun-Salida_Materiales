@@ -170,7 +170,7 @@ sap.ui.define(
           }
           const iDiffMs = dateTo - dateFrom;
           const iDiffDays = Math.ceil(iDiffMs / (1000 * 60 * 60 * 24));
-          if (iDiffDays > 365) {
+          if (iDiffDays > 366) {
             MessageToast.show(
               "El rango máximo permitido para reservas completadas es un año"
             );
@@ -291,7 +291,7 @@ sap.ui.define(
         //this.onSearch();
       },
       onFiltrarTable: function (oEvent) {
-        const sQuery = oEvent.getParameter("query");
+        const sQuery = oEvent.getParameter("query").trim()?.toUpperCase();
         const aFilters = [];
 
         if (sQuery && sQuery.length > 0) {

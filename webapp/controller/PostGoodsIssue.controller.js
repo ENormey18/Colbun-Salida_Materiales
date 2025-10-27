@@ -1,43 +1,57 @@
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/Fragment",
     "./fragments/SignatureHandler",
     "sap/ui/Device",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
-    "sap/m/MessagePopover",
-    "sap/m/MessageItem",
     "sap/ui/model/json/JSONModel",
     "../model/formatter",
-    "salidademateriales/utils/Utils"
+    "salidademateriales/utils/Utils",
+    "salidademateriales/utils/MessagePopoverHandler",
+    "salidademateriales/controller/fragments/ValueHelpReceptores",
   ],
   function (
     Controller,
-    Fragment,
     SignatureHandler,
     Device,
-    Filter,
-    FilterOperator,
     MessageToast,
-    MessagePopover,
-    MessageItem,
     JSONModel,
     formatter,
-    Utils
+    Utils,
+    MessagePopoverHandler,
+    ValueHelpReceptores
   ) {
     "use strict";
 
     return Controller.extend("salidademateriales.controller.PostGoodsIssue", {
       formatter: formatter,
-      __signatureHandler: null,
-      __oMessagePopover: null,
+      _signatureHandler: null,
+      _destinatarioValueHelp: null,
+
       onInit: function () {
         const oRouter = this.getOwnerComponent().getRouter();
         Device.resize.attachHandler(this.changeCanvasSize, this);
-        this.__signatureHandler = new SignatureHandler();
-        this.__signatureHandler.init(this.getView(), "salidaMateriales");
+
+        this._destinatarioValueHelp = new ValueHelpReceptores(this, {
+          modelName: "salidaMateriales",
+          listPath: "/Receptores",
+          keyField: "Usuario",
+          descriptionField: "Nombre",
+          keyModelPath: "/DestinatarioUser",
+          descriptionModelPath: "/DestinatarioName",
+          fragmentName:
+            "salidademateriales.view.fragments.dialogs.ReceptoresSelectDialog",
+        });
+
+        this._signatureHandler = new SignatureHandler();
+        this._signatureHandler.init(this.getView(), "salidaMateriales");
+
+        this._messagePopoverHandler = new MessagePopoverHandler(
+          this.getView(),
+          "salidaMateriales",
+          "/Messages"
+        );
+
         oRouter
           .getRoute("RoutePostGoodsIssue")
           .attachPatternMatched(this.__onRouteMatched, this);
@@ -57,9 +71,7 @@ sap.ui.define(
         oView.setBusy(true);
         const oODataModel = this.getOwnerComponent().getModel();
 
-        oSalidaMatModel.setProperty("/Receptores", [
-          { Nombre: "Tester", Usnam: "Usnam" },
-        ]);
+        oSalidaMatModel.setProperty("/Receptores", []);
         this.__loadReceptores(oODataModel)
           .then((aReceptores) => {
             oSalidaMatModel.setProperty("/Receptores", aReceptores);
@@ -67,9 +79,6 @@ sap.ui.define(
           .catch((err) => {
             console.error("Error en la llamada OData:", err);
             const sErrorMessage = Utils.processErrorResponse(err);
-            const aCurrentMessages =
-              oSalidaModel.getProperty("/Messages") || [];
-            const aNewMessages = [...aCurrentMessages];
             const oMessage = {
               type: "Error",
               title: "GET Servicio OData",
@@ -77,8 +86,7 @@ sap.ui.define(
               active: true,
               description: sErrorMessage,
             };
-            aNewMessages.push(oMessage);
-            oSalidaModel.setProperty("/Messages", aNewMessages);
+            this._messagePopoverHandler.addMessage(oMessage);
             MessageToast.show("Ocurrió un error al buscar los destinatarios");
           })
           .finally(() => {
@@ -124,74 +132,11 @@ sap.ui.define(
         oSalidaMatModel.setData(oInitialData);
       },
       onDestinatarioValueHelp: function () {
-        const sFragmentId = this.getView().createId("receptorSelectDialog");
-
-        if (!this._oReceptorDialog) {
-          this._oReceptorDialog = Fragment.load({
-            id: sFragmentId,
-            name: "salidademateriales.view.fragments.dialogs.ReceptoresSelectDialog", 
-            controller: this,
-          }).then(
-            function (oDialog) {
-              this.getView().addDependent(oDialog);
-              return oDialog;
-            }.bind(this)
-          );
-        }
-
-        this._oReceptorDialog.then(function (oDialog) {
-          oDialog.open();
-        });
-      },
-      onReceptoresValueHelpSearch: function (oEvent) {
-        const sValue = oEvent.getParameter("value");
-
-        const oFilter = new Filter({
-          filters: [
-            new Filter("Nombre", FilterOperator.Contains, sValue),
-            new Filter("Usuario", FilterOperator.Contains, sValue),
-          ],
-          and: false, // OR
-        });
-        const oBinding = oEvent.getSource().getBinding("items");
-        oBinding.filter([oFilter]);
-      },
-
-      onReceptoresValueHelpClose: function (oEvent) {
-        const oSelectedItem = oEvent.getParameter("selectedItem");
-        const oViewModel = this.getView().getModel("salidaMateriales");
-
-        if (oSelectedItem) {
-          const oReceptorData = oSelectedItem
-            .getBindingContext("salidaMateriales")
-            .getObject();
-
-          oViewModel.setProperty("/DestinatarioName", oReceptorData.Nombre);
-          oViewModel.setProperty("/DestinatarioUser", oReceptorData.Usuario);
-        }
-        oEvent.getSource().getBinding("items").filter([]);
+        this._destinatarioValueHelp.open();
       },
 
       onDestinatarioChange: function (oEvent) {
-        const sValue = oEvent.getParameter("value");
-        const oViewModel = this.getView().getModel("salidaMateriales");
-        const aReceptores = oViewModel.getProperty("/Receptores") || []; 
-
-        if (!sValue) {
-          oViewModel.setProperty("/DestinatarioName", "");
-          oViewModel.setProperty("/DestinatarioUser", "");
-          return;
-        }
-
-        const oFoundReceptor = aReceptores.find(
-          (receptor) => receptor.Usuario.toUpperCase() === sValue.toUpperCase()
-        );
-        if (oFoundReceptor) {
-          oViewModel.setProperty("/DestinatarioName", oFoundReceptor.Nombre);
-          oViewModel.setProperty("/DestinatarioUser", oFoundReceptor.Usuario.toUpperCase());
-        } else {
-          oViewModel.setProperty("/DestinatarioUser", sValue.toUpperCase());
-        }
+        this._destinatarioValueHelp.onChange(oEvent);
       },
       onPostSalidaMat: async function (oEvent) {
         const oView = this.getView();
@@ -231,8 +176,6 @@ sap.ui.define(
         } catch (oError) {
           MessageToast.show("Hubo un error con la salida de materiales");
           const sErrorMessage = Utils.processErrorResponse(oError);
-          const aCurrentMessages = oSalidaModel.getProperty("/Messages") || [];
-          const aNewMessages = [...aCurrentMessages];
           const oMessage = {
             type: "Error",
             title: "Salida de Materiales",
@@ -240,8 +183,7 @@ sap.ui.define(
             active: true,
             description: sErrorMessage,
           };
-          aNewMessages.push(oMessage);
-          oSalidaModel.setProperty("/Messages", aNewMessages);
+          this._messagePopoverHandler.addMessage(oMessage);
         } finally {
           oView.setBusy(false);
         }
@@ -263,7 +205,10 @@ sap.ui.define(
           MessageToast.show("Debe establecer una fecha de contabilización");
           return false;
         }
-        if (!oSalidaMat.DestinatarioUser || oSalidaMat.DestinatarioUser === "") {
+        if (
+          !oSalidaMat.DestinatarioUser ||
+          oSalidaMat.DestinatarioUser === ""
+        ) {
           MessageToast.show("Debe especificar un destinatario");
           return false;
         }
@@ -277,8 +222,6 @@ sap.ui.define(
       },
       __processSuccessSalida: async function (oCreatedEntity) {
         const oSalidaModel = this.getView().getModel("salidaMateriales");
-        const aCurrentMessages = oSalidaModel.getProperty("/Messages") || [];
-        const aNewMessages = [...aCurrentMessages];
         const oMessage = {
           type: "Success",
           title: "Salida de Materiales",
@@ -290,8 +233,7 @@ sap.ui.define(
             " con fecha de contabilizacion " +
             oCreatedEntity.FechaContabilizacion,
         };
-        aNewMessages.push(oMessage);
-        oSalidaModel.setProperty("/Messages", aNewMessages);
+        this._messagePopoverHandler.addMessage(oMessage);
         oSalidaModel.setProperty("/Ejecutada", true);
 
         const sAñoDoc = oCreatedEntity.FechaContabilizacion.slice(0, 4);
@@ -308,7 +250,7 @@ sap.ui.define(
         };
         oSalidaModel.setProperty("/DocumentoSeleccionado", oValeAcomp);
 
-        await this.__signatureHandler.onOpenSignatureCanvas();
+        await this._signatureHandler.onOpenSignatureCanvas();
       },
       onFinished: function () {
         this.getOwnerComponent().getModel("detailsStateModel").setData({
@@ -352,9 +294,6 @@ sap.ui.define(
             error: function (oError) {
               console.error("Error en la llamada OData:", oError);
               const sErrorMessage = Utils.processErrorResponse(oError);
-              const aCurrentMessages =
-                oSalidaModel.getProperty("/Messages") || [];
-              const aNewMessages = [...aCurrentMessages];
               const oMessage = {
                 type: "Error",
                 title: "GET Servicio OData",
@@ -363,8 +302,7 @@ sap.ui.define(
                 active: true,
                 description: sErrorMessage,
               };
-              aNewMessages.push(oMessage);
-              oSalidaModel.setProperty("/Messages", aNewMessages);
+              this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
                 "Ocurrió un error al buscar el vale de acompañamiento"
               );
@@ -373,30 +311,8 @@ sap.ui.define(
           });
         });
       },
-      __initMessagepopover() {
-        const oMessageTemplate = new MessageItem({
-          type: "{salidaMateriales>type}",
-          title: "{salidaMateriales>title}",
-          subtitle: "{salidaMateriales>subtitle}",
-          activeTitle: "{salidaMateriales>active}",
-          description: "{salidaMateriales>description}",
-          counter: "{salidaMateriales>counter}",
-        });
-
-        this.__oMessagePopover = new MessagePopover({
-          items: {
-            path: "salidaMateriales>/Messages",
-            template: oMessageTemplate,
-          },
-        });
-      },
-      onShowMessagePopover(oEvent) {
-        if (!this.__oMessagePopover) {
-          this.__initMessagepopover();
-          const oButton = oEvent.getSource();
-          oButton.addDependent(this.__oMessagePopover);
-        }
-        this.__oMessagePopover.toggle(oEvent.getSource());
+      onShowMessagePopover: function (oEvent) {
+        this._messagePopoverHandler.toggleSource(oEvent);
       },
     });
   }

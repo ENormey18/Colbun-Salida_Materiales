@@ -9,9 +9,9 @@
         items="{
             path: 'salidaMateriales>/Receptores'
         }"
-        search="onReceptoresValueHelpSearch"
-        confirm="onReceptoresValueHelpClose"
-        cancel="onReceptoresValueHelpClose"
+        search=".onSearch"
+        confirm=".onClose"
+        cancel=".onClose"
     >
         <StandardListItem
             title="{salidaMateriales>Nombre}"

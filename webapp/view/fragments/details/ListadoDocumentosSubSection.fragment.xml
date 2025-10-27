@@ -64,9 +64,9 @@
                     <Text text="{detalleReserva>Dest}" />
                     <VBox>
                         <core:Icon
-                            src="sap-icon://signature"
+                            src="sap-icon://verified"
                             class="sapUiTinyMargin"
-                            color="Positive"
+                            color="#4db1ff"
                             tooltip="Documento Firmado"
                             visible="{detalleReserva>Firmado}"
                         />

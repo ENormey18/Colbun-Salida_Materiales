@@ -1,13 +1,10 @@
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/Fragment",
     "./fragments/SignatureHandler",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
-    "sap/m/MessagePopover",
-    "sap/m/MessageItem",
     "sap/ui/model/json/JSONModel",
     "sap/ui/Device",
     "sap/m/PDFViewer",
@@ -15,17 +12,14 @@ sap.ui.define(
     "./fragments/Characteristics",
     "../utils/DMSHandler",
     "../utils/Utils",
-    "salidademateriales/utils/MessagePopoverHandler"
+    "salidademateriales/utils/MessagePopoverHandler",
   ],
   (
     Controller,
-    Fragment,
     SignatureHandler,
     Filter,
     FilterOperator,
     MessageToast,
-    MessagePopover,
-    MessageItem,
     JSONModel,
     Device,
     PDFViewer,
@@ -54,7 +48,11 @@ sap.ui.define(
         });
         this.getView().addDependent(this._pdfViewer);
 
-        this._messagePopoverHandler = new MessagePopoverHandler(this.getView(), "detalleReserva", "/Messages");
+        this._messagePopoverHandler = new MessagePopoverHandler(
+          this.getView(),
+          "detalleReserva",
+          "/Messages"
+        );
 
         CharacteristicsHandler.init(this);
 
@@ -324,9 +322,14 @@ sap.ui.define(
         const oDetalleModel = this.getView().getModel("detalleReserva");
         const aItems = oDetalleModel.getProperty("/Items");
         const aItemsWithoutUTs = aItems.filter((oItem) => oItem.CantUT === 0);
-        
+
+        const aMaterialesWithoutUTs = Array.from(
+          aItemsWithoutUTs
+            .reduce((map, oItem) => map.set(oItem.Material, oItem), new Map())
+            .values()
+        );
         const aMessages = [];
-        aItemsWithoutUTs.forEach((oItem, index) => {
+        aMaterialesWithoutUTs.forEach((oItem, index) => {
           const sDescription =
             "El material " +
             this.formatter.removeLeadingZeros(oItem.Material) +
@@ -341,13 +344,10 @@ sap.ui.define(
           };
           aMessages.push(oMessage);
         });
-        this._messagePopoverHandler.setMessagesByTitle("Ubicacion Técnica", aMessages);
-        // const aOldMessag = oDetalleModel.getProperty("/Messages");
-        // let aNewMessag = aOldMessag.filter(
-        //   (oMess) => oMess.title !== "Ubicacion Técnica"
-        // );
-        // aNewMessag = aNewMessag.concat(aMessages);
-        // oDetalleModel.setProperty("/Messages", aNewMessag);
+        this._messagePopoverHandler.setMessagesByTitle(
+          "Ubicacion Técnica",
+          aMessages
+        );
       },
       async _checkValesFirmados() {
         const oDetalleModel = this.getView().getModel("detalleReserva");
@@ -367,8 +367,6 @@ sap.ui.define(
           });
           oDetalleModel.setProperty("/Documentos", aMergedDocs);
         } catch (oError) {
-          const aCurrentMessages = oDetalleModel.getProperty("/Messages") || [];
-          const aNewMessages = [...aCurrentMessages];
           let sDescription;
           switch (oError.status) {
             case 401:
@@ -377,7 +375,8 @@ sap.ui.define(
             case 404:
               return;
             default:
-              sDescription = "Error Interno: No se pudo comprobar la carpeta en DMS";
+              sDescription =
+                "Error Interno: No se pudo comprobar la carpeta en DMS";
               break;
           }
           const oMessage = {
@@ -387,8 +386,7 @@ sap.ui.define(
             active: true,
             description: sDescription,
           };
-          aNewMessages.push(oMessage);
-          oDetalleModel.setProperty("/Messages", aNewMessages);
+          this._messagePopoverHandler.addMessage(oMessage);
           MessageToast.show(
             "Ocurrió un error al verificar los documentos en dms"
           );
@@ -397,33 +395,8 @@ sap.ui.define(
       onOpenCharacteristicsDialog: function (oEvent) {
         CharacteristicsHandler.open(oEvent);
       },
-      _initMessagepopover() {
-        const oMessageTemplate = new MessageItem({
-          type: "{detalleReserva>type}",
-          title: "{detalleReserva>title}",
-          subtitle: "{detalleReserva>subtitle}",
-          activeTitle: "{detalleReserva>active}",
-          description: "{detalleReserva>description}",
-          counter: "{detalleReserva>counter}",
-        });
-
-        this._oMessagePopover = new MessagePopover({
-          items: {
-            path: "detalleReserva>/Messages",
-            template: oMessageTemplate,
-          },
-        });
-      },
-      // onShowMessagePopover(oEvent) {
-      //   if (!this._oMessagePopover) {
-      //     this._initMessagepopover();
-      //     const oButton = oEvent.getSource();
-      //     oButton.addDependent(this._oMessagePopover);
-      //   }
-      //   this._oMessagePopover.toggle(oEvent.getSource());
-      // },
       onShowMessagePopover: function (oEvent) {
-            this._messagePopoverHandler.toggleSource(oEvent);
+        this._messagePopoverHandler.toggleSource(oEvent);
       },
       onShowItems(oEvent) {
         const sSelectedKey = oEvent.getSource().getSelectedKey();
@@ -599,9 +572,6 @@ sap.ui.define(
             oDocument.Pdf = sPdfMD || "";
           } catch (oError) {
             const sErrorMessage = Utils.processErrorResponse(oError);
-            const aCurrentMessages =
-              oDetalleModel.getProperty("/Messages") || [];
-            const aNewMessages = [...aCurrentMessages];
             const oMessage = {
               type: "Error",
               title: "Vale de Acompañamiento",
@@ -610,8 +580,7 @@ sap.ui.define(
               active: true,
               description: sErrorMessage,
             };
-            aNewMessages.push(oMessage);
-            oDetalleModel.setProperty("/Messages", aNewMessages);
+            this._messagePopoverHandler.addMessage(oMessage);
             MessageToast.show(
               "Ocurrió un error al buscar el vale de acompañamiento"
             );
@@ -639,9 +608,6 @@ sap.ui.define(
             error: function (oError) {
               console.error("Error en la llamada OData:", oError);
               const sErrorMessage = Utils.processErrorResponse(oError);
-              const aCurrentMessages =
-                oDetalleModel.getProperty("/Messages") || [];
-              const aNewMessages = [...aCurrentMessages];
               const oMessage = {
                 type: "Error",
                 title: "GET Servicio OData",
@@ -650,8 +616,7 @@ sap.ui.define(
                 active: true,
                 description: sErrorMessage,
               };
-              aNewMessages.push(oMessage);
-              oDetalleModel.setProperty("/Messages", aNewMessages);
+              this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
                 "Ocurrió un error al buscar el vale de acompañamiento"
               );
@@ -676,8 +641,6 @@ sap.ui.define(
         } catch (oError) {
           console.error("Error en la llamada DMS:", oError);
           const sErrorMessage = Utils.processErrorResponse(oError);
-          const aCurrentMessages = oDetalleModel.getProperty("/Messages") || [];
-          const aNewMessages = [...aCurrentMessages];
           const oMessage = {
             type: "Error",
             title: "GET Servicio DMS",
@@ -686,8 +649,7 @@ sap.ui.define(
             active: true,
             description: sErrorMessage,
           };
-          aNewMessages.push(oMessage);
-          oDetalleModel.setProperty("/Messages", aNewMessages);
+          this._messagePopoverHandler.addMessage(oMessage);
           MessageToast.show(
             "Ocurrió un error al buscar el vale de acompañamiento"
           );
@@ -707,9 +669,6 @@ sap.ui.define(
               oDocument.Pdf = sPdfMD || "";
             } catch (oError) {
               const sErrorMessage = Utils.processErrorResponse(oError);
-              const aCurrentMessages =
-                oDetalleModel.getProperty("/Messages") || [];
-              const aNewMessages = [...aCurrentMessages];
               const oMessage = {
                 type: "Error",
                 title: "Vale de Acompañamiento",
@@ -718,8 +677,7 @@ sap.ui.define(
                 active: true,
                 description: sErrorMessage,
               };
-              aNewMessages.push(oMessage);
-              oDetalleModel.setProperty("/Messages", aNewMessages);
+              this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
                 "Ocurrió un error al buscar el vale de acompañamiento"
               );
@@ -734,9 +692,6 @@ sap.ui.define(
               oDocument.Pdf = sPdfMD || "";
             } catch (oError) {
               const sErrorMessage = Utils.processErrorResponse(oError);
-              const aCurrentMessages =
-                oDetalleModel.getProperty("/Messages") || [];
-              const aNewMessages = [...aCurrentMessages];
               const oMessage = {
                 type: "Error",
                 title: "Vale de Acompañamiento",
@@ -745,8 +700,7 @@ sap.ui.define(
                 active: true,
                 description: sErrorMessage,
               };
-              aNewMessages.push(oMessage);
-              oDetalleModel.setProperty("/Messages", aNewMessages);
+              this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
                 "Ocurrió un error al buscar el vale de acompañamiento"
               );

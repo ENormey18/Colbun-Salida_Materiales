@@ -85,8 +85,11 @@ sap.ui.define(
         },
 
         async onSaveSignature() {
+          this._signatureDialog.setBusy(true);
+
           if (!this._signaturePad || this._signaturePad.isEmpty()) {
             MessageToast.show("La firma no puede estar vacía.");
+            this._signatureDialog.setBusy(false);
             return;
           }
 
@@ -112,12 +115,15 @@ sap.ui.define(
                 switch (oResult.error.status){
                   case 409:
                     MessageToast.show("Ya existe un archivo con el nombre del documento en DMS");
+                    this._signatureDialog.setBusy(false);
                     throw new Error(oResult.error);
                   case 401:
                     MessageToast.show("Error Acceso: Token de acceso a DMS Inválido");
+                    this._signatureDialog.setBusy(false);
                     throw new Error(oResult.error);
                   default:
                      MessageToast.show("Error Interno: No se pudo cargar el documento en DMS");
+                     this._signatureDialog.setBusy(false);
                     throw new Error(oResult.error);
                 }
               }
@@ -146,6 +152,8 @@ sap.ui.define(
               }
             }
           }
+          
+          this._signatureDialog.setBusy(false);
           this._signaturePad.clear();
           this._signatureDialog.close();
         },
