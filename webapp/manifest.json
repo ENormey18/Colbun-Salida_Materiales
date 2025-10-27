@@ -33,6 +33,11 @@
           "title": "{{salida_de_materiales-display.flpTitle}}",
           "info": "{{appTitle}}",
           "icon": "sap-icon://activity-items",
+          "indicatorDataSource": {
+            "dataSource": "mainService",
+            "path": "ReservaSet/$count?$filter=Status eq 'O'",
+            "refresh": 0
+          },
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
