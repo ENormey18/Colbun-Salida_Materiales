@@ -32,13 +32,17 @@ sap.ui.define(
     "use strict";
     return Controller.extend("salidademateriales.controller.Details", {
       formatter: formatter,
-      _oMessagePopover: null,
-      _caracteristicasMaterialesDialog: null,
+      _oResourceBundle: null,
       _signatureHandler: null,
       _pdfViewer: null,
+      _messagePopoverHandler: null,
       onInit() {
         const oRouter = this.getOwnerComponent().getRouter();
         Device.resize.attachHandler(this.changeCanvasSize, this);
+
+        this._oResourceBundle = this.getOwnerComponent()
+          .getModel("i18n")
+          .getResourceBundle();
 
         this._signatureHandler = new SignatureHandler();
         this._signatureHandler.init(this.getView(), "detalleReserva");
@@ -230,7 +234,19 @@ sap.ui.define(
           SalidaMat: {
             Fecha: new Date().toISOString().slice(0, 10),
             FechaContabilizacion: new Date().toISOString().slice(0, 10),
-            Reserva: reservaOData && reservaOData.Id ? reservaOData.Id : "-",
+            Reserva: {
+              Id: reservaOData && reservaOData.Id ? reservaOData.Id : "",
+              Usuario: reservaOData && reservaOData.Usuario ? reservaOData.Usuario : "",
+              Orden: reservaOData && reservaOData.Orden ? reservaOData.Orden : "",
+              Dest: reservaOData && reservaOData.Dest ? reservaOData.Dest : "",
+              Centro: reservaOData && reservaOData.Centro ? reservaOData.Centro : "",
+              CentroD: reservaOData && reservaOData.CentroD ? reservaOData.CentroD : "",
+              CostCenter:
+                reservaOData && reservaOData.CostCenter ? reservaOData.CostCenter : "",
+              CostCenterD:
+              reservaOData && reservaOData.CostCenterD ? reservaOData.CostCenterD : "",
+            
+            },
             Destinatario: "",
             Materiales: [],
           },
@@ -245,7 +261,9 @@ sap.ui.define(
           } catch (err) {
             console.error("Error en la llamada OData:", err);
             MessageToast.show(
-              "Ocurrió un error al buscar los datos de clases de material."
+              this._oResourceBundle.getText(
+                "messageToastErrorGetMaterialClasses"
+              )
             );
           }
           aClasses.forEach((oClass) => {
@@ -331,13 +349,17 @@ sap.ui.define(
         const aMessages = [];
         aMaterialesWithoutUTs.forEach((oItem, index) => {
           const sDescription =
-            "El material " +
+            this._oResourceBundle.getText(
+              "popoverMessageDescriptionMissingUT1"
+            ) +
             this.formatter.removeLeadingZeros(oItem.Material) +
-            " no tiene ubicacion técnica en el centro " +
+            this._oResourceBundle.getText(
+              "popoverMessageDescriptionMissingUT2"
+            ) +
             oItem.Centro;
           const oMessage = {
             type: "Warning",
-            title: "Ubicacion Técnica",
+            title: this._oResourceBundle.getText("technicalLocation"),
             active: true,
             description: sDescription,
             counter: index + 1,
@@ -381,14 +403,16 @@ sap.ui.define(
           }
           const oMessage = {
             type: "Error",
-            title: "Vale de Acompañamiento",
-            subtitle: "Ocurrió un error verificar los documentos en DMS",
+            title: this._oResourceBundle.getText("goodsReceipt"),
+            subtitle: this._oResourceBundle.getText(
+              "popoverMessageSubtitleErrorCheckDMS"
+            ),
             active: true,
             description: sDescription,
           };
           this._messagePopoverHandler.addMessage(oMessage);
           MessageToast.show(
-            "Ocurrió un error al verificar los documentos en dms"
+            this._oResourceBundle.getText("messageToastErrorCheckDMS")
           );
         }
       },
@@ -465,7 +489,9 @@ sap.ui.define(
         });
 
         if (aItems.length == 0) {
-          return MessageToast.show("No ha seleccionado ningun item");
+          return MessageToast.show(
+            this._oResourceBundle.getText("messageToastMissingSelectedItem")
+          );
         }
 
         if (
@@ -477,7 +503,7 @@ sap.ui.define(
           )
         ) {
           return MessageToast.show(
-            "Debe especificar una cantidad a retirar positiva para todos los items seleccionados"
+            this._oResourceBundle.getText("messageToastMissingWithdrawQuantity")
           );
         }
 
@@ -489,7 +515,7 @@ sap.ui.define(
           )
         ) {
           return MessageToast.show(
-            "No puede ingresar una cantidad a retirar mayor a la cantidad pendiente del item"
+            this._oResourceBundle.getText("messageToastInvalidWithdrawQuantity")
           );
         }
 
@@ -521,7 +547,7 @@ sap.ui.define(
           this.getOwnerComponent().getModel("salidaMatModel");
         oSalidaMatModel.setData(oSalidaMat);
         this.getOwnerComponent().getRouter().navTo("RoutePostGoodsIssue", {
-          reservaId: oSalidaMat.Reserva,
+          reservaId: oSalidaMat.Reserva.Id,
         });
       },
       onLimpiarTabla: function () {
@@ -574,15 +600,16 @@ sap.ui.define(
             const sErrorMessage = Utils.processErrorResponse(oError);
             const oMessage = {
               type: "Error",
-              title: "Vale de Acompañamiento",
-              subtitle:
-                "Ocurrió un error al intentar buscar el vale de acompañamiento del documento",
+              title: this._oResourceBundle.getText("goodsReceipt"),
+              subtitle: this._oResourceBundle.getText(
+                "popoverMessageSubtitleErrorTryGetDoc"
+              ),
               active: true,
               description: sErrorMessage,
             };
             this._messagePopoverHandler.addMessage(oMessage);
             MessageToast.show(
-              "Ocurrió un error al buscar el vale de acompañamiento"
+              this._oResourceBundle.getText("messageToastErrorGetDoc")
             );
             return;
           }
@@ -610,15 +637,16 @@ sap.ui.define(
               const sErrorMessage = Utils.processErrorResponse(oError);
               const oMessage = {
                 type: "Error",
-                title: "GET Servicio OData",
-                subtitle:
-                  "Ocurrió un error al buscar el vale de acompañamiento del documento generado",
+                title: "GET OData Service",
+                subtitle: this._oResourceBundle.getText(
+                  "popoverMessageSubtitleErrorGetDoc"
+                ),
                 active: true,
                 description: sErrorMessage,
               };
               this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
-                "Ocurrió un error al buscar el vale de acompañamiento"
+                this._oResourceBundle.getText("messageToastErrorGetDoc")
               );
               reject(oError);
             },
@@ -643,15 +671,16 @@ sap.ui.define(
           const sErrorMessage = Utils.processErrorResponse(oError);
           const oMessage = {
             type: "Error",
-            title: "GET Servicio DMS",
-            subtitle:
-              "Ocurrió un error al buscar el vale de acompañamiento firmado en DMS",
+            title: "GET DMS Service",
+            subtitle: this._oResourceBundle.getText(
+              "popoverMessageSubtitleErrorGetSignedDoc"
+            ),
             active: true,
             description: sErrorMessage,
           };
           this._messagePopoverHandler.addMessage(oMessage);
           MessageToast.show(
-            "Ocurrió un error al buscar el vale de acompañamiento"
+            this._oResourceBundle.getText("messageToastErrorGetDoc")
           );
         }
       },
@@ -671,15 +700,16 @@ sap.ui.define(
               const sErrorMessage = Utils.processErrorResponse(oError);
               const oMessage = {
                 type: "Error",
-                title: "Vale de Acompañamiento",
-                subtitle:
-                  "Ocurrió un error al intentar buscar el vale de acompañamiento firmado",
+                title: this._oResourceBundle.getText("goodsReceipt"),
+                subtitle: this._oResourceBundle.getText(
+                  "popoverMessageSubtitleErrorTryGetSignedDoc"
+                ),
                 active: true,
                 description: sErrorMessage,
               };
               this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
-                "Ocurrió un error al buscar el vale de acompañamiento"
+                this._oResourceBundle.getText("messageToastErrorGetDoc")
               );
               return;
             }
@@ -694,15 +724,16 @@ sap.ui.define(
               const sErrorMessage = Utils.processErrorResponse(oError);
               const oMessage = {
                 type: "Error",
-                title: "Vale de Acompañamiento",
-                subtitle:
-                  "Ocurrió un error al intentar buscar el vale de acompañamiento del documento",
+                title: this._oResourceBundle.getText("goodsReceipt"),
+                subtitle: this._oResourceBundle.getText(
+                  "popoverMessageSubtitleErrorTryGetDoc"
+                ),
                 active: true,
                 description: sErrorMessage,
               };
               this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
-                "Ocurrió un error al buscar el vale de acompañamiento"
+                this._oResourceBundle.getText("messageToastErrorGetDoc")
               );
               return;
             }

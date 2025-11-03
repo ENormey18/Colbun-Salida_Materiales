@@ -2,12 +2,12 @@ sap.ui.define(
   [
     "sap/ui/core/Fragment",
     "sap/m/MessageToast",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
+    "salidademateriales/utils/Utils",
   ],
-  function (Fragment, MessageToast, Filter, FilterOperator) {
+  function (Fragment, MessageToast, Utils) {
     "use strict";
     return {
+      _oResourceBundle: null,
       _oDialog: null,
       _oView: null,
       _oComponent: null,
@@ -24,6 +24,7 @@ sap.ui.define(
         this._sFragmentId = this._oView.createId(
           "caracteristicasMaterialesDialog"
         );
+        this._oResourceBundle = this._oComponent.getModel("i18n").getResourceBundle();
       },
 
       /**
@@ -52,7 +53,7 @@ sap.ui.define(
         const sBindingPath = oItemContext?.sPath;
         if (!sBindingPath) {
           return MessageToast.show(
-            "Error al mostrar caracteristicas del material"
+            this._oResourceBundle.getText("messageToastErrorShowCharact")
           );
         } else {
           this._oDialog.bindElement({
@@ -113,7 +114,7 @@ sap.ui.define(
 
         if (!sClassBindingPath) {
           return MessageToast.show(
-            "Error al modificar caracteristicas del material"
+            this._oResourceBundle.getText("messageToastErrorChangeCharact")
           );
         }
         const aCaracteristicas = oDetalleModel.getProperty(
@@ -148,7 +149,7 @@ sap.ui.define(
                 oCaracteristica
               );
             } catch (oError) {
-              const sErrorMessage = this._processErrorResponse(oError);
+              const sErrorMessage = Utils.processErrorResponse(oError);
               oErrorMap.set(oCaracteristica.Caracteristica, sErrorMessage);
             }
           }
@@ -170,9 +171,9 @@ sap.ui.define(
             oErrorMap.forEach((oErrorMessage, sCaracteristica) => {
               const oMessage = {
                 type: "Error",
-                title: "Modificación Característica",
+                title: this._oResourceBundle.getText("characteristicUpdate"),
                 subtitle:
-                  "No se pudo modificar el valor de la característica " +
+                  this._oResourceBundle.getText("popoverMessageDescriptionErrorUpdateCharact") +
                   sCaracteristica,
                 active: true,
                 description: oErrorMessage,
@@ -188,11 +189,11 @@ sap.ui.define(
             const aCaractUpd = Array.from(oCaractUpdatedMap.keys());
             const oMessage = {
               type: "Success",
-              title: "Modificación Característica",
-              subtitle: "Características modificadas con éxito",
+              title: this._oResourceBundle.getText("characteristicUpdate"),
+              subtitle: this._oResourceBundle.getText("popoverMessageSubtitleSuccessUpdateCharact"),
               active: true,
               description:
-                "Se han modificado las características: " +
+                this._oResourceBundle.getText("popoverMessageDescriptionSuccessUpdateCharact") +
                 aCaractUpd.join(", "),
             };
             aNewMessages.push(oMessage);
@@ -202,7 +203,7 @@ sap.ui.define(
           this._oDialog.setBusy(false);
           this._oView.setBusy(false);
           return MessageToast.show(
-            "No hay nuevos valores de características a modificar."
+            this._oResourceBundle.getText("messageToastMissingNewCharact")
           );
         }
 
@@ -210,7 +211,7 @@ sap.ui.define(
         this._oDialog.setBusy(false);
         this._oView.setBusy(false);
         this._oDialog.close();
-        return MessageToast.show("Se han modificado las caraterísticas.");
+        return MessageToast.show(this._oResourceBundle.getText("messageToastCharactUpdated"));
       },
 
       _updateCaracteristicaAsync: function (oODataModel, sPath, oData) {
@@ -233,7 +234,7 @@ sap.ui.define(
           oTable.getBindingContext("detalleReserva")?.sPath;
         if (!sClassBindingPath) {
           return MessageToast.show(
-            "Error al modificar caracteristicas del material"
+            this._oResourceBundle.getText("messageToastErrorChangeCharact")
           );
         }
         const aCaracteristicas = oDetalleModel.getProperty(

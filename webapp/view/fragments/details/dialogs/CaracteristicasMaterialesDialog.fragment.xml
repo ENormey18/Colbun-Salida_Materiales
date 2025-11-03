@@ -3,7 +3,7 @@
     xmlns:core="sap.ui.core"
 >
     <Dialog
-        title="Modificación Características Material {detalleReserva>Material}"
+        title="{i18n>characteristicsDialogTitle} {detalleReserva>Material}"
         resizable="true"
     >
         <content>
@@ -16,11 +16,11 @@
                     <items>
                         <SegmentedButtonItem
                             key="General"
-                            text="General"
+                            text="{i18n>general}"
                         />
                         <SegmentedButtonItem
                             key="Tecnica"
-                            text="Técnica"
+                            text="{i18n>technical}"
                         />
                     </items>
                 </SegmentedButton>
@@ -41,13 +41,13 @@
                 >
                     <columns>
                         <Column>
-                            <Text text="Característica" />
+                            <Text text="{i18n>characteristic}" />
                         </Column>
                         <Column>
-                            <Text text="Descripción" />
+                            <Text text="{i18n>description}" />
                         </Column>
                         <Column>
-                            <Text text="Valor" />
+                            <Text text="{i18n>value}" />
                         </Column>
                     </columns>
                     <items>
@@ -74,14 +74,14 @@
         </content>
         <beginButton>
             <Button
-                text="OK"
+                text="{i18n>save}"
                 type="Emphasized"
                 press=".onAceptarCaracteristicas"
             />
         </beginButton>
         <endButton>
             <Button
-                text="Cancel"
+                text="{i18n>cancel}"
                 press=".onCancelarCaracteristicas"
             />
         </endButton>

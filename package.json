@@ -39,6 +39,7 @@
   },
   "sapuxLayer": "CUSTOMER_BASE",
   "dependencies": {
+    "html2pdf": "^0.0.11",
     "pdf-lib": "^1.17.1"
   }
 }

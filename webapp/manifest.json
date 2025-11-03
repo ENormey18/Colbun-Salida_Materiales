@@ -31,7 +31,8 @@
           "semanticObject": "salida_de_materiales",
           "action": "display",
           "title": "{{salida_de_materiales-display.flpTitle}}",
-          "info": "{{appTitle}}",
+          "subTitle": "{{appTitle}}",
+          "info": "{{appInfo}}",
           "icon": "sap-icon://activity-items",
           "indicatorDataSource": {
             "dataSource": "mainService",
@@ -101,6 +102,7 @@
       ],
       "js": [
         {
+          "uri": "libs/html2pdf.js",
           "uri": "libs/pdf-lib.min.js"
         }
       ]

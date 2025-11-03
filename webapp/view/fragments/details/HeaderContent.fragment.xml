@@ -10,18 +10,18 @@
             <HBox
                 wrap="Wrap"
             >
-                <ObjectAttribute title="Usuario " />
+                <ObjectAttribute title="{i18n>user} " />
                 <Text text="{detalleReserva>/Reserva/Usuario}" />
             </HBox>
             <HBox
                 wrap="Wrap"
             >
-                <ObjectAttribute title="Reserva " />
+                <ObjectAttribute title="{i18n>reservation} " />
                 <Text text="{detalleReserva>/Reserva/Id}" />
             </HBox>
         </VBox>
         <VBox>
-            <ObjectStatus title="Status" />
+            <ObjectStatus title="{i18n>status}" />
             <ObjectStatus
                 class="sapMObjectStatusLarge"
                 text="{

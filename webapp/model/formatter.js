@@ -79,14 +79,14 @@ sap.ui.define(["sap/ui/core/library"], (coreLibrary) => {
       }
     },
     statusText: function (sStatus) {
-      // Usamos un Resource Bundle (i18n) para los textos. ¡Es una mejor práctica!
+      const oBoundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
       switch (sStatus) {
         case "O":
-          return "Abierta";
+          return oBoundle.getText("open");;
         case "C":
-          return "Cerrada";
+          return oBoundle.getText("closed");;
         case "F":
-          return "Vencida";
+          return oBoundle.getText("expired");;
         default:
           return sStatus;
       }

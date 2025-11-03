@@ -5,49 +5,45 @@
     <Table
         id="documentsTable"
         items="{detalleReserva>/Documentos}"
-        autoPopinMode="true"
     >
         <headerToolbar>
             <OverflowToolbar>
-                <Title text="Documentos Contables" />
+                <Title text="{i18n>accountingDocuments}" />
                 <ToolbarSpacer />
                 <ToolbarSpacer width="50px" />
                 <SearchField
                     width="250px"
-                    placeholder="Número"
+                    placeholder="{i18n>number}"
                     search="onSearchDocument"
                 />
             </OverflowToolbar>
         </headerToolbar>
         <columns>
             <Column width="30%">
-                <Text text="Número de Documento" />
+                <Text text="{i18n>documentNumber}" />
             </Column>
             <Column
-                autoPopinWidth="6"
                 width="10%"
             >
-                <Text text="Año" />
+                <Text text="{i18n>year}" />
             </Column>
             <Column
-                autoPopinWidth="6"
                 width="30%"
+                minScreenWidth="Tablet"
             >
-                <Text text="Destinatario" />
+                <Text text="{i18n>recipient}" />
             </Column>
             <Column
-                autoPopinWidth="6"
                 width="10%"
                 hAlign="Center"
             >
-                <Text text="Firmado" />
+                <Text text="{i18n>signed}" />
             </Column>
             <Column
-                autoPopinWidth="6"
                 width="20%"
                 hAlign="Center"
             >
-                <Text text="Visualizar" />
+                <Text text="{i18n>visualize}" />
             </Column>
         </columns>
         <items>
@@ -71,10 +67,10 @@
                             visible="{detalleReserva>Firmado}"
                         />
                         <Button
-                            text="Firmar"
+                            text="{i18n>sign}"
                             icon="sap-icon://edit"
                             type="Transparent"
-                            tooltip="Firmar Documento"
+                            tooltip="{i18n>signDocument}"
                             press="onFirmarDocumento"
                             visible="{= !${detalleReserva>Firmado} }"
                         />

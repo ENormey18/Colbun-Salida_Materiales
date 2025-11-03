@@ -7,19 +7,19 @@
                 <layout:GridData span="XL10 L10 M9 S12"/>
             </layoutData>
             <VBox>
-                <Label text="Reserva" showColon="true" />
+                <Label text="{i18n>reservation}" showColon="true" />
                 <SearchField id="filtroReservas" value="{Reservas>/filters/reserva}" width="150px" />
             </VBox>
             <VBox>
-                <Label text="Centros" showColon="true" />
+                <Label text="{i18n>center}" showColon="true" />
                 <MultiComboBox width="300px" id="combo-centros" selectedKeys="{Reservas>/filters/centros}" items='{Reservas>/centros}'>
                     <core:ListItem key="{Reservas>ID}" text="{Reservas>ID} - {Reservas>Name}"/>
                 </MultiComboBox>
             </VBox>
 
             <VBox>
-                <Label text="Fecha Necesidad" showColon="true" />
-                <DatePicker valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" name="pocNac" id="pocNacFilter" value="{Reservas>/filters/fechaFrom}" width="150px" change="onSetFromDate"/>
+                <Label text="{i18n>requirmentDate}" showColon="true" />
+                <DatePicker placeholder="{i18n>from}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" name="pocNac" id="pocNacFilter" value="{Reservas>/filters/fechaFrom}" width="150px" change="onSetFromDate"/>
             </VBox>
         </HBox>
         <VBox >
@@ -28,15 +28,15 @@
             </layoutData>
             <HBox gap='10px'>
                 <Button icon="sap-icon://filter" press=".openInitialFilters" />
-                <Button text="Go" press=".onSearch" type="Emphasized" />
-                <Button text="Clear" press=".onClear" />
+                <Button text="{i18n>search}" press=".onSearch" type="Emphasized" />
+                <Button text="{i18n>clear}" press=".onClear" />
             </HBox>
         </VBox>
         <HBox >
             <SegmentedButton selectedKey="{Reservas>/filters/status}">
                 <items>
-                    <SegmentedButtonItem text="Pendientes" key="O"/>
-                    <SegmentedButtonItem text="Completados" key="C"/>
+                    <SegmentedButtonItem text="{i18n>pending}" key="O"/>
+                    <SegmentedButtonItem text="{i18n>completed}" key="C"/>
                 </items>
             </SegmentedButton>
         </HBox>

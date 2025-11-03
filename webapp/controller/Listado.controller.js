@@ -23,8 +23,11 @@ sap.ui.define(
 
     return Controller.extend("salidademateriales.controller.Listado", {
       formatter: formatter,
+      _oResourceBundle: null,
       onInit() {
         const oView = this.getView();
+
+        this._oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 
         let aCentros = [];
         const oModel = this.getOwnerComponent().getModel();
@@ -49,7 +52,7 @@ sap.ui.define(
           .catch((err) => {
             console.error("Error en la llamada OData:", err);
             MessageToast.show(
-              "Ocurrió un error al buscar los datos de centros."
+             this._oResourceBundle.getText("messageToastErrorGetCenters")
             );
           });
       },
@@ -118,7 +121,7 @@ sap.ui.define(
           }.bind(this),
           error: function (oError) {
             console.error("Error en la llamada OData:", oError);
-            MessageToast.show("Ocurrió un error al buscar los datos.");
+            MessageToast.show(this._oResourceBundle.getText("messageToastErrorGetData"));
             this.byId("reservasTable").setBusy(false);
           }.bind(this),
         });
@@ -139,7 +142,7 @@ sap.ui.define(
           oFilters.materialTo &&
           parseInt(oFilters.materialFrom) > parseInt(oFilters.materialFrom)
         ) {
-          MessageToast.show("El rango de materiales es inválido");
+          MessageToast.show(this._oResourceBundle.getText("messageToastInvalidMaterialRange"));
           return false;
         }
         if (
@@ -147,7 +150,7 @@ sap.ui.define(
           oFilters.fechaTo &&
           oFilters.fechaFrom > oFilters.fechaTo
         ) {
-          MessageToast.show("El rango de fechas es inválido");
+          MessageToast.show(this._oResourceBundle.getText("messageToastInvalidDateRange"));
           return false;
         }
         if (oFilters.status === "C" && !oFilters.reserva.trim()) {
@@ -158,21 +161,21 @@ sap.ui.define(
             oFilters.fechaTo === ""
           ) {
             MessageToast.show(
-              "Debe especificar un rango de fechas para las reservas completadas"
+              this._oResourceBundle.getText("messageToastMissingDateRangeForCompleted")
             );
             return false;
           }
           const dateFrom = new Date(oFilters.fechaFrom);
           const dateTo = new Date(oFilters.fechaTo);
           if (isNaN(dateFrom) || isNaN(dateTo)) {
-            sap.m.MessageToast.show("Fechas inválidas");
+            MessageToast.show(this._oResourceBundle.getText("messageToastInvalidDates"));
             return false;
           }
           const iDiffMs = dateTo - dateFrom;
           const iDiffDays = Math.ceil(iDiffMs / (1000 * 60 * 60 * 24));
           if (iDiffDays > 366) {
             MessageToast.show(
-              "El rango máximo permitido para reservas completadas es un año"
+              this._oResourceBundle.getText("messageToastMaxAllowedDateRange")
             );
             return false;
           }
@@ -378,7 +381,7 @@ sap.ui.define(
           .getBindingContext("Reservas");
         const oSelectedReserva = oBindingContext.getObject();
         if (!oSelectedReserva) {
-          sap.m.MessageToast.show("Error al obtener los datos de la reserva.");
+          MessageToast.show(this._oResourceBundle.getText("messageToastErrorGetReservationData"));
           return;
         }
         this.getOwnerComponent().getRouter().navTo("RouteDetails", {

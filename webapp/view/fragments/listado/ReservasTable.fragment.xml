@@ -6,11 +6,9 @@
     <Table
         id="reservasTable"
         items="{Reservas>/ReservaSet}"
-        mode="None"
         headerText="Reservas [{= ${Reservas>/ReservaSet}.length}]"
         growing="true"
         growingThreshold="100"
-        growingScrollToLoad="false"
         sticky="HeaderToolbar"  
     >
         <headerToolbar >
@@ -18,12 +16,12 @@
                 design="Solid"
                 
             >
-                <Title text="Reservas [{= ${Reservas>/ReservaSet}.length}]"/>
+                <Title text="{i18n>reservations} [{= ${Reservas>/ReservaSet}.length}]"/>
                 <ToolbarSpacer/>
                 <SearchField
                     id="tableSearchField"
                     width="30%"
-                    placeholder="Filtrar por N° Reserva, Orden, Usuario, Centro..."
+                    placeholder="{i18n>placeHolderTableSearchField}"
                     search="onFiltrarTable"
                 />
             </OverflowToolbar>
@@ -31,57 +29,57 @@
         <columns>
             <Column hAlign="Center">
                 <Button
-                    text="N° Reserva"
+                    text="{i18n>reservationNumb}"
                     type="Transparent"
                     icon="sap-icon://sort"
                     press="onSort"
                     app:sortProperty="Id" 
                 />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="false" hAlign="Center">
+            <Column minScreenWidth="Desktop" hAlign="Center">
                  <Button
-                    text="Código Mov."
+                    text="{i18n>movCode}"
                     type="Transparent"
                     icon="sap-icon://sort"
                     press="onSort"
                     app:sortProperty="MovCode"
                 />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="false">
-                <Text text="Orden" />
+            <Column minScreenWidth="Desktop">
+                <Text text="{i18n>order}" />
             </Column>
-            <Column minScreenWidth="Tablet" demandPopin="false">
-                <Text text="Usuario" />
+            <Column minScreenWidth="Tablet">
+                <Text text="{i18n>user}" />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline">
-                <Text text="Destinatario" />
+            <Column minScreenWidth="Desktop" popinDisplay="Inline">
+                <Text text="{i18n>recipient}" />
             </Column>
             <Column hAlign="Center">
                  <Button
-                    text="Estado"
+                    text="{i18n>status}"
                     type="Transparent"
                     icon="sap-icon://sort"
                     press="onSort"
                     app:sortProperty="Status"
                 />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="false">
-                <Text text="Centro de Coste" />
+            <Column minScreenWidth="Desktop">
+                <Text text="{i18n>costCenter}" />
             </Column>
-            <Column minScreenWidth="Desktop" demandPopin="false">
-                <Text text="Fecha Base" />
+            <Column minScreenWidth="Desktop">
+                <Text text="{i18n>baseDate}" />
             </Column>
             <Column>
                 <Button
-                    text="Fecha Necesidad"
+                    text="{i18n>reqDate}"
                     type="Transparent"
                     icon="sap-icon://sort"
                     press="onSort"
                     app:sortProperty="ReqDate"
                 />
             </Column>
-            <Column minScreenWidth="Tablet" demandPopin="false">
-                <Text text="Centro" />
+            <Column minScreenWidth="Tablet">
+                <Text text="{i18n>center}" />
             </Column>
         </columns>
         <items>

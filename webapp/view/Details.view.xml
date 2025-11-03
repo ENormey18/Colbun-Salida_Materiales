@@ -1,113 +1,54 @@
-<mvc:View
-    controllerName="salidademateriales.controller.Details"
+<mvc:View controllerName="salidademateriales.controller.Details"
     xmlns:core="sap.ui.core"
     xmlns:uxap="sap.uxap"
     xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc"
->
-    <Page
-        title="Gestión Reservas"
-        showNavButton="true"
-        navButtonPress=".onNavBack"
-    >
+    xmlns:mvc="sap.ui.core.mvc">
+    <Page title="{i18n>pageTitle}" showNavButton="false" navButtonPress=".onNavBack">
         <uxap:ObjectPageLayout showFooter="true">
             <uxap:headerTitle>
-                <uxap:ObjectPageDynamicHeaderTitle>
-                    <uxap:content>
-                        <ObjectIdentifier title="Reserva {detalleReserva>/Reserva/Id}" />
-                    </uxap:content>
-                </uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:ObjectPageHeader objectTitle="{i18n>reservation} {detalleReserva>/Reserva/Id}" />
             </uxap:headerTitle>
             <uxap:headerContent>
-                <core:Fragment
-                    fragmentName="salidademateriales.view.fragments.details.HeaderContent"
-                    type="XML"
-                />
+                <core:Fragment fragmentName="salidademateriales.view.fragments.details.HeaderContent" type="XML" />
             </uxap:headerContent>
             <uxap:sections>
-                <uxap:ObjectPageSection
-                    title="Reserva"
-                    titleUppercase="false"
-                >
+                <uxap:ObjectPageSection title="{i18n>reservation}" titleUppercase="false">
                     <uxap:subSections>
-                        <uxap:ObjectPageSubSection title="Detalles Cabecera">
-                            <core:Fragment
-                                fragmentName="salidademateriales.view.fragments.details.DetallesSubSection"
-                                type="XML"
-                            />
+                        <uxap:ObjectPageSubSection title="{i18n>headerDetails}">
+                            <core:Fragment fragmentName="salidademateriales.view.fragments.details.DetallesSubSection" type="XML" />
                         </uxap:ObjectPageSubSection>
                     </uxap:subSections>
                 </uxap:ObjectPageSection>
-                <uxap:ObjectPageSection
-                    title="Listado Materiales"
-                    titleUppercase="false"
-                >
+                <uxap:ObjectPageSection title="{i18n>materialsList}" titleUppercase="false">
                     <uxap:subSections>
-                        <uxap:ObjectPageSubSection title="Listado de materiales">
-                            <core:Fragment
-                                fragmentName="salidademateriales.view.fragments.details.ListadoMaterialesSubSection"
-                                type="XML"
-                            />
+                        <uxap:ObjectPageSubSection title="{i18n>materialList2}">
+                            <core:Fragment fragmentName="salidademateriales.view.fragments.details.ListadoMaterialesSubSection" type="XML" />
                         </uxap:ObjectPageSubSection>
                     </uxap:subSections>
                 </uxap:ObjectPageSection>
-                <uxap:ObjectPageSection
-                    title="Documentos"
-                    titleUppercase="false"
-                >
+                <uxap:ObjectPageSection title="{i18n>documents}" titleUppercase="false">
                     <uxap:subSections>
                         <uxap:ObjectPageSubSection class="sapUxAPObjectPageSubSectionTransparentBackground">
-                            <uxap:blocks>
-                                <!-- 1. Usamos HBox para centrar el panel en el espacio disponible -->
-                                <HBox
-                                    justifyContent="Center"
-                                    width="50%"
-                                >
-                                    <!-- 2. El Panel crea un contenedor con fondo blanco -->
-                                    <!-- 3. 'width="auto"' hace que el Panel se ajuste al ancho de su contenido -->
-                                    <Panel width="auto">
-                                        <content>
-                                            <core:Fragment
-                                                fragmentName="salidademateriales.view.fragments.details.ListadoDocumentosSubSection"
-                                                type="XML"
-                                            />
-                                        </content>
-                                    </Panel>
-                                </HBox>
-                            </uxap:blocks>
+                            <core:Fragment fragmentName="salidademateriales.view.fragments.details.ListadoDocumentosSubSection" type="XML" />
                         </uxap:ObjectPageSubSection>
                     </uxap:subSections>
                 </uxap:ObjectPageSection>
             </uxap:sections>
             <uxap:footer>
                 <OverflowToolbar>
-                    <Button
-                        id="messagePopoverButton"
-                        visible="{= ${detalleReserva>/Messages}.length > 0}"
-                        icon="{
+                    <Button id="messagePopoverButton" visible="{= ${detalleReserva>/Messages}.length > 0}" icon="{
                             path: 'detalleReserva>/Messages',
                             formatter: '.formatter.buttonIconFormatter'
-                        }"
-                        type="{
+                        }" type="{
                             path: 'detalleReserva>/Messages',
                             formatter: '.formatter.buttonTypeFormatter'
-                        }"
-                        text="{
+                        }" text="{
                             path: 'detalleReserva>/Messages',
                             formatter: '.formatter.highestSeverityMessages'
-                        }"
-                        press=".onShowMessagePopover"
-                    />
+                        }" press=".onShowMessagePopover" />
                     <ToolbarSpacer />
-                    <Button
-                        type="Emphasized"
-                        text="Contabilizar"
-                        press="onConfirmarSalida"
-                    />
-                    <Button
-                        text="Cancel"
-                        press="onLimpiarTabla"
-                    />
+                    <Button type="Emphasized" text="{i18n>account}" press="onConfirmarSalida" />
+                    <Button text="{i18n>cancel}" press="onLimpiarTabla" />
                 </OverflowToolbar>
             </uxap:footer>
         </uxap:ObjectPageLayout>

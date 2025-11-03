@@ -20,6 +20,38 @@ sap.ui.define(
         // set the device model
         this.setModel(models.createDeviceModel(), "device");
 
+        fetch(
+          jQuery.sap.getModulePath("salidademateriales") +
+            "/user-api/currentUser",
+          { headers: { Accept: "application/json" } }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((oData) => {
+            const oUserModel = new JSONModel({
+              Nombre: oData.firstname,
+              Apellido: oData.lastname,
+              Name: oData.name,
+              Email: oData.email,
+            });
+            this.setModel(oUserModel, "Usuario");
+          })
+          .catch((error) => {
+            console.error(
+              "Error al obtener la información del usuario:",
+              error
+            );
+            const oUserModel = new JSONModel({
+              Nombre: "Usuario Desconocido",
+              Email: "",
+            });
+            this.setModel(oUserModel, "Usuario");
+          });
+
         const oDetailsStateModel = new JSONModel({
           hasData: false,
           reservaId: null,

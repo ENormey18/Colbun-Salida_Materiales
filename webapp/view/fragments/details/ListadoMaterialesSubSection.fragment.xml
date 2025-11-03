@@ -1,108 +1,86 @@
-<core:FragmentDefinition
-    xmlns:core="sap.ui.core"
+<core:FragmentDefinition xmlns:core="sap.ui.core"
     xmlns="sap.m"
-    xmlns:microchart="sap.suite.ui.microchart"
->
-    <Table
-        id="materialsTable"
-        items="{detalleReserva>/FilteredItems}"
-        autoPopinMode="true"
-        mode="MultiSelect"
-        growingThreshold="15"
-    >
+    xmlns:microchart="sap.suite.ui.microchart">
+    <Table id="materialsTable" items="{detalleReserva>/FilteredItems}" mode="MultiSelect" growing="true" growingThreshold="15">
         <headerToolbar>
             <OverflowToolbar>
-                <Title text="Items en Reserva ({detalleReserva>/Reserva/CantItems})" />
+                <Title text="{i18n>items} {i18n>in} {i18n>reservation} ({detalleReserva>/Reserva/CantItems})" />
                 <ToolbarSpacer />
                 <SegmentedButton selectedKey="{detalleReserva>/ShowingItems}" selectionChange="onShowItems">
                     <items>
-                        <SegmentedButtonItem key="P" text="Pendientes ({detalleReserva>/Reserva/CantItemsP})"/>
-                        <SegmentedButtonItem key="C" text="Completados ({detalleReserva>/Reserva/CantItemsC})"/>
+                        <SegmentedButtonItem key="P" text="{i18n>pending} ({detalleReserva>/Reserva/CantItemsP})"/>
+                        <SegmentedButtonItem key="C" text="{i18n>completed} ({detalleReserva>/Reserva/CantItemsC})"/>
                     </items>
                 </SegmentedButton>
                 <ToolbarSpacer width="50px" />
-                <SearchField width="250px" placeholder="Material" search="onSearchMaterial" />
+                <SearchField width="250px" placeholder="{i18n>material}" search="onSearchMaterial" />
                 <ToolbarSeparator />
                 <ToolbarSeparator />
-                <Button icon="sap-icon://full-screen" />
+                <!--<Button icon="sap-icon://full-screen" />-->
             </OverflowToolbar>
         </headerToolbar>
         <columns>
             <Column  >
-                <Text text="Material" />
+                <Text text="{i18n>material}" />
             </Column>
-            <Column autoPopinWidth="6">
-                <Text text="Descripcion" />
+            <Column minScreenWidth="Tablet">
+                <Text text="{i18n>description}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="Pos." />
+            <Column minScreenWidth="Desktop">
+                <Text text="{i18n>pos}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="Centro" />
+            <Column>
+                <Text text="{i18n>center}" />
             </Column>
-            <Column autoPopinWidth="6" popinDisplay="WithoutHeader">
-                <Text text="Alamacén" />
+            <Column minScreenWidth="Tablet">
+                <Text text="{i18n>storageLoc}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="Fecha Nec." />
+            <Column >
+                <Text text="{i18n>reqDate}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="Ubicación" />
+            <Column minScreenWidth="Tablet">
+                <Text text="{i18n>location}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="Retira" />
+            <Column >
+                <Text text="{i18n>withdraws}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="Pendiente" />
+            <Column >
+                <Text text="{i18n>pending1}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="Cantidad" />
+            <Column minScreenWidth="Desktop">
+                <Text text="{i18n>quantity}" />
             </Column>
-            <Column autoPopinWidth="6" >
-                <Text text="UMB" />
+            <Column >
+                <Text text="{i18n>umb}" />
             </Column>
-            <Column autoPopinWidth="6" hAlign="Center" >
-                <Text text="% Enriquecimiento" />
+            <Column hAlign="Center">
+                <Text text="{i18n>enchancementPercentage}" />
             </Column>
-            <Column autoPopinWidth="6" hAlign="Center" >
-                <Text text="Cant UTs" />
+            <Column hAlign="Center" minScreenWidth="Desktop">
+                <Text text="{i18n>utsQuant}" />
             </Column>
         </columns>
         <items>
             <ColumnListItem>
                 <cells>
-                    <ObjectIdentifier
-                        titleActive="true"
-                        title="{
+                    <ObjectIdentifier titleActive="true" title="{
                             path: 'detalleReserva>Material',
-                            formatter: '.formatter.removeLeadingZeros'}"
-                    />
+                            formatter: '.formatter.removeLeadingZeros'}" />
                     <Text text="{detalleReserva>Descripcion}" />
                     <Text text="{detalleReserva>Pos}" />
                     <Text text="{detalleReserva>Centro} - {detalleReserva>CentroD}" />
                     <Text text="{detalleReserva>Almacen} - {detalleReserva>AlmacenD}" />
-                    <Text text="{detalleReserva>FechaNecesidad}" 
-                    />
+                    <Text text="{detalleReserva>FechaNecesidad}" />
                     <Text text="{detalleReserva>Ubicacion}" />
-                    <Input
-                        value="{detalleReserva>Retira}"
-                        type="Number"
-                        enabled="{= ${detalleReserva>CantPendiente} > 0}"
-                    />
+                    <Input value="{detalleReserva>Retira}" type="Number" enabled="{= ${detalleReserva>CantPendiente} > 0}" />
                     <Text text="{detalleReserva>CantPendiente}" />
                     <Text text="{detalleReserva>CantNecesitada}" />
-                    <Text text="{detalleReserva>Unidad}" />   
-                    <microchart:RadialMicroChart
-                        percentage="{
+                    <Text text="{detalleReserva>Unidad}" />
+                    <microchart:RadialMicroChart percentage="{
                             path: 'detalleReserva>Enhancement',
                             formatter: '.formatter.enchancementPercentage' 
-                        }"
-                        size="XS"
-                        valueColor="Sequence7"
-                        press=".onOpenCharacteristicsDialog"
-                        alignContent="Center"
-                    />
-                     <Text text="{detalleReserva>CantUT}" />  
+                        }" size="XS" valueColor="Sequence7" press=".onOpenCharacteristicsDialog" alignContent="Center" />
+                    <Text text="{detalleReserva>CantUT}" />
                 </cells>
             </ColumnListItem>
         </items>

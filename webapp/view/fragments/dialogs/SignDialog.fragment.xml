@@ -6,16 +6,16 @@
         <customHeader>
             <Toolbar style="Clear">
                 <Button icon="sap-icon://decline" press=".onCloseSignatureDialog"/>
-                <Title text="Firma Digital"/>
+                <Title text="{i18n>signPadTitle}"/>
                 <ToolbarSpacer />
-                <Button text="Save" press=".onSaveSignature"/>
+                <Button text="{i18n>save}" press=".onSaveSignature"/>
             </Toolbar>
         </customHeader>
         <core:HTML id="signatureCanvasContainer" />
         <footer>
             <Toolbar style="Clear">
                 <ToolbarSpacer />
-                <Button text="Clear" press=".onClearSignature"/>
+                <Button text="{i18n>clear}" press=".onClearSignature"/>
             </Toolbar>
         </footer>
     </Dialog>

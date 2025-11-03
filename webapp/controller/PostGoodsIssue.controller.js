@@ -25,12 +25,15 @@ sap.ui.define(
 
     return Controller.extend("salidademateriales.controller.PostGoodsIssue", {
       formatter: formatter,
+      _oResourceBundle: null,
       _signatureHandler: null,
       _destinatarioValueHelp: null,
 
       onInit: function () {
         const oRouter = this.getOwnerComponent().getRouter();
         Device.resize.attachHandler(this.changeCanvasSize, this);
+
+        this._oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 
         this._destinatarioValueHelp = new ValueHelpReceptores(this, {
           modelName: "salidaMateriales",
@@ -81,13 +84,13 @@ sap.ui.define(
             const sErrorMessage = Utils.processErrorResponse(err);
             const oMessage = {
               type: "Error",
-              title: "GET Servicio OData",
-              subtitle: "Ocurrió un error al buscar los destinatarios",
+              title: "GET OData Service",
+              subtitle: this._oResourceBundle.getText("popoverMessageSubtitleErrorGetRecipient"),
               active: true,
               description: sErrorMessage,
             };
             this._messagePopoverHandler.addMessage(oMessage);
-            MessageToast.show("Ocurrió un error al buscar los destinatarios");
+            MessageToast.show(this._oResourceBundle.getText("messageToastErrorGetRecipient"));
           })
           .finally(() => {
             oView.setBusy(false);
@@ -148,7 +151,7 @@ sap.ui.define(
         }
 
         oView.setBusy(true);
-        MessageToast.show("Contabilizando Salida...");
+        MessageToast.show(this._oResourceBundle.getText("messageToastProcessingPostGoodsIssue"));
         try {
           const oODataModel = this.getOwnerComponent().getModel();
 
@@ -171,15 +174,15 @@ sap.ui.define(
             sPath,
             oPostPayload
           );
-          MessageToast.show("Salida de materiales ejecutada exitosamente");
+          MessageToast.show(this._oResourceBundle.getText("successMessagePostGoodsIssue"));
           await this.__processSuccessSalida(oCreatedEntity);
         } catch (oError) {
-          MessageToast.show("Hubo un error con la salida de materiales");
+          MessageToast.show(this._oResourceBundle.getText("messageToastErrorPostGoodIssue"));
           const sErrorMessage = Utils.processErrorResponse(oError);
           const oMessage = {
             type: "Error",
-            title: "Salida de Materiales",
-            subtitle: "Hubo un error al procesar la Salida de Materiales",
+            title: this._oResourceBundle.getText("goodsIssue"),
+            subtitle: this._oResourceBundle.getText("popoverMessageSubtitleErrorPostGoodIssue"),
             active: true,
             description: sErrorMessage,
           };
@@ -202,20 +205,20 @@ sap.ui.define(
           !oSalidaMat.FechaContabilizacion ||
           oSalidaMat.FechaContabilizacion === ""
         ) {
-          MessageToast.show("Debe establecer una fecha de contabilización");
+          MessageToast.show(this._oResourceBundle.getText("messageToastMissingAccountingDate"));
           return false;
         }
         if (
           !oSalidaMat.DestinatarioUser ||
           oSalidaMat.DestinatarioUser === ""
         ) {
-          MessageToast.show("Debe especificar un destinatario");
+          MessageToast.show(this._oResourceBundle.getText("messageToastMissingRecipient"));
           return false;
         }
         if (!oSalidaMat.Materiales || oSalidaMat.Materiales.length === 0) {
           MessageToast.show(
-            "Error al obtener los materiales para el post. Regrese y seleccione los materiales nuevamente"
-          );
+            this._oResourceBundle.getText("messageToastMissingMaterialsPost")
+           );
           return false;
         }
         return true;
@@ -224,13 +227,13 @@ sap.ui.define(
         const oSalidaModel = this.getView().getModel("salidaMateriales");
         const oMessage = {
           type: "Success",
-          title: "Salida de Materiales",
-          subtitle: "Salida de Materiales ejecutada con éxito",
+          title: this._oResourceBundle.getText("goodsIssue"),
+          subtitle: this._oResourceBundle.getText("successMessagePostGoodsIssue"),
           active: true,
           description:
-            "Se ha generado el documento contable " +
+            this._oResourceBundle.getText("popoverMessageDescriptionSuccessPostGoodIssue1") +
             oCreatedEntity.Numero +
-            " con fecha de contabilizacion " +
+            this._oResourceBundle.getText("popoverMessageDescriptionSuccessPostGoodIssue2") +
             oCreatedEntity.FechaContabilizacion,
         };
         this._messagePopoverHandler.addMessage(oMessage);
@@ -260,7 +263,7 @@ sap.ui.define(
           selectedPaths: [],
         });
         const oSalidaModel = this.getView().getModel("salidaMateriales");
-        const sReservaId = oSalidaModel.getProperty("/Reserva");
+        const sReservaId = oSalidaModel.getProperty("/Reserva/Id");
 
         if (sReservaId) {
           const oRouter = this.getOwnerComponent().getRouter();
@@ -296,15 +299,15 @@ sap.ui.define(
               const sErrorMessage = Utils.processErrorResponse(oError);
               const oMessage = {
                 type: "Error",
-                title: "GET Servicio OData",
+                title: "GET OData Service",
                 subtitle:
-                  "Ocurrió un error al buscar el vale de acompañamiento del documento generado",
+                  this._oResourceBundle.getText("popoverMessageSubtitleErrorGetNewDoc"),
                 active: true,
                 description: sErrorMessage,
               };
               this._messagePopoverHandler.addMessage(oMessage);
               MessageToast.show(
-                "Ocurrió un error al buscar el vale de acompañamiento"
+                this._oResourceBundle.getText("messageToastErrorGetNewDoc")
               );
               reject(oError);
             },

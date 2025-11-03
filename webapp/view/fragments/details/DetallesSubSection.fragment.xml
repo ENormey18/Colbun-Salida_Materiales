@@ -7,45 +7,38 @@
     <VBox>
         <form:SimpleForm
             editable="false"
-            layout="ResponsiveGridLayout"
             labelSpanXL="4"
-            labelSpanL="4"
             labelSpanM="4"
-            labelSpanS="12"
             adjustLabelSpan="false"
         >
-            <core:Title text="Información" />
+            <core:Title text="{i18n>information}" />
             <layout:VerticalLayout>
-                <Label text="Orden" showColon="true" />
+                <Label text="{i18n>order}" showColon="true" />
                 <Text text="{detalleReserva>/Reserva/Orden}" />
 
-                <Label text="Fecha Base:" />
+                <Label text="{i18n>baseDate}" showColon="true" />
                 <Text text="{detalleReserva>/Reserva/BaseDate}" />
 
-                <Label text="Código Movimiento:" />
+                <Label text="{i18n>movementCode}" showColon="true" />
                 <Text text="{detalleReserva>/Reserva/MovCode}" />
             </layout:VerticalLayout>
 
             <layout:VerticalLayout>
-                <Label text="Centro de Coste:" />
+                <Label text="{i18n>costCenter}" showColon="true" />
                 <Text text="{detalleReserva>/Reserva/CostCenter} - {detalleReserva>/Reserva/CostCenterD}" />
 
-                <Label text="Destinatario:" />
+                <Label text="{i18n>recipient}" showColon="true"/>
                 <Text text="{detalleReserva>/Reserva/Dest}" />
 
-                <Label text="Centro:" />
+                <Label text="{i18n>center}" showColon="true"/>
                 <Text text="{detalleReserva>/Reserva/Centro} - {detalleReserva>/Reserva/CentroD}" />
             </layout:VerticalLayout>
 
-            <core:Title text="Otros detalles" />
+            <core:Title text="{i18n>otherDetails}" />
             <layout:VerticalLayout>
             </layout:VerticalLayout>
             <layout:VerticalLayout>
             </layout:VerticalLayout>
         </form:SimpleForm>
-        <!-- <Toolbar style="Clear">
-            <ToolbarSpacer />
-            <Button text="Show More" />
-        </Toolbar> -->
     </VBox>
 </core:FragmentDefinition>

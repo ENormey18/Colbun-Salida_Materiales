@@ -4,7 +4,7 @@
 >
     <SelectDialog
         id="receptorSelectDialog"
-        title="Seleccionar Receptor"
+        title="{i18n>recipientDialogTitle}"
         contentHeight="50%" 
         items="{
             path: 'salidaMateriales>/Receptores'

@@ -1,96 +1,44 @@
-<mvc:View
-	controllerName="salidademateriales.controller.PostGoodsIssue"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
->
-	<Page title="Gestión Reservas">
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" controllerName="salidademateriales.controller.PostGoodsIssue">
+	<Page title="{i18n>pageTitle}">
 		<content>
+			<ObjectHeader responsive="true" class="sapUiSmallMarginBottom" title="{i18n>goodsIssue}" intro="{i18n>reservation}: {salidaMateriales>/Reserva/Id}">
+					<ObjectAttribute title="{i18n>date}" text="{salidaMateriales>/Fecha}"/> 
+			</ObjectHeader>
 			<HBox>
 				<VBox class="sapUi-Std-PaddingM sapUiSmallMarginTopBottom">
-					<Label
-						text="Reserva"
-						showColon="true"
-					/>
-					<Text text="{salidaMateriales>/Reserva}" />
-					<Label
-						text="Fecha"
-						showColon="true"
-					/>
-					<Text text="{salidaMateriales>/Fecha}" />
-				</VBox>
-				<VBox class="sapUi-Std-PaddingM sapUiSmallMarginTopBottom">
-					<Label
-						text="Fecha Contabilización"
-						showColon="true"
-					/>
-					<Input
-						type="Date"
-						value="{salidaMateriales>/FechaContabilizacion}"
-						width="150px"
-						required="true"
-						editable="{= !${salidaMateriales>/Ejecutada}}"
-					/>
-					<Label
-						text="Destinatario"
-						showColon="true"
-					/>
-					<Input
-						id="input-destinatario"
-						value="{salidaMateriales>/DestinatarioUser}"
-						placeholder="Buscar o ingresar un usuario receptor..."
-						width="300px"
-						maxLength="12"
-						editable="{= !${salidaMateriales>/Ejecutada}}"
-						showValueHelp="true"
-						valueHelpRequest="onDestinatarioValueHelp"
-						change="onDestinatarioChange"
-					/>
+					<Label text="{i18n>accountingDate}" showColon="true"/>
+					<Input type="Date" value="{salidaMateriales>/FechaContabilizacion}" width="150px" required="true" editable="{= !${salidaMateriales>/Ejecutada}}"/>
+					<Label text="{i18n>recipient}" showColon="true"/>
+					<Input id="input-destinatario" value="{salidaMateriales>/DestinatarioUser}" placeholder="{i18n>placeHolderRecipientDialog}" width="300px" maxLength="12" editable="{= !${salidaMateriales>/Ejecutada}}" showValueHelp="true" valueHelpRequest="onDestinatarioValueHelp" change="onDestinatarioChange"/>
 				</VBox>
 			</HBox>
-			<VBox
-				id="salidaMatContentVBox"
-				alignItems="Center"
-				class="sapUi-Std-PaddingM sapUiSmallMarginBottom"
-				justifyContent="Center"
-			>
-				<Table
-					headerText="Materiales"
-					id="salidaMatTable"
-					items="{
-						path: 'salidaMateriales>/Materiales'
-					}"
-				>
+			<VBox id="salidaMatContentVBox" alignItems="Center" class="sapUi-Std-PaddingM sapUiSmallMarginBottom" justifyContent="Center">
+				<Table headerText="{i18n>materials}" id="salidaMatTable" items="{       path: 'salidaMateriales>/Materiales'      }">
 					<columns>
 						<Column>
-							<Text text="Posición en Reserva" />
+							<Text text="{i18n>reservationPosicion}"/>
 						</Column>
 						<Column>
-							<Text text="Material" />
+							<Text text="{i18n>material}"/>
 						</Column>
 						<Column>
-							<Text text="Descripción" />
+							<Text text="{i18n>description}"/>
 						</Column>
 						<Column>
-							<Text text="Cantidad" />
+							<Text text="{i18n>quantity}"/>
 						</Column>
 						<Column>
-							<Text text="Unidad" />
+							<Text text="{i18n>unit}"/>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem>
 							<cells>
-								<Text text="{salidaMateriales>Pos}" />
-								<Text text="{
-									path: 'salidaMateriales>Material',
-									formatter: '.formatter.removeLeadingZeros'
-								}" />
-								<Text text="{salidaMateriales>Descripcion}" />
-								<Text text="{
-									path: 'salidaMateriales>Retira',
-									formatter: '.formatter.numberDecimals'
-								}" />
-								<Text text="{salidaMateriales>Unidad}" />
+								<Text text="{salidaMateriales>Pos}"/>
+								<Text text="{          path: 'salidaMateriales>Material',          formatter: '.formatter.removeLeadingZeros'         }"/>
+								<Text text="{salidaMateriales>Descripcion}"/>
+								<Text text="{          path: 'salidaMateriales>Retira',          formatter: '.formatter.numberDecimals'         }"/>
+								<Text text="{salidaMateriales>Unidad}"/>
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -99,41 +47,11 @@
 		</content>
 		<footer>
 			<Toolbar>
-				<Button
-					id="messagePopoverPostButton"
-					visible="{= ${salidaMateriales>/Messages}.length > 0}"
-					icon="{
-						path: 'salidaMateriales>/Messages',
-						formatter: '.formatter.buttonIconFormatter'
-					}"
-					type="{
-						path: 'salidaMateriales>/Messages',
-						formatter: '.formatter.buttonTypeFormatter'
-					}"
-					text="{
-						path: 'salidaMateriales>/Messages',
-						formatter: '.formatter.highestSeverityMessages'
-					}"
-					press=".onShowMessagePopover"
-				/>
-				<ToolbarSpacer />
-				<Button
-					visible="{= !${salidaMateriales>/Ejecutada}}"
-					text="Ejecutar"
-					type="Emphasized"
-					press=".onPostSalidaMat"
-				/>
-				<Button
-					visible="{= !${salidaMateriales>/Ejecutada}}"
-					text="Cancelar"
-					press=".onNavBack"
-				/>
-				<Button
-					visible="{salidaMateriales>/Ejecutada}"
-					text="Volver"
-					type="Emphasized"
-					press=".onFinished"
-				/>
+				<Button id="messagePopoverPostButton" visible="{= ${salidaMateriales>/Messages}.length &gt; 0}" icon="{       path: 'salidaMateriales>/Messages',       formatter: '.formatter.buttonIconFormatter'      }" type="{       path: 'salidaMateriales>/Messages',       formatter: '.formatter.buttonTypeFormatter'      }" text="{       path: 'salidaMateriales>/Messages',       formatter: '.formatter.highestSeverityMessages'      }" press=".onShowMessagePopover"/>
+				<ToolbarSpacer/>
+				<Button visible="{= !${salidaMateriales>/Ejecutada}}" text="{i18n>execute}" type="Emphasized" press=".onPostSalidaMat"/>
+				<Button visible="{= !${salidaMateriales>/Ejecutada}}" text="{i18n>cancel}" press=".onNavBack"/>
+				<Button visible="{salidaMateriales>/Ejecutada}" text="{i18n>return}" type="Emphasized" press=".onFinished"/>
 			</Toolbar>
 		</footer>
 	</Page>

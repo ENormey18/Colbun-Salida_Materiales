@@ -6,29 +6,29 @@
     <Dialog>
         <customHeader>
             <OverflowToolbar >
-                <Title text="Filtrar reserva:"/>
+                <Title text="{i18n>reservIntialFilterTitle}"/>
                 <ToolbarSpacer />
                 <Button icon="sap-icon://decline" press=".onCloseInitialFilters"/>
             </OverflowToolbar>
         </customHeader>
         <content>
             <form:SimpleForm>
-                <Label text="Reserva"/>
+                <Label text="{i18n>reservation}"/>
                 <Input id="reservaInput" value="{Reservas>/filters/reserva}"/>
-                <Label text="Fecha de necesidad"/>
-                <DatePicker placeholder="from" id="fechaNecesidadFromInput" value="{Reservas>/filters/fechaFrom}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" change="onSetFromDate"/>
-                <DatePicker placeholder="to" id="fechaNecesidadToInput" value="{Reservas>/filters/fechaTo}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
-                <Label text="Material" />
-                <Input id="materialFromInput" placeholder="from" value="{Reservas>/filters/materialFrom}"/>
-                <Input id="materialToInput" placeholder="to" value="{Reservas>/filters/materialTo}"/>
-                <Label text="Centro" />
+                <Label text="{i18n>requirmentDate}"/>
+                <DatePicker placeholder="{i18n>from}" id="fechaNecesidadFromInput" value="{Reservas>/filters/fechaFrom}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" change="onSetFromDate"/>
+                <DatePicker placeholder="{i18n>to}" id="fechaNecesidadToInput" value="{Reservas>/filters/fechaTo}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd"/>
+                <Label text="{i18n>material}" />
+                <Input id="materialFromInput" placeholder="{i18n>from}" value="{Reservas>/filters/materialFrom}"/>
+                <Input id="materialToInput" placeholder="{i18n>to}" value="{Reservas>/filters/materialTo}"/>
+                <Label text="{i18n>center}" />
                 <MultiComboBox width="300px" id="centroInput" selectedKeys="{Reservas>/filters/centros}" items='{Reservas>/centros}'>
                     <core:ListItem key="{Reservas>ID}" text="{Reservas>ID} - {Reservas>Name}"/>
                 </MultiComboBox>
                 <SegmentedButton selectedKey="{Reservas>/filters/status}">
                     <items>
-                        <SegmentedButtonItem text="Pendientes" key="O"/>
-                        <SegmentedButtonItem text="Completados" key="C"/>
+                        <SegmentedButtonItem text="{i18n>pending}" key="O"/>
+                        <SegmentedButtonItem text="{i18n>completed}" key="C"/>
                     </items>
                 </SegmentedButton>
             </form:SimpleForm>
@@ -37,7 +37,7 @@
             <OverflowToolbar>
                 <ToolbarSpacer />
                 <Button
-                    text="Buscar"
+                    text="{i18n>search}"
                     press=".onSearch"
                 />
             </OverflowToolbar>
