@@ -49,7 +49,7 @@
 			<Toolbar>
 				<Button id="messagePopoverPostButton" visible="{= ${salidaMateriales>/Messages}.length &gt; 0}" icon="{       path: 'salidaMateriales>/Messages',       formatter: '.formatter.buttonIconFormatter'      }" type="{       path: 'salidaMateriales>/Messages',       formatter: '.formatter.buttonTypeFormatter'      }" text="{       path: 'salidaMateriales>/Messages',       formatter: '.formatter.highestSeverityMessages'      }" press=".onShowMessagePopover"/>
 				<ToolbarSpacer/>
-				<Button visible="{= !${salidaMateriales>/Ejecutada}}" text="{i18n>execute}" type="Emphasized" press=".onPostSalidaMat"/>
+				<Button visible="{= !${salidaMateriales>/Ejecutada}}" text="{i18n>account}" type="Emphasized" press=".onPostSalidaMat"/>
 				<Button visible="{= !${salidaMateriales>/Ejecutada}}" text="{i18n>cancel}" press=".onNavBack"/>
 				<Button visible="{salidaMateriales>/Ejecutada}" text="{i18n>return}" type="Emphasized" press=".onFinished"/>
 			</Toolbar>

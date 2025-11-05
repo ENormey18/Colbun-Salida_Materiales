@@ -47,7 +47,7 @@
                             formatter: '.formatter.highestSeverityMessages'
                         }" press=".onShowMessagePopover" />
                     <ToolbarSpacer />
-                    <Button type="Emphasized" text="{i18n>account}" press="onConfirmarSalida" />
+                    <Button type="Emphasized" text="{i18n>execute}" press="onConfirmarSalida" />
                     <Button text="{i18n>cancel}" press="onLimpiarTabla" />
                 </OverflowToolbar>
             </uxap:footer>

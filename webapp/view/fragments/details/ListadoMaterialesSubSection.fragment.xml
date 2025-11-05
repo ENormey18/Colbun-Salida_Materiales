@@ -1,88 +1,90 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core"
     xmlns="sap.m"
     xmlns:microchart="sap.suite.ui.microchart">
-    <Table id="materialsTable" items="{detalleReserva>/FilteredItems}" mode="MultiSelect" growing="true" growingThreshold="15">
-        <headerToolbar>
-            <OverflowToolbar>
-                <Title text="{i18n>items} {i18n>in} {i18n>reservation} ({detalleReserva>/Reserva/CantItems})" />
-                <ToolbarSpacer />
-                <SegmentedButton selectedKey="{detalleReserva>/ShowingItems}" selectionChange="onShowItems">
-                    <items>
-                        <SegmentedButtonItem key="P" text="{i18n>pending} ({detalleReserva>/Reserva/CantItemsP})"/>
-                        <SegmentedButtonItem key="C" text="{i18n>completed} ({detalleReserva>/Reserva/CantItemsC})"/>
-                    </items>
-                </SegmentedButton>
-                <ToolbarSpacer width="50px" />
-                <SearchField width="250px" placeholder="{i18n>material}" search="onSearchMaterial" />
-                <ToolbarSeparator />
-                <ToolbarSeparator />
-                <!--<Button icon="sap-icon://full-screen" />-->
-            </OverflowToolbar>
-        </headerToolbar>
-        <columns>
-            <Column  >
-                <Text text="{i18n>material}" />
-            </Column>
-            <Column minScreenWidth="Tablet">
-                <Text text="{i18n>description}" />
-            </Column>
-            <Column minScreenWidth="Desktop">
-                <Text text="{i18n>pos}" />
-            </Column>
-            <Column>
-                <Text text="{i18n>center}" />
-            </Column>
-            <Column minScreenWidth="Tablet">
-                <Text text="{i18n>storageLoc}" />
-            </Column>
-            <Column >
-                <Text text="{i18n>reqDate}" />
-            </Column>
-            <Column minScreenWidth="Tablet">
-                <Text text="{i18n>location}" />
-            </Column>
-            <Column >
-                <Text text="{i18n>withdraws}" />
-            </Column>
-            <Column >
-                <Text text="{i18n>pending1}" />
-            </Column>
-            <Column minScreenWidth="Desktop">
-                <Text text="{i18n>quantity}" />
-            </Column>
-            <Column >
-                <Text text="{i18n>umb}" />
-            </Column>
-            <Column hAlign="Center">
-                <Text text="{i18n>enchancementPercentage}" />
-            </Column>
-            <Column hAlign="Center" minScreenWidth="Desktop">
-                <Text text="{i18n>utsQuant}" />
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem>
-                <cells>
-                    <ObjectIdentifier titleActive="true" title="{
+    <ScrollContainer width="100%">
+        <Table id="materialsTable" items="{detalleReserva>/FilteredItems}" mode="MultiSelect" growing="true" growingThreshold="15">
+            <headerToolbar>
+                <OverflowToolbar>
+                    <Title text="{i18n>items} {i18n>in} {i18n>reservation} ({detalleReserva>/Reserva/CantItems})" />
+                    <ToolbarSpacer />
+                    <SegmentedButton selectedKey="{detalleReserva>/ShowingItems}" selectionChange="onShowItems">
+                        <items>
+                            <SegmentedButtonItem key="P" text="{i18n>pending} ({detalleReserva>/Reserva/CantItemsP})"/>
+                            <SegmentedButtonItem key="C" text="{i18n>completed} ({detalleReserva>/Reserva/CantItemsC})"/>
+                        </items>
+                    </SegmentedButton>
+                    <ToolbarSpacer width="50px" />
+                    <SearchField width="250px" placeholder="{i18n>material}" search="onSearchMaterial" />
+                    <ToolbarSeparator />
+                    <ToolbarSeparator />
+                    <!--<Button icon="sap-icon://full-screen" />-->
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column width="5rem">
+                    <Text text="{i18n>material}" />
+                </Column>
+                <Column width="12rem" minScreenWidth="Tablet">
+                    <Text text="{i18n>description}" />
+                </Column>
+                <Column width="3rem" minScreenWidth="Desktop">
+                    <Text text="{i18n>pos}" />
+                </Column>
+                <Column width="12rem">
+                    <Text text="{i18n>center}" />
+                </Column>
+                <Column width="8rem" minScreenWidth="Tablet">
+                    <Text text="{i18n>storageLoc}" />
+                </Column>
+                <Column width="6rem">
+                    <Text text="{i18n>reqDate}" />
+                </Column>
+                <Column width="8rem" minScreenWidth="Tablet">
+                    <Text text="{i18n>location}" />
+                </Column>
+                <Column width="5rem">
+                    <Text text="{i18n>withdraws}" />
+                </Column>
+                <Column width="5rem">
+                    <Text text="{i18n>pending1}" />
+                </Column>
+                <Column width="5rem" minScreenWidth="Desktop">
+                    <Text text="{i18n>quantity}" />
+                </Column>
+                <Column width="3rem">
+                    <Text text="{i18n>umb}" />
+                </Column>
+                <Column hAlign="Center" width="8rem">
+                    <Text text="{i18n>enchancementPercentage}" />
+                </Column>
+                <Column hAlign="Center" width="5rem" minScreenWidth="Desktop">
+                    <Text text="{i18n>utsQuant}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <ObjectIdentifier titleActive="true" title="{
                             path: 'detalleReserva>Material',
                             formatter: '.formatter.removeLeadingZeros'}" />
-                    <Text text="{detalleReserva>Descripcion}" />
-                    <Text text="{detalleReserva>Pos}" />
-                    <Text text="{detalleReserva>Centro} - {detalleReserva>CentroD}" />
-                    <Text text="{detalleReserva>Almacen} - {detalleReserva>AlmacenD}" />
-                    <Text text="{detalleReserva>FechaNecesidad}" />
-                    <Text text="{detalleReserva>Ubicacion}" />
-                    <Input value="{detalleReserva>Retira}" type="Number" enabled="{= ${detalleReserva>CantPendiente} > 0}" />
-                    <Text text="{detalleReserva>CantPendiente}" />
-                    <Text text="{detalleReserva>CantNecesitada}" />
-                    <Text text="{detalleReserva>Unidad}" />
-                    <microchart:RadialMicroChart percentage="{
+                        <Text text="{detalleReserva>Descripcion}" />
+                        <Text text="{detalleReserva>Pos}" />
+                        <Text text="{detalleReserva>Centro} - {detalleReserva>CentroD}" />
+                        <Text text="{detalleReserva>Almacen} - {detalleReserva>AlmacenD}" />
+                        <Text text="{detalleReserva>FechaNecesidad}" />
+                        <Text text="{detalleReserva>Ubicacion}" />
+                        <Input value="{detalleReserva>Retira}" type="Number" enabled="{= ${detalleReserva>CantPendiente} > 0}" />
+                        <Text text="{detalleReserva>CantPendiente}" />
+                        <Text text="{detalleReserva>CantNecesitada}" />
+                        <Text text="{detalleReserva>Unidad}" />
+                        <microchart:RadialMicroChart percentage="{
                             path: 'detalleReserva>Enhancement',
                             formatter: '.formatter.enchancementPercentage' 
                         }" size="XS" valueColor="Sequence7" press=".onOpenCharacteristicsDialog" alignContent="Center" />
-                    <Text text="{detalleReserva>CantUT}" />
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
+                        <Text text="{detalleReserva>CantUT}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </ScrollContainer>
 </core:FragmentDefinition>
