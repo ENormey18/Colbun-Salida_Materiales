@@ -24,17 +24,18 @@
             </Column>
             <Column
                 width="10%"
+                minScreenWidth="Tablet"
             >
                 <Text text="{i18n>year}" />
             </Column>
             <Column
-                width="30%"
+                width="28%"
                 minScreenWidth="Tablet"
             >
                 <Text text="{i18n>recipient}" />
             </Column>
             <Column
-                width="10%"
+                width="12%"
                 hAlign="Center"
             >
                 <Text text="{i18n>signed}" />
@@ -67,7 +68,6 @@
                             visible="{detalleReserva>Firmado}"
                         />
                         <Button
-                            text="{i18n>sign}"
                             icon="sap-icon://edit"
                             type="Transparent"
                             tooltip="{i18n>signDocument}"
