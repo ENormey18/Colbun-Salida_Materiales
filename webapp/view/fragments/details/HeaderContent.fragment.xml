@@ -17,7 +17,10 @@
                 wrap="Wrap"
             >
                 <ObjectAttribute title="{i18n>reservation} " />
-                <Text text="{detalleReserva>/Reserva/Id}" />
+                <Text text="{
+                    path: 'detalleReserva>/Reserva/Id',
+                    formatter: '.formatter.removeLeadingZeros'
+                }"/>
             </HBox>
         </VBox>
         <VBox>

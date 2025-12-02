@@ -1,49 +1,20 @@
-<core:FragmentDefinition
-    xmlns="sap.m"
+<core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
->
-    <Table
-        id="reservasTable"
-        items="{Reservas>/ReservaSet}"
-        headerText="Reservas [{= ${Reservas>/ReservaSet}.length}]"
-        growing="true"
-        growingThreshold="100"
-        sticky="HeaderToolbar"  
-    >
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Table id="reservasTable" items="{Reservas>/ReservaSet}" headerText="Reservas [{= ${Reservas>/ReservaSet}.length}]" growing="true" growingThreshold="100" sticky="HeaderToolbar">
         <headerToolbar >
-            <OverflowToolbar
-                design="Solid"
-                
-            >
+            <OverflowToolbar design="Solid">
                 <Title text="{i18n>reservations} [{= ${Reservas>/ReservaSet}.length}]"/>
                 <ToolbarSpacer/>
-                <SearchField
-                    id="tableSearchField"
-                    width="30%"
-                    placeholder="{i18n>placeHolderTableSearchField}"
-                    search="onFiltrarTable"
-                />
+                <SearchField id="tableSearchField" width="30%" placeholder="{i18n>placeHolderTableSearchField}" search="onFiltrarTable" />
             </OverflowToolbar>
         </headerToolbar>
         <columns>
             <Column hAlign="Center">
-                <Button
-                    text="{i18n>reservationNumb}"
-                    type="Transparent"
-                    icon="sap-icon://sort"
-                    press="onSort"
-                    app:sortProperty="Id" 
-                />
+                <Button text="{i18n>reservationNumb}" type="Transparent" icon="sap-icon://sort" press="onSort" app:sortProperty="Id" />
             </Column>
             <Column minScreenWidth="Desktop" hAlign="Center">
-                 <Button
-                    text="{i18n>movCode}"
-                    type="Transparent"
-                    icon="sap-icon://sort"
-                    press="onSort"
-                    app:sortProperty="MovCode"
-                />
+                <Button text="{i18n>movCode}" type="Transparent" icon="sap-icon://sort" press="onSort" app:sortProperty="MovCode" />
             </Column>
             <Column minScreenWidth="Desktop">
                 <Text text="{i18n>order}" />
@@ -55,13 +26,7 @@
                 <Text text="{i18n>recipient}" />
             </Column>
             <Column hAlign="Center">
-                 <Button
-                    text="{i18n>status}"
-                    type="Transparent"
-                    icon="sap-icon://sort"
-                    press="onSort"
-                    app:sortProperty="Status"
-                />
+                <Button text="{i18n>status}" type="Transparent" icon="sap-icon://sort" press="onSort" app:sortProperty="Status" />
             </Column>
             <Column minScreenWidth="Desktop">
                 <Text text="{i18n>costCenter}" />
@@ -70,47 +35,40 @@
                 <Text text="{i18n>baseDate}" />
             </Column>
             <Column>
-                <Button
-                    text="{i18n>reqDate}"
-                    type="Transparent"
-                    icon="sap-icon://sort"
-                    press="onSort"
-                    app:sortProperty="ReqDate"
-                />
+                <Button text="{i18n>reqDate}" type="Transparent" icon="sap-icon://sort" press="onSort" app:sortProperty="ReqDate" />
             </Column>
             <Column minScreenWidth="Tablet">
                 <Text text="{i18n>center}" />
             </Column>
         </columns>
         <items>
-            <ColumnListItem
-                type="Navigation"
-                press=".onItemPress"
-            >
+            <ColumnListItem type="Navigation" press=".onItemPress">
                 <cells>
-                    <ObjectIdentifier
-                        title="{Reservas>Id}"
-                        titleActive="true"
-                        titlePress=".onItemPress"
-                    />
+                    <ObjectIdentifier 
+                        title="{
+                            path: 'Reservas>Id',
+                            formatter: '.formatter.removeLeadingZeros'
+                        }" 
+                        titleActive="true" 
+                        titlePress=".onItemPress" />
                     <Text text="{Reservas>MovCode}" />
-                    <Text text="{Reservas>Orden}" />
+                    <Text
+                        text="{
+                            path: 'Reservas>Orden',
+                            formatter: '.formatter.removeLeadingZeros'
+                        }" />
                     <Text text="{Reservas>Usuario}" />
                     <Text text="{Reservas>Dest}" />
-                    <ObjectStatus
-                        icon="{
+                    <ObjectStatus icon="{
                             path: 'Reservas>Status',
                             formatter: '.formatter.statusIcon'
-                        }"
-                        text="{
+                        }" text="{
                             path: 'Reservas>Status',
                             formatter: '.formatter.statusText'
-                        }"
-                        state="{
+                        }" state="{
                             path: 'Reservas>Status',
                             formatter: '.formatter.statusTextState'
-                        }"
-                    />  
+                        }" />
                     <VBox>
                         <Text text="{Reservas>CostCenter}" />
                         <Text text="{Reservas>CostCenterD}" />

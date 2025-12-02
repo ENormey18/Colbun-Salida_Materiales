@@ -8,7 +8,7 @@
             </layoutData>
             <VBox>
                 <Label text="{i18n>reservation}" showColon="true" />
-                <SearchField id="filtroReservas" value="{Reservas>/filters/reserva}" width="150px" />
+                <SearchField id="filtroReservas" value="{Reservas>/filters/reserva}" width="150px" showSearchButton="false"/>
             </VBox>
             <VBox>
                 <Label text="{i18n>center}" showColon="true" />

@@ -236,16 +236,27 @@ sap.ui.define(
             FechaContabilizacion: new Date().toISOString().slice(0, 10),
             Reserva: {
               Id: reservaOData && reservaOData.Id ? reservaOData.Id : "",
-              Usuario: reservaOData && reservaOData.Usuario ? reservaOData.Usuario : "",
-              Orden: reservaOData && reservaOData.Orden ? reservaOData.Orden : "",
+              Usuario:
+                reservaOData && reservaOData.Usuario
+                  ? reservaOData.Usuario
+                  : "",
+              Orden:
+                reservaOData && reservaOData.Orden ? reservaOData.Orden : "",
               Dest: reservaOData && reservaOData.Dest ? reservaOData.Dest : "",
-              Centro: reservaOData && reservaOData.Centro ? reservaOData.Centro : "",
-              CentroD: reservaOData && reservaOData.CentroD ? reservaOData.CentroD : "",
+              Centro:
+                reservaOData && reservaOData.Centro ? reservaOData.Centro : "",
+              CentroD:
+                reservaOData && reservaOData.CentroD
+                  ? reservaOData.CentroD
+                  : "",
               CostCenter:
-                reservaOData && reservaOData.CostCenter ? reservaOData.CostCenter : "",
+                reservaOData && reservaOData.CostCenter
+                  ? reservaOData.CostCenter
+                  : "",
               CostCenterD:
-              reservaOData && reservaOData.CostCenterD ? reservaOData.CostCenterD : "",
-            
+                reservaOData && reservaOData.CostCenterD
+                  ? reservaOData.CostCenterD
+                  : "",
             },
             Destinatario: "",
             Materiales: [],
@@ -349,13 +360,12 @@ sap.ui.define(
         const aMessages = [];
         aMaterialesWithoutUTs.forEach((oItem, index) => {
           const sDescription =
-            this._oResourceBundle.getText(
-              "popoverMessageDescriptionMissingUT1"
-            ) +
+            this._oResourceBundle.getText("popoverMessageDescriptionMissingUT1") +
+            " " +
             this.formatter.removeLeadingZeros(oItem.Material) +
-            this._oResourceBundle.getText(
-              "popoverMessageDescriptionMissingUT2"
-            ) +
+            " " +
+            this._oResourceBundle.getText("popoverMessageDescriptionMissingUT2") +
+            " " +
             oItem.Centro;
           const oMessage = {
             type: "Warning",

@@ -14,7 +14,10 @@
             <core:Title text="{i18n>information}" />
             <layout:VerticalLayout>
                 <Label text="{i18n>order}" showColon="true" />
-                <Text text="{detalleReserva>/Reserva/Orden}" />
+                <Text text="{
+                    path: 'detalleReserva>/Reserva/Orden',
+                    formatter: '.formatter.removeLeadingZeros'
+                }"/>
 
                 <Label text="{i18n>baseDate}" showColon="true" />
                 <Text text="{detalleReserva>/Reserva/BaseDate}" />

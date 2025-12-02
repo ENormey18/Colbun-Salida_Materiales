@@ -9,7 +9,7 @@
 					<Label text="{i18n>accountingDate}" showColon="true"/>
 					<Input type="Date" value="{salidaMateriales>/FechaContabilizacion}" width="150px" required="true" editable="{= !${salidaMateriales>/Ejecutada}}"/>
 					<Label text="{i18n>recipient}" showColon="true"/>
-					<Input id="input-destinatario" value="{salidaMateriales>/DestinatarioUser}" placeholder="{i18n>placeHolderRecipientDialog}" width="300px" maxLength="12" editable="{= !${salidaMateriales>/Ejecutada}}" showValueHelp="true" valueHelpRequest="onDestinatarioValueHelp" change="onDestinatarioChange"/>
+					<Input id="input-destinatario" value="{salidaMateriales>/DestinatarioName}" placeholder="{i18n>placeHolderRecipientDialog}" maxLength="25" width="300px" editable="{= !${salidaMateriales>/Ejecutada}}" showValueHelp="true" valueHelpRequest="onDestinatarioValueHelp" change="onDestinatarioChange"/>
 				</VBox>
 			</HBox>
 			<VBox id="salidaMatContentVBox" alignItems="Center" class="sapUi-Std-PaddingM sapUiSmallMarginBottom" justifyContent="Center">

@@ -47,7 +47,8 @@ sap.ui.define(
               centros: aCentros,
             });
             oView.setModel(oModelR, "Reservas");
-            this.openInitialFilters();
+            //this.openInitialFilters();
+            this.onSearch();
           })
           .catch((err) => {
             console.error("Error en la llamada OData:", err);
@@ -125,8 +126,9 @@ sap.ui.define(
             this.byId("reservasTable").setBusy(false);
           }.bind(this),
         });
-
-        this.initialFiltersDialog.close();
+        if (this.initialFiltersDialog && this.initialFiltersDialog.isOpen()){
+          this.initialFiltersDialog.close();
+        }
         const oTable = this.byId("reservasTable");
         const oBinding = oTable.getBinding("items");
         oBinding.filter([]);

@@ -151,6 +151,7 @@ sap.ui.define(
         }
 
         oView.setBusy(true);
+        this._messagePopoverHandler.clearMessages();
         MessageToast.show(this._oResourceBundle.getText("messageToastProcessingPostGoodsIssue"));
         try {
           const oODataModel = this.getOwnerComponent().getModel();
@@ -158,13 +159,13 @@ sap.ui.define(
           const oPostPayload = {
             Fecha: oSalidaData.Fecha,
             FechaContabilizacion: oSalidaData.FechaContabilizacion,
-            Texto: oSalidaData.DestinatarioUser.toUpperCase(),
+            Texto: oSalidaData.DestinatarioName,
             ToItems: oSalidaData.Materiales.map((oMaterial) => ({
               ReservaId: oMaterial.ReservaId,
               ReservaPos: oMaterial.Pos,
               Cantidad: formatter.numberDecimals(oMaterial.Retira),
-              Texto: "",
-              Customer: oSalidaData.DestinatarioUser.toUpperCase(),
+              Texto: oSalidaData.DestinatarioName,
+              //Customer: oSalidaData.DestinatarioUser.toUpperCase(),
             })),
           };
 
@@ -209,8 +210,8 @@ sap.ui.define(
           return false;
         }
         if (
-          !oSalidaMat.DestinatarioUser ||
-          oSalidaMat.DestinatarioUser === ""
+          !oSalidaMat.DestinatarioName ||
+          oSalidaMat.DestinatarioName === ""
         ) {
           MessageToast.show(this._oResourceBundle.getText("messageToastMissingRecipient"));
           return false;
@@ -231,9 +232,9 @@ sap.ui.define(
           subtitle: this._oResourceBundle.getText("successMessagePostGoodsIssue"),
           active: true,
           description:
-            this._oResourceBundle.getText("popoverMessageDescriptionSuccessPostGoodIssue1") +
-            oCreatedEntity.Numero +
-            this._oResourceBundle.getText("popoverMessageDescriptionSuccessPostGoodIssue2") +
+            this._oResourceBundle.getText("popoverMessageDescriptionSuccessPostGoodIssue1") + " " +
+            oCreatedEntity.Numero + " " +
+            this._oResourceBundle.getText("popoverMessageDescriptionSuccessPostGoodIssue2") + " " +
             oCreatedEntity.FechaContabilizacion,
         };
         this._messagePopoverHandler.addMessage(oMessage);

@@ -107,7 +107,7 @@ sap.ui.define([
                 oViewModel.setProperty(this._oConfig.keyModelPath, oFoundItem[this._oConfig.keyField].toUpperCase());
             } else {
                 // Si no se encuentra, aceptar la entrada manual como la clave
-                oViewModel.setProperty(this._oConfig.descriptionModelPath, sValue.toUpperCase());
+                oViewModel.setProperty(this._oConfig.descriptionModelPath, sValue);
                 oViewModel.setProperty(this._oConfig.keyModelPath, sValue.toUpperCase());
             }
         },
